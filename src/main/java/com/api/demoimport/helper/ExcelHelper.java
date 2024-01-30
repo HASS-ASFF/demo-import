@@ -16,12 +16,14 @@ import java.util.List;
 
 public class ExcelHelper {
         public static String TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-        static String[] HEADERs = { "id", "libelle", "niv_de_reg", "no_compte", "the_class", "amort" };
-        static String SHEET = "PlanComptable";
+        //static String[] HEADERs = { "id", "libelle", "niv_de_reg", "no_compte", "the_class", "amort" };
+        //static String SHEET = "PlanComptable";
 
         public static boolean hasExcelFormat(MultipartFile file) {
 
             if (!TYPE.equals(file.getContentType())) {
+                System.out.println(file.getContentType());
+                System.out.println(TYPE);
                 return false;
             }
 
@@ -32,16 +34,16 @@ public class ExcelHelper {
             try {
                 Workbook workbook = new XSSFWorkbook(is);
 
-                Sheet sheet = workbook.getSheet(SHEET);
+                Sheet sheet = workbook.getSheet("plan_comptable");
                 Iterator<Row> rows = sheet.iterator();
 
-                List<PlanComptable> planComptables = new ArrayList<PlanComptable>();
+                List<PlanComptable> planComptables = new ArrayList<>();
 
                 int rowNumber = 0;
                 while (rows.hasNext()) {
                     Row currentRow = rows.next();
 
-                    // skip header
+
                     if (rowNumber == 0) {
                         rowNumber++;
                         continue;

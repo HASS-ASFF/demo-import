@@ -1,28 +1,27 @@
 package com.api.demoimport.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "plan_comptable")
-@Data
+@Getter
+@Setter
 public class PlanComptable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "libelle", nullable = true)
+    @Column
     private String libelle;
-    @Column(name = "niv_de_reg", nullable = true)
+    @Column
     private Long niv_de_reg;
-
-    @Column(name = "no_compte", nullable = true)
+    @Column
     private Long no_compte;
-    @Column(name = "the_class", nullable = true)
+    @Column
     private Long the_class;
-
-    @Column(name = "amort", nullable = true)
+    @Column
     private Long amort;
 
 }
