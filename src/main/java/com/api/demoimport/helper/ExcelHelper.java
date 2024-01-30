@@ -1,11 +1,14 @@
 package com.api.demoimport.helper;
 
+import com.api.demoimport.entity.BalanceDetail;
 import com.api.demoimport.entity.PlanComptable;
+import com.api.demoimport.repository.PlanComptableRepository;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -15,9 +18,8 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ExcelHelper {
+
         public static String TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-        //static String[] HEADERs = { "id", "libelle", "niv_de_reg", "no_compte", "the_class", "amort" };
-        //static String SHEET = "PlanComptable";
 
         public static boolean hasExcelFormat(MultipartFile file) {
 
@@ -99,4 +101,93 @@ public class ExcelHelper {
                 throw new RuntimeException("fail to parse Excel file: " + e.getMessage());
             }
         }
+
+    public static List<BalanceDetail> excelToBalanceDetail(InputStream is, PlanComptableRepository planComptableRepository) {
+        try {
+            Workbook workbook = new XSSFWorkbook(is);
+
+            Sheet sheet = workbook.getSheet("balance_detail");
+            Iterator<Row> rows = sheet.iterator();
+
+            List<BalanceDetail> balanceDetails = new ArrayList<>();
+
+            int rowNumber = 0;
+            while (rows.hasNext()) {
+                Row currentRow = rows.next();
+
+
+                if (rowNumber == 0) {
+                    rowNumber++;
+                    continue;
+                }
+
+                Iterator<Cell> cellsInRow = currentRow.iterator();
+
+                BalanceDetail balanceDetail = new BalanceDetail();
+
+                int cellIdx = 0;
+                while (cellsInRow.hasNext()) {
+                    Cell currentCell = cellsInRow.next();
+
+                    switch (cellIdx) {
+                        case 0:
+                            balanceDetail.setThe_class((long) currentCell.getNumericCellValue());
+                            break;
+
+                        case 1:
+
+                            setPlanComptableByNoCompte(balanceDetail,(long) currentCell.getNumericCellValue(),planComptableRepository);
+                            break;
+
+                        case 2:
+                            balanceDetail.setLabel(currentCell.getStringCellValue());
+                            break;
+
+                        case 3:
+                            balanceDetail.setDebitDex(currentCell.getNumericCellValue());
+                            break;
+
+                        case 4:
+                            balanceDetail.setCreditDex(currentCell.getNumericCellValue());
+                            break;
+
+                        case 5:
+                            balanceDetail.setDebitEx(currentCell.getNumericCellValue());
+                            break;
+
+                        case 6:
+                            balanceDetail.setCreditEx(currentCell.getNumericCellValue());
+                            break;
+
+                        case 7:
+                            balanceDetail.setDebitFex(currentCell.getNumericCellValue());
+                            break;
+
+                        case 8:
+                            balanceDetail.setCreditFex(currentCell.getNumericCellValue());
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                    cellIdx++;
+                }
+
+                balanceDetails.add(balanceDetail);
+            }
+
+            workbook.close();
+
+            return balanceDetails;
+        } catch (IOException e) {
+            throw new RuntimeException("fail to parse Excel file: " + e.getMessage());
+        }
+    }
+
+    private static void setPlanComptableByNoCompte(BalanceDetail balanceDetail, Long noCompte, PlanComptableRepository planComptableRepository) {
+        PlanComptable planComptable = planComptableRepository.findById(noCompte)
+                .orElseThrow(() -> new IllegalArgumentException("Aucun plan comptable trouvé pour le numéro de compte : " + noCompte));
+        balanceDetail.setCompte(planComptable);
+    }
 }

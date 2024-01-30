@@ -1,8 +1,10 @@
 package com.api.demoimport.entity;
 
 
+import com.api.demoimport.repository.PlanComptableRepository;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 
@@ -38,12 +40,13 @@ public class BalanceDetail {
     @Column
     private Double creditFex;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinTable(name = "compte",
             joinColumns = @JoinColumn(name = "compte_id"),
             inverseJoinColumns = @JoinColumn(name = "balance_detail_id"))
     private PlanComptable compte;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Balance balance;
+
 }

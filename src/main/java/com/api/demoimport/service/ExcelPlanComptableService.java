@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
-public class ExcelService {
+public class ExcelPlanComptableService {
     @Autowired
     PlanComptableRepository repository;
 
