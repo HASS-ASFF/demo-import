@@ -3,7 +3,7 @@ package com.api.demoimport.controller;
 
 import com.api.demoimport.entity.BalanceDetail;
 import com.api.demoimport.entity.PlanComptable;
-import com.api.demoimport.helper.ExcelHelper;
+import com.api.demoimport.service.ExcelHelperService;
 import com.api.demoimport.message.ResponseMessage;
 import com.api.demoimport.service.ExcelBalanceDetailService;
 import com.api.demoimport.service.ExcelPlanComptableService;
@@ -31,7 +31,7 @@ public class ExcelController {
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
         String message = "";
 
-        if (ExcelHelper.hasExcelFormat(file)) {
+        if (ExcelHelperService.hasExcelFormat(file)) {
             try {
                 fileService.save(file);
 
@@ -68,7 +68,7 @@ public class ExcelController {
     public ResponseEntity<ResponseMessage> uploadFileBalance(@RequestParam("file") MultipartFile file) {
         String message = "";
 
-        if (ExcelHelper.hasExcelFormat(file)) {
+        if (ExcelHelperService.hasExcelFormat(file)) {
             try {
                 fileServiceBalance.save(file);
 

@@ -46,7 +46,7 @@ public class BalanceDetail {
             inverseJoinColumns = @JoinColumn(name = "balance_detail_id"))
     private PlanComptable compte;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Balance balance;
+ /*   @ManyToOne(fetch = FetchType.LAZY)
+    private Balance balance; */
 
 }
