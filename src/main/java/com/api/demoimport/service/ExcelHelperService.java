@@ -72,7 +72,18 @@ public class ExcelHelperService {
                                 break;
 
                             case 3:
-                                planComptable.setNo_compte((long) currentCell.getNumericCellValue());
+                                String no_compte = currentCell.getCellType() == CellType.STRING
+                                        ? currentCell.getStringCellValue()
+                                        : String.format("%-9s", currentCell.getNumericCellValue()).replace(".", "").replace(" ", "0");
+
+
+
+                                //System.out.println(no_compte);
+
+                                Double classValue2 = Double.valueOf(no_compte);
+
+                                planComptable.setNo_compte(classValue2.longValue());
+
                                 break;
 
                             case 4:
@@ -147,6 +158,8 @@ public class ExcelHelperService {
                                     repeat(11 - String.valueOf(currentCell.getNumericCellValue()).length(), "0"));
 
 
+                            //System.out.println(compte);
+
                             Double classValue2 = Double.valueOf(compte);
 
                             Optional<PlanComptable> planComptable = excelPlanComptableServiceImpl
@@ -154,8 +167,9 @@ public class ExcelHelperService {
 
                             if (planComptable.isPresent()) {
                                 balanceDetail.setCompte(planComptable.get());
+                                balanceDetail.setN_Compte(planComptable.get().getNo_compte());
                             } else {
-                                // do nothing
+                                //System.out.println("here is ; " + compte);
                             }
                             break;
 
@@ -251,7 +265,7 @@ public class ExcelHelperService {
         }
     }
 
-    // convert number from "97,545.00" to double number
+
     private Double convertDhStringToDouble(String dhNumber) {
         // Remove commas from the input string
         String cleanedInput = dhNumber.replaceAll(",", "");

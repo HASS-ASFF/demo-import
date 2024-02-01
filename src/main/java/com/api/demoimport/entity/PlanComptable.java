@@ -3,6 +3,7 @@ package com.api.demoimport.entity;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -23,5 +24,7 @@ public class PlanComptable {
     private Long the_class;
     @Column
     private Long amort;
+
+
 
 }

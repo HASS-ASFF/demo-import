@@ -10,4 +10,6 @@ public interface PlanComptableRepository extends JpaRepository<PlanComptable,Lon
 
     @Query(nativeQuery = true, value = "select * from plan_comptable where no_compte = :noCompte limit 1")
     public Optional<PlanComptable> querySearchPlanComptable(Long noCompte);
+
+
 }

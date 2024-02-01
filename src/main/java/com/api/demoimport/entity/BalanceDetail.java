@@ -40,11 +40,12 @@ public class BalanceDetail {
     @Column
     private Double creditFex;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinTable(name = "compte",
-            joinColumns = @JoinColumn(name = "compte_id"),
-            inverseJoinColumns = @JoinColumn(name = "balance_detail_id"))
+    @ManyToOne
+    @JoinColumn(name = "compte_id")
     private PlanComptable compte;
+
+    @Column(nullable = true)
+    private Long n_Compte;
 
  /*   @ManyToOne(fetch = FetchType.LAZY)
     private Balance balance; */
