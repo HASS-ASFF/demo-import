@@ -1,7 +1,9 @@
 package com.api.demoimport.service;
 
+import com.api.demoimport.entity.Balance;
 import com.api.demoimport.entity.BalanceDetail;
 import com.api.demoimport.entity.PlanComptable;
+import com.api.demoimport.repository.BalanceRepository;
 import com.api.demoimport.repository.PlanComptableRepository;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -12,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -20,6 +23,8 @@ public class ExcelHelperService {
 
     @Autowired
     private ExcelPlanComptableService excelPlanComptableServiceImpl;
+    @Autowired
+    private BalanceRepository balanceRepository;
 
     // Définition des types MIME pour les fichiers Excel
     public static String TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
@@ -124,6 +129,13 @@ public class ExcelHelperService {
 
             List<BalanceDetail> balanceDetails = new ArrayList<>();
 
+            // Création d'une instance de Balance avec la date au 30/12/2023
+            Balance balance = new Balance();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            balance.setDate(sdf.parse("2023-12-30"));
+
+
+
             int rowNumber = 0;
             while (rows.hasNext()) {
                 Row currentRow = rows.next();
@@ -138,12 +150,16 @@ public class ExcelHelperService {
 
                 BalanceDetail balanceDetail = new BalanceDetail();
 
+
+
                 int cellIdx = 0;
                 while (cellsInRow.hasNext()) {
                     Cell currentCell = cellsInRow.next();
 
+                    balanceDetail.setBalance(balance);
+
                     switch (cellIdx) {
-        // Récupération des données de chaque cellule et assignation aux attributs de l'objet BalanceDetail
+// Récupération des données de chaque cellule et assignation aux attributs de l'objet BalanceDetail
 
                         case 0:
 
@@ -157,7 +173,6 @@ public class ExcelHelperService {
                                     : String.valueOf(currentCell.getNumericCellValue());
 // Convertir la valeur récupéré en Double
                             Double classValue1 = Double.valueOf(the_class);
-
                             balanceDetail.setThe_class(classValue1.longValue());
                             break;
 
@@ -169,7 +184,6 @@ public class ExcelHelperService {
                                     repeat(11 - String.valueOf(currentCell.getNumericCellValue()).length(), "0"));
 
 
-                            //System.out.println(compte);
 
                             Double classValue2 = Double.valueOf(compte);
 // Vérifier si la valeur récupéré existe dans la table plan comptable (numéro de compte)
@@ -199,7 +213,6 @@ public class ExcelHelperService {
                                     : String.valueOf(currentCell.getNumericCellValue());
 
                             Double classValue3 = convertDhStringToDouble(debitDex);
-
                             balanceDetail.setDebitDex(classValue3);
 
                             break;
@@ -254,6 +267,7 @@ public class ExcelHelperService {
 
                             Double classValue8 = convertDhStringToDouble(creditFex);
 
+
                             balanceDetail.setCreditFex(classValue8);
 
                             break;
@@ -266,6 +280,7 @@ public class ExcelHelperService {
                 }
 
                 balanceDetails.add(balanceDetail);
+                balanceRepository.save(balance);
             }
 
             workbook.close();

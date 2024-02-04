@@ -47,7 +47,8 @@ public class BalanceDetail {
     @Column(nullable = true)
     private Long n_Compte;
 
- /*   @ManyToOne(fetch = FetchType.LAZY)
-    private Balance balance; */
+    @ManyToOne
+    @JoinColumn(name = "balance_id")
+    private Balance balance;
 
 }
