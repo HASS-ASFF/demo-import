@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MaxUploadSizeExceededException;
 public class FileUploadExceptionAdvice {
 
     @ExceptionHandler(MaxUploadSizeExceededException.class)
+    // gestion de l'exception pour la taille du fichier ( < 2 MB ) 
     public ResponseEntity<ResponseMessage> handleMaxSizeException(MaxUploadSizeExceededException exc) {
         return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage("File too large!"));
     }

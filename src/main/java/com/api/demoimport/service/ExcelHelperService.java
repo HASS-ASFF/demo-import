@@ -20,9 +20,12 @@ public class ExcelHelperService {
 
     @Autowired
     private ExcelPlanComptableService excelPlanComptableServiceImpl;
-        public static String TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-        public static String TYPE2 = "application/vnd.ms-excel";
 
+    // Définition des types MIME pour les fichiers Excel
+    public static String TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+    public static String TYPE2 = "application/vnd.ms-excel";
+
+    // Vérifie si le fichier est au format Excel
     public static boolean hasExcelFormat(MultipartFile file) {
         String fileType = file.getContentType();
         return fileType != null
@@ -30,8 +33,8 @@ public class ExcelHelperService {
                 fileType.equals(TYPE2));
     }
 
-
-        public  List<PlanComptable> excelToPlanComptable(InputStream is) throws ParseException {
+    // Conversion d'un fichier Excel en une liste d'objets PlanComptable
+    public  List<PlanComptable> excelToPlanComptable(InputStream is) throws ParseException {
             try {
                 Workbook workbook = new XSSFWorkbook(is);
 
@@ -59,6 +62,7 @@ public class ExcelHelperService {
                         Cell currentCell = cellsInRow.next();
 
                         switch (cellIdx) {
+            // Récupération des données de chaque cellule et assignation aux attributs de l'objet PlanComptable
                             case 0:
                                 planComptable.setId((long) currentCell.getNumericCellValue());
                                 break;
@@ -75,8 +79,6 @@ public class ExcelHelperService {
                                 String no_compte = currentCell.getCellType() == CellType.STRING
                                         ? currentCell.getStringCellValue()
                                         : String.format("%-9s", currentCell.getNumericCellValue()).replace(".", "").replace(" ", "0");
-
-
 
                                 //System.out.println(no_compte);
 
@@ -112,6 +114,7 @@ public class ExcelHelperService {
             }
         }
 
+    // Conversion d'un fichier Excel en une liste d'objets BalanceDetail
     public  List<BalanceDetail> excelToBalanceDetail(InputStream is) throws ParseException{
         try {
             Workbook workbook = new XSSFWorkbook(is);
@@ -140,11 +143,19 @@ public class ExcelHelperService {
                     Cell currentCell = cellsInRow.next();
 
                     switch (cellIdx) {
+        // Récupération des données de chaque cellule et assignation aux attributs de l'objet BalanceDetail
+
                         case 0:
+
+// Récupère la valeur de la classe à partir de la cellule actuelle.
+// Si le contenu de la cellule est une chaîne de caractères ou une formule, récupère la valeur sous forme de chaîne de caractères.
+// Sinon, convertit la valeur numérique en chaîne de caractères
+
                             String the_class = currentCell.getCellType() == CellType.STRING || currentCell
                                     .getCellType() == CellType.FORMULA
                                     ? currentCell.getStringCellValue()
                                     : String.valueOf(currentCell.getNumericCellValue());
+// Convertir la valeur récupéré en Double
                             Double classValue1 = Double.valueOf(the_class);
 
                             balanceDetail.setThe_class(classValue1.longValue());
@@ -161,7 +172,7 @@ public class ExcelHelperService {
                             //System.out.println(compte);
 
                             Double classValue2 = Double.valueOf(compte);
-
+// Vérifier si la valeur récupéré existe dans la table plan comptable (numéro de compte)
                             Optional<PlanComptable> planComptable = excelPlanComptableServiceImpl
                                     .search(classValue2.longValue());
 
@@ -267,18 +278,19 @@ public class ExcelHelperService {
 
 
     private Double convertDhStringToDouble(String dhNumber) {
-        // Remove commas from the input string
+        // enlever les caractères du résultat string ( à savoir , et DH )
         String cleanedInput = dhNumber.replaceAll(",", "");
         cleanedInput = cleanedInput.replaceAll(" DH", "");
         try {
             return Double.parseDouble(cleanedInput);
         } catch (NumberFormatException e) {
-            // Handle the case where the string cannot be parsed as a Double
+        // handle in case where data is double format
             System.err.println("Error converting string to Double: " + e.getMessage());
             return null; // or throw an exception, depending on your requirements
         }
     }
 
+    // methode pour compléter 8 chiffres pour le numéro de compte
     private static String repeat(int repetitions, String character) {
         return Collections.nCopies(repetitions, character).stream()
                 .collect(Collectors.joining());

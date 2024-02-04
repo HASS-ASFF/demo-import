@@ -27,12 +27,16 @@ public class ExcelController {
     @Autowired
     ExcelBalanceDetailService fileServiceBalance;
 
+    // Méthode POST pour télécharger un fichier plan comptable
     @PostMapping("/upload-plan-comptable")
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
         String message = "";
 
+        // Vérifie si le fichier est au format Excel
         if (ExcelHelperService.hasExcelFormat(file)) {
             try {
+
+                // Sauvegarde le fichier plan comptable
                 fileService.save(file);
 
                 message = "Uploaded the file successfully: " + file.getOriginalFilename();
@@ -48,6 +52,7 @@ public class ExcelController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
     }
 
+    // Méthode GET pour récupérer la liste des plans comptables
     @GetMapping("/plan-comptable")
     public ResponseEntity<List<PlanComptable>> getPlanComptable() {
         try {
@@ -64,12 +69,16 @@ public class ExcelController {
     }
 
 
+    // Méthode pour télécharger un fichier détail de balance
     @PostMapping("/upload-balance-detail")
     public ResponseEntity<ResponseMessage> uploadFileBalance(@RequestParam("file") MultipartFile file) {
         String message = "";
 
+        // Vérifie si le fichier est au format Excel
         if (ExcelHelperService.hasExcelFormat(file)) {
             try {
+
+                // Sauvegarde le fichier détail de balance
                 fileServiceBalance.save(file);
 
                 message = "Uploaded the file successfully: " + file.getOriginalFilename();
@@ -86,6 +95,7 @@ public class ExcelController {
     }
 
 
+    // Méthode pour récupérer la liste des détails de balance
     @GetMapping("/balancedetails")
     public ResponseEntity<List<BalanceDetail>> getBalanceDetail() {
         try {
