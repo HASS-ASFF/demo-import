@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BILAN ACTIF</title>
+</head>
+<body>
+<h2>Classe 2 - Immobilisations</h2>
+<table border="1">
+    <!-- Thead pour les en-têtes de colonnes -->
+    <thead>
+    <tr>
+        <th colspan="4">Détails des Comptes</th>
+    </tr>
+    <!-- En-têtes des colonnes -->
+    <tr>
+        <th>Comptes</th>
+        <th>Brut</th>
+        <th>Total Amort</th>
+        <th>Net</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <tr th:each="entry : ${results_c2}" th:if="${entry != null}">
+        <th colspan="4" th:text="${entry.key}"></th>
+    </tr>
+
+    <tr  th:each="value : ${entry}" th:if="${value != null}">
+
+        <td th:text="${value[1]}"></td>
+        <td th:text="${value[2]}"></td>
+        <td th:text="${value[3]}"></td>
+        <td th:text="${value[4]}"></td>
+    </tr>
+
+    </tbody>
+</table>
+
+
+
+
+
+<h2>Classe 3 - Autres actifs</h2>
+<table border="1">
+    <tr>
+        <th>Comptes</th>
+        <th>Brut</th>
+        <th>Net</th>
+    </tr>
+    <tr th:each="result : ${results_c3}">
+        <td th:text="${result[0]}">Comptes</td>
+        <td th:text="${result[1]}">Brut</td>
+        <td th:text="${result[2]}">Net</td>
+    </tr>
+</table>
+
+<h2>Classe 5 - Trésorerie Actif</h2>
+<table border="1">
+    <tr>
+        <th>Comptes</th>
+        <th>Brut</th>
+        <th>Net</th>
+    </tr>
+    <tr th:each="result : ${results_c5}">
+        <td th:text="${result[0]}">Comptes</td>
+        <td th:text="${result[1]}">Brut</td>
+        <td th:text="${result[2]}">Net</td>
+    </tr>
+</table>
+</body>
+</html>

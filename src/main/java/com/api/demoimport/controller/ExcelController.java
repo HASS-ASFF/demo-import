@@ -3,18 +3,21 @@ package com.api.demoimport.controller;
 
 import com.api.demoimport.entity.BalanceDetail;
 import com.api.demoimport.entity.PlanComptable;
-import com.api.demoimport.service.ExcelHelperService;
+import com.api.demoimport.service.AccountDataManager;
+import com.api.demoimport.service.ExcelHelperServiceImpl;
 import com.api.demoimport.message.ResponseMessage;
-import com.api.demoimport.service.ExcelBalanceDetailService;
-import com.api.demoimport.service.ExcelPlanComptableService;
+import com.api.demoimport.service.ExcelBalanceDetailServiceImpl;
+import com.api.demoimport.service.ExcelPlanComptableServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin("http://localhost:8080")
 @Controller
@@ -22,10 +25,13 @@ import java.util.List;
 public class ExcelController {
 
     @Autowired
-    ExcelPlanComptableService fileService;
+    ExcelPlanComptableServiceImpl fileService;
 
     @Autowired
-    ExcelBalanceDetailService fileServiceBalance;
+    ExcelBalanceDetailServiceImpl fileServiceBalance;
+
+    @Autowired
+    AccountDataManager accountDataManager;
 
     // Méthode POST pour télécharger un fichier plan comptable
     @PostMapping("/upload-plan-comptable")
@@ -33,7 +39,7 @@ public class ExcelController {
         String message = "";
 
         // Vérifie si le fichier est au format Excel
-        if (ExcelHelperService.hasExcelFormat(file)) {
+        if (ExcelHelperServiceImpl.hasExcelFormat(file)) {
             try {
 
                 // Sauvegarde le fichier plan comptable
@@ -75,7 +81,7 @@ public class ExcelController {
         String message = "";
 
         // Vérifie si le fichier est au format Excel
-        if (ExcelHelperService.hasExcelFormat(file)) {
+        if (ExcelHelperServiceImpl.hasExcelFormat(file)) {
             try {
 
                 // Sauvegarde le fichier détail de balance
@@ -110,5 +116,20 @@ public class ExcelController {
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/bilan-actif")
+    public String getBilanActif(Model model) {
+        List<Object[]> results_class2 = fileServiceBalance.getClassTwo() ;
+        Map<String, List<Object[]>> accountDataMap = accountDataManager.processAccountData(results_class2);
+
+        List<Object[]> results_class3 = fileServiceBalance.getClassThree();
+        List<Object[]> results_class5 = fileServiceBalance.getClassFive();
+
+        model.addAttribute("results_c2", accountDataMap);
+
+        model.addAttribute("results_c3", results_class3);
+        model.addAttribute("results_c5",results_class5);
+        return "bilanactif";
     }
 }
