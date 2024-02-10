@@ -2,6 +2,8 @@ package com.api.demoimport.controller;
 
 
 import com.api.demoimport.entity.BalanceDetail;
+import com.api.demoimport.entity.BilanActif.BilanActif;
+import com.api.demoimport.entity.BilanActif.MainAccount;
 import com.api.demoimport.entity.PlanComptable;
 import com.api.demoimport.service.AccountDataManager;
 import com.api.demoimport.service.ExcelHelperServiceImpl;
@@ -120,8 +122,8 @@ public class ExcelController {
 
     @GetMapping("/bilan-actif")
     public String getBilanActif(Model model) {
-        List<Object[]> results_class2 = fileServiceBalance.getClassTwo() ;
-        Map<String, List<Object[]>> accountDataMap = accountDataManager.processAccountData(results_class2);
+        List<BilanActif> results_class2 = fileServiceBalance.getClassTwo() ;
+        List<MainAccount> accountDataMap = accountDataManager.processAccountData(results_class2);
 
         List<Object[]> results_class3 = fileServiceBalance.getClassThree();
         List<Object[]> results_class5 = fileServiceBalance.getClassFive();

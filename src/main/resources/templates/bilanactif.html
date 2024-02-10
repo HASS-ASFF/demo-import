@@ -3,6 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>BILAN ACTIF</title>
+
+    <style>
+        /* Style pour la table */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        /* Style pour les cellules de la table */
+        td {
+            padding: 8px; /* Ajoutez le padding désiré */
+            border: 1px solid #dddddd; /* Ajoutez des bordures pour la lisibilité */
+            text-align: left;
+        }
+
+        /* Style pour l'en-tête de la table */
+        th {
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        .liste-vide {
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+    </style>
+
 </head>
 <body>
 <h2>Classe 2 - Immobilisations</h2>
@@ -22,21 +51,38 @@
     </thead>
 
     <tbody>
+    <!-- Parcourir chaque MainAccount dans la liste accountDataMap -->
+    <span th:each="mainAccount : ${results_c2}">
+        <tr>
+            <!-- Afficher le compte principal -->
+           <td colspan="1"><strong th:text="${mainAccount.main_account}"></strong></td>
+        </tr>
 
-    <tr th:each="entry : ${results_c2}" th:if="${entry != null}">
-        <th colspan="4" th:text="${entry.key}"></th>
-    </tr>
 
-    <tr  th:each="value : ${entry}" th:if="${value != null}">
+        <!-- Parcourir chaque SubAccount dans la liste des sous-comptes -->
+        <span th:each="subAccount : ${mainAccount.subAccounts}">
+            <tr>
+                <!-- Afficher les détails du sous-compte -->
+                <td th:text="${subAccount.getSub_account()}"></td>
+                <span th:if="${#lists.size(subAccount.getValues()) == 0}">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </span>
+                <span th:each="val : ${subAccount.getValues()}" >
+                    <td th:text="${val.getBrut()}"></td>
+                    <td th:text="${val.getTotal_amo()}"></td>
+                    <td th:text="${val.getNet()}"></td>
+                </span>
 
-        <td th:text="${value[1]}"></td>
-        <td th:text="${value[2]}"></td>
-        <td th:text="${value[3]}"></td>
-        <td th:text="${value[4]}"></td>
-    </tr>
-
+            </tr>
+        </span>
+    </span>
     </tbody>
+
 </table>
+
+
 
 
 
