@@ -3,6 +3,7 @@ package com.api.demoimport.controller;
 
 import com.api.demoimport.entity.BalanceDetail;
 import com.api.demoimport.entity.BilanActif.BilanActif;
+import com.api.demoimport.entity.BilanActif.FormatUtils;
 import com.api.demoimport.entity.BilanActif.MainAccount;
 import com.api.demoimport.entity.PlanComptable;
 import com.api.demoimport.service.AccountDataManager;
@@ -18,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -122,18 +124,38 @@ public class ExcelController {
 
     @GetMapping("/bilan-actif")
     public String getBilanActif(Model model) {
+
+        // class two
         List<BilanActif> results_class2 = fileServiceBalance.getClassTwo() ;
         List<MainAccount> accountDataMap2 = accountDataManager.processAccountData(results_class2,2);
-
+        List<Double> total_account2 = accountDataManager.GetTotalAccount(accountDataMap2);
+        // class three
         List<BilanActif> results_class3 = fileServiceBalance.getClassThree();
         List<MainAccount> accountDataMap3 = accountDataManager.processAccountData(results_class3,3);
-
+        List<Double> total_account3 = accountDataManager.GetTotalAccount(accountDataMap3);
+        // class five
         List<BilanActif> results_class5 = fileServiceBalance.getClassFive();
         List<MainAccount> accountDataMap5 = accountDataManager.processAccountData(results_class5,5);
+        List<Double> total_account5 = accountDataManager.GetTotalAccount(accountDataMap5);
 
         model.addAttribute("results_c2", accountDataMap2);
         model.addAttribute("results_c3", accountDataMap3);
         model.addAttribute("results_c5",accountDataMap5);
+
+        model.addAttribute("total_c2",total_account2);
+        model.addAttribute("total_c3",total_account3);
+        model.addAttribute("total_c5",total_account5);
+
+        List<Double> totalGeneraux = new ArrayList<>();
+
+        totalGeneraux.add(
+                FormatUtils.formatDecimal(total_account2.get(0)+total_account3.get(0)+total_account5.get(0)));
+        totalGeneraux.add(
+                FormatUtils.formatDecimal(total_account2.get(1)+total_account3.get(1)+total_account5.get(1)));
+        totalGeneraux.add(
+                FormatUtils.formatDecimal(total_account2.get(2)+total_account3.get(2)+total_account5.get(2)));
+
+        model.addAttribute("Total_gen",totalGeneraux);
         return "bilanactif";
     }
 }

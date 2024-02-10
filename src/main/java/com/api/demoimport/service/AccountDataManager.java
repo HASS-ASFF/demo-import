@@ -1,6 +1,7 @@
 package com.api.demoimport.service;
 
 import com.api.demoimport.entity.BilanActif.BilanActif;
+import com.api.demoimport.entity.BilanActif.FormatUtils;
 import com.api.demoimport.entity.BilanActif.MainAccount;
 import com.api.demoimport.entity.BilanActif.SubAccount;
 import com.api.demoimport.enums.AccountCategoryClass2;
@@ -91,6 +92,34 @@ public class AccountDataManager {
         return accountNumber.substring(0, 3);
     }
 
+    public List<Double> GetTotalAccount(List<MainAccount> accountDataMap2) {
+        List<Double> totalList = new ArrayList<>();
+        Double total_brut = 0.0;
+        Double total_amort = 0.0;
+        Double total_net = 0.0;
+        Double total = 0.0;
+
+        for(MainAccount mainAccount : accountDataMap2){
+            for(SubAccount subAccount : mainAccount.getSubAccounts()){
+                for(BilanActif bilanActif : subAccount.getValues()){
+                    total_brut += FormatUtils.formatDecimal(
+                            total_brut + (bilanActif.getBrut() != null ? bilanActif.getBrut() : 0));
+                    total_amort += FormatUtils.formatDecimal(
+                            total_amort + (bilanActif.getTotal_amo() != null ? bilanActif.getTotal_amo() : 0));
+                    total_net += FormatUtils.formatDecimal(
+                            total_net + (bilanActif.getNet() != null ? bilanActif.getNet() : 0));
+                }
+            }
+        }
+        total = total_brut + total_amort + total_net;
+
+        totalList.add(total_brut);
+        totalList.add(total_amort);
+        totalList.add(total_net);
+        totalList.add(total);
+
+        return totalList;
+    }
 
 
     //  ************ OLD CODE ************

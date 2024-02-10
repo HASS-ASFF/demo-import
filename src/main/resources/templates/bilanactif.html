@@ -6,35 +6,40 @@
 
     <style>
         /* Style pour la table */
+        span{
+            display: none;
+        }
+
         table {
             border-collapse: collapse;
             width: 100%;
+            border: 2px solid black;
         }
+
 
         /* Style pour les cellules de la table */
         td {
             padding: 8px; /* Ajoutez le padding désiré */
-            border: 1px solid #dddddd; /* Ajoutez des bordures pour la lisibilité */
+            border: 1px solid black; /* Ajoutez des bordures pour la lisibilité */
             text-align: left;
         }
 
         /* Style pour l'en-tête de la table */
         th {
             background-color: #f2f2f2;
+            border: 1px solid black;
             text-align: center;
         }
 
-        .liste-vide {
-            padding: 20px;
-            text-align: center;
-            color: white;
+        .main_account {
+            background-color: grey;
         }
 
     </style>
 
 </head>
 <body>
-<table border="1">
+<table>
     <!-- Thead pour les en-têtes de colonnes -->
     <thead>
     <tr>
@@ -47,15 +52,21 @@
         <th>Total Amort</th>
         <th>Net</th>
     </tr>
+
+
     </thead>
 
     <tbody>
 
     <!-- Parcourir chaque MainAccount dans la liste accountDataMap -->
-    <span th:each="mainAccount : ${results_c2}">
+
+    <!-- ACCOUNT 2 -->
+    <span th:each="mainAccount : ${results_c2}" th:if="mainAccount != null">
         <tr>
             <!-- Afficher le compte principal -->
-           <td colspan="1"><strong th:text="${mainAccount.main_account}"></strong></td>
+           <td colspan="4" class="main_account">
+               <strong th:text="${mainAccount.main_account}"></strong>
+           </td>
         </tr>
 
 
@@ -79,10 +90,22 @@
         </span>
     </span>
 
+    <!-- Total C2 -->
+    <tr>
+        <td><strong>TOTAL I (A+B+C+D+E)</strong></td>
+        <td th:text="${total_c2.get(0)}"></td>
+        <td th:text="${total_c2.get(1)}"></td>
+        <td th:text="${total_c2.get(2)}"></td>
+    </tr>
+
+
+    <!-- ACCOUNT 3 -->
     <span th:each="mainAccount : ${results_c3}">
         <tr>
             <!-- Afficher le compte principal -->
-           <td colspan="1"><strong th:text="${mainAccount.main_account}"></strong></td>
+           <td colspan="4" class="main_account">
+               <strong th:text="${mainAccount.main_account}"></strong>
+           </td>
         </tr>
 
 
@@ -106,10 +129,21 @@
         </span>
     </span>
 
+    <!-- Total C3 -->
+    <tr>
+        <td><strong>TOTAL II (F+G+H+I)</strong></td>
+        <td th:text="${total_c3.get(0)}"></td>
+        <td th:text="${total_c2.get(1)}"></td>
+        <td th:text="${total_c3.get(2)}"></td>
+    </tr>
+
+    <!-- ACCOUNT 5 -->
     <span th:each="mainAccount : ${results_c5}">
         <tr>
             <!-- Afficher le compte principal -->
-           <td colspan="1"><strong th:text="${mainAccount.main_account}"></strong></td>
+           <td colspan="4" class="main_account">
+               <strong th:text="${mainAccount.main_account}"></strong>
+           </td>
         </tr>
 
 
@@ -132,6 +166,24 @@
             </tr>
         </span>
     </span>
+
+    <!-- Total C5 -->
+    <tr>
+        <td><strong>TOTAL III</strong></td>
+        <td th:text="${total_c5.get(0)}"></td>
+        <td th:text="${total_c2.get(1)}"></td>
+        <td th:text="${total_c5.get(2)}"></td>
+    </tr>
+
+    <tr>
+        <td><strong>TOTAL GENERAL I+II+III</strong></td>
+        <td th:text="${Total_gen.get(0)}"></td>
+        <td th:text="${Total_gen.get(1)}"></td>
+        <td th:text="${Total_gen.get(2)}"></td>
+    </tr>
+
+
+
     </tbody>
 
 </table>

@@ -85,25 +85,31 @@ public class ExcelBalanceDetailServiceImpl implements ExcelBalanceDetailService{
 
             String n_compte =  resultat[0].toString();
             String libelle = (String) resultat[1];
-            Double brut = (Double) resultat[2];
-            Double totalAmort = null;
-            Double net = null;
-
-            if(n_compte.startsWith("2")){
-                 totalAmort = (Double) resultat[3];
-                 net = (Double) resultat[4];
-            }
-            else{
-                 totalAmort = null;
-                net = FormatUtils.formatDecimal(brut);
-            }
-
-            BilanActif bilanActif = new BilanActif(n_compte,libelle, FormatUtils.formatDecimal(brut), totalAmort
-                    , FormatUtils.formatDecimal(net));
+            BilanActif bilanActif = getActif(resultat, n_compte, libelle);
             bilansActifs.add(bilanActif);
         }
 
         return bilansActifs;
+    }
+
+    // Filter data classes
+    private static BilanActif getActif(Object[] resultat, String n_compte, String libelle) {
+        Double brut = (Double) resultat[2];
+        Double totalAmort = null;
+        Double net = null;
+
+        if(n_compte.startsWith("2")){
+             totalAmort = (Double) resultat[3];
+             net = (Double) resultat[4];
+        }
+        else{
+             totalAmort = null;
+            net = FormatUtils.formatDecimal(brut);
+        }
+
+        BilanActif bilanActif = new BilanActif(n_compte, libelle, FormatUtils.formatDecimal(brut), totalAmort
+                , FormatUtils.formatDecimal(net));
+        return bilanActif;
     }
 
     // Pour regrouper les classes 3 et 5
@@ -133,13 +139,10 @@ public class ExcelBalanceDetailServiceImpl implements ExcelBalanceDetailService{
             // Mettre à jour le n_compte
             bilanActif.setN_compte(n_compte);
 
-            System.out.println(bilanActif.getN_compte());
-
         }
 
         // Mettre à jour la liste originale
         bilanActifs.clear();
-        System.out.println(mapBilanActif.values());
         bilanActifs.addAll(mapBilanActif.values());
     }
 }

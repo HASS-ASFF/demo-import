@@ -30,9 +30,9 @@ public enum AccountCategoryClass3 {
                     ""
             )),
     TITRES_VALEURS_PLACEMENT("35", "Titres et valeurs de placement (H)",
-            Arrays.asList("","")),
+            Arrays.asList("")),
     ECART_CONVERSION_ACTIF("37", "Ecart de conversion - ACTIF (element circulant)",
-            Arrays.asList("",""));
+            Arrays.asList(""));
 
     @Setter
     private final String number;
