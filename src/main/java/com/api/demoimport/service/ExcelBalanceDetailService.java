@@ -10,6 +10,6 @@ public interface ExcelBalanceDetailService {
     void save(MultipartFile file);
     List<BalanceDetail> getBalanceDetails();
     List<BilanActif> getClassTwo();
-    List<Object[]> getClassThree();
-    List<Object[]> getClassFive();
+    List<BilanActif> getClassThree();
+    List<BilanActif> getClassFive();
 }

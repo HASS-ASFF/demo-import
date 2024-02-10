@@ -4,6 +4,8 @@ import com.api.demoimport.entity.BilanActif.BilanActif;
 import com.api.demoimport.entity.BilanActif.MainAccount;
 import com.api.demoimport.entity.BilanActif.SubAccount;
 import com.api.demoimport.enums.AccountCategoryClass2;
+import com.api.demoimport.enums.AccountCategoryClass3;
+import com.api.demoimport.enums.AccountCategoryClass5;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -11,24 +13,58 @@ import java.util.*;
 @Service
 public class AccountDataManager {
 
-    public List<MainAccount> initializeMainAccountData() {
+    // methode pour initialiser la liste (class 2 /3 / 5)
+    public List<MainAccount> initializeMainAccountData(int n_class) {
         List<MainAccount> mainAccountList = new ArrayList<>();
 
-        // boucle sur les catégories de compte principaux pour initialiser la liste
-        for (AccountCategoryClass2 category : AccountCategoryClass2.values()) {
-            MainAccount mainAccount = new MainAccount();
-            mainAccount.setMain_account(category.getLabel());
-            mainAccount.setSubAccounts(category.getSubAccountsDataWithEmptyValues());
+        switch(n_class) {
+            case 2:
+                // boucle sur les catégories de compte principaux pour initialiser la liste
+                for (AccountCategoryClass2 category : AccountCategoryClass2.values()) {
+                    MainAccount mainAccount = new MainAccount();
+                    mainAccount.setMain_account(category.getLabel());
+                    mainAccount.setSubAccounts(category.getSubAccountsDataWithEmptyValues());
 
-            mainAccountList.add(mainAccount);
+                    mainAccountList.add(mainAccount);
+                }
+
+                break;
+            case 3:
+                // boucle sur les catégories de compte principaux pour initialiser la liste
+                for (AccountCategoryClass3 category : AccountCategoryClass3.values()) {
+                    MainAccount mainAccount = new MainAccount();
+                    mainAccount.setMain_account(category.getLabel());
+                    mainAccount.setSubAccounts(category.getSubAccountsDataWithEmptyValues());
+
+                    mainAccountList.add(mainAccount);
+                }
+
+                break;
+
+            case 5:
+                // boucle sur les catégories de compte principaux pour initialiser la liste
+                for (AccountCategoryClass5 category : AccountCategoryClass5.values()) {
+                    MainAccount mainAccount = new MainAccount();
+                    mainAccount.setMain_account(category.getLabel());
+                    mainAccount.setSubAccounts(category.getSubAccountsDataWithEmptyValues());
+
+                    mainAccountList.add(mainAccount);
+                }
+                break;
+
+            default:
+                return null;
+
         }
 
         return mainAccountList;
     }
 
-    public List<MainAccount> processAccountData(List<BilanActif> rawData) {
 
-        List<MainAccount> mainAccountList = initializeMainAccountData(); // Initialisation des comptes principaux avec sous-comptes vides
+    // methode pour lier les sous-compte avec leur valeurs
+    public List<MainAccount> processAccountData(List<BilanActif> rawData,int n_class) {
+
+        List<MainAccount> mainAccountList = initializeMainAccountData(n_class); // Initialisation des comptes principaux avec sous-comptes vides
 
         // boucle sur les données brutes pour ajouter les valeurs aux sous-comptes correspondants
         for (BilanActif result : rawData) {

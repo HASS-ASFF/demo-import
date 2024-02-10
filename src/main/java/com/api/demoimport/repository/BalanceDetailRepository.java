@@ -26,21 +26,22 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
     List<Object[]> getBilanC2();
 
 
-    @Query(nativeQuery = true, value ="SELECT \n" +
+    @Query(nativeQuery = true, value ="SELECT b.n_compte AS num_compte,\n" +
             "b.label AS comptes,\n" +
             "b.debit_fex AS brut,\n" +
             "b.debit_fex AS net\n" +
             "FROM balance_detail b\n" +
             "WHERE b.the_class = 3\n" +
-            "GROUP BY b.label, b.debit_fex;")
+            "GROUP BY \n" +
+            "   b.n_compte,b.label, b.debit_fex;")
     List<Object[]> getBilanC3();
 
-    @Query(nativeQuery = true, value ="SELECT \n" +
+    @Query(nativeQuery = true, value ="SELECT b.n_compte AS num_compte,\n" +
             "b.label AS comptes,\n" +
             "b.debit_fex AS brut,\n" +
             "b.debit_fex AS net\n" +
             "FROM balance_detail b\n" +
             "WHERE b.the_class = 5\n" +
-            "GROUP BY b.label, b.debit_fex;")
+            "GROUP BY  b.n_compte,b.label, b.debit_fex;")
     List<Object[]> getBilanC5();
 }

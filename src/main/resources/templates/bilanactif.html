@@ -34,7 +34,6 @@
 
 </head>
 <body>
-<h2>Classe 2 - Immobilisations</h2>
 <table border="1">
     <!-- Thead pour les en-têtes de colonnes -->
     <thead>
@@ -51,6 +50,7 @@
     </thead>
 
     <tbody>
+
     <!-- Parcourir chaque MainAccount dans la liste accountDataMap -->
     <span th:each="mainAccount : ${results_c2}">
         <tr>
@@ -78,42 +78,62 @@
             </tr>
         </span>
     </span>
+
+    <span th:each="mainAccount : ${results_c3}">
+        <tr>
+            <!-- Afficher le compte principal -->
+           <td colspan="1"><strong th:text="${mainAccount.main_account}"></strong></td>
+        </tr>
+
+
+        <!-- Parcourir chaque SubAccount dans la liste des sous-comptes -->
+        <span th:each="subAccount : ${mainAccount.subAccounts}">
+            <tr>
+                <!-- Afficher les détails du sous-compte -->
+                <td th:text="${subAccount.getSub_account()}"></td>
+                <span th:if="${#lists.size(subAccount.getValues()) == 0}">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </span>
+                <span th:each="val : ${subAccount.getValues()}" >
+                    <td th:text="${val.getBrut()}"></td>
+                    <td th:text="${val.getTotal_amo()}"></td>
+                    <td th:text="${val.getNet()}"></td>
+                </span>
+
+            </tr>
+        </span>
+    </span>
+
+    <span th:each="mainAccount : ${results_c5}">
+        <tr>
+            <!-- Afficher le compte principal -->
+           <td colspan="1"><strong th:text="${mainAccount.main_account}"></strong></td>
+        </tr>
+
+
+        <!-- Parcourir chaque SubAccount dans la liste des sous-comptes -->
+        <span th:each="subAccount : ${mainAccount.subAccounts}">
+            <tr>
+                <!-- Afficher les détails du sous-compte -->
+                <td th:text="${subAccount.getSub_account()}"></td>
+                <span th:if="${#lists.size(subAccount.getValues()) == 0}">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </span>
+                <span th:each="val : ${subAccount.getValues()}" >
+                    <td th:text="${val.getBrut()}"></td>
+                    <td th:text="${val.getTotal_amo()}"></td>
+                    <td th:text="${val.getNet()}"></td>
+                </span>
+
+            </tr>
+        </span>
+    </span>
     </tbody>
 
-</table>
-
-
-
-
-
-
-
-<h2>Classe 3 - Autres actifs</h2>
-<table border="1">
-    <tr>
-        <th>Comptes</th>
-        <th>Brut</th>
-        <th>Net</th>
-    </tr>
-    <tr th:each="result : ${results_c3}">
-        <td th:text="${result[0]}">Comptes</td>
-        <td th:text="${result[1]}">Brut</td>
-        <td th:text="${result[2]}">Net</td>
-    </tr>
-</table>
-
-<h2>Classe 5 - Trésorerie Actif</h2>
-<table border="1">
-    <tr>
-        <th>Comptes</th>
-        <th>Brut</th>
-        <th>Net</th>
-    </tr>
-    <tr th:each="result : ${results_c5}">
-        <td th:text="${result[0]}">Comptes</td>
-        <td th:text="${result[1]}">Brut</td>
-        <td th:text="${result[2]}">Net</td>
-    </tr>
 </table>
 </body>
 </html>

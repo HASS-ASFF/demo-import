@@ -123,15 +123,17 @@ public class ExcelController {
     @GetMapping("/bilan-actif")
     public String getBilanActif(Model model) {
         List<BilanActif> results_class2 = fileServiceBalance.getClassTwo() ;
-        List<MainAccount> accountDataMap = accountDataManager.processAccountData(results_class2);
+        List<MainAccount> accountDataMap2 = accountDataManager.processAccountData(results_class2,2);
 
-        List<Object[]> results_class3 = fileServiceBalance.getClassThree();
-        List<Object[]> results_class5 = fileServiceBalance.getClassFive();
+        List<BilanActif> results_class3 = fileServiceBalance.getClassThree();
+        List<MainAccount> accountDataMap3 = accountDataManager.processAccountData(results_class3,3);
 
-        model.addAttribute("results_c2", accountDataMap);
+        List<BilanActif> results_class5 = fileServiceBalance.getClassFive();
+        List<MainAccount> accountDataMap5 = accountDataManager.processAccountData(results_class5,5);
 
-        model.addAttribute("results_c3", results_class3);
-        model.addAttribute("results_c5",results_class5);
+        model.addAttribute("results_c2", accountDataMap2);
+        model.addAttribute("results_c3", accountDataMap3);
+        model.addAttribute("results_c5",accountDataMap5);
         return "bilanactif";
     }
 }
