@@ -2,9 +2,9 @@ package com.api.demoimport.controller;
 
 
 import com.api.demoimport.entity.BalanceDetail;
-import com.api.demoimport.entity.BilanActif.BilanActif;
-import com.api.demoimport.entity.BilanActif.FormatUtils;
-import com.api.demoimport.entity.BilanActif.MainAccount;
+import com.api.demoimport.entity.Bilan.Bilan;
+import com.api.demoimport.entity.Bilan.FormatUtils;
+import com.api.demoimport.entity.Bilan.MainAccount;
 import com.api.demoimport.entity.PlanComptable;
 import com.api.demoimport.service.AccountDataManager;
 import com.api.demoimport.service.ExcelHelperServiceImpl;
@@ -21,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @CrossOrigin("http://localhost:8080")
 @Controller
@@ -126,17 +125,18 @@ public class ExcelController {
     public String getBilanActif(Model model) {
 
         // class two
-        List<BilanActif> results_class2 = fileServiceBalance.getClassTwo() ;
-        List<MainAccount> accountDataMap2 = accountDataManager.processAccountData(results_class2,2);
-        List<Double> total_account2 = accountDataManager.GetTotalAccount(accountDataMap2);
+        List<Bilan> results_class2 = fileServiceBalance.getClassTwo() ;
+        List<MainAccount> accountDataMap2 = accountDataManager.processAccountData(results_class2,2,false);
+        List<Double> total_account2 = accountDataManager.GetTotalAccountActif(accountDataMap2);
+
         // class three
-        List<BilanActif> results_class3 = fileServiceBalance.getClassThree();
-        List<MainAccount> accountDataMap3 = accountDataManager.processAccountData(results_class3,3);
-        List<Double> total_account3 = accountDataManager.GetTotalAccount(accountDataMap3);
+        List<Bilan> results_class3 = fileServiceBalance.getClassThree();
+        List<MainAccount> accountDataMap3 = accountDataManager.processAccountData(results_class3,3,false);
+        List<Double> total_account3 = accountDataManager.GetTotalAccountActif(accountDataMap3);
         // class five
-        List<BilanActif> results_class5 = fileServiceBalance.getClassFive();
-        List<MainAccount> accountDataMap5 = accountDataManager.processAccountData(results_class5,5);
-        List<Double> total_account5 = accountDataManager.GetTotalAccount(accountDataMap5);
+        List<Bilan> results_class5 = fileServiceBalance.getClassFiveActif();
+        List<MainAccount> accountDataMap5 = accountDataManager.processAccountData(results_class5,5,false);
+        List<Double> total_account5 = accountDataManager.GetTotalAccountActif(accountDataMap5);
 
         model.addAttribute("results_c2", accountDataMap2);
         model.addAttribute("results_c3", accountDataMap3);
@@ -146,16 +146,53 @@ public class ExcelController {
         model.addAttribute("total_c3",total_account3);
         model.addAttribute("total_c5",total_account5);
 
-        List<Double> totalGeneraux = new ArrayList<>();
+        List<Double> totalGenerauxActif = new ArrayList<>();
 
-        totalGeneraux.add(
+        totalGenerauxActif.add(
                 FormatUtils.formatDecimal(total_account2.get(0)+total_account3.get(0)+total_account5.get(0)));
-        totalGeneraux.add(
+        totalGenerauxActif.add(
                 FormatUtils.formatDecimal(total_account2.get(1)+total_account3.get(1)+total_account5.get(1)));
-        totalGeneraux.add(
+        totalGenerauxActif.add(
                 FormatUtils.formatDecimal(total_account2.get(2)+total_account3.get(2)+total_account5.get(2)));
 
-        model.addAttribute("Total_gen",totalGeneraux);
+        model.addAttribute("Total_gen",totalGenerauxActif);
         return "bilanactif";
     }
+
+    @GetMapping("/bilan-passif")
+    public String getBilanPassif(Model model) {
+
+        // class one
+        List<Bilan> results_class1 = fileServiceBalance.getClassOne() ;
+        List<MainAccount> accountDataMap1 = accountDataManager.processAccountData(results_class1,1,true);
+        List<Double> total_account1 = accountDataManager.GetTotalAccountPassif(accountDataMap1);
+
+        // class four
+        List<Bilan> results_class4 = fileServiceBalance.getClassFour();
+        List<MainAccount> accountDataMap4 = accountDataManager.processAccountData(results_class4,4,true);
+        List<Double> total_account4 = accountDataManager.GetTotalAccountPassif(accountDataMap4);
+
+        // class five
+        List<Bilan> results_class5P = fileServiceBalance.getClassFivePassif();
+        List<MainAccount> accountDataMap5 = accountDataManager.processAccountData(results_class5P,5,true);
+        List<Double> total_account5P = accountDataManager.GetTotalAccountPassif(accountDataMap5);
+
+        model.addAttribute("results_c1", accountDataMap1);
+        model.addAttribute("results_c4", accountDataMap4);
+        model.addAttribute("results_c5",accountDataMap5);
+
+        model.addAttribute("total_c1",total_account1);
+        model.addAttribute("total_c4",total_account4);
+        model.addAttribute("total_c5",total_account5P);
+
+        List<Double> totalGenerauxPassif = new ArrayList<>();
+
+        totalGenerauxPassif.add(
+                FormatUtils.formatDecimal(total_account1.get(0)+total_account4.get(0)+total_account5P.get(0)));
+
+        model.addAttribute("Total_gen",totalGenerauxPassif);
+
+        return "bilanpassif";
+    }
+
 }

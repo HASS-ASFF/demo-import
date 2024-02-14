@@ -1,9 +1,8 @@
-package com.api.demoimport.entity.BilanActif;
+package com.api.demoimport.entity.Bilan;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BilanActif {
+public class Bilan {
 
 
     private String n_compte;
@@ -33,7 +32,7 @@ public class BilanActif {
     }
 
 
-    /*public static boolean isEmpty(BilanActif bilanActif) {
+    /*public static boolean isEmpty(Bilan bilanActif) {
         return ObjectUtils.isEmpty(bilanActif);
     }*/
 }

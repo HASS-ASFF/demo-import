@@ -1,7 +1,7 @@
 package com.api.demoimport.enums;
 
 
-import com.api.demoimport.entity.BilanActif.SubAccount;
+import com.api.demoimport.entity.Bilan.SubAccount;
 import lombok.Getter;
 import lombok.Setter;
 

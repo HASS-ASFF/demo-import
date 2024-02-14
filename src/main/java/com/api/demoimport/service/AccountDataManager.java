@@ -1,24 +1,35 @@
 package com.api.demoimport.service;
 
-import com.api.demoimport.entity.BilanActif.BilanActif;
-import com.api.demoimport.entity.BilanActif.FormatUtils;
-import com.api.demoimport.entity.BilanActif.MainAccount;
-import com.api.demoimport.entity.BilanActif.SubAccount;
-import com.api.demoimport.enums.AccountCategoryClass2;
-import com.api.demoimport.enums.AccountCategoryClass3;
-import com.api.demoimport.enums.AccountCategoryClass5;
+import com.api.demoimport.entity.Bilan.Bilan;
+import com.api.demoimport.entity.Bilan.FormatUtils;
+import com.api.demoimport.entity.Bilan.MainAccount;
+import com.api.demoimport.entity.Bilan.SubAccount;
+import com.api.demoimport.enums.*;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+import static com.api.demoimport.enums.AccountCategoryClass5.getSubAccountsDataWithEmptyValues;
+
 @Service
 public class AccountDataManager {
 
-    // methode pour initialiser la liste (class 2 /3 / 5)
-    public List<MainAccount> initializeMainAccountData(int n_class) {
+    // methode pour initialiser la liste (class 1 / 2 / 3 / 4 / 5)
+    public List<MainAccount> initializeMainAccountData(int n_class,boolean C5test) {
         List<MainAccount> mainAccountList = new ArrayList<>();
 
         switch(n_class) {
+            case 1:
+                // boucle sur les catégories de compte principaux pour initialiser la liste
+                for(AccountCategoryClass1 category : AccountCategoryClass1.values()){
+                    MainAccount mainAccount = new MainAccount();
+                    mainAccount.setMain_account(category.getLabel());
+                    mainAccount.setSubAccounts(category.getSubAccountsDataWithEmptyValues());
+
+                    mainAccountList.add(mainAccount);
+                }
+                break;
+
             case 2:
                 // boucle sur les catégories de compte principaux pour initialiser la liste
                 for (AccountCategoryClass2 category : AccountCategoryClass2.values()) {
@@ -42,20 +53,32 @@ public class AccountDataManager {
 
                 break;
 
-            case 5:
+            case 4:
                 // boucle sur les catégories de compte principaux pour initialiser la liste
-                for (AccountCategoryClass5 category : AccountCategoryClass5.values()) {
+                for (AccountCategoryClass4 category : AccountCategoryClass4.values()) {
                     MainAccount mainAccount = new MainAccount();
                     mainAccount.setMain_account(category.getLabel());
                     mainAccount.setSubAccounts(category.getSubAccountsDataWithEmptyValues());
 
                     mainAccountList.add(mainAccount);
                 }
+
                 break;
 
-            default:
-                return null;
+            case 5:
+                MainAccount mainAccount = new MainAccount();
 
+                if(C5test) {
+                    mainAccount.setMain_account(AccountCategoryClass5.TRESORERIE_PASSIF.getLabel());
+                    mainAccount.setSubAccounts(getSubAccountsDataWithEmptyValues(true));
+                }
+                else {
+                    mainAccount.setMain_account(AccountCategoryClass5.TRESORERIE_ACTIF.getLabel());
+                    mainAccount.setSubAccounts(getSubAccountsDataWithEmptyValues(false));
+                }
+
+                mainAccountList.add(mainAccount);
+                break;
         }
 
         return mainAccountList;
@@ -63,12 +86,18 @@ public class AccountDataManager {
 
 
     // methode pour lier les sous-compte avec leur valeurs
-    public List<MainAccount> processAccountData(List<BilanActif> rawData,int n_class) {
+    public List<MainAccount> processAccountData(List<Bilan> rawData, int n_class, boolean checkA5) {
+        List<MainAccount> mainAccountList;
 
-        List<MainAccount> mainAccountList = initializeMainAccountData(n_class); // Initialisation des comptes principaux avec sous-comptes vides
-
+        if(checkA5) {
+             mainAccountList = initializeMainAccountData(n_class, true);
+        }
+        else {
+             mainAccountList = initializeMainAccountData(n_class, false);
+        }
         // boucle sur les données brutes pour ajouter les valeurs aux sous-comptes correspondants
-        for (BilanActif result : rawData) {
+
+        for (Bilan result : rawData) {
             String accountNumber = result.getN_compte(); // Récupère le numéro du compte
             String prefix = extractPrefix(accountNumber);// 3 premiers chiffres
 
@@ -92,30 +121,45 @@ public class AccountDataManager {
         return accountNumber.substring(0, 3);
     }
 
-    public List<Double> GetTotalAccount(List<MainAccount> accountDataMap2) {
+    public List<Double> GetTotalAccountActif(List<MainAccount> accountDataMap) {
         List<Double> totalList = new ArrayList<>();
         Double total_brut = 0.0;
         Double total_amort = 0.0;
         Double total_net = 0.0;
         Double total = 0.0;
 
-        for(MainAccount mainAccount : accountDataMap2){
+        for(MainAccount mainAccount : accountDataMap){
             for(SubAccount subAccount : mainAccount.getSubAccounts()){
-                for(BilanActif bilanActif : subAccount.getValues()){
-                    total_brut += FormatUtils.formatDecimal(
-                            total_brut + (bilanActif.getBrut() != null ? bilanActif.getBrut() : 0));
-                    total_amort += FormatUtils.formatDecimal(
-                            total_amort + (bilanActif.getTotal_amo() != null ? bilanActif.getTotal_amo() : 0));
-                    total_net += FormatUtils.formatDecimal(
-                            total_net + (bilanActif.getNet() != null ? bilanActif.getNet() : 0));
+                for(Bilan bilanActif : subAccount.getValues()){
+                    total_brut += FormatUtils.formatDecimal((bilanActif.getBrut() != null ? bilanActif.getBrut() : 0));
+                    total_amort += FormatUtils.formatDecimal((bilanActif.getTotal_amo() != null ? bilanActif.getTotal_amo() : 0));
+                    total_net += FormatUtils.formatDecimal((bilanActif.getNet() != null ? bilanActif.getNet() : 0));
                 }
             }
         }
-        total = total_brut + total_amort + total_net;
+        total = FormatUtils.formatDecimal(total_brut + total_amort + total_net);
 
         totalList.add(total_brut);
         totalList.add(total_amort);
         totalList.add(total_net);
+        totalList.add(total);
+
+        return totalList;
+    }
+
+    public List<Double> GetTotalAccountPassif(List<MainAccount> accountDataMap) {
+        List<Double> totalList = new ArrayList<>();
+        Double total = 0.0;
+
+        for(MainAccount mainAccount : accountDataMap){
+            for(SubAccount subAccount : mainAccount.getSubAccounts()){
+                for(Bilan bilan : subAccount.getValues()){
+                    total += FormatUtils.formatDecimal((bilan.getBrut() != null ? bilan.getBrut() : 0.0));
+                }
+            }
+        }
+
+        total = FormatUtils.formatDecimal(total);
         totalList.add(total);
 
         return totalList;
@@ -127,10 +171,10 @@ public class AccountDataManager {
     // private Map<AccountCategoryClass3, Map<String, List<String>>> accountMapClass3 = new HashMap<>();
     //private Map<AccountCategoryClass5, Map<String, List<String>>> accountMapClass5 = new HashMap<>();
 
-    /*public Map<String, List<BilanActif>> processAccountData(List<BilanActif> rawData) {
-        Map<String, List<BilanActif>> accountMapClass2 = new LinkedHashMap<>();
+    /*public Map<String, List<Bilan>> processAccountData(List<Bilan> rawData) {
+        Map<String, List<Bilan>> accountMapClass2 = new LinkedHashMap<>();
 
-        List<BilanActif> dataClass = new ArrayList<>();
+        List<Bilan> dataClass = new ArrayList<>();
 
 
         // Liste des noms des comptes principaux
@@ -148,7 +192,7 @@ public class AccountDataManager {
         }
 
         // Parcourir les résultats
-        for (BilanActif result : rawData) {
+        for (Bilan result : rawData) {
             String accountNumber = result.getN_compte(); // Récupère le numéro du compte
             String mainAccount = accountNumber.substring(0, 2); // Les deux premiers chiffres du numéro de compte
 
@@ -157,8 +201,8 @@ public class AccountDataManager {
             if (mainAccountEnum != null) {
                 String mainAccountLabel = mainAccountEnum.getLabel();
 
-                // Obtenez la liste correspondant à la clé et ajoutez-y les données du bilan actif
-                List<BilanActif> accountDataList = accountMapClass2.get(mainAccountLabel);
+                // Obtenez la liste correspondant à la clé et ajoutez les données du bilan actif
+                List<Bilan> accountDataList = accountMapClass2.get(mainAccountLabel);
                 if (accountDataList != null) {
                     accountDataList.add(result);
                 }

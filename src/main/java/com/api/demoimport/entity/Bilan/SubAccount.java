@@ -1,6 +1,5 @@
-package com.api.demoimport.entity.BilanActif;
+package com.api.demoimport.entity.Bilan;
 
-import com.api.demoimport.entity.BilanActif.BilanActif;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,5 +11,5 @@ import java.util.List;
 @NoArgsConstructor
 public class SubAccount {
     private String sub_account;
-    private List<BilanActif> values;
+    private List<Bilan> values;
 }

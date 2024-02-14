@@ -1,4 +1,4 @@
-package com.api.demoimport.entity.BilanActif;
+package com.api.demoimport.entity.Bilan;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

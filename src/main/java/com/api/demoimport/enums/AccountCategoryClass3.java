@@ -1,6 +1,6 @@
 package com.api.demoimport.enums;
 
-import com.api.demoimport.entity.BilanActif.SubAccount;
+import com.api.demoimport.entity.Bilan.SubAccount;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,8 +26,7 @@ public enum AccountCategoryClass3 {
                     "343 - Personnel",
                     "345 - Etat",
                     "346 - Comptes d'associés",
-                    "348 - Autres débiteurs",
-                    ""
+                    "348 - Autres débiteurs"
             )),
     TITRES_VALEURS_PLACEMENT("35", "Titres et valeurs de placement (H)",
             Arrays.asList("")),

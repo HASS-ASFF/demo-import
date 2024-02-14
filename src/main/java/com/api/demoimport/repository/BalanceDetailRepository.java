@@ -10,6 +10,14 @@ import java.util.Optional;
 
 public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Long> {
 
+    @Query(nativeQuery = true, value ="SELECT b.n_compte AS num_compte,\n" +
+            "b.label AS comptes,\n" +
+            "b.credit_fex AS brut\n" +
+            "FROM balance_detail b\n" +
+            "WHERE b.the_class=1\n" +
+            "GROUP BY b.n_compte,b.label, b.credit_fex;")
+    List<Object[]> getBilanC1();
+
     @Query(nativeQuery = true, value = "SELECT b.n_compte AS num_compte,\n " +
             "b.label AS comptes,\n" +
             "b.debit_fex AS brut,\n" +
@@ -38,10 +46,26 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
 
     @Query(nativeQuery = true, value ="SELECT b.n_compte AS num_compte,\n" +
             "b.label AS comptes,\n" +
+            "b.credit_fex AS brut\n" +
+            "FROM balance_detail b\n" +
+            "WHERE b.the_class=4\n" +
+            "GROUP BY b.n_compte,b.label, b.credit_fex;")
+    List<Object[]> getBilanC4();
+
+    @Query(nativeQuery = true, value ="SELECT b.n_compte AS num_compte,\n" +
+            "b.label AS comptes,\n" +
             "b.debit_fex AS brut,\n" +
             "b.debit_fex AS net\n" +
             "FROM balance_detail b\n" +
-            "WHERE b.the_class = 5\n" +
+            "WHERE b.the_class = 5 AND b.n_compte LIKE '51%'\n" +
             "GROUP BY  b.n_compte,b.label, b.debit_fex;")
-    List<Object[]> getBilanC5();
+    List<Object[]> getBilanC5A();
+
+    @Query(nativeQuery = true, value = "SELECT b.n_compte AS num_compte,\n" +
+            "b.label AS comptes,\n" +
+            "b.credit_fex AS brut\n" +
+            "FROM balance_detail b\n" +
+            "WHERE b.the_class=5 AND b.n_compte LIKE '55%'\n" +
+            "GROUP BY b.n_compte,b.label, b.credit_fex;")
+    List<Object[]> getBilanC5P();
 }

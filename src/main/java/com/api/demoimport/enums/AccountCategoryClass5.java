@@ -1,6 +1,6 @@
 package com.api.demoimport.enums;
 
-import com.api.demoimport.entity.BilanActif.SubAccount;
+import com.api.demoimport.entity.Bilan.SubAccount;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +16,12 @@ public enum AccountCategoryClass5 {
                     "511 - Chèques et valeurs à encaisser",
                     "514 - Banques, T.G et C.C.P",
                     "516 - Caisses, régies d'avances et accréditifs"
+            )),
+    TRESORERIE_PASSIF("55","Trésorerie - Passif",
+            Arrays.asList(
+                    "552 - Crédits d'escompte",
+                    "553 - Crédits de trésorerie",
+                    "554 - Banques (solde créditeur)"
             ));
 
     @Setter
@@ -34,8 +40,15 @@ public enum AccountCategoryClass5 {
     }
 
     // method for creating new subaccounts with empty values in order
-    public List<SubAccount> getSubAccountsDataWithEmptyValues() {
+    public static List<SubAccount> getSubAccountsDataWithEmptyValues(boolean forActif) {
         List<SubAccount> subAccountsData = new ArrayList<>();
+        List<String> sous_compte;
+
+        if (!forActif) {
+            sous_compte = AccountCategoryClass5.TRESORERIE_ACTIF.getSous_compte();
+        } else {
+            sous_compte = AccountCategoryClass5.TRESORERIE_PASSIF.getSous_compte();
+        }
 
         // boucle sur sous-comptes et initialisation avec des valeurs vides
         for (String subAccountLabel : sous_compte) {
