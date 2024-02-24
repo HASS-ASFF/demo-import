@@ -1,6 +1,5 @@
 package com.api.demoimport.enums;
 
-import com.api.demoimport.entity.Bilan.SubAccount;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,38 +28,22 @@ public enum AccountCategoryClass3 {
                     "348 - Autres débiteurs"
             )),
     TITRES_VALEURS_PLACEMENT("35", "Titres et valeurs de placement (H)",
-            Arrays.asList("")),
+            Arrays.asList("Titres et valeurs de placement (H)")),
     ECART_CONVERSION_ACTIF("37", "Ecart de conversion - ACTIF (element circulant)",
-            Arrays.asList(""));
+            Arrays.asList("Ecart de conversion - ACTIF (element circulant)"));
 
     @Setter
-    private final String number;
+    private  String number;
     @Setter
-    private final String label;
+    private  String label;
 
     @Setter
-    private final List<String> sous_compte;
+    private  List<String> sous_compte;
 
     AccountCategoryClass3(String number, String label, List<String> sousCompte) {
         this.number = number;
         this.label = label;
         this.sous_compte = sousCompte;
-    }
-
-    // method for creating new subaccounts with empty values in order
-    public List<SubAccount> getSubAccountsDataWithEmptyValues() {
-        List<SubAccount> subAccountsData = new ArrayList<>();
-
-        // boucle sur sous-comptes et initialisation avec des valeurs vides
-        for (String subAccountLabel : sous_compte) {
-            SubAccount subAccountData = new SubAccount();
-            subAccountData.setSub_account(subAccountLabel);
-            subAccountData.setValues(new ArrayList<>()); // Liste vide pour les valeurs
-
-            subAccountsData.add(subAccountData);
-        }
-
-        return subAccountsData;
     }
 
 }

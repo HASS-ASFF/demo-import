@@ -1,7 +1,7 @@
 package com.api.demoimport.enums;
 
 
-import com.api.demoimport.entity.Bilan.SubAccount;
+import com.api.demoimport.entity.Bilan.SubAccountPassif;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -45,11 +45,11 @@ public enum AccountCategoryClass1 {
     ));
 
     @Setter
-    private final String number;
+    private  String number;
     @Setter
-    private final String label;
+    private  String label;
     @Setter
-    private final List<String> sous_compte;
+    private  List<String> sous_compte;
 
 
     AccountCategoryClass1(String number, String label, List<String> sous_compte) {
@@ -58,19 +58,4 @@ public enum AccountCategoryClass1 {
         this.sous_compte = sous_compte;
     }
 
-    // method for creating new subaccounts with empty values in order
-    public List<SubAccount> getSubAccountsDataWithEmptyValues() {
-        List<SubAccount> subAccountsData = new ArrayList<>();
-
-        // boucle sur sous-comptes et initialisation avec des valeurs vides
-        for (String subAccountLabel : sous_compte) {
-            SubAccount subAccountData = new SubAccount();
-            subAccountData.setSub_account(subAccountLabel);
-            subAccountData.setValues(new ArrayList<>()); // Liste vide pour les valeurs
-
-            subAccountsData.add(subAccountData);
-        }
-
-        return subAccountsData;
-    }
 }

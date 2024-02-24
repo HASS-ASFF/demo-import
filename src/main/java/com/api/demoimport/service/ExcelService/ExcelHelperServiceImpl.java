@@ -1,9 +1,10 @@
-package com.api.demoimport.service;
+package com.api.demoimport.service.ExcelService;
 
 import com.api.demoimport.entity.Balance;
 import com.api.demoimport.entity.BalanceDetail;
 import com.api.demoimport.entity.PlanComptable;
 import com.api.demoimport.repository.BalanceRepository;
+import com.api.demoimport.service.PlanComptableServiceImpl;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +22,15 @@ import java.util.stream.Collectors;
 public class ExcelHelperServiceImpl implements ExcelHelperService{
 
     @Autowired
-    private ExcelPlanComptableServiceImpl excelPlanComptableServiceImpl;
+    private PlanComptableServiceImpl excelPlanComptableServiceImpl;
     @Autowired
     private BalanceRepository balanceRepository;
 
-    // Définition des types MIME pour les fichiers Excel
+    // Defining type of MIME
     public static String TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
     public static String TYPE2 = "application/vnd.ms-excel";
 
-    // Vérifie si le fichier est au format Excel
+    // Verify format of file EXCEL
     public static boolean hasExcelFormat(MultipartFile file) {
         String fileType = file.getContentType();
         return fileType != null
@@ -37,7 +38,7 @@ public class ExcelHelperServiceImpl implements ExcelHelperService{
                 fileType.equals(TYPE2));
     }
 
-    // Conversion d'un fichier Excel en une liste d'objets PlanComptable
+    // Convert data excel to object PlanComptable
     public  List<PlanComptable> excelToPlanComptable(InputStream is) throws ParseException {
             try {
                 Workbook workbook = new XSSFWorkbook(is);
@@ -118,8 +119,8 @@ public class ExcelHelperServiceImpl implements ExcelHelperService{
             }
         }
 
-    // Conversion d'un fichier Excel en une liste d'objets BalanceDetail
-    public  List<BalanceDetail> excelToBalanceDetail(InputStream is) throws ParseException{
+    // Convert data excel to object BalanceDetail
+    public  List<BalanceDetail> excelToBalanceDetail(InputStream is,String date) throws ParseException{
         try {
             Workbook workbook = new XSSFWorkbook(is);
 
@@ -131,7 +132,7 @@ public class ExcelHelperServiceImpl implements ExcelHelperService{
             // Création d'une instance de Balance avec la date au 30/12/2023
             Balance balance = new Balance();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            balance.setDate(sdf.parse("2023-12-30"));
+            balance.setDate(sdf.parse(date));
 
 
 
@@ -159,28 +160,12 @@ public class ExcelHelperServiceImpl implements ExcelHelperService{
 
                     switch (cellIdx) {
 // Récupération des données de chaque cellule et assignation aux attributs de l'objet BalanceDetail
-
-                        /*case 0:
-
-// Récupère la valeur de la classe à partir de la cellule actuelle.
-// Si le contenu de la cellule est une chaîne de caractères ou une formule, récupère la valeur sous forme de chaîne de caractères.
-// Sinon, convertit la valeur numérique en chaîne de caractères
-
-                            String the_class = currentCell.getCellType() == CellType.STRING || currentCell
-                                    .getCellType() == CellType.FORMULA
-                                    ? currentCell.getStringCellValue()
-                                    : String.valueOf(currentCell.getNumericCellValue());
-// Convertir la valeur récupéré en Double
-                            Double classValue1 = Double.valueOf(the_class);
-                            balanceDetail.setThe_class(classValue1.longValue());
-                            break;*/
-
                         case 0:
 
                             String compte = currentCell.getCellType() == CellType.STRING
                                     ? currentCell.getStringCellValue()
                                     : String.valueOf(currentCell.getNumericCellValue()).replace(".", "").replace("E7",
-                                    repeat(11 - String.valueOf(currentCell.getNumericCellValue()).length(), "0"));
+                                    repeat(11 - String.valueOf(currentCell.getNumericCellValue()).length()));
 
 
 
@@ -292,7 +277,8 @@ public class ExcelHelperServiceImpl implements ExcelHelperService{
     }
 
 
-    private Double convertDhStringToDouble(String dhNumber) {
+    // Cleaning to have format Double
+    public Double convertDhStringToDouble(String dhNumber) {
         // enlever les caractères du résultat string ( à savoir , et DH )
         String cleanedInput = dhNumber.replaceAll(",", "");
         cleanedInput = cleanedInput.replaceAll(" DH", "");
@@ -300,14 +286,12 @@ public class ExcelHelperServiceImpl implements ExcelHelperService{
             return Double.parseDouble(cleanedInput);
         } catch (NumberFormatException e) {
         // handle in case where data is double format
-            System.err.println("Error converting string to Double: " + e.getMessage());
-            return null; // or throw an exception, depending on your requirements
+            throw new RuntimeException("Error converting string to Double: " + e.getMessage());
         }
     }
 
-    // methode pour compléter 8 chiffres pour le numéro de compte
-    private static String repeat(int repetitions, String character) {
-        return Collections.nCopies(repetitions, character).stream()
-                .collect(Collectors.joining());
+    // In case we have an account number less than 8 from data excel
+    private static String repeat(int repetitions) {
+        return String.join("", Collections.nCopies(repetitions, "0"));
     }
 }

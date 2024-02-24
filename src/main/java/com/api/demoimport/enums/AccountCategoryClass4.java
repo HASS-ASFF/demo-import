@@ -1,6 +1,5 @@
 package com.api.demoimport.enums;
 
-import com.api.demoimport.entity.Bilan.SubAccount;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,40 +23,24 @@ public enum AccountCategoryClass4 {
     )),
     AUTRES_PROVISIONS_POUR_RISQUES_ET_CHARGES("45","AUTRES PROVISIONS POUR RISQUES ET CHARGES (G)"
         ,  Arrays.asList(
-            ""
+            "45 - AUTRES PROVISIONS POUR RISQUES ET CHARGES (G)"
     )),
     ECARTS_DE_CONVERSION_PASSIF("47","ECARTS DE CONVERSION - PASSIF (Eléments circulants) (H)"
            , Arrays.asList(
-            ""
+            "47 - ECARTS DE CONVERSION - PASSIF (Eléments circulants) (H)"
     ));
 
     @Setter
-    private final String number;
+    private  String number;
     @Setter
-    private final String label;
+    private  String label;
     @Setter
-    private final List<String> sous_compte;
+    private  List<String> sous_compte;
 
 
     AccountCategoryClass4(String number, String label, List<String> sous_compte) {
         this.number = number;
         this.label = label;
         this.sous_compte = sous_compte;
-    }
-
-    // method for creating new subaccounts with empty values in order
-    public List<SubAccount> getSubAccountsDataWithEmptyValues() {
-        List<SubAccount> subAccountsData = new ArrayList<>();
-
-        // boucle sur sous-comptes et initialisation avec des valeurs vides
-        for (String subAccountLabel : sous_compte) {
-            SubAccount subAccountData = new SubAccount();
-            subAccountData.setSub_account(subAccountLabel);
-            subAccountData.setValues(new ArrayList<>()); // Liste vide pour les valeurs
-
-            subAccountsData.add(subAccountData);
-        }
-
-        return subAccountsData;
     }
 }

@@ -2,6 +2,7 @@ package com.api.demoimport.service;
 
 import com.api.demoimport.entity.PlanComptable;
 import com.api.demoimport.repository.PlanComptableRepository;
+import com.api.demoimport.service.ExcelService.ExcelHelperServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ExcelPlanComptableServiceImpl implements ExcelPlanComptableService{
+public class PlanComptableServiceImpl implements PlanComptableService {
 
     // Injection des dépendances
     @Autowired
@@ -23,27 +24,27 @@ public class ExcelPlanComptableServiceImpl implements ExcelPlanComptableService{
     // Méthode pour sauvegarder les données d'un fichier Excel de type PlanComptable
     public void save(MultipartFile file) {
         try {
-            // Conversion du fichier Excel en une liste d'objets PlanComptable
+            // Convert data excel to PlanComptable object
             List<PlanComptable> planComptables = excelHelperServiceImpl.excelToPlanComptable(file.getInputStream());
 
-            // Sauvegarde des objets PlanComptable dans la base de données
+            // save to db
             repository.saveAll(planComptables);
 
         } catch (IOException e) {
-            // Gestion des exceptions en cas d'échec de la lecture du fichier
+            // error reading the file
             throw new RuntimeException("fail to store excel data: ");
         } catch (ParseException e) {
-            // Gestion des exceptions en cas d'erreur de conversion
+            // error parsing the data
             throw new RuntimeException(e);
         }
     }
 
-    // Méthode pour récupérer tous les plans comptables
+    // Get all PlanComptable data
     public List<PlanComptable> getPlanComptables() {
         return repository.findAll();
     }
 
-    // Méthode pour rechercher un plan comptable par numéro de compte
+    // Fetch for a data in PlanComptable with the account number
     public  Optional<PlanComptable> search(Long noCompte) {
         return repository.querySearchPlanComptable(noCompte);
     }

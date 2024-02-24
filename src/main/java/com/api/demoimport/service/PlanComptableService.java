@@ -6,7 +6,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.Optional;
 
-public interface ExcelPlanComptableService {
+public interface PlanComptableService {
+
     void save(MultipartFile file);
     List<PlanComptable> getPlanComptables();
 

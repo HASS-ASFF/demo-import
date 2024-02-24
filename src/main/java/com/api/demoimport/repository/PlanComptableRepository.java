@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface PlanComptableRepository extends JpaRepository<PlanComptable,Long> {
 
-    //Requête SQL native pour rechercher un PlanComptable correspondant au numéro de compte spécifié.
+    // Fetching data from PlanComptable BY ACOOUNT NUMBER
     @Query(nativeQuery = true, value = "select * from plan_comptable where LEFT(no_compte,4) = LEFT(:noCompte,4) limit 1")
     public Optional<PlanComptable> querySearchPlanComptable(Long noCompte);
 
