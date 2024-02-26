@@ -75,6 +75,8 @@
     <parameter name="DateN" class="java.lang.String"/>
     <parameter name="DateN1" class="java.lang.String"/>
 
+    <parameter name="name_company" class="java.lang.String"/>
+
 
     <background>
         <band splitType="Stretch"/>
@@ -621,7 +623,7 @@
                 </textElement>
                 <text><![CDATA[Passif]]></text>
             </staticText>
-            <staticText>
+            <textField>
                 <reportElement mode="Transparent" x="140" y="23" width="120" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="d3524a39-43c3-4570-9fb6-cb974533623f">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -638,9 +640,9 @@
                     <font size="6" isBold="false"/>
                     <paragraph rightIndent="2"/>
                 </textElement>
-                <text><![CDATA[Brut N]]></text>
-            </staticText>
-            <staticText>
+                <textFieldExpression><![CDATA["Brut ("+$P{DateN}+")"]]></textFieldExpression>
+            </textField>
+            <textField>
                 <reportElement mode="Transparent" x="260" y="23" width="120" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="32077229-caec-4681-8f15-4f3699e094a4">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -657,16 +659,16 @@
                     <font size="6" isBold="false"/>
                     <paragraph rightIndent="2"/>
                 </textElement>
-                <text><![CDATA[Net (N-1)]]></text>
-            </staticText>
-            <staticText>
+                <textFieldExpression><![CDATA["Net ("+$P{DateN1}+")"]]></textFieldExpression>
+            </textField>
+            <textField>
                 <reportElement mode="Opaque" x="385" y="0" width="85" height="21" forecolor="#FFFFFF" backcolor="#325A77" uuid="c0d3a881-379f-44b3-aacb-83f55f11dd1c">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.y" value="pixel"/>
                 </reportElement>
                 <textElement textAlignment="Center" verticalAlignment="Middle"/>
-                <text><![CDATA[AL MORAFIQ]]></text>
-            </staticText>
+                <textFieldExpression><![CDATA[$P{name_company}]]></textFieldExpression>
+            </textField>
             <staticText>
                 <reportElement mode="Opaque" x="470" y="0" width="85" height="21" forecolor="#FFFFFF" backcolor="#325A77" uuid="37997897-59b4-484d-8340-20552d20bd40">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -897,7 +899,7 @@
                 </textElement>
                 <text><![CDATA[Total I (A+B+C+D+E)]]></text>
             </staticText>
-            <staticText>
+            <textField>
                 <reportElement mode="Transparent" x="260" y="149" width="120" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="53508edd-d87e-4914-a8b0-36e2cd1f3935">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -914,9 +916,9 @@
                     <font size="6" isBold="false"/>
                     <paragraph rightIndent="2"/>
                 </textElement>
-                <text><![CDATA[Net (N-1)]]></text>
-            </staticText>
-            <staticText>
+                <textFieldExpression><![CDATA["Net ("+$P{DateN1}+")"]]></textFieldExpression>
+            </textField>
+            <textField>
                 <reportElement mode="Transparent" x="140" y="149" width="120" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="6739c3c8-470d-47d3-8a0d-bb88af62f85d">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -933,8 +935,8 @@
                     <font size="6" isBold="false"/>
                     <paragraph rightIndent="2"/>
                 </textElement>
-                <text><![CDATA[Brut N]]></text>
-            </staticText>
+                <textFieldExpression><![CDATA["Brut ("+$P{DateN}+")"]]></textFieldExpression>
+            </textField>
             <staticText>
                 <reportElement mode="Transparent" x="0" y="149" width="140" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="47dd74d8-aa00-40bd-a308-5ac066b586f8">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -953,7 +955,7 @@
                 </textElement>
                 <text><![CDATA[Passif]]></text>
             </staticText>
-            <staticText>
+            <textField>
                 <reportElement mode="Transparent" x="260" y="295" width="120" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="4d718f61-c02e-4b4d-b4f2-591f49ec090a">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -970,9 +972,9 @@
                     <font size="6" isBold="false"/>
                     <paragraph rightIndent="2"/>
                 </textElement>
-                <text><![CDATA[Net (N-1)]]></text>
-            </staticText>
-            <staticText>
+                <textFieldExpression><![CDATA["Net ("+$P{DateN1}+")"]]></textFieldExpression>
+            </textField>
+            <textField>
                 <reportElement mode="Transparent" x="140" y="295" width="120" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="7a329aae-935d-494a-b6f2-2a3eeea3b715">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -989,8 +991,8 @@
                     <font size="6" isBold="false"/>
                     <paragraph rightIndent="2"/>
                 </textElement>
-                <text><![CDATA[Brut N]]></text>
-            </staticText>
+                <textFieldExpression><![CDATA["Brut ("+$P{DateN}+")"]]></textFieldExpression>
+            </textField>
             <staticText>
                 <reportElement mode="Transparent" x="0" y="295" width="140" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="6fd25761-1b3a-4407-a638-ee5e53525255">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -1225,7 +1227,7 @@
                 </textElement>
                 <text><![CDATA[TOTAL GENERAL  I+II+III ]]></text>
             </staticText>
-            <staticText>
+            <textField>
                 <reportElement mode="Transparent" x="260" y="430" width="120" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="a4fe023f-c431-4a32-9d5b-fd868b7dc2e5">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -1242,9 +1244,9 @@
                     <font size="6" isBold="false"/>
                     <paragraph rightIndent="2"/>
                 </textElement>
-                <text><![CDATA[Net (N-1)]]></text>
-            </staticText>
-            <staticText>
+                <textFieldExpression><![CDATA["Net ("+$P{DateN1}+")"]]></textFieldExpression>
+            </textField>
+            <textField>
                 <reportElement mode="Transparent" x="140" y="430" width="120" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="830290ff-07e0-453e-9f91-1147ad3e109b">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -1261,8 +1263,8 @@
                     <font size="6" isBold="false"/>
                     <paragraph rightIndent="2"/>
                 </textElement>
-                <text><![CDATA[Brut N]]></text>
-            </staticText>
+                <textFieldExpression><![CDATA["Brut ("+$P{DateN}+")"]]></textFieldExpression>
+            </textField>
             <staticText>
                 <reportElement mode="Transparent" x="0" y="430" width="140" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="4b6b02b3-09ea-4f4a-9cb6-8fc46a5b832c">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>

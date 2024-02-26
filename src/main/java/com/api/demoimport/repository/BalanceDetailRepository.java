@@ -18,9 +18,10 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
             "b.credit_fex AS brut\n" +
             "FROM balance_detail b\n" +
             "JOIN balance ON balance.id = b.balance_id\n" +
-            "WHERE b.the_class=1 AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :dateBilan = :dateBilan\n" +
+            "WHERE b.the_class=1 AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :dateBilan\n" +
+            "AND company_name = :company_name\n"+
             "GROUP BY b.n_compte,b.label, b.credit_fex;")
-    List<Object[]> getBilanC1(String dateBilan);
+    List<Object[]> getBilanC1(String dateBilan,String company_name);
 
     // GET ACCOUNTS CLASS 2
     @Query(nativeQuery = true, value = "SELECT b.n_compte AS num_compte,\n " +
@@ -36,8 +37,9 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
             "    LEFT(b.n_compte, 3) = LEFT(CONCAT(REPLACE(amort.n_compte, '8', ''),'0'),3)\n" +
             "JOIN balance ON balance.id = b.balance_id\n" +
             "WHERE b.the_class = 2 AND  b.n_compte NOT LIKE '28%' AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :dateBilan\n" +
+            "AND company_name = :company_name\n"+
             "GROUP BY b.n_compte,b.label, b.debit_fex;")
-    List<Object[]> getBilanC2(String dateBilan);
+    List<Object[]> getBilanC2(String dateBilan,String company_name);
 
     // GET ACCOUNTS CLASS 3
     @Query(nativeQuery = true, value ="SELECT b.n_compte AS num_compte,\n" +
@@ -47,9 +49,10 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
             "FROM balance_detail b\n" +
             "JOIN balance ON balance.id = b.balance_id\n" +
             "WHERE b.the_class = 3 AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :dateBilan\n" +
+            "AND company_name = :company_name\n"+
             "GROUP BY \n" +
             "   b.n_compte,b.label, b.debit_fex;")
-    List<Object[]> getBilanC3(String dateBilan);
+    List<Object[]> getBilanC3(String dateBilan,String company_name);
 
     // GET ACCOUNTS CLASS 4
     @Query(nativeQuery = true, value ="SELECT b.n_compte AS num_compte,\n" +
@@ -58,8 +61,9 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
             "FROM balance_detail b\n" +
             "JOIN balance ON balance.id = b.balance_id\n" +
             "WHERE b.the_class=4 AND  DATE_FORMAT(balance.date, '%Y-%m-%d') = :dateBilan\n" +
+            "AND company_name = :company_name\n"+
             "GROUP BY b.n_compte,b.label, b.credit_fex;")
-    List<Object[]> getBilanC4(String dateBilan);
+    List<Object[]> getBilanC4(String dateBilan,String company_name);
 
     // GET CLASS 5 ACTIF
     @Query(nativeQuery = true, value ="SELECT b.n_compte AS num_compte,\n" +
@@ -69,8 +73,9 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
             "FROM balance_detail b\n" +
             "JOIN balance ON balance.id = b.balance_id\n" +
             "WHERE b.the_class = 5 AND b.n_compte LIKE '51%' AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :dateBilan\n" +
+            "AND company_name = :company_name\n"+
             "GROUP BY  b.n_compte,b.label, b.debit_fex;")
-    List<Object[]> getBilanC5A(String dateBilan);
+    List<Object[]> getBilanC5A(String dateBilan,String company_name);
 
     // GET CLASS 5 PASSIF
     @Query(nativeQuery = true, value = "SELECT b.n_compte AS num_compte,\n" +
@@ -79,6 +84,8 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
             "FROM balance_detail b\n" +
             "JOIN balance ON balance.id = b.balance_id\n" +
             "WHERE b.the_class=5 AND b.n_compte LIKE '55%' AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :dateBilan\n" +
+            "AND company_name = :company_name\n"+
             "GROUP BY b.n_compte,b.label, b.credit_fex;")
-    List<Object[]> getBilanC5P(String dateBilan);
+    List<Object[]> getBilanC5P(String dateBilan,String company_name);
+
 }

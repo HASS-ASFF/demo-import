@@ -1,4 +1,4 @@
-package com.api.demoimport.service.BilanService;
+package com.api.demoimport.service;
 
 import com.api.demoimport.entity.Bilan.SubAccountActif;
 import com.api.demoimport.entity.Bilan.SubAccountPassif;

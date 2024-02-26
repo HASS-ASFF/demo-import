@@ -2,7 +2,7 @@ package com.api.demoimport.controller;
 
 
 import com.api.demoimport.message.ResponseMessage;
-import com.api.demoimport.service.ReportService.ReportServiceImpl;
+import com.api.demoimport.service.Implementation.ReportServiceImpl;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -27,9 +27,9 @@ public class BilanController {
     ReportServiceImpl reportServiceImpl;
 
     @GetMapping("/bilan-passif")
-    public ResponseEntity  getBilanPassif(@RequestParam("dateBilan") String date) throws JRException {
+    public ResponseEntity  getBilanPassif(@RequestParam("dateBilan") String date, @RequestParam("companyName") String company_name) throws JRException {
         try{
-            ByteArrayOutputStream reportstream = reportServiceImpl.exportReportPassif(date);
+            ByteArrayOutputStream reportstream = reportServiceImpl.exportReportPassif(date,company_name);
             HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.setContentType(MediaType.APPLICATION_PDF);
             return new ResponseEntity(reportstream.toByteArray(),httpHeaders,HttpStatus.OK);
@@ -41,9 +41,9 @@ public class BilanController {
     }
 
     @GetMapping("/bilan-actif")
-    public ResponseEntity  getBilanActif(@RequestParam("dateBilan") String date) throws JRException {
+    public ResponseEntity  getBilanActif(@RequestParam("dateBilan") String date, @RequestParam("companyName") String company_name) throws JRException {
         try{
-            ByteArrayOutputStream reportstream = reportServiceImpl.exportReportActif(date);
+            ByteArrayOutputStream reportstream = reportServiceImpl.exportReportActif(date,company_name);
             HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.setContentType(MediaType.APPLICATION_PDF);
             return new ResponseEntity(reportstream.toByteArray(),httpHeaders,HttpStatus.OK);

@@ -3,21 +3,18 @@ package com.api.demoimport.controller;
 
 import com.api.demoimport.entity.BalanceDetail;
 import com.api.demoimport.entity.PlanComptable;
-import com.api.demoimport.service.BilanService.AccountDataManagerServiceImpl;
-import com.api.demoimport.service.ExcelService.ExcelHelperServiceImpl;
+import com.api.demoimport.service.Implementation.AccountDataManagerServiceImpl;
+import com.api.demoimport.service.Implementation.ExcelHelperServiceImpl;
 import com.api.demoimport.message.ResponseMessage;
-import com.api.demoimport.service.BalanceDetailServiceImpl;
-import com.api.demoimport.service.PlanComptableServiceImpl;
+import com.api.demoimport.service.Implementation.BalanceDetailServiceImpl;
+import com.api.demoimport.service.Implementation.PlanComptableServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.xml.crypto.Data;
-import java.util.Date;
 import java.util.List;
 
 @CrossOrigin("http://localhost:8080")
@@ -80,7 +77,8 @@ public class ExcelController {
     // Méthode pour télécharger un fichier détail de balance
     @PostMapping("/upload-balance-detail")
     public ResponseEntity<ResponseMessage> uploadFileBalance(@RequestParam("file") MultipartFile file,
-                                                             @RequestParam("dateBalance") String date)
+                                                             @RequestParam("dateBalance") String date,
+                                                             @RequestParam("companyName") String company_name)
     {
         String message = "";
 
@@ -89,7 +87,7 @@ public class ExcelController {
             try {
 
                 // Sauvegarde le fichier détail de balance
-                fileServiceBalance.save(file,date);
+                fileServiceBalance.save(file,date,company_name);
 
                 message = "Uploaded the file successfully: " + file.getOriginalFilename();
 

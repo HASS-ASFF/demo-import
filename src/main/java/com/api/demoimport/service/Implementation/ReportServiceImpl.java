@@ -1,10 +1,9 @@
-package com.api.demoimport.service.ReportService;
+package com.api.demoimport.service.Implementation;
 
 import com.api.demoimport.entity.Bilan.SubAccountActif;
 import com.api.demoimport.entity.Bilan.SubAccountPassif;
 import com.api.demoimport.enums.*;
-import com.api.demoimport.service.BalanceDetailServiceImpl;
-import com.api.demoimport.service.BilanService.AccountDataManagerServiceImpl;
+import com.api.demoimport.service.ReportService;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
@@ -15,12 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
 
 @Service
-public class ReportServiceImpl implements ReportService{
+public class ReportServiceImpl implements ReportService {
 
     @Autowired
     AccountDataManagerServiceImpl accountDataManagerServiceImpl;
@@ -30,7 +28,7 @@ public class ReportServiceImpl implements ReportService{
     String path = "C:\\Users\\onizu\\OneDrive\\Bureau\\demo-import\\src\\main\\resources\\templates\\";
 
     // EXPORT DATA PASSIF TO PDF
-    public ByteArrayOutputStream exportReportPassif(String  date) throws JRException {
+    public ByteArrayOutputStream exportReportPassif(String  date,String company_name) throws JRException {
 
         // TO DO
         String pathP = path+"BilanPassif.jrxml";
@@ -39,7 +37,7 @@ public class ReportServiceImpl implements ReportService{
         try{
 
             // CLASS ONE
-            List<SubAccountPassif> ClassOne = balanceDetailServiceImpl.getClassOne(date);
+            List<SubAccountPassif> ClassOne = balanceDetailServiceImpl.getClassOne(date,company_name);
             List<SubAccountPassif> FullClassOne = accountDataManagerServiceImpl.
                     processAccountDataP(ClassOne,"1");
 
@@ -56,7 +54,7 @@ public class ReportServiceImpl implements ReportService{
 
 
             // CLASS FOUR
-            List<SubAccountPassif> ClassFour = balanceDetailServiceImpl.getClassFour(date);
+            List<SubAccountPassif> ClassFour = balanceDetailServiceImpl.getClassFour(date,company_name);
             List<SubAccountPassif> FullClassFour = accountDataManagerServiceImpl.
                             processAccountDataP(ClassFour,"4");
             List<SubAccountPassif> dataset6 = accountDataManagerServiceImpl.
@@ -67,7 +65,7 @@ public class ReportServiceImpl implements ReportService{
                     FilterAccountDataP(FullClassFour,AccountCategoryClass4.ECARTS_DE_CONVERSION_PASSIF.getLabel());
 
             //CLASS FIVE PASSIF
-            List<SubAccountPassif> ClassFiveP = balanceDetailServiceImpl.getClassFivePassif(date);
+            List<SubAccountPassif> ClassFiveP = balanceDetailServiceImpl.getClassFivePassif(date,company_name);
                     List<SubAccountPassif> FullClassFiveP =  accountDataManagerServiceImpl.
                             processAccountDataP(ClassFiveP,"5");
             List<SubAccountPassif> dataset9 = accountDataManagerServiceImpl.
@@ -104,8 +102,6 @@ public class ReportServiceImpl implements ReportService{
             parameters.put("TresoreriePassif", dataSource9);
 
 
-
-
             parameters.put("TotalCapitaux",accountDataManagerServiceImpl.GetTotalBrutAccountPassif(dataset1));
             parameters.put("TotalCapitauxN",accountDataManagerServiceImpl.GetTotalNetAccountPassif(dataset1));
             parameters.put("TotalI",accountDataManagerServiceImpl.GetTotalBrutAccountPassif(totalListI));
@@ -118,6 +114,8 @@ public class ReportServiceImpl implements ReportService{
             parameters.put("DateN",date.substring(0,4));
             parameters.put("DateN1",getLastYear(date).substring(0,4));
 
+            parameters.put("name_company",company_name);
+
             return jasperConfiguration(pathP,parameters);
 
         }catch(RuntimeException e) {
@@ -128,7 +126,7 @@ public class ReportServiceImpl implements ReportService{
 
 
     // EXPORT DATA ACTIF TO PDF
-    public ByteArrayOutputStream exportReportActif(String date) throws JRException {
+    public ByteArrayOutputStream exportReportActif(String date,String company_name) throws JRException {
 
         // TO DO
         String pathA = path+"BilanActif.jrxml";
@@ -137,7 +135,7 @@ public class ReportServiceImpl implements ReportService{
         try{
 
             // CLASS TWO
-            List<SubAccountActif> ClassTwo = balanceDetailServiceImpl.getClassTwo(date);
+            List<SubAccountActif> ClassTwo = balanceDetailServiceImpl.getClassTwo(date,company_name);
             List<SubAccountActif> FullClassTwo = accountDataManagerServiceImpl.
                     processAccountDataA(ClassTwo,"2");
             List<SubAccountActif> dataset1 = accountDataManagerServiceImpl.
@@ -152,7 +150,7 @@ public class ReportServiceImpl implements ReportService{
                     FilterAccountDataA(FullClassTwo,AccountCategoryClass2.ECART_CONVERSION_ACTIF.getLabel());
 
             // CLASS THREE
-            List<SubAccountActif> ClassThree = balanceDetailServiceImpl.getClassThree(date);
+            List<SubAccountActif> ClassThree = balanceDetailServiceImpl.getClassThree(date,company_name);
             List<SubAccountActif> FullClassThree = accountDataManagerServiceImpl.
                     processAccountDataA(ClassThree,"3");
 
@@ -163,7 +161,7 @@ public class ReportServiceImpl implements ReportService{
 
 
             // CLASS FIVE
-            List<SubAccountActif> ClassFiveA = balanceDetailServiceImpl.getClassFiveActif(date);
+            List<SubAccountActif> ClassFiveA = balanceDetailServiceImpl.getClassFiveActif(date,company_name);
             List<SubAccountActif> FullClassFiveA = accountDataManagerServiceImpl.processAccountDataA
                     (ClassFiveA,"5");
             List<SubAccountActif> dataset8 = accountDataManagerServiceImpl.
@@ -205,10 +203,11 @@ public class ReportServiceImpl implements ReportService{
             parameters.put("param8",dataSource8);
             parameters.put("totalIII",accountDataManagerServiceImpl.GetTotalBrutAccountActif(dataset8));
 
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
             parameters.put("DateN",date.substring(0,4));
             parameters.put("DateN1",getLastYear(date).substring(0,4));
+
+            parameters.put("name_company",company_name);
 
             return jasperConfiguration(pathA,parameters);
 

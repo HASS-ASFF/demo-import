@@ -13,15 +13,15 @@ public interface BalanceDetailService {
 
     // Getting different classes from BalanceDetail & converting it to SubAccount object
 
-    void save(MultipartFile file, String date);
+    void save(MultipartFile file, String date,String company_name);
     List<BalanceDetail> getBalanceDetails();
-    List<SubAccountPassif> getClassOne(String date);
-    List<SubAccountActif> getClassTwo(String date);
-    List<SubAccountActif> getClassThree(String date);
-    List<SubAccountPassif> getClassFour(String date);
-    List<SubAccountActif> getClassFiveActif(String date);
+    List<SubAccountPassif> getClassOne(String date,String company_name);
+    List<SubAccountActif> getClassTwo(String date,String company_name);
+    List<SubAccountActif> getClassThree(String date,String company_name);
+    List<SubAccountPassif> getClassFour(String date,String company_name);
+    List<SubAccountActif> getClassFiveActif(String date,String company_name);
 
-    List<SubAccountPassif> getClassFivePassif(String date);
+    List<SubAccountPassif> getClassFivePassif(String date,String company_name);
 
     List<SubAccountActif> ConvertToBilanActif(List<Object[]> resultsrequest);
     List<SubAccountPassif> ConvertToBilanPassif(List<Object[]> resultsrequest);

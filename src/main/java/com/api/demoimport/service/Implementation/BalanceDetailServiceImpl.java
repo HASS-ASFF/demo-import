@@ -1,12 +1,13 @@
-package com.api.demoimport.service;
+package com.api.demoimport.service.Implementation;
 
 import com.api.demoimport.entity.BalanceDetail;
 import com.api.demoimport.entity.Bilan.FormatUtils;
 import com.api.demoimport.entity.Bilan.SubAccountActif;
 import com.api.demoimport.entity.Bilan.SubAccountPassif;
 import com.api.demoimport.repository.BalanceDetailRepository;
-import com.api.demoimport.service.BilanService.AccountDataManagerServiceImpl;
-import com.api.demoimport.service.ExcelService.ExcelHelperServiceImpl;
+import com.api.demoimport.service.BalanceDetailService;
+import com.api.demoimport.service.Implementation.AccountDataManagerServiceImpl;
+import com.api.demoimport.service.Implementation.ExcelHelperServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,9 +30,9 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
     private AccountDataManagerServiceImpl accountDataManagerService;
 
     // Save file excel balance and retrieve data & save it to db
-    public void save(MultipartFile file,String date) {
+    public void save(MultipartFile file,String date,String company_name) {
         try {
-            List<BalanceDetail> balanceDetails = excelHelperServiceImpl.excelToBalanceDetail(file.getInputStream(),date);
+            List<BalanceDetail> balanceDetails = excelHelperServiceImpl.excelToBalanceDetail(file.getInputStream(),date,company_name);
             repository.saveAll(balanceDetails);
     // In case we have  parsing or I/O error
         } catch (IOException | ParseException e) {
@@ -47,9 +48,9 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
 
     // fetching data for the class 1
     @Override
-    public List<SubAccountPassif> getClassOne(String dateBilan){
+    public List<SubAccountPassif> getClassOne(String dateBilan,String company_name){
 
-        List<Object[]> resultsrequest =  repository.getBilanC1(dateBilan);
+        List<Object[]> resultsrequest =  repository.getBilanC1(dateBilan,company_name);
 
 
         //regroupClassesP(bilanPassifs);
@@ -60,9 +61,9 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
 
     // fetching data for the class 2
     @Override
-    public List<SubAccountActif> getClassTwo(String dateBilan){
+    public List<SubAccountActif> getClassTwo(String dateBilan,String company_name){
 
-        List<Object[]> resultsrequest =  repository.getBilanC2(dateBilan);
+        List<Object[]> resultsrequest =  repository.getBilanC2(dateBilan,company_name);
 
         List<SubAccountActif> bilanActifs = ConvertToBilanActif(resultsrequest);
 
@@ -75,9 +76,9 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
 
     // fetching data for the class 3
     @Override
-    public List<SubAccountActif> getClassThree(String dateBilan){
+    public List<SubAccountActif> getClassThree(String dateBilan,String company_name){
 
-        List<Object[]> resultsrequest =  repository.getBilanC3(dateBilan);
+        List<Object[]> resultsrequest =  repository.getBilanC3(dateBilan,company_name);
 
         List<SubAccountActif> bilanActifs = ConvertToBilanActif(resultsrequest);
 
@@ -88,8 +89,8 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
 
     // fetching data for the class 4
     @Override
-    public List<SubAccountPassif> getClassFour(String dateBilan) {
-        List<Object[]> resultsrequest =  repository.getBilanC4(dateBilan);
+    public List<SubAccountPassif> getClassFour(String dateBilan,String company_name) {
+        List<Object[]> resultsrequest =  repository.getBilanC4(dateBilan,company_name);
 
         List<SubAccountPassif> bilanPassifs = ConvertToBilanPassif(resultsrequest);
 
@@ -100,9 +101,9 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
 
     // fetching data for the class 5 Actif
     @Override
-    public List<SubAccountActif> getClassFiveActif(String dateBilan){
+    public List<SubAccountActif> getClassFiveActif(String dateBilan,String company_name){
 
-        List<Object[]> resultsrequest =  repository.getBilanC5A(dateBilan);
+        List<Object[]> resultsrequest =  repository.getBilanC5A(dateBilan,company_name);
 
         List<SubAccountActif> bilanActifs = ConvertToBilanActif(resultsrequest);
 
@@ -113,8 +114,8 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
 
     // fetching data for the class 5 Passif
     @Override
-    public List<SubAccountPassif> getClassFivePassif(String dateBilan) {
-        List<Object[]> resultsrequest =  repository.getBilanC5P(dateBilan);
+    public List<SubAccountPassif> getClassFivePassif(String dateBilan,String company_name) {
+        List<Object[]> resultsrequest =  repository.getBilanC5P(dateBilan,company_name);
 
         List<SubAccountPassif> bilanPassifs = ConvertToBilanPassif(resultsrequest);
 

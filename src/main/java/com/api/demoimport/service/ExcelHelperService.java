@@ -1,4 +1,4 @@
-package com.api.demoimport.service.ExcelService;
+package com.api.demoimport.service;
 
 import com.api.demoimport.entity.BalanceDetail;
 import com.api.demoimport.entity.PlanComptable;
@@ -14,7 +14,7 @@ public interface ExcelHelperService {
 
     // Convert EXCEL DATA TO DB (PlanComptable & BalanceDetail)
     List<PlanComptable> excelToPlanComptable(InputStream is) throws ParseException;
-    List<BalanceDetail> excelToBalanceDetail(InputStream is, String date) throws ParseException;
+    List<BalanceDetail> excelToBalanceDetail(InputStream is, String date,String company_name) throws ParseException;
 
     Double convertDhStringToDouble(String dhNumber);
 }

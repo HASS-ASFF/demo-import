@@ -1,10 +1,10 @@
-package com.api.demoimport.service.ExcelService;
+package com.api.demoimport.service.Implementation;
 
 import com.api.demoimport.entity.Balance;
 import com.api.demoimport.entity.BalanceDetail;
 import com.api.demoimport.entity.PlanComptable;
 import com.api.demoimport.repository.BalanceRepository;
-import com.api.demoimport.service.PlanComptableServiceImpl;
+import com.api.demoimport.service.ExcelHelperService;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +16,9 @@ import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
-public class ExcelHelperServiceImpl implements ExcelHelperService{
+public class ExcelHelperServiceImpl implements ExcelHelperService {
 
     @Autowired
     private PlanComptableServiceImpl excelPlanComptableServiceImpl;
@@ -120,7 +119,7 @@ public class ExcelHelperServiceImpl implements ExcelHelperService{
         }
 
     // Convert data excel to object BalanceDetail
-    public  List<BalanceDetail> excelToBalanceDetail(InputStream is,String date) throws ParseException{
+    public  List<BalanceDetail> excelToBalanceDetail(InputStream is,String date, String company_name) throws ParseException{
         try {
             Workbook workbook = new XSSFWorkbook(is);
 
@@ -133,6 +132,7 @@ public class ExcelHelperServiceImpl implements ExcelHelperService{
             Balance balance = new Balance();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             balance.setDate(sdf.parse(date));
+            balance.setCompany_name(company_name);
 
 
 

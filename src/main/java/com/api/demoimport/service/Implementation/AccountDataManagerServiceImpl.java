@@ -1,17 +1,18 @@
-package com.api.demoimport.service.BilanService;
+package com.api.demoimport.service.Implementation;
 
 import com.api.demoimport.entity.Bilan.FormatUtils;
 import com.api.demoimport.entity.Bilan.SubAccountActif;
 import com.api.demoimport.entity.Bilan.SubAccountPassif;
 import com.api.demoimport.enums.*;
 import com.api.demoimport.repository.BalanceDetailRepository;
+import com.api.demoimport.service.AccountDataManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
-public class AccountDataManagerServiceImpl implements AccountDataManagerService{
+public class AccountDataManagerServiceImpl implements AccountDataManagerService {
 
     @Autowired
     BalanceDetailRepository balanceDetailRepository;

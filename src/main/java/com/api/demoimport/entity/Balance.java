@@ -20,4 +20,7 @@ public class Balance {
     @Column(length = 50)
     private Date date;
 
+    @Column
+    private String company_name;
+
 }
