@@ -2,6 +2,7 @@ package com.api.demoimport.controller;
 
 
 import com.api.demoimport.entity.BalanceDetail;
+import com.api.demoimport.entity.Bilan.SubAccountCPC;
 import com.api.demoimport.entity.PlanComptable;
 import com.api.demoimport.service.Implementation.AccountDataManagerServiceImpl;
 import com.api.demoimport.service.Implementation.ExcelHelperServiceImpl;
@@ -114,6 +115,46 @@ public class ExcelController {
             }
 
             return new ResponseEntity<>(balanceDetails, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/class6")
+    public ResponseEntity<List<SubAccountCPC>> getClassSixDetails(@RequestParam("dateBalance") String date,
+                                                                  @RequestParam("companyName") String company_name) throws Exception {
+        try {
+            List<SubAccountCPC> subAccountCPCS = fileServiceBalance.getClassSix(date,company_name);
+            /*List<SubAccountCPC> FilteredCPCS = accountDataManagerServiceImpl.
+                    processAccountDataCPC(subAccountCPCS,"6");*/
+
+            //FilteredCPCS.forEach(x -> System.out.println(x.getLibelle()));
+
+            if (subAccountCPCS.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+
+            return new ResponseEntity<>(subAccountCPCS, HttpStatus.OK);
+        } catch (Exception e) {
+            throw new Exception(e.getLocalizedMessage());
+        }
+    }
+
+    @GetMapping("/class7")
+    public ResponseEntity<List<SubAccountCPC>> getClassSevenDetails(@RequestParam("dateBalance") String date,
+                                                                    @RequestParam("companyName") String company_name){
+        try {
+            List<SubAccountCPC> subAccountCPCS = fileServiceBalance.getClassSeven(date,company_name);
+
+            List<SubAccountCPC> FilteredCPCS = accountDataManagerServiceImpl.
+                    processAccountDataCPC(subAccountCPCS,"7");
+
+            if (subAccountCPCS.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            return new ResponseEntity<>(FilteredCPCS, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

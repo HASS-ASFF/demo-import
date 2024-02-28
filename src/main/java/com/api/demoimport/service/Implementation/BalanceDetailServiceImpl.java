@@ -3,6 +3,7 @@ package com.api.demoimport.service.Implementation;
 import com.api.demoimport.entity.BalanceDetail;
 import com.api.demoimport.entity.Bilan.FormatUtils;
 import com.api.demoimport.entity.Bilan.SubAccountActif;
+import com.api.demoimport.entity.Bilan.SubAccountCPC;
 import com.api.demoimport.entity.Bilan.SubAccountPassif;
 import com.api.demoimport.repository.BalanceDetailRepository;
 import com.api.demoimport.service.BalanceDetailService;
@@ -124,6 +125,28 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
         return bilanPassifs;
     }
 
+    @Override
+    public List<SubAccountCPC> getClassSix(String date, String company_name) {
+        List<Object []> resultsrequest = repository.getCPCC6(date,company_name);
+
+        List<SubAccountCPC> subAccountCPCS = ConvertToCPC(resultsrequest);
+
+        regroupClassesCPC(subAccountCPCS);
+
+        return subAccountCPCS;
+    }
+
+    @Override
+    public List<SubAccountCPC> getClassSeven(String date, String company_name) {
+        List<Object []> resultsrequest = repository.getCPCC7(date,company_name);
+
+        List<SubAccountCPC> subAccountCPCS = ConvertToCPC(resultsrequest);
+
+        regroupClassesCPC(subAccountCPCS);
+
+        return subAccountCPCS;
+    }
+
     // Convert object to SubAccountActif
     @Override
     public List<SubAccountActif> ConvertToBilanActif(List<Object[]> resultsrequest){
@@ -198,6 +221,29 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
         return bilansPassifs;
     }
 
+    @Override
+    public List<SubAccountCPC> ConvertToCPC(List<Object[]> resultsrequest) {
+        List<SubAccountCPC> accountCPCS = new ArrayList<>();
+
+        // Parcourir les résultats et convertir chaque élément en Bilan
+        for (Object[] resultat : resultsrequest) {
+
+            String mainA = getMainAccount(resultat[0].toString());
+            String n_compte =  resultat[0].toString();
+            String libelle = (String) resultat[1];
+            Double brut = (Double) resultat[2];
+
+            SubAccountCPC subAccountCPC = new SubAccountCPC();
+            subAccountCPC.setMainAccount(mainA);
+            subAccountCPC.setN_compte(n_compte);
+            subAccountCPC.setLibelle(libelle);
+            subAccountCPC.setBrut(brut == 0 ? null : FormatUtils.formatDecimal(brut));
+            accountCPCS.add(subAccountCPC);
+        }
+
+        return accountCPCS;
+    }
+
     // Regroup actif classes in case we have the same account number at beginning
    @Override
    public void regroupClassesA(List<SubAccountActif> bilanActifdata) {
@@ -263,11 +309,32 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
                 bilanPassif.setBrut(FormatUtils.formatDecimal(bilanPassif.getBrut()));
                 }
             }
-
-
-
         }
 
+    }
+
+    @Override
+    public void regroupClassesCPC(List<SubAccountCPC> cpcAccount) {
+        Map<String, SubAccountCPC> subAccountCPCMap = new HashMap<>();
+
+        // Regrouper les éléments par les trois premiers chiffres du compte
+        for (SubAccountCPC val : cpcAccount) {
+            String n_sous_compte = val.getN_compte().substring(0, 3);
+            String n_compte = n_sous_compte + "00000"; // Ajout de 5 zéros pour avoir 8 chiffres
+            String libelle = val.getLibelle();
+            SubAccountCPC subAccountCPC = subAccountCPCMap.get(n_sous_compte);
+
+            if (subAccountCPC == null) {
+                subAccountCPC = new SubAccountCPC(getMainAccount(val.getN_compte()),
+                        n_compte, libelle, val.getBrut());
+                subAccountCPCMap.put(n_sous_compte, subAccountCPC);
+            }else{
+                if (subAccountCPC.getBrut() != null && val.getBrut() != null) {
+                    subAccountCPC.setBrut(subAccountCPC.getBrut() + val.getBrut());
+                    subAccountCPC.setBrut(FormatUtils.formatDecimal(subAccountCPC.getBrut()));
+                }
+            }
+        }
     }
 
     // Get the Main account of a subaccount
@@ -291,6 +358,12 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
 
             case '5':
                 return accountDataManagerService.getMainAccountFive(n_compte.substring(0,2));
+
+            case '6':
+                return accountDataManagerService.getMainAccountSix(n_compte.substring(0,2));
+
+            case '7':
+                return accountDataManagerService.getMainAccountSeven(n_compte.substring(0,2));
 
             default:
                 return null;

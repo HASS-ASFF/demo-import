@@ -1,6 +1,7 @@
 package com.api.demoimport.service;
 
 import com.api.demoimport.entity.Bilan.SubAccountActif;
+import com.api.demoimport.entity.Bilan.SubAccountCPC;
 import com.api.demoimport.entity.Bilan.SubAccountPassif;
 
 import java.util.List;
@@ -12,6 +13,8 @@ public interface AccountDataManagerService {
     List<SubAccountActif> processAccountDataA(List<SubAccountActif> rawData, String n_class);
     List<SubAccountPassif> processAccountDataP(List<SubAccountPassif> rawData, String n_class);
 
+    List<SubAccountCPC> processAccountDataCPC(List<SubAccountCPC> rawData, String n_class);
+
     String extractPrefix(String accountNumber);
 
     Double GetTotalBrutAccountActif(List<SubAccountActif> accountDataMap);
@@ -22,4 +25,6 @@ public interface AccountDataManagerService {
 
     List<SubAccountActif> FilterAccountDataA(List<SubAccountActif> subAccountActifs,String mainAccount);
     List<SubAccountPassif> FilterAccountDataP(List<SubAccountPassif> subAccountPassifs,String mainAccount);
+
+    List<SubAccountCPC> FilterAccountDataCPC(List<SubAccountCPC> subAccountCPCS, String mainAccount);
 }

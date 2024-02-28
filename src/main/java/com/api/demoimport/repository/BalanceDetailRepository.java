@@ -88,6 +88,27 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
             "GROUP BY b.n_compte,b.label, b.credit_fex;")
     List<Object[]> getBilanC5P(String dateBilan,String company_name);
 
+    // GET CLASS 6
+    @Query(nativeQuery = true, value = "SELECT b.n_compte AS num_compte,\n"+
+            "b.label AS comptes,\n"+
+            "b.debit_fex AS brut\n"+
+            "FROM balance_detail b\n"+
+            "JOIN balance ON balance.id = b.balance_id\n" +
+            "WHERE b.the_class=6 AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :date\n" +
+            "AND company_name = :company_name\n"+
+            "GROUP BY b.n_compte,b.label, b.debit_fex;")
+    List<Object []> getCPCC6(String date,String company_name);
 
+
+    // GET CLASS 7
+    @Query(nativeQuery = true, value = "SELECT b.n_compte AS num_compte,\n"+
+            "b.label AS comptes,\n"+
+            "b.credit_fex AS brut\n"+
+            "FROM balance_detail b\n"+
+            "JOIN balance ON balance.id = b.balance_id\n" +
+            "WHERE b.the_class=7 AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :date\n" +
+            "AND company_name = :company_name\n"+
+            "GROUP BY b.n_compte,b.label, b.credit_fex;")
+    List<Object []> getCPCC7(String date,String company_name);
 
 }

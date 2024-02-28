@@ -2,11 +2,13 @@ package com.api.demoimport.entity.Bilan;
 
 import com.api.demoimport.enums.AccountCategoryClass6;
 import com.api.demoimport.enums.AccountCategoryClass7;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +17,7 @@ import java.util.List;
 @Getter
 @Setter
 public class SubAccountCPC {
+
     private String mainAccount;
     private String n_compte;
     private String libelle;

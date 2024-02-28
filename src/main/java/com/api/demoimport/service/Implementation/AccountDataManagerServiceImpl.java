@@ -2,6 +2,7 @@ package com.api.demoimport.service.Implementation;
 
 import com.api.demoimport.entity.Bilan.FormatUtils;
 import com.api.demoimport.entity.Bilan.SubAccountActif;
+import com.api.demoimport.entity.Bilan.SubAccountCPC;
 import com.api.demoimport.entity.Bilan.SubAccountPassif;
 import com.api.demoimport.enums.*;
 import com.api.demoimport.repository.BalanceDetailRepository;
@@ -87,6 +88,36 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
         return mainAccountList;
     }
 
+    @Override
+    public List<SubAccountCPC> processAccountDataCPC(List<SubAccountCPC> rawData, String n_class) {
+        List<SubAccountCPC> mainAccountList;
+        try{
+            //initialize data with empty values
+            mainAccountList = SubAccountCPC.initializeData(n_class);
+
+            // loop after raw data values of balance
+            for (SubAccountCPC result : rawData) {
+                // Get the number account
+                String accountNumber = result.getN_compte();
+                String prefix = extractPrefix(accountNumber);
+
+                for (SubAccountCPC subAccount : mainAccountList) {
+                    // check for the same subAccount
+                    if (subAccount.getLibelle().startsWith(prefix)) {
+                        // Adding the values
+                        subAccount.setN_compte(result.getN_compte());
+                        subAccount.setBrut(result.getBrut());
+                        break;
+                    }
+
+
+                }
+            }
+        }catch (Exception e){
+            throw new RuntimeException("Failed to process data account passif, error message : "+ e.getMessage());
+        }
+        return null;
+    }
 
 
     public String extractPrefix(String accountNumber) {
@@ -181,6 +212,17 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
         return filteredList;
     }
 
+    @Override
+    public List<SubAccountCPC> FilterAccountDataCPC(List<SubAccountCPC> subAccountCPCS, String mainAccount) {
+        List<SubAccountCPC> filteredList = new ArrayList<>();
+        for(SubAccountCPC val : subAccountCPCS){
+            if(Objects.equals(val.getMainAccount(), mainAccount)){
+                filteredList.add(val);
+            }
+        }
+        return filteredList;
+    }
+
     public String  getMainAccountOne(String mainAccount) {
         switch (mainAccount) {
             case "11":
@@ -266,6 +308,38 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
                         .getLabel();
             case "55":
                 return AccountCategoryClass5.TRESORERIE_PASSIF
+                        .getLabel();
+            default:
+                return null;
+        }
+    }
+
+    public String getMainAccountSix(String mainAccount) {
+        switch (mainAccount) {
+            case "61":
+                return AccountCategoryClass6.CHARGES_DEXPLOITATION
+                        .getLabel();
+            case "63":
+                return AccountCategoryClass6.CHARGES_FINANCIERES
+                        .getLabel();
+            case "65":
+                return AccountCategoryClass6.CHARGES_NON_COURANTES
+                        .getLabel();
+            default:
+                return null;
+        }
+    }
+
+    public String getMainAccountSeven(String mainAccount) {
+        switch (mainAccount) {
+            case "71":
+                return AccountCategoryClass7.PRODUITS_DEXPLOITATION
+                        .getLabel();
+            case "73":
+                return AccountCategoryClass7.PRODUITS_FINANCIERS
+                        .getLabel();
+            case "75":
+                return AccountCategoryClass7.PRODUITS_NON_COURANTS
                         .getLabel();
             default:
                 return null;
