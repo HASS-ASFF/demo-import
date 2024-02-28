@@ -10,7 +10,6 @@ import java.util.List;
 
 @Getter
 public enum AccountCategoryClass2 {
-    CLASSE_2("Classe 2", "",new ArrayList<>()),
     IMMOBILISATION_NON_VALEURS("21", "IMMOBILISATION en non-valeurs (A)"
     ,Arrays.asList(
             "211 - Frais préliminaires",

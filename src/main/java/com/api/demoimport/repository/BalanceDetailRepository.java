@@ -88,4 +88,6 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
             "GROUP BY b.n_compte,b.label, b.credit_fex;")
     List<Object[]> getBilanC5P(String dateBilan,String company_name);
 
+
+
 }

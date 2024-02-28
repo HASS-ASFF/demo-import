@@ -9,7 +9,6 @@ import java.util.List;
 
 @Getter
 public enum AccountCategoryClass3 {
-    CLASSE_3("Classe 3", "",new ArrayList<String>()),
     STOCKS("31", "Stocks (F)",
             Arrays.asList(
                     "311 - Marchandises",

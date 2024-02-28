@@ -11,7 +11,6 @@ import java.util.List;
 
 @Getter
 public enum AccountCategoryClass1 {
-    CLASSE_1("Classe 1", "",new ArrayList<>()),
     CAPITAUX_PROPRES("11", "CAPITAUX PROPRES (A)"
             , Arrays.asList(
             "111 - Capital social ou personnel",
