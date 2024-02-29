@@ -1,14 +1,12 @@
 package com.api.demoimport.service.Implementation;
 
 import com.api.demoimport.entity.BalanceDetail;
-import com.api.demoimport.entity.Bilan.FormatUtils;
-import com.api.demoimport.entity.Bilan.SubAccountActif;
-import com.api.demoimport.entity.Bilan.SubAccountCPC;
-import com.api.demoimport.entity.Bilan.SubAccountPassif;
+import com.api.demoimport.entity.BilanAndCPC.FormatUtils;
+import com.api.demoimport.entity.BilanAndCPC.SubAccountActif;
+import com.api.demoimport.entity.BilanAndCPC.SubAccountCPC;
+import com.api.demoimport.entity.BilanAndCPC.SubAccountPassif;
 import com.api.demoimport.repository.BalanceDetailRepository;
 import com.api.demoimport.service.BalanceDetailService;
-import com.api.demoimport.service.Implementation.AccountDataManagerServiceImpl;
-import com.api.demoimport.service.Implementation.ExcelHelperServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -125,6 +123,7 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
         return bilanPassifs;
     }
 
+    // fetching data for the class 6
     @Override
     public List<SubAccountCPC> getClassSix(String date, String company_name) {
         List<Object []> resultsrequest = repository.getCPCC6(date,company_name);
@@ -136,6 +135,7 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
         return subAccountCPCS;
     }
 
+    // fetching data for the class 7
     @Override
     public List<SubAccountCPC> getClassSeven(String date, String company_name) {
         List<Object []> resultsrequest = repository.getCPCC7(date,company_name);
@@ -285,6 +285,14 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
            throw new RuntimeException("Failed to regroup data actif "+ e.getMessage());
        }
 
+       // Effacer la liste initiale
+       bilanActifdata.clear();
+
+       // Ajouter les éléments regroupés à la liste initiale
+       for (Map.Entry<String, SubAccountActif> entry : mapBilanActif.entrySet()) {
+           bilanActifdata.add(entry.getValue());
+       }
+
    }
 
     // Regroup passif classes in case we have the same account number at beginning
@@ -305,14 +313,23 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
                 mapBilanPassif.put(n_sous_compte, bilanPassif);
             }else{
                 if (bilanPassif.getBrut() != null && val.getBrut() != null) {
-                bilanPassif.setBrut(bilanPassif.getBrut() + val.getBrut());
-                bilanPassif.setBrut(FormatUtils.formatDecimal(bilanPassif.getBrut()));
+                    bilanPassif.setBrut(bilanPassif.getBrut() + val.getBrut());
+                    bilanPassif.setBrut(FormatUtils.formatDecimal(bilanPassif.getBrut()));
                 }
             }
         }
 
+        // Effacer la liste initiale
+        bilanPassifdata.clear();
+
+        // Ajouter les éléments regroupés à la liste initiale
+        for (Map.Entry<String, SubAccountPassif> entry : mapBilanPassif.entrySet()) {
+            bilanPassifdata.add(entry.getValue());
+        }
+
     }
 
+    // Regroup CPC classes in case we have the same account number at beginning
     @Override
     public void regroupClassesCPC(List<SubAccountCPC> cpcAccount) {
         Map<String, SubAccountCPC> subAccountCPCMap = new HashMap<>();
@@ -325,15 +342,21 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
             SubAccountCPC subAccountCPC = subAccountCPCMap.get(n_sous_compte);
 
             if (subAccountCPC == null) {
-                subAccountCPC = new SubAccountCPC(getMainAccount(val.getN_compte()),
+                subAccountCPC = new SubAccountCPC(getMainAccount(n_compte),
                         n_compte, libelle, val.getBrut());
                 subAccountCPCMap.put(n_sous_compte, subAccountCPC);
             }else{
-                if (subAccountCPC.getBrut() != null && val.getBrut() != null) {
-                    subAccountCPC.setBrut(subAccountCPC.getBrut() + val.getBrut());
-                    subAccountCPC.setBrut(FormatUtils.formatDecimal(subAccountCPC.getBrut()));
-                }
+                subAccountCPC.setBrut(subAccountCPC.getBrut() + val.getBrut());
+                subAccountCPC.setBrut(FormatUtils.formatDecimal(subAccountCPC.getBrut()));
             }
+        }
+
+        // Effacer la liste initiale
+        cpcAccount.clear();
+
+        // Ajouter les éléments regroupés à la liste initiale
+        for (Map.Entry<String, SubAccountCPC> entry : subAccountCPCMap.entrySet()) {
+            cpcAccount.add(entry.getValue());
         }
     }
 

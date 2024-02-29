@@ -1,4 +1,4 @@
-package com.api.demoimport.entity.Bilan;
+package com.api.demoimport.entity.BilanAndCPC;
 
 
 import com.api.demoimport.enums.AccountCategoryClass2;

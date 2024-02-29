@@ -89,14 +89,16 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
     List<Object[]> getBilanC5P(String dateBilan,String company_name);
 
     // GET CLASS 6
-    @Query(nativeQuery = true, value = "SELECT b.n_compte AS num_compte,\n"+
-            "b.label AS comptes,\n"+
-            "b.debit_fex AS brut\n"+
-            "FROM balance_detail b\n"+
+    @Query(nativeQuery = true, value = "SELECT b.n_compte AS num_compte, b.label AS comptes,\n" +
+            "CASE \n"+
+            "WHEN b.debit_fex = 0 THEN -b.credit_fex \n" +
+            "ELSE b.debit_fex \n" +
+            "END AS brut\n" +
+            "FROM balance_detail b\n" +
             "JOIN balance ON balance.id = b.balance_id\n" +
-            "WHERE b.the_class=6 AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :date\n" +
-            "AND company_name = :company_name\n"+
-            "GROUP BY b.n_compte,b.label, b.debit_fex;")
+            "WHERE b.the_class=6 AND DATE_FORMAT(balance.date, '%Y-%m-%d') = '2024-12-30'\n" +
+            "AND company_name = 'AL MORAFIQ'\n" +
+            "GROUP BY b.n_compte,b.label, b.debit_fex, b.credit_fex;")
     List<Object []> getCPCC6(String date,String company_name);
 
 

@@ -1,7 +1,7 @@
 package com.api.demoimport.service.Implementation;
 
-import com.api.demoimport.entity.Bilan.SubAccountActif;
-import com.api.demoimport.entity.Bilan.SubAccountPassif;
+import com.api.demoimport.entity.BilanAndCPC.SubAccountActif;
+import com.api.demoimport.entity.BilanAndCPC.SubAccountPassif;
 import com.api.demoimport.enums.*;
 import com.api.demoimport.service.ReportService;
 import net.sf.jasperreports.engine.*;

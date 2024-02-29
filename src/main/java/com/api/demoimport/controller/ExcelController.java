@@ -2,7 +2,7 @@ package com.api.demoimport.controller;
 
 
 import com.api.demoimport.entity.BalanceDetail;
-import com.api.demoimport.entity.Bilan.SubAccountCPC;
+import com.api.demoimport.entity.BilanAndCPC.SubAccountCPC;
 import com.api.demoimport.entity.PlanComptable;
 import com.api.demoimport.service.Implementation.AccountDataManagerServiceImpl;
 import com.api.demoimport.service.Implementation.ExcelHelperServiceImpl;
@@ -120,24 +120,26 @@ public class ExcelController {
         }
     }
 
+
+    // FOR TESTING ENDPOINTS FOR CPC CLASSES
     @GetMapping("/class6")
     public ResponseEntity<List<SubAccountCPC>> getClassSixDetails(@RequestParam("dateBalance") String date,
                                                                   @RequestParam("companyName") String company_name) throws Exception {
         try {
             List<SubAccountCPC> subAccountCPCS = fileServiceBalance.getClassSix(date,company_name);
-            /*List<SubAccountCPC> FilteredCPCS = accountDataManagerServiceImpl.
-                    processAccountDataCPC(subAccountCPCS,"6");*/
+            List<SubAccountCPC> FilteredCPCS = accountDataManagerServiceImpl.
+                    processAccountDataCPC(subAccountCPCS,"6");
 
             //FilteredCPCS.forEach(x -> System.out.println(x.getLibelle()));
 
-            if (subAccountCPCS.isEmpty()) {
+            if (FilteredCPCS.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 
 
-            return new ResponseEntity<>(subAccountCPCS, HttpStatus.OK);
-        } catch (Exception e) {
-            throw new Exception(e.getLocalizedMessage());
+            return new ResponseEntity<>(FilteredCPCS, HttpStatus.OK);
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e.getLocalizedMessage());
         }
     }
 
@@ -150,7 +152,7 @@ public class ExcelController {
             List<SubAccountCPC> FilteredCPCS = accountDataManagerServiceImpl.
                     processAccountDataCPC(subAccountCPCS,"7");
 
-            if (subAccountCPCS.isEmpty()) {
+            if (FilteredCPCS.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 

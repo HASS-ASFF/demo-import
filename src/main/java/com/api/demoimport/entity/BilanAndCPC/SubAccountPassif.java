@@ -1,11 +1,10 @@
-package com.api.demoimport.entity.Bilan;
+package com.api.demoimport.entity.BilanAndCPC;
 
 import com.api.demoimport.enums.AccountCategoryClass1;
 import com.api.demoimport.enums.AccountCategoryClass4;
 import com.api.demoimport.enums.AccountCategoryClass5;
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,13 +19,6 @@ public class SubAccountPassif {
     private String libelle;
     private Double brut;
     private Double brutP;
-
-
-    public SubAccountPassif(String mainAccount, String nCompte, String libelle) {
-        this.mainAccount=mainAccount;
-        this.n_compte=nCompte;
-        this.libelle=libelle;
-    }
 
 
     public static List<SubAccountPassif> initializeData(String n_class){

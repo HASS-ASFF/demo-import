@@ -1,6 +1,4 @@
-package com.api.demoimport.entity.Bilan;
-
-import java.text.DecimalFormat;
+package com.api.demoimport.entity.BilanAndCPC;
 
 public class FormatUtils {
     public static Double formatDecimal(double number) {
