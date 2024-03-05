@@ -199,6 +199,22 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
         return total;
     }
 
+    public Double GetTotalBrutCPC(List<SubAccountCPC> accountData) {
+        Double total = 0.0;
+        try {
+            for (SubAccountCPC subAccountCPC : accountData) {
+
+                total += FormatUtils.
+                        formatDecimal((subAccountCPC.getBrut() != null ? subAccountCPC.getBrut() : 0.0));
+
+            }
+        }catch (Exception e){
+            throw new RuntimeException("Failed to get total accounts, error message: "+e.getMessage());
+        }
+
+        return total;
+    }
+
     @Override
     public List<SubAccountActif> FilterAccountDataA(List<SubAccountActif> subAccountActifs,String mainAccount) {
         List<SubAccountActif> filteredList = new ArrayList<>();

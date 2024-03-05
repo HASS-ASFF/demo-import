@@ -9,6 +9,8 @@ public interface ReportService {
     ByteArrayOutputStream exportReportPassif(String  date,String company_name) throws JRException;
     ByteArrayOutputStream exportReportActif(String date, String company_name) throws JRException;
 
+    ByteArrayOutputStream exportCPC(String date, String company_name) throws JRException;
+
     ByteArrayOutputStream jasperConfiguration(String path, Map<String,Object> parameters) throws JRException;
 
     String getLastYear(String dateString);

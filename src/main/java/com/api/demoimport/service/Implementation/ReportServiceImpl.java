@@ -1,6 +1,7 @@
 package com.api.demoimport.service.Implementation;
 
 import com.api.demoimport.entity.BilanAndCPC.SubAccountActif;
+import com.api.demoimport.entity.BilanAndCPC.SubAccountCPC;
 import com.api.demoimport.entity.BilanAndCPC.SubAccountPassif;
 import com.api.demoimport.enums.*;
 import com.api.demoimport.service.ReportService;
@@ -25,6 +26,7 @@ public class ReportServiceImpl implements ReportService {
     @Autowired
     BalanceDetailServiceImpl balanceDetailServiceImpl;
 
+    // TO CHANGE
     String path = "C:\\Users\\onizu\\OneDrive\\Bureau\\demo-import\\src\\main\\resources\\templates\\";
 
     // EXPORT DATA PASSIF TO PDF
@@ -72,6 +74,7 @@ public class ReportServiceImpl implements ReportService {
                     FilterAccountDataP(FullClassFiveP,AccountCategoryClass5.TRESORERIE_PASSIF.getLabel());
 
 
+            // CREATE INSTANCES OF JRBEANCOLLECTIONDATASOURCE FOR OUR JAVA BEAN OBJECTS
             JRBeanCollectionDataSource dataSource1 = new JRBeanCollectionDataSource(dataset1);
             JRBeanCollectionDataSource dataSource2 = new JRBeanCollectionDataSource(dataset2);
             JRBeanCollectionDataSource dataSource3 = new JRBeanCollectionDataSource(dataset3);
@@ -83,6 +86,7 @@ public class ReportServiceImpl implements ReportService {
             JRBeanCollectionDataSource dataSource9 = new JRBeanCollectionDataSource(dataset9);
             Map<String, Object> parameters = new HashMap<>();
 
+            // SETTING PARAMETERS
             parameters.put("CapitauxA", dataSource1);
             parameters.put("CapitauxB", dataSource2);
             parameters.put("Dettes", dataSource3);
@@ -168,7 +172,7 @@ public class ReportServiceImpl implements ReportService {
                     FilterAccountDataA(FullClassFiveA, AccountCategoryClass5.TRESORERIE_ACTIF.getLabel());
 
 
-
+            // CREATE INSTANCES OF JRBEANCOLLECTIONDATASOURCE FOR OUR JAVA BEAN OBJECTS
             JRBeanCollectionDataSource dataSource1 = new JRBeanCollectionDataSource(dataset1);
             JRBeanCollectionDataSource dataSource2 = new JRBeanCollectionDataSource(dataset2);
             JRBeanCollectionDataSource dataSource3 = new JRBeanCollectionDataSource(dataset3);
@@ -180,6 +184,7 @@ public class ReportServiceImpl implements ReportService {
 
             Map<String, Object> parameters = new HashMap<>();
 
+            // SETTING PARAMETERS
             parameters.put("param1",dataSource1);
             parameters.put("param2",dataSource2);
             parameters.put("param3",dataSource3);
@@ -215,6 +220,90 @@ public class ReportServiceImpl implements ReportService {
             String message = "Failed to report bilan actif " + e.getLocalizedMessage() + "!";
             throw new RuntimeException(message);
         }
+    }
+
+    @Override
+    public ByteArrayOutputStream exportCPC(String date, String company_name) throws JRException {
+
+        // TO DO
+        String pathCPC = path+"CPC.jrxml";
+
+        // Generer automatiquement le CPC
+        try{
+            // CLASS SIX
+            List<SubAccountCPC> ClassSix = balanceDetailServiceImpl.getClassSix(date,company_name);
+            List<SubAccountCPC> FullClassSix = accountDataManagerServiceImpl.
+                    processAccountDataCPC(ClassSix,"6");
+
+            // CLASS SEVEN
+            List<SubAccountCPC> ClassSeven = balanceDetailServiceImpl.getClassSeven(date,company_name);
+            List<SubAccountCPC> FullClassSeven = accountDataManagerServiceImpl.
+                    processAccountDataCPC(ClassSeven,"7");
+
+            // CREATE INSTANCES OF JRBEANCOLLECTIONDATASOURCE FOR OUR JAVA BEAN OBJECTS
+
+            List<SubAccountCPC> dataset1 = accountDataManagerServiceImpl.
+                    FilterAccountDataCPC(FullClassSeven,AccountCategoryClass7.PRODUITS_DEXPLOITATION.getLabel());
+            List<SubAccountCPC> dataset2 = accountDataManagerServiceImpl.
+                    FilterAccountDataCPC(FullClassSix,AccountCategoryClass6.CHARGES_DEXPLOITATION.getLabel());
+            List<SubAccountCPC> dataset3 = accountDataManagerServiceImpl.
+                    FilterAccountDataCPC(FullClassSeven,AccountCategoryClass7.PRODUITS_FINANCIERS.getLabel());
+            List<SubAccountCPC> dataset4 = accountDataManagerServiceImpl.
+                    FilterAccountDataCPC(FullClassSix,AccountCategoryClass6.CHARGES_FINANCIERES.getLabel());
+            List<SubAccountCPC> dataset5 = accountDataManagerServiceImpl.
+                    FilterAccountDataCPC(FullClassSeven,AccountCategoryClass7.PRODUITS_NON_COURANTS.getLabel());
+            List<SubAccountCPC> dataset6 = accountDataManagerServiceImpl.
+                    FilterAccountDataCPC(FullClassSix,AccountCategoryClass6.CHARGES_NON_COURANTES.getLabel());
+
+            JRBeanCollectionDataSource dataSource1 = new JRBeanCollectionDataSource(dataset1);
+            JRBeanCollectionDataSource dataSource2 = new JRBeanCollectionDataSource(dataset2);
+            JRBeanCollectionDataSource dataSource3 = new JRBeanCollectionDataSource(dataset3);
+            JRBeanCollectionDataSource dataSource4 = new JRBeanCollectionDataSource(dataset4);
+            JRBeanCollectionDataSource dataSource5 = new JRBeanCollectionDataSource(dataset5);
+            JRBeanCollectionDataSource dataSource6 = new JRBeanCollectionDataSource(dataset6);
+
+            Map<String, Object> parameters = new HashMap<>();
+
+            // SETTING PARAMETERS
+
+            parameters.put("param1",dataSource1);
+            parameters.put("param2",dataSource2);
+            parameters.put("param3",dataSource3);
+            parameters.put("param4",dataSource4);
+            parameters.put("param5",dataSource5);
+            parameters.put("param6",dataSource6);
+
+            List<SubAccountCPC> totalListI = new ArrayList<>();
+            totalListI.addAll(dataset1);
+            parameters.put("total1",totalListI);
+            List<SubAccountCPC> totalListII = new ArrayList<>();
+            totalListII.addAll(dataset2);
+            parameters.put("total2",totalListII);
+            List<SubAccountCPC> totalListIII = new ArrayList<>();
+            totalListIII.addAll(dataset3);
+            parameters.put("total3",totalListIII);
+            List<SubAccountCPC> totalListIV = new ArrayList<>();
+            totalListIV.addAll(dataset4);
+            parameters.put("total4",totalListIV);
+            List<SubAccountCPC> totalListV = new ArrayList<>();
+            totalListV.addAll(dataset5);
+            parameters.put("total5",totalListV);
+            List<SubAccountCPC> totalListVI = new ArrayList<>();
+            totalListVI.addAll(dataset6);
+            parameters.put("total6",totalListVI);
+
+            parameters.put("DateN",date.substring(0,4));
+            parameters.put("DateN1",getLastYear(date).substring(0,4));
+
+            parameters.put("name_company",company_name);
+
+
+            return jasperConfiguration(pathCPC,parameters);
+        }catch (RuntimeException e){
+            String message = "Failed to report CPC " + e.getLocalizedMessage() + "!";
+            throw new RuntimeException(message);
+        }
+
     }
 
     // Configurate the Jasper report

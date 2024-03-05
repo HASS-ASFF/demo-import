@@ -20,6 +20,7 @@ public class SubAccountCPC {
     private String n_compte;
     private String libelle;
     private Double brut;
+    private Double brutP;
 
     public static List<SubAccountCPC> initializeData(String n_class){
         List<SubAccountCPC> subAccountCPCS = new ArrayList<>();

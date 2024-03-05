@@ -23,14 +23,11 @@ import java.util.List;
 @RequestMapping("/api/excel")
 public class ExcelController {
 
-    @Autowired
     PlanComptableServiceImpl fileService;
 
-    @Autowired
     BalanceDetailServiceImpl fileServiceBalance;
 
-    @Autowired
-    AccountDataManagerServiceImpl accountDataManagerServiceImpl;
+    //AccountDataManagerServiceImpl accountDataManagerServiceImpl;
 
 
 
@@ -122,7 +119,7 @@ public class ExcelController {
 
 
     // FOR TESTING ENDPOINTS FOR CPC CLASSES
-    @GetMapping("/class6")
+   /* @GetMapping("/class6")
     public ResponseEntity<List<SubAccountCPC>> getClassSixDetails(@RequestParam("dateBalance") String date,
                                                                   @RequestParam("companyName") String company_name) throws Exception {
         try {
@@ -160,6 +157,6 @@ public class ExcelController {
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
+    }*/
 
 }
