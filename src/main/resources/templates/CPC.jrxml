@@ -1,166 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4_8" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="021b1612-9e94-42d0-8c24-a50483e36b0c">
-    <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sample DB"/>
     <subDataset name="Dataset1" whenResourceMissingType="Empty" uuid="255de2b7-0ce0-4a1c-b145-b3f6df4ebdf8">
-        <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-        <property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sample DB"/>
-        <queryString language="SQL">
-        </queryString>
-
+        <field name="brut" class="java.lang.Double"/>
+        <field name="brutP" class="java.lang.Double"/>
     </subDataset>
-
     <subDataset name="Dataset2" whenResourceMissingType="Empty" uuid="599d0c83-11cd-4be9-a2f5-c28cbe3c372e">
-        <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-        <property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sample DB"/>
-        <queryString language="SQL">
-            <![CDATA[select * from  "POSITIONS" limit 3]]>
-        </queryString>
-        <field name="PRODUCTID" class="java.lang.Integer">
-            <property name="com.jaspersoft.studio.field.name" value="PRODUCTID"/>
-            <property name="com.jaspersoft.studio.field.label" value="PRODUCTID"/>
-            <property name="com.jaspersoft.studio.field.tree.path" value="POSITIONS"/>
-        </field>
-        <field name="QUANTITY" class="java.lang.Integer">
-            <property name="com.jaspersoft.studio.field.name" value="QUANTITY"/>
-            <property name="com.jaspersoft.studio.field.label" value="QUANTITY"/>
-            <property name="com.jaspersoft.studio.field.tree.path" value="POSITIONS"/>
-        </field>
-        <field name="PRICE" class="java.math.BigDecimal">
-            <property name="com.jaspersoft.studio.field.name" value="PRICE"/>
-            <property name="com.jaspersoft.studio.field.label" value="PRICE"/>
-            <property name="com.jaspersoft.studio.field.tree.path" value="POSITIONS"/>
-        </field>
+        <field name="brut" class="java.lang.Double"/>
+        <field name="brutP" class="java.lang.Double"/>
     </subDataset>
     <subDataset name="Dataset3" whenResourceMissingType="Empty" uuid="4d76a89a-8a8f-4f91-b356-be620b66870b">
-        <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-        <property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sample DB"/>
-        <queryString language="SQL">
-            <![CDATA[select * from  "POSITIONS" limit 4]]>
-        </queryString>
-        <field name="POSITIONNO" class="java.lang.Integer">
-            <property name="com.jaspersoft.studio.field.name" value="POSITIONNO"/>
-            <property name="com.jaspersoft.studio.field.label" value="POSITIONNO"/>
-            <property name="com.jaspersoft.studio.field.tree.path" value="POSITIONS"/>
-        </field>
-        <field name="PRODUCTID" class="java.lang.Integer">
-            <property name="com.jaspersoft.studio.field.name" value="PRODUCTID"/>
-            <property name="com.jaspersoft.studio.field.label" value="PRODUCTID"/>
-            <property name="com.jaspersoft.studio.field.tree.path" value="POSITIONS"/>
-        </field>
-        <field name="QUANTITY" class="java.lang.Integer">
-            <property name="com.jaspersoft.studio.field.name" value="QUANTITY"/>
-            <property name="com.jaspersoft.studio.field.label" value="QUANTITY"/>
-            <property name="com.jaspersoft.studio.field.tree.path" value="POSITIONS"/>
-        </field>
-        <field name="PRICE" class="java.math.BigDecimal">
-            <property name="com.jaspersoft.studio.field.name" value="PRICE"/>
-            <property name="com.jaspersoft.studio.field.label" value="PRICE"/>
-            <property name="com.jaspersoft.studio.field.tree.path" value="POSITIONS"/>
-        </field>
+        <field name="brut" class="java.lang.Double"/>
+        <field name="brutP" class="java.lang.Double"/>
     </subDataset>
     <subDataset name="Dataset4" whenResourceMissingType="Empty" uuid="cd1cc4eb-205d-4c31-a6ab-4f2152a4da6a">
-        <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-        <property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sample DB"/>
-        <queryString language="SQL">
-            <![CDATA[select * from "POSITIONS" limit 5]]>
-        </queryString>
-        <field name="POSITIONNO" class="java.lang.Integer">
-            <property name="com.jaspersoft.studio.field.name" value="POSITIONNO"/>
-            <property name="com.jaspersoft.studio.field.label" value="POSITIONNO"/>
-            <property name="com.jaspersoft.studio.field.tree.path" value="POSITIONS"/>
-        </field>
-        <field name="PRODUCTID" class="java.lang.Integer">
-            <property name="com.jaspersoft.studio.field.name" value="PRODUCTID"/>
-            <property name="com.jaspersoft.studio.field.label" value="PRODUCTID"/>
-            <property name="com.jaspersoft.studio.field.tree.path" value="POSITIONS"/>
-        </field>
-        <field name="QUANTITY" class="java.lang.Integer">
-            <property name="com.jaspersoft.studio.field.name" value="QUANTITY"/>
-            <property name="com.jaspersoft.studio.field.label" value="QUANTITY"/>
-            <property name="com.jaspersoft.studio.field.tree.path" value="POSITIONS"/>
-        </field>
-        <field name="PRICE" class="java.math.BigDecimal">
-            <property name="com.jaspersoft.studio.field.name" value="PRICE"/>
-            <property name="com.jaspersoft.studio.field.label" value="PRICE"/>
-            <property name="com.jaspersoft.studio.field.tree.path" value="POSITIONS"/>
-        </field>
+        <field name="brut" class="java.lang.Double"/>
+        <field name="brutP" class="java.lang.Double"/>
     </subDataset>
     <subDataset name="Dataset5" whenResourceMissingType="Empty" uuid="0b660997-647d-4e33-87e7-3411de6dd855">
-        <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-        <property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sample DB"/>
-        <queryString language="SQL">
-            <![CDATA[select * from "POSITIONS" limit 5]]>
-        </queryString>
-        <field name="POSITIONNO" class="java.lang.Integer">
-            <property name="com.jaspersoft.studio.field.name" value="POSITIONNO"/>
-            <property name="com.jaspersoft.studio.field.label" value="POSITIONNO"/>
-            <property name="com.jaspersoft.studio.field.tree.path" value="POSITIONS"/>
-        </field>
-        <field name="PRODUCTID" class="java.lang.Integer">
-            <property name="com.jaspersoft.studio.field.name" value="PRODUCTID"/>
-            <property name="com.jaspersoft.studio.field.label" value="PRODUCTID"/>
-            <property name="com.jaspersoft.studio.field.tree.path" value="POSITIONS"/>
-        </field>
-        <field name="QUANTITY" class="java.lang.Integer">
-            <property name="com.jaspersoft.studio.field.name" value="QUANTITY"/>
-            <property name="com.jaspersoft.studio.field.label" value="QUANTITY"/>
-            <property name="com.jaspersoft.studio.field.tree.path" value="POSITIONS"/>
-        </field>
-        <field name="PRICE" class="java.math.BigDecimal">
-            <property name="com.jaspersoft.studio.field.name" value="PRICE"/>
-            <property name="com.jaspersoft.studio.field.label" value="PRICE"/>
-            <property name="com.jaspersoft.studio.field.tree.path" value="POSITIONS"/>
-        </field>
+        <field name="brut" class="java.lang.Double"/>
+        <field name="brutP" class="java.lang.Double"/>
     </subDataset>
     <subDataset name="Dataset6" whenResourceMissingType="Empty" uuid="bf79907a-4166-4495-9796-076611501d9b">
-        <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-        <property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sample DB"/>
-        <queryString language="SQL">
-            <![CDATA[select * from "POSITIONS" limit 5]]>
-        </queryString>
-        <field name="POSITIONNO" class="java.lang.Integer">
-            <property name="com.jaspersoft.studio.field.name" value="POSITIONNO"/>
-            <property name="com.jaspersoft.studio.field.label" value="POSITIONNO"/>
-            <property name="com.jaspersoft.studio.field.tree.path" value="POSITIONS"/>
-        </field>
-        <field name="PRODUCTID" class="java.lang.Integer">
-            <property name="com.jaspersoft.studio.field.name" value="PRODUCTID"/>
-            <property name="com.jaspersoft.studio.field.label" value="PRODUCTID"/>
-            <property name="com.jaspersoft.studio.field.tree.path" value="POSITIONS"/>
-        </field>
-        <field name="QUANTITY" class="java.lang.Integer">
-            <property name="com.jaspersoft.studio.field.name" value="QUANTITY"/>
-            <property name="com.jaspersoft.studio.field.label" value="QUANTITY"/>
-            <property name="com.jaspersoft.studio.field.tree.path" value="POSITIONS"/>
-        </field>
-        <field name="PRICE" class="java.math.BigDecimal">
-            <property name="com.jaspersoft.studio.field.name" value="PRICE"/>
-            <property name="com.jaspersoft.studio.field.label" value="PRICE"/>
-            <property name="com.jaspersoft.studio.field.tree.path" value="POSITIONS"/>
-        </field>
+        <field name="brut" class="java.lang.Double"/>
+        <field name="brutP" class="java.lang.Double"/>
     </subDataset>
-    <parameter name="param1" class="java.lang.String"/>
-    <parameter name="param2" class="java.lang.String"/>
-    <parameter name="param3" class="java.lang.String"/>
-    <parameter name="param4" class="java.lang.String"/>
-    <parameter name="param5" class="java.lang.String"/>
-    <parameter name="param6" class="java.lang.String"/>
+    <parameter name="param1" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+    <parameter name="param2" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+    <parameter name="param3" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+    <parameter name="param4" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+    <parameter name="param5" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+    <parameter name="param6" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
     <parameter name="total1" class="java.lang.Double"/>
     <parameter name="total2" class="java.lang.Double"/>
     <parameter name="total3" class="java.lang.Double"/>
     <parameter name="total4" class="java.lang.Double"/>
     <parameter name="total5" class="java.lang.Double"/>
     <parameter name="total6" class="java.lang.Double"/>
-    <parameter name="dateN" class="java.lang.String"/>
-    <parameter name="dateN1" class="java.lang.String"/>
+    <parameter name="DateN" class="java.lang.String"/>
+    <parameter name="DateN1" class="java.lang.String"/>
     <parameter name="name_company" class="java.lang.String"/>
-    <queryString language="SQL">
-        <![CDATA[select * from "POSITIONS"]]>
-    </queryString>
-    <field name="brut" class="java.lang.Double"/>
-    <field name="brutP" class="java.lang.Double"/>
     <background>
         <band splitType="Stretch"/>
     </background>
@@ -194,40 +73,40 @@
                 </textElement>
                 <text><![CDATA[TOTAL ACTIVE]]></text>
             </staticText>
-            <staticText>
+            <textField>
                 <reportElement mode="Opaque" x="385" y="584" width="83" height="20" forecolor="#FFFFFF" backcolor="#325A77" uuid="1e12f337-6bc0-4318-875f-d84cd3daba5e">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
                     <font size="8"/>
                 </textElement>
-                <text><![CDATA[N]]></text>
-            </staticText>
-            <staticText>
+                <textFieldExpression><![CDATA[$P{DateN}]]></textFieldExpression>
+            </textField>
+            <textField>
                 <reportElement mode="Opaque" x="472" y="584" width="83" height="20" forecolor="#FFFFFF" backcolor="#325A77" uuid="e571ef59-bef7-4ed9-9bbc-fdb4283579c7">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
                     <font size="8"/>
                 </textElement>
-                <text><![CDATA[N-1]]></text>
-            </staticText>
-            <staticText>
+                <textFieldExpression><![CDATA[$P{DateN1}]]></textFieldExpression>
+            </textField>
+            <textField>
                 <reportElement mode="Opaque" x="385" y="0" width="85" height="21" forecolor="#FFFFFF" backcolor="#325A77" uuid="4cedc6c1-a63c-4d8a-9e5f-c57304aa22e9">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.y" value="pixel"/>
                 </reportElement>
                 <textElement textAlignment="Center" verticalAlignment="Middle"/>
-                <text><![CDATA[AL MORAFIQ]]></text>
-            </staticText>
-            <staticText>
+                <textFieldExpression><![CDATA[$P{name_company}]]></textFieldExpression>
+            </textField>
+            <textField>
                 <reportElement mode="Opaque" x="470" y="0" width="85" height="21" forecolor="#FFFFFF" backcolor="#325A77" uuid="f2abf21c-a842-4340-bde9-b446aaed6910">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.y" value="pixel"/>
                 </reportElement>
                 <textElement textAlignment="Center" verticalAlignment="Middle"/>
-                <text><![CDATA[2024]]></text>
-            </staticText>
+                <textFieldExpression><![CDATA[$P{DateN}]]></textFieldExpression>
+            </textField>
             <staticText>
                 <reportElement mode="Opaque" x="0" y="0" width="380" height="19" forecolor="#FFFFFF" backcolor="#325A77" uuid="3db259f3-5885-4efc-a435-2c0ee1a9d755">
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -474,14 +353,14 @@ l'exercice (1)]]></text>
                 <text><![CDATA[Reprises d'exploitation , Transferts de charges]]></text>
             </staticText>
             <componentElement>
-                <reportElement x="140" y="51" width="240" height="10" uuid="a45bfb2a-e370-47d2-b72f-5897bb05071b"/>
+                <reportElement x="140" y="51" width="240" height="10" isRemoveLineWhenBlank="true" uuid="a45bfb2a-e370-47d2-b72f-5897bb05071b"/>
                 <jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
                     <datasetRun subDataset="Dataset1" uuid="796a5e2c-229b-47b8-8b75-5932c4f621ac">
                         <dataSourceExpression><![CDATA[$P{param1}]]></dataSourceExpression>
                     </datasetRun>
                     <jr:listContents height="10" width="240">
-                        <textField>
-                            <reportElement x="0" y="0" width="60" height="10" uuid="62cd9027-626e-482c-8648-3a72882e92b1">
+                        <textField isBlankWhenNull="true">
+                            <reportElement x="0" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="62cd9027-626e-482c-8648-3a72882e92b1">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
@@ -489,26 +368,26 @@ l'exercice (1)]]></text>
                             </textElement>
                             <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
                         </textField>
-                        <textField>
-                            <reportElement x="60" y="0" width="60" height="10" uuid="df518730-53b6-4b64-b454-7836bf910055">
+                        <textField isBlankWhenNull="true">
+                            <reportElement x="60" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="df518730-53b6-4b64-b454-7836bf910055">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brutp}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brutP}]]></textFieldExpression>
                         </textField>
-                        <textField>
-                            <reportElement x="120" y="0" width="60" height="10" uuid="e1a175a7-a9c0-4cfc-9ae1-f73da89b153c">
+                        <textField isBlankWhenNull="true">
+                            <reportElement x="120" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="e1a175a7-a9c0-4cfc-9ae1-f73da89b153c">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}+$F{brutp}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
                         </textField>
-                        <textField>
-                            <reportElement x="180" y="0" width="60" height="10" uuid="1a25e40f-b945-4fa5-b3a5-bc9ee44f848d">
+                        <textField isBlankWhenNull="true">
+                            <reportElement x="180" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="1a25e40f-b945-4fa5-b3a5-bc9ee44f848d">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
@@ -887,7 +766,7 @@ l'exercice (1)]]></text>
                 </textElement>
                 <text><![CDATA[Dotations financières]]></text>
             </staticText>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="340" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="2b7795f3-aae4-445c-8666-900f2f071c4c">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -961,7 +840,7 @@ l'exercice (1)]]></text>
                 </textElement>
                 <text><![CDATA[RESULTAT FINANCIER (III-VI)]]></text>
             </staticText>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="200" y="340" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="f0ed6a80-aadc-496a-ad87-730f48c80f30">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -979,9 +858,8 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="340" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="fb4af75f-c90a-4341-bcb3-57b40c032187">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -999,9 +877,9 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{total4}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="340" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="2716c4e7-a47a-4383-9573-acd152351041">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1019,9 +897,8 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="350" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="73e66826-0b63-4785-818c-ab0b24d9d1ac">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1041,7 +918,7 @@ l'exercice (1)]]></text>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{total3}-$P{total4}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="200" y="350" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="4ab3ea80-4a55-4c27-9729-bbd352ccc71f">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1059,9 +936,8 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="350" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="095b4ae1-3fd9-4b12-b6af-17acd805f483">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1079,9 +955,9 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{total3}-$P{total4}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="350" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="7bf54d7a-87cd-4216-be45-86f909d0a321">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1099,9 +975,8 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="360" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="7b83cf2b-b92c-4b63-a8fc-3af5b25bffe0">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1121,7 +996,7 @@ l'exercice (1)]]></text>
                 </textElement>
                 <textFieldExpression><![CDATA[($P{total1}+$P{total2})-$P{total3}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="200" y="360" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="6d45cf03-6d33-441e-aec5-15443f782aa2">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1139,9 +1014,8 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="360" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="665b92e7-ee24-48e1-98e9-0e4f79e2c657">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1159,9 +1033,9 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
+                <textFieldExpression><![CDATA[($P{total1}+$P{total2})-$P{total3}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="360" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="c81a255d-52f8-45af-941b-20b383e2459a">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1179,9 +1053,8 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="278" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="5949278e-9cf3-44c6-a912-2e1d50344ec5">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1199,9 +1072,8 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="278" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="b3895d97-148e-4a68-8cfa-d5a86aa535dc">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1219,9 +1091,9 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{total3}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="200" y="278" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="ead5ae70-f4a1-4fa5-b2a1-25e05723e0e0">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1239,9 +1111,8 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="278" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="095e64ed-8888-4699-b4c4-5655c5e55d16">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1261,7 +1132,7 @@ l'exercice (1)]]></text>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{total3}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="226" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="a2483554-628e-421f-9fa7-61c5868dbe8b">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1280,7 +1151,7 @@ l'exercice (1)]]></text>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="226" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="d228c8d3-4fc3-4332-8c0b-53c9785e4322">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1300,7 +1171,7 @@ l'exercice (1)]]></text>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{total1}+$P{total2}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="200" y="226" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="d32dcb7c-ab8b-489a-a613-0ba16c1219f9">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1319,7 +1190,7 @@ l'exercice (1)]]></text>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="226" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="e670e74c-ab38-4d74-9f4d-10ecd2a822e2">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1339,7 +1210,7 @@ l'exercice (1)]]></text>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{total1}+$P{total2}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="216" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="02acbf60-d4bc-45fb-ae35-7bc665856079">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1358,7 +1229,7 @@ l'exercice (1)]]></text>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="216" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="241bf08d-c477-42a0-a299-97e50e96d84e">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1378,7 +1249,7 @@ l'exercice (1)]]></text>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{total2}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="200" y="216" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="29568413-b82f-42c6-882a-a18dc302de44">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1397,7 +1268,7 @@ l'exercice (1)]]></text>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="216" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="4de2c0f1-1a9a-47cd-adf8-198d3162846c">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1417,7 +1288,7 @@ l'exercice (1)]]></text>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{total2}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="123" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="696ec6cd-9b1d-48d2-b7f3-37d46e1a8f1b">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1436,7 +1307,7 @@ l'exercice (1)]]></text>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="123" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="86f27370-0f6b-4532-94aa-4cd2d65910db">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1456,7 +1327,7 @@ l'exercice (1)]]></text>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{total1}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="200" y="123" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="7ae4e73d-ec45-4fe3-b95d-3d7fd5320188">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1475,7 +1346,7 @@ l'exercice (1)]]></text>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="123" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="b477e239-1d67-46c0-9184-dbe49a7fac7e">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1495,7 +1366,7 @@ l'exercice (1)]]></text>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{total1}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="370" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="b5cf22fa-425a-432e-ae6f-1a8c52c41dc5">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1513,9 +1384,8 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="370" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="d8db19b7-b5c5-4b5a-a677-df899c928940">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1533,9 +1403,9 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
+                <textFieldExpression><![CDATA[($P{total1}+$P{total2})-$P{total3}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="200" y="370" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="4ada05cd-f7f9-4c23-8655-850be27d7c1a">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1553,9 +1423,8 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="370" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="56d74c8a-319b-4a90-b299-f9abea4f3079">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1573,7 +1442,7 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
+                <textFieldExpression><![CDATA[($P{total1}+$P{total2})-$P{total3}]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement mode="Opaque" x="0" y="370" width="140" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="871c1eb2-ee08-4f09-853b-c9e8599c8a1b">
@@ -1699,7 +1568,7 @@ l'exercice (1)]]></text>
                 </textElement>
                 <text><![CDATA[Total VIII]]></text>
             </staticText>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="448" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="84239fe0-a4fa-4c81-acbe-97462666191c">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1719,7 +1588,7 @@ l'exercice (1)]]></text>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{total5}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="200" y="448" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="3b95229a-be46-459e-9915-cb8fe3b5d10b">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1738,7 +1607,7 @@ l'exercice (1)]]></text>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="448" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="470cc61b-272a-410c-8228-fe17eb2d41b5">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1758,7 +1627,7 @@ l'exercice (1)]]></text>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{total5}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="448" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="21499fd5-8771-43bf-9391-bd2235f91ff1">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1776,7 +1645,6 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement mode="Transparent" x="0" y="432" width="140" height="14" forecolor="#3B3B3B" backcolor="#325A77" uuid="077b368c-4a3c-42e5-bd0b-abe877564159">
@@ -1921,7 +1789,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
                 <text><![CDATA[Total IX]]></text>
             </staticText>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="524" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="200f0f01-ed9b-4472-92b1-0e63620de970">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1941,7 +1809,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{total6}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="200" y="524" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="fa06f96e-205d-48f3-8657-38d2ad8224cf">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1959,9 +1827,8 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="524" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="55ee065b-c371-4e03-97f0-9b868042365a">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1979,9 +1846,9 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{total6}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="524" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="b632a3cc-2924-452f-b08d-0fac5d58d70e">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1999,7 +1866,6 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement mode="Opaque" x="0" y="534" width="140" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="2b49af12-a882-407b-b910-796fa3a942ae">
@@ -2019,7 +1885,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
                 <text><![CDATA[X.RESULTAT NON COURANT (VIII-IX)]]></text>
             </staticText>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="534" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="9168faaf-3666-4fc7-b064-681ac79e900d">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2037,9 +1903,9 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{total5}-$P{total6}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="200" y="534" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="45ac8f92-315b-4f58-9af2-0f43b124ff5b">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2057,9 +1923,8 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="534" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="cfd44c1b-eec5-43fa-a7ff-73bc7d09bf2d">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2077,9 +1942,9 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{total5}-$P{total6}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="534" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="ffc61e7b-8f5e-42bf-8c17-82e5a426b656">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2097,7 +1962,6 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement mode="Opaque" x="0" y="544" width="140" height="10" forecolor="#DBEEFF" backcolor="#325A77" uuid="73b2e038-50b7-4820-aff9-f8638a55f0e6">
@@ -2117,7 +1981,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
                 <text><![CDATA[XI.RESULTAT AVANT IMPOTS (VII+X)]]></text>
             </staticText>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="544" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="d761dfc8-656a-4d9a-af13-a1a5d9a35843">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2135,9 +1999,9 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
+                <textFieldExpression><![CDATA[(($P{total1}+$P{total2})-$P{total3})+($P{total5}-$P{total6})]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="200" y="544" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="f27c3e39-c397-4aca-a8cc-aaa6c4057655">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2155,9 +2019,8 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="544" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="e6991b45-8d8f-401e-aee4-0e223e7359e7">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2175,9 +2038,9 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
+                <textFieldExpression><![CDATA[(($P{total1}+$P{total2})-$P{total3})+($P{total5}-$P{total6})]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="544" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="99b082a2-51aa-4319-bac8-c0f340679d20">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2195,7 +2058,6 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement mode="Opaque" x="0" y="554" width="140" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="cacbdbe2-88db-4bd3-88f5-a5ef54045b15">
@@ -2215,7 +2077,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
                 <text><![CDATA[XII.IMPOTS SUR LES BENEFICES]]></text>
             </staticText>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="554" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="067659ff-bb54-4df5-bcb0-7b6201787f28">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2233,9 +2095,8 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="200" y="554" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="5e775326-da82-490e-8fbc-812e423931ee">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2253,9 +2114,8 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="554" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="55c1f0c8-cc60-4ee0-98f4-0acba51adc19">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2273,9 +2133,8 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="554" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="335d3716-8077-4ebe-98d1-83430ba03900">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2293,9 +2152,8 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="564" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="468c4788-e55f-40c8-9576-49730547d9e1">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2313,9 +2171,8 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="564" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="92da1dec-3a43-440a-800e-19a49eaad9f6">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2333,9 +2190,9 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{total3}+($P{total5}-$P{total6})]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="200" y="564" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="53976e14-fdf4-4b3c-bd2c-66eed456f1d8">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2353,9 +2210,8 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="564" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="b975d70a-9645-45bd-a59b-426d039fb112">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2373,7 +2229,7 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{total3}+($P{total5}-$P{total6})]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement mode="Opaque" x="0" y="564" width="140" height="10" forecolor="#DBEEFF" backcolor="#325A77" uuid="fdde3c7f-bde1-4d12-9363-279a65fe1bef">
@@ -2411,7 +2267,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
                 <text><![CDATA[XV.TOTAL DES PRODUITS (I+IV+VIII)]]></text>
             </staticText>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="574" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="107ff3ac-7570-410d-98c2-9218d00673c3">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2429,9 +2285,9 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{total1}+$P{total3}+$P{total5}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="200" y="574" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="3831fd49-8618-46a2-a410-0deaf022b2c0">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2449,9 +2305,8 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="574" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="a229a59f-be6c-4016-930f-7abc07c4fcdf">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2469,9 +2324,9 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{total1}+$P{total3}+$P{total5}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="574" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="869dd9d6-1af3-4fcc-bac1-29fa4b1f2381">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2489,7 +2344,6 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement mode="Opaque" x="0" y="584" width="140" height="10" forecolor="#DBEEFF" backcolor="#325A77" uuid="7492741b-2ddd-4d6a-8609-d2b817607f02">
@@ -2509,7 +2363,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
                 <text><![CDATA[XVI.TOTAL DES CHARGES (II+V+IX+XII)]]></text>
             </staticText>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="584" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="ba5bb9d7-98a5-4006-ba8d-c38aa9cec8bd">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2527,9 +2381,9 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{total2}+$P{total4}+$P{total6}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="200" y="584" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="24dcfa03-97b4-450b-8b4a-2f0b143cc80b">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2547,9 +2401,8 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="584" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="9407d29e-7cac-4297-8c48-393db9606e1a">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2567,9 +2420,9 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{total2}+$P{total4}+$P{total6}]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="584" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="f29b69d6-31e4-4207-b72e-5235c1ee0b8f">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2587,9 +2440,8 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="594" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="b29cceb6-365a-47bd-8153-989dd2951462">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2607,7 +2459,6 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement mode="Opaque" x="260" y="594" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="c1b67ef0-a462-4e46-a443-fe2417d9521c">
@@ -2627,9 +2478,9 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
+                <textFieldExpression><![CDATA[($P{total1}+$P{total3}+$P{total5})-($P{total2}+$P{total4}+$P{total6})]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="200" y="594" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="0a383dcb-9f98-46fa-9065-0aac474c9238">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2647,9 +2498,8 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
             </textField>
-            <textField>
+            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="594" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="a9a86962-7b38-4c15-91f3-9ca500ec1b90">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -2667,7 +2517,7 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Total de la trésorerie Actif_Value"]]></textFieldExpression>
+                <textFieldExpression><![CDATA[($P{total1}+$P{total3}+$P{total5})-($P{total2}+$P{total4}+$P{total6})]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement mode="Opaque" x="0" y="594" width="140" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="bbd5b5e0-0f63-4053-b501-a6ab3ca9ac61">
@@ -2695,7 +2545,7 @@ des charges )]]></text>
                         <dataSourceExpression><![CDATA[$P{param2}]]></dataSourceExpression>
                     </datasetRun>
                     <jr:listContents height="10" width="240">
-                        <textField>
+                        <textField isBlankWhenNull="true">
                             <reportElement x="0" y="0" width="60" height="10" uuid="2764e364-c884-44fc-96e4-efc89867b921">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
@@ -2704,25 +2554,25 @@ des charges )]]></text>
                             </textElement>
                             <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
                         </textField>
-                        <textField>
+                        <textField isBlankWhenNull="true">
                             <reportElement x="60" y="0" width="60" height="10" uuid="7f0a6e4a-03a7-44cb-8a57-47ac22a978ef">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brutp}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brutP}]]></textFieldExpression>
                         </textField>
-                        <textField>
+                        <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="60" height="10" uuid="95d3c3a8-9743-43e5-8b7e-b85fc9d2bdcb">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}+$F{brutp}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
                         </textField>
-                        <textField>
+                        <textField isBlankWhenNull="true">
                             <reportElement x="180" y="0" width="60" height="10" uuid="c501eb8a-e960-4fd5-a043-ddb9765d1e99">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
@@ -2740,7 +2590,7 @@ des charges )]]></text>
                         <dataSourceExpression><![CDATA[$P{param3}]]></dataSourceExpression>
                     </datasetRun>
                     <jr:listContents height="10" width="240">
-                        <textField>
+                        <textField isBlankWhenNull="true">
                             <reportElement x="0" y="0" width="60" height="10" uuid="2dbbd616-df50-48f8-a7cf-0c3089bb57b4">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
@@ -2749,25 +2599,25 @@ des charges )]]></text>
                             </textElement>
                             <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
                         </textField>
-                        <textField>
+                        <textField isBlankWhenNull="true">
                             <reportElement x="60" y="0" width="60" height="10" uuid="2929bc87-a4fb-4eb7-ad67-233f0f1a3bb4">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brutp}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brutP}]]></textFieldExpression>
                         </textField>
-                        <textField>
+                        <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="60" height="10" uuid="f5dfb093-5b26-47a8-89be-fd83d83110e3">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}+$F{brutp}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
                         </textField>
-                        <textField>
+                        <textField isBlankWhenNull="true">
                             <reportElement x="180" y="0" width="60" height="10" uuid="842ee1a8-c8d9-45b0-ac9e-a24b000c1ceb">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
@@ -2785,7 +2635,7 @@ des charges )]]></text>
                         <dataSourceExpression><![CDATA[$P{param4}]]></dataSourceExpression>
                     </datasetRun>
                     <jr:listContents height="10" width="240">
-                        <textField>
+                        <textField isBlankWhenNull="true">
                             <reportElement x="0" y="0" width="60" height="10" uuid="d58b6bd3-e1eb-44d3-94fa-67b3b2b42924">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
@@ -2794,25 +2644,25 @@ des charges )]]></text>
                             </textElement>
                             <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
                         </textField>
-                        <textField>
+                        <textField isBlankWhenNull="true">
                             <reportElement x="60" y="0" width="60" height="10" uuid="32b01b8b-1ddd-49ba-a683-3a548dab7193">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brutp}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brutP}]]></textFieldExpression>
                         </textField>
-                        <textField>
+                        <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="60" height="10" uuid="ac0c3ab0-30b2-4765-b865-057246811718">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}+$F{brutp}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
                         </textField>
-                        <textField>
+                        <textField isBlankWhenNull="true">
                             <reportElement x="180" y="0" width="60" height="10" uuid="48aa01da-b5ff-465b-87d6-7ed6a6a66972">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
@@ -2830,7 +2680,7 @@ des charges )]]></text>
                         <dataSourceExpression><![CDATA[$P{param5}]]></dataSourceExpression>
                     </datasetRun>
                     <jr:listContents height="10" width="240">
-                        <textField>
+                        <textField isBlankWhenNull="true">
                             <reportElement x="0" y="0" width="60" height="10" uuid="f73c5549-2faf-4c0e-8bdf-87e18cf7569a">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
@@ -2839,25 +2689,25 @@ des charges )]]></text>
                             </textElement>
                             <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
                         </textField>
-                        <textField>
+                        <textField isBlankWhenNull="true">
                             <reportElement x="60" y="0" width="60" height="10" uuid="14fff011-608a-4724-91a5-613b98494e29">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brutp}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brutP}]]></textFieldExpression>
                         </textField>
-                        <textField>
+                        <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="60" height="10" uuid="5f71375b-293b-447c-a480-16ea0cec9336">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}+$F{brutp}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
                         </textField>
-                        <textField>
+                        <textField isBlankWhenNull="true">
                             <reportElement x="180" y="0" width="60" height="10" uuid="181cf7dd-142d-403e-a736-15177339822e">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
@@ -2875,7 +2725,7 @@ des charges )]]></text>
                         <dataSourceExpression><![CDATA[$P{param6}]]></dataSourceExpression>
                     </datasetRun>
                     <jr:listContents height="10" width="240">
-                        <textField>
+                        <textField isBlankWhenNull="true">
                             <reportElement x="0" y="0" width="60" height="10" uuid="ec2bf5bf-877f-4206-a7ea-1e5daeb894a7">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
@@ -2884,25 +2734,25 @@ des charges )]]></text>
                             </textElement>
                             <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
                         </textField>
-                        <textField>
+                        <textField isBlankWhenNull="true">
                             <reportElement x="60" y="0" width="60" height="10" uuid="eb1a9091-5c42-4378-beb6-df13d3388761">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brutp}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brutP}]]></textFieldExpression>
                         </textField>
-                        <textField>
+                        <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="60" height="10" uuid="a5dfd907-452a-45de-8cd3-8f8370e3b097">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}+$F{brutp}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
                         </textField>
-                        <textField>
+                        <textField isBlankWhenNull="true">
                             <reportElement x="180" y="0" width="60" height="10" uuid="6d4c8414-736a-4423-828a-7c56c5cef692">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
                             </reportElement>

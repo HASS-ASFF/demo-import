@@ -275,22 +275,22 @@ public class ReportServiceImpl implements ReportService {
 
             List<SubAccountCPC> totalListI = new ArrayList<>();
             totalListI.addAll(dataset1);
-            parameters.put("total1",totalListI);
+            parameters.put("total1",accountDataManagerServiceImpl.GetTotalBrutCPC(totalListI));
             List<SubAccountCPC> totalListII = new ArrayList<>();
             totalListII.addAll(dataset2);
-            parameters.put("total2",totalListII);
+            parameters.put("total2",accountDataManagerServiceImpl.GetTotalBrutCPC(totalListII));
             List<SubAccountCPC> totalListIII = new ArrayList<>();
             totalListIII.addAll(dataset3);
-            parameters.put("total3",totalListIII);
+            parameters.put("total3",accountDataManagerServiceImpl.GetTotalBrutCPC(totalListIII));
             List<SubAccountCPC> totalListIV = new ArrayList<>();
             totalListIV.addAll(dataset4);
-            parameters.put("total4",totalListIV);
+            parameters.put("total4",accountDataManagerServiceImpl.GetTotalBrutCPC(totalListIV));
             List<SubAccountCPC> totalListV = new ArrayList<>();
             totalListV.addAll(dataset5);
-            parameters.put("total5",totalListV);
+            parameters.put("total5",accountDataManagerServiceImpl.GetTotalBrutCPC(totalListV));
             List<SubAccountCPC> totalListVI = new ArrayList<>();
             totalListVI.addAll(dataset6);
-            parameters.put("total6",totalListVI);
+            parameters.put("total6",accountDataManagerServiceImpl.GetTotalBrutCPC(totalListVI));
 
             parameters.put("DateN",date.substring(0,4));
             parameters.put("DateN1",getLastYear(date).substring(0,4));

@@ -135,7 +135,6 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
             balance.setCompany_name(company_name);
 
 
-
             int rowNumber = 0;
             while (rows.hasNext()) {
                 Row currentRow = rows.next();

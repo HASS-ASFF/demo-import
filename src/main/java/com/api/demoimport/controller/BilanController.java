@@ -21,6 +21,8 @@ import java.io.ByteArrayOutputStream;
 @Controller
 @RequestMapping("/api/report")
 public class BilanController {
+
+    @Autowired
     ReportServiceImpl reportServiceImpl;
 
     @GetMapping("/bilan-passif")

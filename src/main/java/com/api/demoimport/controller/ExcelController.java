@@ -23,8 +23,10 @@ import java.util.List;
 @RequestMapping("/api/excel")
 public class ExcelController {
 
+    @Autowired
     PlanComptableServiceImpl fileService;
 
+    @Autowired
     BalanceDetailServiceImpl fileServiceBalance;
 
     //AccountDataManagerServiceImpl accountDataManagerServiceImpl;

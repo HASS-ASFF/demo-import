@@ -22,6 +22,13 @@ public class SubAccountCPC {
     private Double brut;
     private Double brutP;
 
+    public SubAccountCPC(String mainAccount, String nCompte, String libelle, Double brut) {
+        this.mainAccount=mainAccount;
+        this.n_compte=nCompte;
+        this.libelle=libelle;
+        this.brut=brut;
+    }
+
     public static List<SubAccountCPC> initializeData(String n_class){
         List<SubAccountCPC> subAccountCPCS = new ArrayList<>();
 
