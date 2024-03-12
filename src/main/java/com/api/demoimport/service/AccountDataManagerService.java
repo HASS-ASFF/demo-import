@@ -1,8 +1,8 @@
 package com.api.demoimport.service;
 
-import com.api.demoimport.entity.BilanAndCPC.SubAccountActif;
-import com.api.demoimport.entity.BilanAndCPC.SubAccountCPC;
-import com.api.demoimport.entity.BilanAndCPC.SubAccountPassif;
+import com.api.demoimport.entity.Bilan.SubAccountActif;
+import com.api.demoimport.entity.Bilan.SubAccountCPC;
+import com.api.demoimport.entity.Bilan.SubAccountPassif;
 
 import java.util.List;
 

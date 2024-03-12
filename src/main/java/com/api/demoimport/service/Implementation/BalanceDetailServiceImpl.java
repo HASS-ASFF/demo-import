@@ -1,10 +1,10 @@
 package com.api.demoimport.service.Implementation;
 
 import com.api.demoimport.entity.BalanceDetail;
-import com.api.demoimport.entity.BilanAndCPC.FormatUtils;
-import com.api.demoimport.entity.BilanAndCPC.SubAccountActif;
-import com.api.demoimport.entity.BilanAndCPC.SubAccountCPC;
-import com.api.demoimport.entity.BilanAndCPC.SubAccountPassif;
+import com.api.demoimport.entity.Bilan.FormatUtils;
+import com.api.demoimport.entity.Bilan.SubAccountActif;
+import com.api.demoimport.entity.Bilan.SubAccountCPC;
+import com.api.demoimport.entity.Bilan.SubAccountPassif;
 import com.api.demoimport.repository.BalanceDetailRepository;
 import com.api.demoimport.service.BalanceDetailService;
 import org.springframework.beans.factory.annotation.Autowired;

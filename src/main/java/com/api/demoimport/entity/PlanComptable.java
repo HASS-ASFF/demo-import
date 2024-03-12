@@ -25,6 +25,4 @@ public class PlanComptable {
     @Column
     private Long amort;
 
-
-
 }
