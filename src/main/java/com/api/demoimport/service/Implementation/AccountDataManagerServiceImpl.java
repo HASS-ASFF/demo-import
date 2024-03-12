@@ -51,6 +51,7 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
                         subAccount.setTotal_amo(result.getTotal_amo());
                         subAccount.setBrut(result.getBrut());
                         subAccount.setNet(result.getNet());
+                        subAccount.setNetN(result.getNetN());
                         break;
                     }
 

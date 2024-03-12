@@ -23,23 +23,15 @@ public class SubAccountActif {
     private Double net;
     private Double netN;
 
-
-    public SubAccountActif(String mainA, String nCompte, String libelle, Double brut, Double totalAmort, Double net) {
+    public SubAccountActif(String mainA, String nCompte, String libelle, Double brut, Double net, Double netn) {
         this.mainAccount=mainA;
         this.n_compte=nCompte;
         this.libelle=libelle;
         this.brut=brut;
-        this.total_amo=totalAmort;
         this.net=net;
+        this.netN=netn;
     }
 
-    public SubAccountActif(String mainA, String nCompte, String libelle, Double brut, Double net) {
-        this.mainAccount = mainA;
-        this.n_compte = nCompte;
-        this.libelle=libelle;
-        this.brut=brut;
-        this.net=net;
-    }
 
     public static List<SubAccountActif> initializeData(String n_class){
 

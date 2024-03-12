@@ -15,12 +15,13 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
     // GET ACCOUNTS CLASS 1
     @Query(nativeQuery = true, value ="SELECT b.n_compte AS num_compte,\n" +
             "b.label AS comptes,\n" +
-            "b.credit_fex AS brut\n" +
+            "b.credit_fex AS brut,\n" +
+            "b.credit_dex AS brutp\n"+
             "FROM balance_detail b\n" +
             "JOIN balance ON balance.id = b.balance_id\n" +
             "WHERE b.the_class=1 AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :dateBilan\n" +
             "AND company_name = :company_name\n"+
-            "GROUP BY b.n_compte,b.label, b.credit_fex;")
+            "GROUP BY b.n_compte,b.label, b.credit_fex, credit_dex;")
     List<Object[]> getBilanC1(String dateBilan,String company_name);
 
     // GET ACCOUNTS CLASS 2
@@ -28,7 +29,7 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
             "b.label AS comptes,\n" +
             "COALESCE(SUM(b.debit_fex), 0) AS brut,\n" +
             "COALESCE(SUM(amort.credit_fex), 0) AS total_amort,\n" +
-            "b.debit_fex - COALESCE(SUM(amort.credit_fex), 0) AS solde_net\n" +
+            "COALESCE(SUM(b.debit_dex),0) AS netn\n"+
             "FROM balance_detail b\n" +
             "LEFT JOIN balance_detail amort ON \n" +
             "    b.the_class = 2 AND\n" +
@@ -38,55 +39,60 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
             "JOIN balance ON balance.id = b.balance_id\n" +
             "WHERE b.the_class = 2 AND  b.n_compte NOT LIKE '28%' AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :dateBilan\n" +
             "AND company_name = :company_name\n"+
-            "GROUP BY b.n_compte,b.label, b.debit_fex;")
+            "GROUP BY b.n_compte,b.label, b.debit_fex, b.debit_dex;")
     List<Object[]> getBilanC2(String dateBilan,String company_name);
 
     // GET ACCOUNTS CLASS 3
     @Query(nativeQuery = true, value ="SELECT b.n_compte AS num_compte,\n" +
             "b.label AS comptes,\n" +
             "b.debit_fex AS brut,\n" +
-            "b.debit_fex AS net\n" +
+            "b.debit_fex AS net,\n" +
+            "b.debit_dex AS netn\n"+
             "FROM balance_detail b\n" +
             "JOIN balance ON balance.id = b.balance_id\n" +
             "WHERE b.the_class = 3 AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :dateBilan\n" +
             "AND company_name = :company_name\n"+
             "GROUP BY \n" +
-            "   b.n_compte,b.label, b.debit_fex;")
+            "   b.n_compte,b.label, b.debit_fex, b.debit_dex;")
     List<Object[]> getBilanC3(String dateBilan,String company_name);
 
     // GET ACCOUNTS CLASS 4
     @Query(nativeQuery = true, value ="SELECT b.n_compte AS num_compte,\n" +
             "b.label AS comptes,\n" +
-            "b.credit_fex AS brut\n" +
+            "b.credit_fex AS brut,\n" +
+            "b.credit_dex AS brutp\n" +
             "FROM balance_detail b\n" +
             "JOIN balance ON balance.id = b.balance_id\n" +
             "WHERE b.the_class=4 AND  DATE_FORMAT(balance.date, '%Y-%m-%d') = :dateBilan\n" +
             "AND company_name = :company_name\n"+
-            "GROUP BY b.n_compte,b.label, b.credit_fex;")
+            "GROUP BY b.n_compte,b.label, b.credit_fex, b.credit_dex;")
     List<Object[]> getBilanC4(String dateBilan,String company_name);
 
     // GET CLASS 5 ACTIF
     @Query(nativeQuery = true, value ="SELECT b.n_compte AS num_compte,\n" +
             "b.label AS comptes,\n" +
             "b.debit_fex AS brut,\n" +
-            "b.debit_fex AS net\n" +
+            "b.debit_fex AS net,\n" +
+            "b.debit_dex AS netn\n"+
             "FROM balance_detail b\n" +
             "JOIN balance ON balance.id = b.balance_id\n" +
             "WHERE b.the_class = 5 AND b.n_compte LIKE '51%' AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :dateBilan\n" +
             "AND company_name = :company_name\n"+
-            "GROUP BY  b.n_compte,b.label, b.debit_fex;")
+            "GROUP BY  b.n_compte,b.label, b.debit_fex, b.debit_dex;")
     List<Object[]> getBilanC5A(String dateBilan,String company_name);
 
     // GET CLASS 5 PASSIF
     @Query(nativeQuery = true, value = "SELECT b.n_compte AS num_compte,\n" +
             "b.label AS comptes,\n" +
-            "b.credit_fex AS brut\n" +
+            "b.credit_fex AS brut,\n" +
+            "b.credit_dex AS brutp\n"+
             "FROM balance_detail b\n" +
             "JOIN balance ON balance.id = b.balance_id\n" +
             "WHERE b.the_class=5 AND b.n_compte LIKE '55%' AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :dateBilan\n" +
             "AND company_name = :company_name\n"+
-            "GROUP BY b.n_compte,b.label, b.credit_fex;")
+            "GROUP BY b.n_compte,b.label, b.credit_fex, b.credit_dex;")
     List<Object[]> getBilanC5P(String dateBilan,String company_name);
+
 
     // GET CLASS 6
     @Query(nativeQuery = true, value = "SELECT b.n_compte AS num_compte, b.label AS comptes,\n" +

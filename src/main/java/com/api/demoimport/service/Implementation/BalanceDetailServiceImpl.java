@@ -51,9 +51,6 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
 
         List<Object[]> resultsrequest =  repository.getBilanC1(dateBilan,company_name);
 
-
-        //regroupClassesP(bilanPassifs);
-
         return ConvertToBilanPassif(resultsrequest);
 
     }
@@ -180,15 +177,17 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
             Double net=brut;
             if(n_compte.startsWith("2")){
                 Double totalAmort = (Double) resultat[3];
+                Double netn = (Double) resultat[4];
                 if (totalAmort == 0) {totalAmort =null;}
                 else {FormatUtils.formatDecimal(totalAmort);
                 net=FormatUtils.formatDecimal(brut-totalAmort);}
                 return new SubAccountActif(mainA, n_compte, libelle,
-                       brut, totalAmort, net);
+                       brut, totalAmort, net, netn);
             }
             else{
+                Double netn = (Double) resultat[3];
                 return new SubAccountActif(mainA, n_compte, libelle,
-                        brut, net);
+                        brut, net, netn);
             }
 
         }catch(RuntimeException e){
@@ -209,12 +208,14 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
             String n_compte =  resultat[0].toString();
             String libelle = (String) resultat[1];
             Double brut = (Double) resultat[2];
+            Double brutp = (Double) resultat[3];
 
             SubAccountPassif bilanPassif = new SubAccountPassif();
             bilanPassif.setMainAccount(mainA);
             bilanPassif.setN_compte(n_compte);
             bilanPassif.setLibelle(libelle);
             bilanPassif.setBrut(brut == 0 ? null : FormatUtils.formatDecimal(brut));
+            bilanPassif.setBrutP(brutp == 0 ? null : FormatUtils.formatDecimal(brutp));
             bilansPassifs.add(bilanPassif);
         }
 
