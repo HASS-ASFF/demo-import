@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des passages</title>
+</head>
+<body>
+<h1>Tableau des passages</h1>
+
+<div th:if="${passages.isEmpty()}">
+    <p>Le passage pour la date du bilan <span th:text="${bilanDate}"></span> n'existe pas encore.</p>
+    <a th:href="@{passages/create/{bilanDate}(bilanDate=${bilanDate})}">Ajouter un nouveau passage</a>
+</div>
+
+<div th:if="${!passages.isEmpty()}">
+    <table border="1">
+        <tr>
+            <th>Date du bilan</th>
+            <th>Nom</th>
+            <th>Montant positif</th>
+            <th>Montant négatif</th>
+            <th>Modifier</th>
+        </tr>
+        <tr th:each="passage : ${passages}">
+            <td><span th:text="${passage.bilanDate}"></span></td>
+            <td><span th:text="${passage.name}"></span></td>
+            <td><span th:text="${passage.amountPlus}"></span></td>
+            <td><span th:text="${passage.amountMinus}"></span></td>
+            <td><a href="/passages/edit/${passage.id}">Modifier</a></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

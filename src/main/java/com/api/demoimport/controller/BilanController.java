@@ -1,7 +1,10 @@
 package com.api.demoimport.controller;
 
 
+import com.api.demoimport.entity.Bilan.Passage;
 import com.api.demoimport.message.ResponseMessage;
+import com.api.demoimport.repository.PassageRepository;
+import com.api.demoimport.service.Implementation.PassageServiceImpl;
 import com.api.demoimport.service.Implementation.ReportServiceImpl;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +13,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayOutputStream;
+import java.io.Console;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("http://localhost:8080")
 @Controller
@@ -24,6 +29,8 @@ public class BilanController {
 
     @Autowired
     ReportServiceImpl reportServiceImpl;
+    @Autowired
+    PassageServiceImpl passageService;
 
     @GetMapping("/bilan-passif")
     public ResponseEntity  getBilanPassif(@RequestParam("dateBilan") String date, @RequestParam("companyName") String company_name) throws JRException {
@@ -66,5 +73,31 @@ public class BilanController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
         }
     }
+
+    @GetMapping("/passages")
+    public String getPassagesByBilanDate(@RequestParam String bilanDate, Model model) {
+        List<Passage> passages = passageService.findPassages(bilanDate);
+        model.addAttribute("bilanDate", bilanDate);
+        model.addAttribute("passages", passages);
+
+        return "passages";
+    }
+
+    @GetMapping("/passages/create/{bilanDate}")
+    public String showCreatePassageForm(@PathVariable("bilanDate") String bilanDate, Model model) {
+        model.addAttribute("bilanDate", bilanDate);
+        return "createpassage"; // Vue pour la création d'un passage
+    }
+
+    @PostMapping("/passages/save")
+    public String savePassage(Passage passage) {
+        // Enregistrer le passage dans la base de données
+        // Rediriger vers la page de confirmation ou d'affichage des passages
+        return null;
+    }
+
+
+
+
 
 }
