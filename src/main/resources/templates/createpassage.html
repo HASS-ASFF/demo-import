@@ -2,12 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add a new passage</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <script src="../js/passage.js"></script>
+
 </head>
 <body>
 
-<form action="/passages/save" method="post">
-    <input type="hidden" name="bilanDate" th:value="${bilanDate}">
+<form id="myForm" method="post">
+
+    <label for="bilanDate">Date:</label>
+    <input type="text" id="bilanDate" name="bilanDate" th:value="${bilanDate}">
 
     <label for="name">Nom:</label>
     <input type="text" id="name" name="name" required>
@@ -21,6 +28,7 @@
     <button type="submit">Créer un nouveau passage</button>
 </form>
 
+<div id="success-message"></div>
 
 </body>
 </html>

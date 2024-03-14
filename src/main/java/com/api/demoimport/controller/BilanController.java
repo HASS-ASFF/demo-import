@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin("http://localhost:8080")
-@Controller
+@RestController
 @RequestMapping("/api/report")
 public class BilanController {
 
@@ -73,31 +73,4 @@ public class BilanController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
         }
     }
-
-    @GetMapping("/passages")
-    public String getPassagesByBilanDate(@RequestParam String bilanDate, Model model) {
-        List<Passage> passages = passageService.findPassages(bilanDate);
-        model.addAttribute("bilanDate", bilanDate);
-        model.addAttribute("passages", passages);
-
-        return "passages";
-    }
-
-    @GetMapping("/passages/create/{bilanDate}")
-    public String showCreatePassageForm(@PathVariable("bilanDate") String bilanDate, Model model) {
-        model.addAttribute("bilanDate", bilanDate);
-        return "createpassage"; // Vue pour la création d'un passage
-    }
-
-    @PostMapping("/passages/save")
-    public String savePassage(Passage passage) {
-        // Enregistrer le passage dans la base de données
-        // Rediriger vers la page de confirmation ou d'affichage des passages
-        return null;
-    }
-
-
-
-
-
 }

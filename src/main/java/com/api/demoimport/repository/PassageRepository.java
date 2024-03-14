@@ -7,9 +7,10 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface PassageRepository extends JpaRepository<Passage,Long> {
     @Query(nativeQuery = true, value = "SELECT * FROM Passage WHERE date LIKE ':bilanDate%' ")
-    public List<Passage> findPassagesByBilanDate(@Param("bilanDate") String bilanDate);
+    List<Passage> findPassagesByBilanDate(@Param("bilanDate") String bilanDate);
 
 }

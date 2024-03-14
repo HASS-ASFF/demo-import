@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @CrossOrigin("http://localhost:8080")
-@Controller
+@RestController
 @RequestMapping("/api/excel")
 public class ExcelController {
 
