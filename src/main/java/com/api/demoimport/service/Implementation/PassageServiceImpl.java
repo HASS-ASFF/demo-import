@@ -39,6 +39,11 @@ public class PassageServiceImpl implements PassageService {
     }
 
     @Override
+    public Passage getById(Long id) {
+        return passageRepository.getById(id);
+    }
+
+    @Override
     public void deletePassage(Long id) {
         passageRepository.deleteById(id);
     }

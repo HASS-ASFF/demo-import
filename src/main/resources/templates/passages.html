@@ -1,34 +1,54 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Liste des passages</title>
+    <meta charset="ISO-8859-1" />
+    <title>Passage AJAX CRUD EXAMPLE</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="../static/passage.js"></script>
 </head>
 <body>
-<h1>Tableau des passages</h1>
+<div id="postResultDiv" align="center"></div>
+<div class="container">
+    <h2>Stacked form</h2>
+    <form id="passageForm">
+        <div class="form-group">
+            <label for="passageId">passage ID:</label> <input type="text"
+                                                        class="form-control" id="passageId" placeholder="Enter passage Id"
+                                                        name="passageId">
+        </div>
+        <div class="form-group">
+            <label for="passageName">passage Name:</label> <input type="text"
+                                                            class="form-control" id="passageName" placeholder="Enter passage Name"
+                                                            name="passageName">
+        </div>
 
-<div th:if="${passages.isEmpty()}">
-    <p>Le passage pour la date du bilan <span th:text="${bilanDate}"></span> n'existe pas encore.</p>
-    <a th:href="@{passages/create/{bilanDate}(bilanDate=${bilanDate})}">Ajouter un nouveau passage</a>
-</div>
-
-<div th:if="${!passages.isEmpty()}">
-    <table border="1">
-        <tr>
-            <th>Date du bilan</th>
-            <th>Nom</th>
-            <th>Montant positif</th>
-            <th>Montant négatif</th>
-            <th>Modifier</th>
-        </tr>
-        <tr th:each="passage : ${passages}">
-            <td><span th:text="${passage.bilanDate}"></span></td>
-            <td><span th:text="${passage.name}"></span></td>
-            <td><span th:text="${passage.amountPlus}"></span></td>
-            <td><span th:text="${passage.amountMinus}"></span></td>
-            <td><a href="/passages/edit/${passage.id}">Modifier</a></td>
-        </tr>
-    </table>
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label"> <input
+                    class="form-check-input" type="checkbox" name="remember">
+                Remember me
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br />
+    <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
+        <button id="getALlpassages" type="button" class="btn btn-primary">Get
+            All Passages</button>
+        <div id="getResultDiv" style="padding: 20px 10px 20px 50px">
+            <ul class="list-group">
+            </ul>
+        </div>
+    </div>
 </div>
 </body>
 </html>

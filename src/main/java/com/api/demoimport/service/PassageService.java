@@ -11,5 +11,6 @@ public interface PassageService {
     Passage createPassage(Passage passage);
     Passage updatePassage(Object field);
     List<Passage> findPassages(String date);
+    Passage getById(Long id);
     void deletePassage(Long id);
 }
