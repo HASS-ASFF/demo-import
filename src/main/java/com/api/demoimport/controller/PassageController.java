@@ -1,5 +1,6 @@
 package com.api.demoimport.controller;
 
+import com.api.demoimport.dto.ServiceResponse;
 import com.api.demoimport.entity.Bilan.Passage;
 import com.api.demoimport.service.Implementation.PassageServiceImpl;
 import com.api.demoimport.service.PassageService;
@@ -12,7 +13,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin("http://localhost:8080")
 @RestController
@@ -38,14 +41,18 @@ public class PassageController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<Object> addPassage(@RequestBody Passage passage) {
-        Passage response = passageService.createPassage(passage);
-        return new ResponseEntity<Object>(response, HttpStatus.OK);
+        Map<String, Object> responseMap = new HashMap<>();
+        responseMap.put("status", "success");
+        responseMap.put("data", passageService.createPassage(passage));
+        return new ResponseEntity<Object>(responseMap, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/getPassages", method = RequestMethod.GET)
     public ResponseEntity<Object> getAllPassages() {
-        List<Passage> response = passageService.getAllPassages();
-        return new ResponseEntity<Object>(response, HttpStatus.OK);
+        Map<String, Object> responseMap = new HashMap<>();
+        responseMap.put("status", "success");
+        responseMap.put("data", passageService.getAllPassages());
+        return new ResponseEntity<Object>(responseMap, HttpStatus.OK);
     }
 
     /*@RequestMapping(value="/edit/{id}")

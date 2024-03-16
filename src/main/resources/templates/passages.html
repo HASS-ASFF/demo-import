@@ -5,49 +5,63 @@
     <title>Passage AJAX CRUD EXAMPLE</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <script
-            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-    <script
-            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <script src="../static/passage.js"></script>
+            src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"></script>
+    <script src="/getrequest.js"></script>
+    <script src="/postrequest.js"></script>
 </head>
 <body>
 <div id="postResultDiv" align="center"></div>
 <div class="container">
-    <h2>Stacked form</h2>
+    <h2>Passage form</h2>
     <form id="passageForm">
+
         <div class="form-group">
-            <label for="passageId">passage ID:</label> <input type="text"
-                                                        class="form-control" id="passageId" placeholder="Enter passage Id"
-                                                        name="passageId">
+            <label for="passageDate">passage date:</label> <input type="text"
+                                                        class="form-control" id="passageDate" placeholder="Enter passage date (YYYY-MM-DD)"
+                                                        name="passageDate">
         </div>
         <div class="form-group">
             <label for="passageName">passage Name:</label> <input type="text"
                                                             class="form-control" id="passageName" placeholder="Enter passage Name"
                                                             name="passageName">
         </div>
+        <div class="form-group">
+            <label for="passageAplus">amount plus:</label> <input type="text"
+                                                                  class="form-control" id="passageAplus" placeholder="Enter amount plus "
+                                                                  name="passageAplus">
+        </div>
+        <div class="form-group">
+            <label for="passageAminus">amount minus:</label> <input type="text"
+                                                                  class="form-control" id="passageAminus" placeholder="Enter amount minus"
+                                                                  name="passageAminus">
+        </div>
 
-        </div>
-        <div class="form-group form-check">
-            <label class="form-check-label"> <input
-                    class="form-check-input" type="checkbox" name="remember">
-                Remember me
-            </label>
-        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     <br />
-    <div class="col-sm-7" style="margin: 20px 0px 20px 0px">
-        <button id="getALlpassages" type="button" class="btn btn-primary">Get
-            All Passages</button>
-        <div id="getResultDiv" style="padding: 20px 10px 20px 50px">
-            <ul class="list-group">
-            </ul>
-        </div>
+    <div class="col-sm-7">
+        <button id="getALlPassages" type="button" class="btn btn-primary">Get All Passages</button>
+            <table  class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Amount Plus</th>
+                    <th scope="col">Amount Minus</th>
+                </tr>
+                </thead>
+
+                <tbody id="getResultDiv">
+
+                </tbody>
+
+            </table>
     </div>
 </div>
 </body>
