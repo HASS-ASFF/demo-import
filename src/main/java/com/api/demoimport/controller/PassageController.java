@@ -13,6 +13,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,13 +49,16 @@ public class PassageController {
         return new ResponseEntity<Object>(responseMap, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/getPassages", method = RequestMethod.GET)
-    public ResponseEntity<Object> getAllPassages() {
+    @RequestMapping(value = "/getPassagesByDate", method = RequestMethod.GET)
+    public ResponseEntity<Object> getPassagesByDate(@RequestParam("date") String dateString) {
         Map<String, Object> responseMap = new HashMap<>();
+        List<Passage> passages = passageService.findPassages(dateString);
         responseMap.put("status", "success");
-        responseMap.put("data", passageService.getAllPassages());
-        return new ResponseEntity<Object>(responseMap, HttpStatus.OK);
+        responseMap.put("data",passageService.processAccountData(passages));
+        return new ResponseEntity<>(responseMap, HttpStatus.OK);
     }
+
+
 
     /*@RequestMapping(value="/edit/{id}")
     public ModelAndView showEditPassagePage(@PathVariable(name = "id") Long id){

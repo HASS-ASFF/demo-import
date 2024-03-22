@@ -1,50 +1,10 @@
+$(document).ready(function() {
+    // Function to handle click on editable fields
+    $('.editable-field').click(function() {
+        var fieldValue = $(this).text().trim();
+        var inputType = $(this).hasClass('editable-textarea') ? 'textarea' : 'input';
+        var inputHtml = '<td><' + inputType + ' class="edit-input form-control" value="' + fieldValue + '"></td>';
+        $(this).html(inputHtml);
+    });
+});
 
-$(document).ready(
-    function() {
-
-        // SUBMIT FORM
-        $("#passageForm").submit(function(event) {
-            // Prevent the form from submitting via the browser.
-            event.preventDefault();
-            ajaxPost();
-        });
-
-        function ajaxPost() {
-
-            // PREPARE FORM DATA
-            var formData = {
-
-                name : $("#passageName").val(),
-                amountPlus : $("#passageAplus").val(),
-                amountMinus : $("#passageAminus").val(),
-                date : $("#passageDate").val()
-
-            }
-
-            // DO POST
-            $.ajax({
-                type : "POST",
-                contentType : "application/json",
-                url : "save",
-                data : JSON.stringify(formData),
-                dataType : 'json',
-                success : function(result) {
-                    if (result.status === "success") {
-                        $("#postResultDiv").html(
-                            "" + result.data.name
-                            + "Post Successfully! <br>"
-                            + "---> Congrats !!" + "</p>");
-                    } else {
-                        $("#postResultDiv").html("<strong>Error</strong>");
-                    }
-                    console.log(result);
-                },
-                error : function(e) {
-                    alert("Error!")
-                    console.log("ERROR: ", e);
-                }
-            });
-
-        }
-
-    })

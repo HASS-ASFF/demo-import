@@ -5,9 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 @Entity
@@ -18,6 +16,8 @@ public class Passage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
+    private String m_name;
+    @Column
     private String name;
     @Column
     private Double amountPlus;
@@ -26,17 +26,18 @@ public class Passage {
     @Column
     private Date date;
 
-    public static List<Passage> initializeData(){
-        List<Passage> passagesList = new ArrayList<>();
+    public static List<Passage> initializeData() {
+        List<Passage> passages = new ArrayList<>();
 
-        for(PassageCategory passageCategory : PassageCategory.values()){
-            for(String val : passageCategory.getSub_name()){
+        for (PassageCategory passageCategory : PassageCategory.values()) {
+            for (String val : passageCategory.getSub_name()) {
                 Passage passage = new Passage();
+                passage.setM_name(passageCategory.getMain_name());
                 passage.setName(val);
-                passagesList.add(passage);
+                passages.add(passage);
             }
         }
 
-        return passagesList;
+        return passages;
     }
 }

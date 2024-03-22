@@ -40,7 +40,8 @@ public enum PassageCategory {
                     "Bénéfice net fiscal ( A - C) (OU)",
                     "Déficit net fiscal (B)"
             )),
-    CUMUL_DES_AMORTISSEMENTS_FISCALEMENT_DIFFERES("CUMUL DES AMORTISSEMENTS FISCALEMENT DIFFERES",null),
+    CUMUL_DES_AMORTISSEMENTS_FISCALEMENT_DIFFERES("CUMUL DES AMORTISSEMENTS FISCALEMENT DIFFERES",
+            Arrays.asList("")),
 
     CUMUL_DES_DEFICITS_FISCAUX_RESTANT_A_REPORTER("CUMUL DES DEFICITS FISCAUX RESTANT A REPORTER",
             Arrays.asList(

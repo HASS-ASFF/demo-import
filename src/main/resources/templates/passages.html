@@ -1,68 +1,186 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="ISO-8859-1" />
-    <title>Passage AJAX CRUD EXAMPLE</title>
     <meta charset="utf-8" />
+    <title>Passage AJAX CRUD EXAMPLE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <script
-            src="https://code.jquery.com/jquery-3.7.1.min.js"
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
     <script src="/getrequest.js"></script>
-    <script src="/postrequest.js"></script>
 </head>
 <body>
-<div id="postResultDiv" align="center"></div>
 <div class="container">
-    <h2>Passage form</h2>
-    <form id="passageForm">
+    <h2>Passage Management</h2>
 
-        <div class="form-group">
-            <label for="passageDate">passage date:</label> <input type="text"
-                                                        class="form-control" id="passageDate" placeholder="Enter passage date (YYYY-MM-DD)"
-                                                        name="passageDate">
-        </div>
-        <div class="form-group">
-            <label for="passageName">passage Name:</label> <input type="text"
-                                                            class="form-control" id="passageName" placeholder="Enter passage Name"
-                                                            name="passageName">
-        </div>
-        <div class="form-group">
-            <label for="passageAplus">amount plus:</label> <input type="text"
-                                                                  class="form-control" id="passageAplus" placeholder="Enter amount plus "
-                                                                  name="passageAplus">
-        </div>
-        <div class="form-group">
-            <label for="passageAminus">amount minus:</label> <input type="text"
-                                                                  class="form-control" id="passageAminus" placeholder="Enter amount minus"
-                                                                  name="passageAminus">
-        </div>
+    <button id="getPassagesByDate" type="button" class="btn btn-secondary">Afficher les passages</button>
+    <input type="date"
+           id="dateBilan"
+           min="2000-01-01"
+           max="2025-12-31"
+           step="1">
+    <table border="1px" class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th scope="col">INTITULES</th>
+            <th scope="col">MONTANT (+)</th>
+            <th scope="col">MONTANT (-)</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody id="getResultDiv">
+        <tr>
+            <th>I. RESULTAT NET COMPTABLE</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr  th:each="passage : ${part1}">
+            <td data-field-name='name' th:text="${passage.name}"></td>
+            <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
+            <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
+            <td><i class="fa-regular fa-pen-to-square"></i></td>
+        </tr>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    <br />
-    <div class="col-sm-7">
-        <button id="getALlPassages" type="button" class="btn btn-primary">Get All Passages</button>
-            <table  class="table">
-                <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Amount Plus</th>
-                    <th scope="col">Amount Minus</th>
-                </tr>
-                </thead>
+        <tr>
+            <th>II. REINTEGRATIONS FISCALES</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
 
-                <tbody id="getResultDiv">
+        <tr  th:each="passage : ${part2}">
+            <td data-field-name='name' th:text="${passage.name}"></td>
+            <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
+            <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
+            <td><i class="fa-regular fa-pen-to-square"></i></td>
+        </tr>
 
-                </tbody>
+        <tr>
+            <th>III. DEDUCTIONS FISCALES</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
 
-            </table>
-    </div>
+        <tr  th:each="passage : ${part3}">
+            <td data-field-name='name' th:text="${passage.name}"></td>
+            <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
+            <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
+            <td><i class="fa-regular fa-pen-to-square"></i></td>
+        </tr>
+
+        <tr>
+            <th>TOTAL</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        <tr></tr>
+
+        <tr>
+            <th>IV. RESULTAT BRUT FISCAL</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        <tr  th:each="passage : ${part4}">
+            <td data-field-name='name' th:text="${passage.name}"></td>
+            <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
+            <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
+            <td><i class="fa-regular fa-pen-to-square"></i></td>
+        </tr>
+
+        <tr>
+            <th>V. REPORTS DEFICITAIRES IMPUTES (C) (1)</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        <tr  th:each="passage : ${part5}">
+            <td data-field-name='name' th:text="${passage.name}"></td>
+            <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
+            <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
+            <td><i class="fa-regular fa-pen-to-square"></i></td>
+        </tr>
+
+        <tr>
+            <th>VI. CUMUL DES AMORTISSEMENTS FISCALEMENT DIFFERES</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        <tr  th:each="passage : ${part6}">
+            <td data-field-name='name' th:text="${passage.name}"></td>
+            <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
+            <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
+            <td><i class="fa-regular fa-pen-to-square"></i></td>
+        </tr>
+
+        <tr>
+            <th>VII. CUMUL DES DEFICITS FISCAUX RESTANT A REPORTER</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        <tr  th:each="passage : ${part7}">
+            <td data-field-name='name' th:text="${passage.name}"></td>
+            <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
+            <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
+            <td><i class="fa-regular fa-pen-to-square"></i></td>
+        </tr>
+
+        </tbody>
+    </table>
 </div>
 </body>
+
+<script>
+  $(document).ready(function() {
+        // Function to handle click on editable fields
+        $('.editable-field').click(function(event) {
+            event.stopPropagation();
+            $(this).empty();
+            var fieldValue = $(this).text().trim();
+            var inputType = 'input';
+            var inputHtml = '<' + inputType + ' class="edit-input form-control" value="' + fieldValue + '">';
+            $(this).append(inputHtml);
+            $('.edit-input').focus();
+        });
+
+        // Function to handle input field blur (when clicked outside)
+        $(document).on('blur', '.edit-input', function(event) {
+        var newValue = $(this).val().trim();
+        var tdElement = $(this).closest('.editable-field');
+        tdElement.text(newValue);
+    });
+
+        // Function to prevent removing input when clicking inside
+        $(document).on('click', '.edit-input', function(event) {
+        event.stopPropagation();
+    });
+
+        // Function to handle click outside the editable field
+  $(document).click(function() {
+        $('.edit-input').each(function() {
+        var newValue = $(this).val().trim();
+        var tdElement = $(this).closest('.editable-field');
+        tdElement.text(newValue);
+        });
+  });
+  });
+
+
+</script>
+
 </html>
