@@ -18,4 +18,6 @@ public interface PassageService {
     List<Passage> processAccountData(List<Passage> rawData);
     void updateMainAccountMap(List<Passage> mainAccountMap, List<Passage> rawData);
     List<Passage> FilterPassages(List<Passage> passages,String m_name);
+
+    Passage PassageById(Long id);
 }

@@ -44,7 +44,7 @@
             <td data-field-name='name' th:text="${passage.name}"></td>
             <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
             <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
-            <td><i class="fa-regular fa-pen-to-square"></i></td>
+            <td><i class="fa-regular fa-pen-to-square save-icon"></i></td>
         </tr>
 
         <tr>
@@ -58,7 +58,7 @@
             <td data-field-name='name' th:text="${passage.name}"></td>
             <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
             <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
-            <td><i class="fa-regular fa-pen-to-square"></i></td>
+            <td><i class="fa-regular fa-pen-to-square save-icon"></i></td>
         </tr>
 
         <tr>
@@ -72,7 +72,7 @@
             <td data-field-name='name' th:text="${passage.name}"></td>
             <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
             <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
-            <td><i class="fa-regular fa-pen-to-square"></i></td>
+            <td><i class="fa-regular fa-pen-to-square save-icon"></i></td>
         </tr>
 
         <tr>
@@ -95,7 +95,7 @@
             <td data-field-name='name' th:text="${passage.name}"></td>
             <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
             <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
-            <td><i class="fa-regular fa-pen-to-square"></i></td>
+            <td><i class="fa-regular fa-pen-to-square save-icon"></i></td>
         </tr>
 
         <tr>
@@ -109,11 +109,11 @@
             <td data-field-name='name' th:text="${passage.name}"></td>
             <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
             <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
-            <td><i class="fa-regular fa-pen-to-square"></i></td>
+            <td><i class="fa-regular fa-pen-to-square save-icon"></i></td>
         </tr>
 
         <tr>
-            <th>VI. CUMUL DES AMORTISSEMENTS FISCALEMENT DIFFERES</th>
+            <th>VI. RESULTAT NET FISCAL</th>
             <th></th>
             <th></th>
             <th></th>
@@ -123,11 +123,11 @@
             <td data-field-name='name' th:text="${passage.name}"></td>
             <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
             <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
-            <td><i class="fa-regular fa-pen-to-square"></i></td>
+            <td><i class="fa-regular fa-pen-to-square save-icon"></i></td>
         </tr>
 
         <tr>
-            <th>VII. CUMUL DES DEFICITS FISCAUX RESTANT A REPORTER</th>
+            <th>VII. CUMUL DES AMORTISSEMENTS FISCALEMENT DIFFERES</th>
             <th></th>
             <th></th>
             <th></th>
@@ -137,7 +137,21 @@
             <td data-field-name='name' th:text="${passage.name}"></td>
             <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
             <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
-            <td><i class="fa-regular fa-pen-to-square"></i></td>
+            <td><i class="fa-regular fa-pen-to-square save-icon"></i></td>
+        </tr>
+
+        <tr>
+            <th>VIII. CUMUL DES DEFICITS FISCAUX RESTANT A REPORTER</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        <tr  th:each="passage : ${part8}">
+            <td data-field-name='name' th:text="${passage.name}"></td>
+            <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
+            <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
+            <td><i class="fa-regular fa-pen-to-square save-icon"></i></td>
         </tr>
 
         </tbody>

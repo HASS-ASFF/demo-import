@@ -27,20 +27,6 @@ public class PassageController {
     @Autowired
     PassageServiceImpl passageService;
 
-    /*@GetMapping("/passages/{datebilan}")
-    public ResponseEntity<List<Passage>> getPassagesByBilanDate(@PathVariable(value = "dateBilan") String bilanDate) {
-        List<Passage> passages = passageService.findPassages(bilanDate);
-        if (passages == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().body(passages);
-    }
-
-    @PostMapping("/passage")
-    public Passage createPassage(@RequestBody Passage passage) {
-        return passageService.createPassage(passage);
-    }*/
-
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<Object> addPassage(@RequestBody Passage passage) {
         Map<String, Object> responseMap = new HashMap<>();
@@ -58,6 +44,32 @@ public class PassageController {
         return new ResponseEntity<>(responseMap, HttpStatus.OK);
     }
 
+    // Méthode pour sauvegarder un nouveau passage
+    @PostMapping("/savePassage")
+    public ResponseEntity<Object> savePassage(@RequestBody Passage passage) {
+        Map<String, Object> responseMap = new HashMap<>();
+
+        // Vérifier si le passage existe déjà (par exemple, vérifier s'il a un identifiant)
+        if (passage.getId() != null && passageService.PassageById(passage.getId()) != null) {
+            responseMap.put("status", "error");
+            responseMap.put("message", "Le passage avec l'identifiant spécifié existe déjà.");
+            return new ResponseEntity<>(responseMap, HttpStatus.BAD_REQUEST);
+        }
+
+        // Si le passage n'existe pas encore, l'enregistrer
+        Passage savedPassage = passageService.createPassage(passage);
+        if (savedPassage != null) {
+            responseMap.put("status", "success");
+            responseMap.put("data", savedPassage);
+            return new ResponseEntity<>(responseMap, HttpStatus.OK);
+        } else {
+            responseMap.put("status", "error");
+            responseMap.put("message", "Échec de l'enregistrement du passage.");
+            return new ResponseEntity<>(responseMap, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+}
+
 
 
     /*@RequestMapping(value="/edit/{id}")
@@ -72,4 +84,3 @@ public class PassageController {
     public String deletePassage(@PathVariable(name = "id") Long id){
         return null;
     }*/
-}

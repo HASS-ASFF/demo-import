@@ -85,4 +85,12 @@ public class PassageServiceImpl implements PassageService {
         }
         return filteredList;
     }
+
+    @Override
+    public Passage PassageById(Long id) {
+        if(id != null){
+            return passageRepository.getById(id);
+        }
+        return null;
+    }
 }
