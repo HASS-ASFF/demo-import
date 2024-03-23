@@ -31,8 +31,19 @@ public class PassageServiceImpl implements PassageService {
     }
 
     @Override
-    public Passage updatePassage(Object field) {
-        return null;
+    public Passage updatePassage(Passage updatedPassage) {
+        // Vérifier si le passage existe dans la base de données
+        Optional<Passage> optionalPassage = passageRepository.findById(updatedPassage.getId());
+
+        // Mettre à jour les valeurs du passage existant avec les nouvelles valeurs
+        Passage existingPassage = optionalPassage.get();
+        existingPassage.setName(updatedPassage.getName());
+        existingPassage.setAmountPlus(updatedPassage.getAmountPlus());
+        existingPassage.setAmountMinus(updatedPassage.getAmountMinus());
+        // Vous pouvez également mettre à jour d'autres champs si nécessaire
+
+        // Enregistrer les modifications dans la base de données
+        return passageRepository.save(existingPassage);
     }
 
     @Override
@@ -92,5 +103,10 @@ public class PassageServiceImpl implements PassageService {
             return passageRepository.getById(id);
         }
         return null;
+    }
+
+    @Override
+    public Passage findByNameAndDate(String name, Date date) {
+        return passageRepository.findPassageByNameAndDate(name,date);
     }
 }

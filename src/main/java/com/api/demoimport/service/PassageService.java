@@ -11,7 +11,7 @@ import java.util.Map;
 public interface PassageService {
     List<Passage> getAllPassages();
     Passage createPassage(Passage passage);
-    Passage updatePassage(Object field);
+    Passage updatePassage(Passage updatedPassage);
     List<Passage> findPassages(String date);
     Passage getById(Long id);
     void deletePassage(Long id);
@@ -20,4 +20,6 @@ public interface PassageService {
     List<Passage> FilterPassages(List<Passage> passages,String m_name);
 
     Passage PassageById(Long id);
+
+    Passage findByNameAndDate(String name, Date date);
 }

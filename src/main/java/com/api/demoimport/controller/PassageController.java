@@ -44,30 +44,49 @@ public class PassageController {
         return new ResponseEntity<>(responseMap, HttpStatus.OK);
     }
 
-    // Méthode pour sauvegarder un nouveau passage
     @PostMapping("/savePassage")
     public ResponseEntity<Object> savePassage(@RequestBody Passage passage) {
         Map<String, Object> responseMap = new HashMap<>();
 
-        // Vérifier si le passage existe déjà (par exemple, vérifier s'il a un identifiant)
-        if (passage.getId() != null && passageService.PassageById(passage.getId()) != null) {
-            responseMap.put("status", "error");
-            responseMap.put("message", "Le passage avec l'identifiant spécifié existe déjà.");
-            return new ResponseEntity<>(responseMap, HttpStatus.BAD_REQUEST);
-        }
+        // Vérifier si le passage existe déjà en fonction de certains critères, par exemple, le nom et la date
+        Passage existingPassage = passageService.findByNameAndDate(passage.getName(), passage.getDate());
 
-        // Si le passage n'existe pas encore, l'enregistrer
-        Passage savedPassage = passageService.createPassage(passage);
-        if (savedPassage != null) {
-            responseMap.put("status", "success");
-            responseMap.put("data", savedPassage);
-            return new ResponseEntity<>(responseMap, HttpStatus.OK);
+        if (existingPassage != null) {
+            // Mettre à jour les valeurs existantes du passage avec les nouvelles valeurs
+            existingPassage.setAmountPlus(passage.getAmountPlus());
+            existingPassage.setAmountMinus(passage.getAmountMinus());
+
+            // Enregistrer le passage mis à jour dans la base de données
+            Passage updatedPassage = passageService.updatePassage(existingPassage);
+
+            if (updatedPassage != null) {
+                responseMap.put("status", "success");
+                responseMap.put("data", updatedPassage);
+                return new ResponseEntity<>(responseMap, HttpStatus.OK);
+            } else {
+                responseMap.put("status", "error");
+                responseMap.put("message", "Échec de la mise à jour du passage.");
+                return new ResponseEntity<>(responseMap, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         } else {
-            responseMap.put("status", "error");
-            responseMap.put("message", "Échec de l'enregistrement du passage.");
-            return new ResponseEntity<>(responseMap, HttpStatus.INTERNAL_SERVER_ERROR);
+            // Si le passage n'existe pas encore, l'enregistrer comme nouveau passage
+            Passage savedPassage = passageService.createPassage(passage);
+
+            if (savedPassage != null) {
+                responseMap.put("status", "success");
+                responseMap.put("data", savedPassage);
+                return new ResponseEntity<>(responseMap, HttpStatus.OK);
+            } else {
+                responseMap.put("status", "error");
+                responseMap.put("message", "Échec de l'enregistrement du passage.");
+                return new ResponseEntity<>(responseMap, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         }
     }
+
+
+
+
 }
 
 

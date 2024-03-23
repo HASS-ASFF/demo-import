@@ -13,6 +13,7 @@ public interface PassageRepository extends JpaRepository<Passage,Long> {
     @Query(nativeQuery = true, value = "SELECT *  FROM Passage WHERE LEFT(date,10.) = :bilanDate ")
     List<Passage> findPassagesByBilanDate(String bilanDate);
 
+    Passage findPassageByNameAndDate(String name,Date date);
     boolean existsById(Long id);
 
 }
