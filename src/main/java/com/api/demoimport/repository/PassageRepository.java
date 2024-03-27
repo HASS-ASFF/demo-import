@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PassageRepository extends JpaRepository<Passage,Long> {
-    @Query(nativeQuery = true, value = "SELECT *  FROM Passage WHERE LEFT(date,10.) = :bilanDate ")
+    @Query(nativeQuery = true, value = "SELECT *  FROM Passage WHERE LEFT(date,10) = :bilanDate ")
     List<Passage> findPassagesByBilanDate(String bilanDate);
 
     Passage findPassageByNameAndDate(String name,Date date);

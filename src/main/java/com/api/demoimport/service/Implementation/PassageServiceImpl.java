@@ -80,8 +80,9 @@ public class PassageServiceImpl implements PassageService {
                     if (val.getName().startsWith(name_p)) {
                         val.setAmountPlus(rawPassage.getAmountPlus());
                         val.setAmountMinus(rawPassage.getAmountMinus());
+                        break;
                     }
-                    break;
+
             }
         }
     }

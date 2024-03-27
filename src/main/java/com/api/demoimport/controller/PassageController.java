@@ -41,6 +41,7 @@ public class PassageController {
         List<Passage> passages = passageService.findPassages(dateString);
         responseMap.put("status", "success");
         responseMap.put("data",passageService.processAccountData(passages));
+        //System.out.println();
         return new ResponseEntity<>(responseMap, HttpStatus.OK);
     }
 

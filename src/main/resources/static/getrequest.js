@@ -27,8 +27,8 @@ $(document).ready(function() {
                         console.log("Success: ", passage);
                         var tableRowHtml = "<tr>"
                             + "<td style='cursor:pointer;' data-field-name='name' class='editable-field'>"+ passage.name+"</td>"
-                            + "<td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field'>"+ passage.amountPlus+"</td>"
-                            + "<td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field'>"+ passage.amountMinus+"</td>"
+                            + "<td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field'>"+ (passage.amountPlus !== "null" ? passage.amountPlus : "")+"</td>"
+                            + "<td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field'>"+ (passage.amountMinus !== "null" ? passage.amountMinus : "")+"</td>"
                             + "<td><i class=\"fa-regular fa-pen-to-square save-icon\"></i></td>"
                             +"</tr>";
                         $('#getResultDiv').append(tableRowHtml);

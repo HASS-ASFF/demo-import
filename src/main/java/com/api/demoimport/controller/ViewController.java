@@ -23,7 +23,7 @@ public class ViewController {
     public String passagesCRUD(Model model) {
         List<Passage> passages_db = passageService.getAllPassages();
         List<Passage> passages_final = passageService.processAccountData(passages_db);
-        System.out.println(passages_final);
+        //System.out.println(passages_final);
         model.addAttribute("part1", passageService.FilterPassages(passages_final, PassageCategory.RESULTAT_NET_COMPTABLE.getMain_name()));
         model.addAttribute("part2", passageService.FilterPassages(passages_final,PassageCategory.REINTEGRATIONS_FISCALES.getMain_name()));
         model.addAttribute("part3", passageService.FilterPassages(passages_final,PassageCategory.DEDUCTIONS_FISCALES.getMain_name()));
