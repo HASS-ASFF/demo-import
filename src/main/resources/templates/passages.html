@@ -14,6 +14,8 @@
 
     <script src="/getrequest.js"></script>
     <script src="/postrequest.js"></script>
+    <script src="/passage.js"></script>
+
 </head>
 
 <style>
@@ -187,43 +189,5 @@
 </div>
 
 </body>
-
-<script>
-  $(document).ready(function() {
-        // Function to handle click on editable fields
-        $('.editable-field').click(function(event) {
-            event.stopPropagation();
-            $(this).empty();
-            var fieldValue = $(this).text().trim();
-            var inputType = 'input';
-            var inputHtml = '<' + inputType + ' class="edit-input form-control" value="' + fieldValue + '">';
-            $(this).append(inputHtml);
-            $('.edit-input').focus();
-        });
-
-        // Function to handle input field blur (when clicked outside)
-        $(document).on('blur', '.edit-input', function(event) {
-        var newValue = $(this).val().trim();
-        var tdElement = $(this).closest('.editable-field');
-        tdElement.text(newValue);
-    });
-
-        // Function to prevent removing input when clicking inside
-        $(document).on('click', '.edit-input', function(event) {
-        event.stopPropagation();
-    });
-
-        // Function to handle click outside the editable field
-  $(document).click(function() {
-        $('.edit-input').each(function() {
-        var newValue = $(this).val().trim();
-        var tdElement = $(this).closest('.editable-field');
-        tdElement.text(newValue);
-        });
-  });
-  });
-
-
-</script>
 
 </html>

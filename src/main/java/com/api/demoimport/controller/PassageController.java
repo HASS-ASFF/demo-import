@@ -2,6 +2,7 @@ package com.api.demoimport.controller;
 
 import com.api.demoimport.dto.ServiceResponse;
 import com.api.demoimport.entity.Bilan.Passage;
+import com.api.demoimport.enums.PassageCategory;
 import com.api.demoimport.service.Implementation.PassageServiceImpl;
 import com.api.demoimport.service.PassageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @CrossOrigin("http://localhost:8080")
 @RestController
@@ -38,10 +36,22 @@ public class PassageController {
     @RequestMapping(value = "/getPassagesByDate", method = RequestMethod.GET)
     public ResponseEntity<Object> getPassagesByDate(@RequestParam("date") String dateString) {
         Map<String, Object> responseMap = new HashMap<>();
-        List<Passage> passages = passageService.findPassages(dateString);
+        List<Passage> passages_db = passageService.findPassages(dateString);
+        List<Passage> passages_final = passageService.processAccountData(passages_db);
+
+        List<List<Passage>> parts = new ArrayList<>();
+        parts.add(passageService.FilterPassages(passages_final, PassageCategory.RESULTAT_NET_COMPTABLE.getMain_name()));
+        parts.add(passageService.FilterPassages(passages_final, PassageCategory.REINTEGRATIONS_FISCALES.getMain_name()));
+        parts.add(passageService.FilterPassages(passages_final, PassageCategory.DEDUCTIONS_FISCALES.getMain_name()));
+        parts.add(passageService.FilterPassages(passages_final, PassageCategory.RESULTAT_BRUT_FISCAL.getMain_name()));
+        parts.add(passageService.FilterPassages(passages_final, PassageCategory.REPORTS_DEFICITAIRES_IMPUTES.getMain_name()));
+        parts.add(passageService.FilterPassages(passages_final, PassageCategory.RESULTAT_NET_FISCAL.getMain_name()));
+        parts.add(passageService.FilterPassages(passages_final, PassageCategory.CUMUL_DES_AMORTISSEMENTS_FISCALEMENT_DIFFERES.getMain_name()));
+        parts.add(passageService.FilterPassages(passages_final, PassageCategory.CUMUL_DES_DEFICITS_FISCAUX_RESTANT_A_REPORTER.getMain_name()));
+
         responseMap.put("status", "success");
-        responseMap.put("data",passageService.processAccountData(passages));
-        //System.out.println();
+        responseMap.put("data", parts);
+
         return new ResponseEntity<>(responseMap, HttpStatus.OK);
     }
 

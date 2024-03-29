@@ -25,10 +25,10 @@ $(document).ready(function() {
                 contentType: 'application/json',
                 data: JSON.stringify(data),
                 success: function(response) {
-                    // Gérer la réponse de votre contrôleur ici
+                    alert("passage added succesfully !");
                 },
                 error: function(xhr, status, error) {
-                    // Gérer les erreurs ici
+                    alert("please retry !");
                 }
             });
         });
