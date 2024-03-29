@@ -28,11 +28,10 @@
     <h2>Passage Management</h2>
 
     <button id="getPassagesByDate" type="button" class="btn btn-secondary">Afficher les passages</button>
-    <input type="date"
-           id="dateBilan"
-           min="2000-01-01"
-           max="2025-12-31"
-           step="1">
+    <input type="text" id="dateBilan" list="datesList" placeholder="Sélectionner une date">
+
+    <datalist id="datesList"></datalist>
+
     <table border="1px" class="table table-striped mt-3">
         <thead>
         <tr>
@@ -189,5 +188,22 @@
 </div>
 
 </body>
+
+<script>
+    // Fonction pour générer les options du datalist avec les dates du 31 décembre
+    function generateDatesList() {
+        var datalist = document.getElementById("datesList");
+        for (var year = 2000; year <= 2025; year++) {
+            var option = document.createElement("option");
+            // Formatage de la date au format DD/MM/AAAA
+            var formattedDate = "31/12/" + year;
+            option.value = formattedDate;
+            datalist.appendChild(option);
+        }
+    }
+
+    // Appel de la fonction au chargement de la page
+    window.onload = generateDatesList;
+</script>
 
 </html>
