@@ -4,13 +4,14 @@ import com.api.demoimport.entity.Bilan.Passage;
 import com.api.demoimport.enums.PassageCategory;
 import com.api.demoimport.service.Implementation.PassageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @CrossOrigin("http://localhost:8080")
@@ -34,5 +35,7 @@ public class ViewController {
         model.addAttribute("part8", passageService.FilterPassages(passages_final,PassageCategory.CUMUL_DES_DEFICITS_FISCAUX_RESTANT_A_REPORTER.getMain_name()));
         return "passages";
     }
+
+
 
 }
