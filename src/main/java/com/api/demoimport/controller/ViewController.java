@@ -21,7 +21,7 @@ public class ViewController {
     PassageServiceImpl passageService;
 
     @GetMapping("/passages")
-    public String passagesCRUD(Model model) {
+    public String passages(Model model) {
         List<Passage> passages_db = passageService.getAllPassages();
         List<Passage> passages_final = passageService.processAccountData(passages_db);
         //System.out.println(passages_final);
@@ -36,6 +36,10 @@ public class ViewController {
         return "passages";
     }
 
+    @GetMapping("/passagesImmo")
+    public String passagesImmobilisations(Model model) {
+        return "passagesImmobilisations";
+    }
 
 
 }
