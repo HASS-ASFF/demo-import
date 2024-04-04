@@ -1,6 +1,7 @@
 package com.api.demoimport.service;
 
 import com.api.demoimport.entity.Bilan.Passage;
+import com.api.demoimport.entity.Bilan.SubAccountActif;
 import com.api.demoimport.entity.Bilan.SubAccountPassif;
 
 import java.io.ByteArrayOutputStream;
@@ -22,4 +23,6 @@ public interface PassageService {
     Passage PassageById(Long id);
 
     Passage findByNameAndDate(String name, Date date);
+
+    List<SubAccountActif> findPassageImmo(String date,String company_name);
 }

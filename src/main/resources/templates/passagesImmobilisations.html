@@ -58,6 +58,18 @@
             <td></td>
         </tr>
 
+        <tr th:each="passage : ${part1}">
+            <td data-field-name='name' th:text="${passage.libelle}"></td>
+            <td style='cursor:pointer;' data-field-name='brut' class='editable-field' th:text="${passage.brut}"></td>
+            <td style='cursor:pointer;' data-field-name='acquisition' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='ppe' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='virement' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='cession' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='retrait' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='virement' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='brut' class='editable-field' th:text="${passage.brut}"></td>
+        </tr>
+
         <tr>
             <th scope="row">IMMOBILISATIONS INCORPORELLES</th>
             <td></td>
@@ -70,6 +82,17 @@
             <td></td>
         </tr>
 
+        <tr th:each="passage : ${part2}">
+            <td data-field-name='name' th:text="${passage.libelle}"></td>
+            <td style='cursor:pointer;' data-field-name='brut' class='editable-field' th:text="${passage.brut}"></td>
+            <td style='cursor:pointer;' data-field-name='acquisition' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='ppe' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='virement' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='cession' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='retrait' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='virement' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='brut' class='editable-field' th:text="${passage.brut}"></td>
+        </tr>
 
         <tr>
             <th scope="row">IMMOBILISATIONS CORPORELLES</th>
@@ -83,8 +106,45 @@
             <td></td>
         </tr>
 
+        <tr th:each="passage : ${part3}">
+            <td data-field-name='name' th:text="${passage.libelle}"></td>
+            <td style='cursor:pointer;' data-field-name='brut' class='editable-field' th:text="${passage.brut}"></td>
+            <td style='cursor:pointer;' data-field-name='acquisition' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='ppe' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='virement' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='cession' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='retrait' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='virement' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='brut' class='editable-field' th:text="${passage.brut}"></td>
+        </tr>
+
         </tbody>
     </table>
 </div>
 </body>
+
+<script>
+    // Fonction pour générer les options du datalist avec les dates du 31 décembre
+    function generateDatesList() {
+        var datalist = document.getElementById("datesList");
+        for (var year = 2000; year <= 2025; year++) {
+            var option = document.createElement("option");
+            // Formatage de la date au format DD/MM/AAAA
+            var formattedDate = "31/12/" + year;
+            option.value = formattedDate;
+            datalist.appendChild(option);
+        }
+    }
+
+    // Appel de la fonction au chargement de la page
+    window.onload = generateDatesList;
+
+    // Fonction pour ouvrir le modal au chargement de la page
+    $(document).ready(function() {
+        // Ouvrir le modal
+        $('#dateModal').modal('show');
+    });
+
+</script>
+
 </html>

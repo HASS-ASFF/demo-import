@@ -5,6 +5,7 @@ import com.api.demoimport.entity.Bilan.SubAccountActif;
 import com.api.demoimport.entity.Bilan.SubAccountPassif;
 import com.api.demoimport.enums.AccountCategoryClass1;
 import com.api.demoimport.enums.PassageCategory;
+import com.api.demoimport.repository.BalanceDetailRepository;
 import com.api.demoimport.repository.PassageRepository;
 import com.api.demoimport.service.PassageService;
 import lombok.Setter;
@@ -19,6 +20,12 @@ public class PassageServiceImpl implements PassageService {
 
     @Autowired
     private PassageRepository passageRepository;
+
+    @Autowired
+    private BalanceDetailServiceImpl balanceDetailService;
+
+    @Autowired
+    private BalanceDetailRepository repository;
 
     @Override
     public List<Passage> getAllPassages() {
@@ -109,5 +116,37 @@ public class PassageServiceImpl implements PassageService {
     @Override
     public Passage findByNameAndDate(String name, Date date) {
         return passageRepository.findPassageByNameAndDate(name,date);
+    }
+
+    @Override
+    public List<SubAccountActif> findPassageImmo(String date,String company_name) {
+        List<Object[]> resultrequest = repository.getPassageImmo(date,company_name);
+        List<SubAccountActif> bilanActifs = ConvertToBilanActif(resultrequest);
+        balanceDetailService.regroupClassesA(bilanActifs);
+        return bilanActifs;
+    }
+
+
+    private List<SubAccountActif> ConvertToBilanActif(List<Object[]> resultsrequest){
+
+        List<SubAccountActif> bilansActifs = new ArrayList<>();
+
+        try{
+            for (Object[] resultat : resultsrequest) {
+
+                String mainA = balanceDetailService.getMainAccount(resultat[0].toString());
+                String n_compte =  resultat[0].toString();
+                String libelle = (String) resultat[1];
+                Double brut = (Double) resultat[2];
+                SubAccountActif subAccountActif = new SubAccountActif(mainA,n_compte,libelle,brut);
+                bilansActifs.add(subAccountActif);
+            }
+
+            return bilansActifs;
+
+        }catch (RuntimeException e){
+            throw new RuntimeException("Failed to convert object to SubAccountActif (convert method) "+e.getMessage());
+        }
+
     }
 }

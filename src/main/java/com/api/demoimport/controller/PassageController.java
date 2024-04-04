@@ -2,7 +2,9 @@ package com.api.demoimport.controller;
 
 import com.api.demoimport.dto.ServiceResponse;
 import com.api.demoimport.entity.Bilan.Passage;
+import com.api.demoimport.entity.Bilan.SubAccountActif;
 import com.api.demoimport.entity.Bilan.SubAccountCPC;
+import com.api.demoimport.enums.AccountCategoryClass2;
 import com.api.demoimport.enums.AccountCategoryClass6;
 import com.api.demoimport.enums.PassageCategory;
 import com.api.demoimport.repository.BalanceDetailRepository;
@@ -178,6 +180,22 @@ public class PassageController {
         parts.add(passageService.FilterPassages(passages_final, PassageCategory.RESULTAT_NET_FISCAL.getMain_name()));
         parts.add(passageService.FilterPassages(passages_final, PassageCategory.CUMUL_DES_AMORTISSEMENTS_FISCALEMENT_DIFFERES.getMain_name()));
         parts.add(passageService.FilterPassages(passages_final, PassageCategory.CUMUL_DES_DEFICITS_FISCAUX_RESTANT_A_REPORTER.getMain_name()));
+
+        responseMap.put("status", "success");
+        responseMap.put("data", parts);
+
+        return ResponseEntity.ok().body(responseMap);
+    }
+
+    @RequestMapping(value = "/passagesImmoFilter", method = RequestMethod.GET)
+    public ResponseEntity<Map<String, Object>> passagesImmoFilter(@RequestParam("date") String dateString){
+        Map<String, Object> responseMap = new HashMap<>();
+        List<SubAccountActif> passageImmo = passageService.findPassageImmo(dateString,"AL MORAFIQ");
+        List<SubAccountActif> passageImmo_final = accountDataManagerService.processAccountDataA(passageImmo,"2");
+        List<List<SubAccountActif>> parts = new ArrayList<>();
+        parts.add(accountDataManagerService.FilterAccountDataA(passageImmo_final, AccountCategoryClass2.IMMOBILISATION_NON_VALEURS.getLabel()));
+        parts.add(accountDataManagerService.FilterAccountDataA(passageImmo_final, AccountCategoryClass2.IMMOBILISATION_INCORPORELLES.getLabel()));
+        parts.add(accountDataManagerService.FilterAccountDataA(passageImmo_final, AccountCategoryClass2.IMMOBILISATION_CORPORELLES.getLabel()));
 
         responseMap.put("status", "success");
         responseMap.put("data", parts);

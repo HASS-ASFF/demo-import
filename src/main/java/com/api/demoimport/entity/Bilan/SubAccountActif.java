@@ -32,6 +32,13 @@ public class SubAccountActif {
         this.netN=netn;
     }
 
+    public SubAccountActif(String mainA, String nCompte, String libelle, Double brut) {
+        this.mainAccount = mainA;
+        this.n_compte=nCompte;
+        this.libelle=libelle;
+        this.brut=brut;
+    }
+
 
     public static List<SubAccountActif> initializeData(String n_class){
 

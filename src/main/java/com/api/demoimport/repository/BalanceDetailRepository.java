@@ -42,6 +42,16 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
             "GROUP BY b.n_compte,b.label, b.debit_fex, b.debit_dex;")
     List<Object[]> getBilanC2(String dateBilan,String company_name);
 
+    @Query(nativeQuery = true, value = "SELECT b.n_compte AS num_compte, b.label AS comptes,\n" +
+            "            COALESCE(SUM(b.debit_fex), 0) AS brut\n" +
+            "            FROM balance_detail b\n" +
+            "            JOIN balance ON balance.id = b.balance_id\n" +
+            "            WHERE b.the_class = 2 AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :dateBilan\n" +
+            "            AND company_name = :company_name AND b.n_compte REGEXP  '2[123].*'\n" +
+            "            GROUP BY b.n_compte,b.label, b.debit_fex;")
+    List<Object[]> getPassageImmo(String dateBilan,String company_name);
+
+
     // GET ACCOUNTS CLASS 3
     @Query(nativeQuery = true, value ="SELECT b.n_compte AS num_compte,\n" +
             "b.label AS comptes,\n" +
