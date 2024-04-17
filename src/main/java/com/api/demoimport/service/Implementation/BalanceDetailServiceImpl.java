@@ -29,6 +29,7 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
     private AccountDataManagerServiceImpl accountDataManagerService;
 
     // Save file excel balance and retrieve data & save it to db
+    @Override
     public void save(MultipartFile file,String date,String company_name) {
         try {
             List<BalanceDetail> balanceDetails = excelHelperServiceImpl.excelToBalanceDetail(file.getInputStream(),date,company_name);
@@ -41,6 +42,7 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
 
 
     // Get all details of a balance
+    @Override
     public List<BalanceDetail> getBalanceDetails() {
         return repository.findAll();
     }

@@ -2,8 +2,10 @@ package com.api.demoimport.service.Implementation;
 
 import com.api.demoimport.entity.Balance;
 import com.api.demoimport.entity.BalanceDetail;
+import com.api.demoimport.entity.Immobilisation;
 import com.api.demoimport.entity.PlanComptable;
 import com.api.demoimport.repository.BalanceRepository;
+import com.api.demoimport.repository.ImmobilisationRepository;
 import com.api.demoimport.service.ExcelHelperService;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import net.sf.jasperreports.engine.util.JRStyledText;
@@ -27,6 +29,7 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
     private PlanComptableServiceImpl excelPlanComptableServiceImpl;
     @Autowired
     private BalanceRepository balanceRepository;
+
 
     // Defining type of MIME
     public static String TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
@@ -178,11 +181,59 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
         return balanceDetails;
     }
 
+    @Override
+    public List<Immobilisation> excelToImmobilisation(InputStream is, String date, String company_name) throws ParseException, IOException {
+
+        XSSFWorkbook workbook = new XSSFWorkbook(is);
+        XSSFSheet sheet = workbook.getSheet("immobilisation");
+        List<Immobilisation> immobilisations = new ArrayList<>();
+
+
+        for (int i = sheet.getFirstRowNum(); i < sheet.getLastRowNum() + 1; i++){
+
+            if (i == 0) {
+                continue;
+            }
+
+            Row row = sheet.getRow(i);
+            Immobilisation immobilisation = new Immobilisation();
+
+            String name = getCellValuesAsString(row.getCell(0));
+            String date_immo = getCellValuesAsString(row.getCell(1));
+            Double prixAcqui = getCellValuesAsDouble(row.getCell(2));
+            Double cout = getCellValuesAsDouble(row.getCell(3));
+            Double amortAnterieur = getCellValuesAsDouble(row.getCell(4));
+            Double taux_amort = getCellValuesAsDouble(row.getCell(5));
+            Double amortDeduit = getCellValuesAsDouble(row.getCell(6));
+            Double dea = getCellValuesAsDouble(row.getCell(7));
+            Double deaGlobal = getCellValuesAsDouble(row.getCell(8));
+
+            immobilisation.setName(name);
+            /*SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");*/
+            immobilisation.setDateAquisition(date_immo);
+            immobilisation.setPrixAquisition(prixAcqui);
+            immobilisation.setCoutDeRevient(cout);
+            immobilisation.setAmortAnterieur(amortAnterieur);
+            immobilisation.setTaux_amort(taux_amort);
+            immobilisation.setAmortDeduitBenefice(amortDeduit);
+            immobilisation.setDea(dea);
+            immobilisation.setDeaGlobal(deaGlobal);
+
+            immobilisations.add(immobilisation);
+        }
+
+        workbook.close();
+
+        return immobilisations;
+    }
+
     // Cleaning to have format Double
-    public Double convertDhStringToDouble(String dhNumber) {
+    private static Double convertDhStringToDouble(String dhNumber) {
         // enlever les caractères du résultat string ( à savoir , et DH )
         String cleanedInput = dhNumber.replaceAll(",", "");
         cleanedInput = cleanedInput.replaceAll(" DH", "");
+
+        System.out.println(cleanedInput);
         try {
             return Double.parseDouble(cleanedInput);
         } catch (NumberFormatException e) {

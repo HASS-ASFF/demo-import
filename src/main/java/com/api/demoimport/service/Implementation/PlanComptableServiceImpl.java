@@ -23,6 +23,7 @@ public class PlanComptableServiceImpl implements PlanComptableService {
     ExcelHelperServiceImpl excelHelperServiceImpl;
 
     // Méthode pour sauvegarder les données d'un fichier Excel de type PlanComptable
+    @Override
     public void save(MultipartFile file) {
         try {
             // Convert data excel to PlanComptable object
@@ -41,11 +42,13 @@ public class PlanComptableServiceImpl implements PlanComptableService {
     }
 
     // Get all PlanComptable data
+    @Override
     public List<PlanComptable> getPlanComptables() {
         return repository.findAll();
     }
 
     // Fetch for a data in PlanComptable with the account number
+    @Override
     public  Optional<PlanComptable> search(Long noCompte) {
         return repository.querySearchPlanComptable(noCompte);
     }

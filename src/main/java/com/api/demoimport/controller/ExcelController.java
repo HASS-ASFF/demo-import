@@ -6,6 +6,7 @@ import com.api.demoimport.entity.PlanComptable;
 import com.api.demoimport.service.Implementation.ExcelHelperServiceImpl;
 import com.api.demoimport.message.ResponseMessage;
 import com.api.demoimport.service.Implementation.BalanceDetailServiceImpl;
+import com.api.demoimport.service.Implementation.ImmobilisationServiceImpl;
 import com.api.demoimport.service.Implementation.PlanComptableServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,9 @@ public class ExcelController {
 
     @Autowired
     BalanceDetailServiceImpl fileServiceBalance;
+
+    @Autowired
+    ImmobilisationServiceImpl fileServiceImmo;
 
 
 
@@ -118,7 +122,41 @@ public class ExcelController {
     }
 
 
-    // FOR TESTING ENDPOINTS FOR CPC CLASSES
+    // Méthode pour télécharger un fichier immobilisation
+    @PostMapping("/upload-immobilisation")
+    public ResponseEntity<ResponseMessage> uploadFileImmobilisation(@RequestParam("file") MultipartFile file,
+                                                             @RequestParam("dateBalance") String date,
+                                                             @RequestParam("companyName") String company_name)
+    {
+        String message = "";
+
+        // Vérifie si le fichier est au format Excel
+        if (ExcelHelperServiceImpl.hasExcelFormat(file)) {
+            try {
+
+                // Sauvegarde le fichier immobilisation
+                fileServiceImmo.save(file,date,company_name);
+
+                message = "Uploaded the file successfully: " + file.getOriginalFilename();
+
+                return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+            } catch (Exception e) {
+                e.printStackTrace();
+                message = "Could not upload the file: " + file.getOriginalFilename() + "!";
+                return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
+            }
+        }
+
+        message = "Please upload an excel file!";
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
+    }
+
+
+}
+
+
+
+// FOR TESTING ENDPOINTS FOR CPC CLASSES
    /* @GetMapping("/class6")
     public ResponseEntity<List<SubAccountCPC>> getClassSixDetails(@RequestParam("dateBalance") String date,
                                                                   @RequestParam("companyName") String company_name) throws Exception {
@@ -158,5 +196,3 @@ public class ExcelController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }*/
-
-}
