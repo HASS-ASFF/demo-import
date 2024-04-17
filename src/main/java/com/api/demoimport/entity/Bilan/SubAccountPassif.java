@@ -20,7 +20,11 @@ public class SubAccountPassif {
     private Double brut;
     private Double brutP;
 
-
+    SubAccountPassif(String mainAccount,String n_compte,String libelle){
+        this.mainAccount = mainAccount;
+        this.n_compte = n_compte;
+        this.libelle = libelle;
+    }
     public static List<SubAccountPassif> initializeData(String n_class){
 
         List<SubAccountPassif> subAccountPassifs = new ArrayList<>();
@@ -35,6 +39,12 @@ public class SubAccountPassif {
                         subAccountPassifs.add(subAccountPassif);
                     }
                 }
+                subAccountPassifs.add(1, new SubAccountPassif(AccountCategoryClass1.CAPITAUX_PROPRES.getLabel(),
+                        "11190000","Moins : actionnaires, capital souscrit non appelé"));
+                subAccountPassifs.add(2, new SubAccountPassif(AccountCategoryClass1.CAPITAUX_PROPRES.getLabel(),
+                        "11191000","Moins : Capital appelé"));
+                subAccountPassifs.add(3,new SubAccountPassif(AccountCategoryClass1.CAPITAUX_PROPRES.getLabel(),
+                        "11192000","Moins : Dont versé"));
                 break;
             case "4":
                 for (AccountCategoryClass4 category : AccountCategoryClass4.values()) {

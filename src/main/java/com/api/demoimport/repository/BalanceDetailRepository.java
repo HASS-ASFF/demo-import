@@ -13,15 +13,17 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
     // GETTING ACCOUNTS FROM BALANCE AND BY DATE
 
     // GET ACCOUNTS CLASS 1
-    @Query(nativeQuery = true, value ="SELECT b.n_compte AS num_compte,\n" +
-            "b.label AS comptes,\n" +
-            "b.credit_fex AS brut,\n" +
-            "b.credit_dex AS brutp\n"+
-            "FROM balance_detail b\n" +
-            "JOIN balance ON balance.id = b.balance_id\n" +
-            "WHERE b.the_class=1 AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :dateBilan\n" +
-            "AND company_name = :company_name\n"+
-            "GROUP BY b.n_compte,b.label, b.credit_fex, credit_dex;")
+    // IN CASE IF WE HAVE DEBIT ADD minus (-)
+    @Query(nativeQuery = true, value ="SELECT b.n_compte AS num_compte, b.label AS comptes,\n" +
+            "CASE \n" +
+            "   WHEN b.credit_fex = 0 AND b.n_compte LIKE '116%' THEN -1 * b.debit_fex \n" +
+            "   ELSE b.credit_fex\n" +
+            "END AS brut\n" +
+            "            FROM balance_detail b\n" +
+            "            JOIN balance ON balance.id = b.balance_id\n" +
+            "            WHERE b.the_class=1 AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :dateBilan\n" +
+            "            AND company_name = :company_name\n" +
+            "            GROUP BY b.n_compte,b.label, b.credit_fex, b.debit_fex;")
     List<Object[]> getBilanC1(String dateBilan,String company_name);
 
     // GET ACCOUNTS CLASS 2
@@ -42,13 +44,14 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
             "GROUP BY b.n_compte,b.label, b.debit_fex, b.debit_dex;")
     List<Object[]> getBilanC2(String dateBilan,String company_name);
 
-    @Query(nativeQuery = true, value = "SELECT b.n_compte AS num_compte, b.label AS comptes,\n" +
-            "            COALESCE(SUM(b.debit_fex), 0) AS brut\n" +
-            "            FROM balance_detail b\n" +
-            "            JOIN balance ON balance.id = b.balance_id\n" +
-            "            WHERE b.the_class = 2 AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :dateBilan\n" +
-            "            AND company_name = :company_name AND b.n_compte REGEXP  '2[123].*'\n" +
-            "            GROUP BY b.n_compte,b.label, b.debit_fex;")
+    // GET PASSAGES IMMOBILISATIONS
+    @Query(nativeQuery = true, value = "SELECT bd.n_compte AS num_compte, bd.label AS comptes,\n" +
+            "                       COALESCE(SUM(bd.debit_fex), 0) AS brut\n" +
+            "                        FROM balance_detail bd\n" +
+            "                        JOIN balance b ON b.id = bd.balance_id \n" +
+            "                        WHERE bd.the_class = 2 AND b.company_name = :company_name AND bd.n_compte REGEXP  '2[123].*'\n" +
+            "                        AND date_format(b.date, '%Y-%m-%d') = :dateBilan" +
+            "                        GROUP BY bd.n_compte,bd.label, bd.debit_fex;")
     List<Object[]> getPassageImmo(String dateBilan,String company_name);
 
 
@@ -112,8 +115,8 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
             "END AS brut\n" +
             "FROM balance_detail b\n" +
             "JOIN balance ON balance.id = b.balance_id\n" +
-            "WHERE b.the_class=6 AND DATE_FORMAT(balance.date, '%Y-%m-%d') = '2024-12-30'\n" +
-            "AND company_name = 'AL MORAFIQ'\n" +
+            "WHERE b.the_class=6 AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :date\n" +
+            "AND company_name = :company_name \n" +
             "GROUP BY b.n_compte,b.label, b.debit_fex, b.credit_fex;")
     List<Object []> getCPCC6(String date,String company_name);
 
@@ -124,8 +127,8 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
             "b.credit_fex AS brut\n"+
             "FROM balance_detail b\n"+
             "JOIN balance ON balance.id = b.balance_id\n" +
-            "WHERE b.the_class=7 AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :date\n" +
-            "AND company_name = :company_name\n"+
+            "WHERE b.the_class=7 AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :date \n" +
+            "AND company_name = :company_name \n"+
             "GROUP BY b.n_compte,b.label, b.credit_fex;")
     List<Object []> getCPCC7(String date,String company_name);
 

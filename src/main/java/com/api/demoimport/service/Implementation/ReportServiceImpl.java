@@ -123,6 +123,7 @@ public class ReportServiceImpl implements ReportService {
             return jasperConfiguration(pathP,parameters);
 
         }catch(RuntimeException e) {
+            e.printStackTrace();
             String message = "Failed to report bilan passif " + e.getLocalizedMessage() + "!";
             throw new RuntimeException(message);
         }
@@ -142,6 +143,9 @@ public class ReportServiceImpl implements ReportService {
             List<SubAccountActif> ClassTwo = balanceDetailServiceImpl.getClassTwo(date,company_name);
             List<SubAccountActif> FullClassTwo = accountDataManagerServiceImpl.
                     processAccountDataA(ClassTwo,"2");
+            for (SubAccountActif subAccountActif : FullClassTwo) {
+                System.out.println(subAccountActif.getLibelle() + " " + subAccountActif.getBrut());
+            }
             List<SubAccountActif> dataset1 = accountDataManagerServiceImpl.
                     FilterAccountDataA(FullClassTwo, AccountCategoryClass2.IMMOBILISATION_NON_VALEURS.getLabel());
             List<SubAccountActif> dataset2 = accountDataManagerServiceImpl.

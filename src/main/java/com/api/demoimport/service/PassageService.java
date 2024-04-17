@@ -12,7 +12,7 @@ import java.util.Map;
 public interface PassageService {
     List<Passage> getAllPassages();
     Passage createPassage(Passage passage);
-    Passage updatePassage(Passage updatedPassage);
+    Passage updatePassage(Passage updatedPassage,String date);
     List<Passage> findPassages(String date);
     Passage getById(Long id);
     void deletePassage(Long id);
@@ -22,7 +22,7 @@ public interface PassageService {
 
     Passage PassageById(Long id);
 
-    Passage findByNameAndDate(String name, Date date);
+    Passage findByNameAndDate(String name, String date);
 
     List<SubAccountActif> findPassageImmo(String date,String company_name);
 }

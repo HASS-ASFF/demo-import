@@ -208,14 +208,14 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
             String n_compte =  resultat[0].toString();
             String libelle = (String) resultat[1];
             Double brut = (Double) resultat[2];
-            Double brutp = (Double) resultat[3];
+            //Double brutp = (Double) resultat[3];
 
             SubAccountPassif bilanPassif = new SubAccountPassif();
             bilanPassif.setMainAccount(mainA);
             bilanPassif.setN_compte(n_compte);
             bilanPassif.setLibelle(libelle);
             bilanPassif.setBrut(brut == 0 ? null : FormatUtils.formatDecimal(brut));
-            bilanPassif.setBrutP(brutp == 0 ? null : FormatUtils.formatDecimal(brutp));
+            //bilanPassif.setBrutP(brutp == 0 ? null : FormatUtils.formatDecimal(brutp));
             bilansPassifs.add(bilanPassif);
         }
 

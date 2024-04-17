@@ -12,9 +12,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-    <script src="/getrequest.js"></script>
-    <script src="/postrequest.js"></script>
     <script src="/passage.js"></script>
+    <script src="/passageESG.js"></script>
+    <script src="/fieldInput.js"></script>
 
 </head>
 
@@ -196,7 +196,7 @@
         for (var year = 2000; year <= 2025; year++) {
             var option = document.createElement("option");
             // Formatage de la date au format DD/MM/AAAA
-            var formattedDate = "31/12/" + year;
+            var formattedDate = year + "-12-31";
             option.value = formattedDate;
             datalist.appendChild(option);
         }
@@ -205,11 +205,6 @@
     // Appel de la fonction au chargement de la page
     window.onload = generateDatesList;
 
-    // Fonction pour ouvrir le modal au chargement de la page
-    $(document).ready(function() {
-        // Ouvrir le modal
-        $('#dateModal').modal('show');
-    });
 
 </script>
 

@@ -27,8 +27,6 @@ public class ExcelController {
     @Autowired
     BalanceDetailServiceImpl fileServiceBalance;
 
-    //AccountDataManagerServiceImpl accountDataManagerServiceImpl;
-
 
 
     // Méthode POST pour télécharger un fichier plan comptable
@@ -47,6 +45,7 @@ public class ExcelController {
                 return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
             } catch (Exception e) {
                 message = "Could not upload the file: " + file.getOriginalFilename() + "!";
+
                 return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
             }
         }
@@ -91,6 +90,7 @@ public class ExcelController {
 
                 return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
             } catch (Exception e) {
+                e.printStackTrace();
                 message = "Could not upload the file: " + file.getOriginalFilename() + "!";
                 return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
             }

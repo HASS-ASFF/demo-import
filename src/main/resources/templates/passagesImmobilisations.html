@@ -13,6 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
     <script src="/passageImmo.js"></script>
+    <script src="/fieldInput.js"></script>
 </head>
 <body>
 
@@ -45,10 +46,10 @@
 
 
         </thead>
-        <tbody>
+        <tbody id="getResultDiv">
 
         <tr>
-            <th scope="row">IMMOBILISATION EN NON-VALEURS</th>
+            <th scope="row">I. IMMOBILISATION EN NON-VALEURS</th>
             <td></td>
             <td></td>
             <td></td>
@@ -67,12 +68,12 @@
             <td style='cursor:pointer;' data-field-name='virement' class='editable-field'></td>
             <td style='cursor:pointer;' data-field-name='cession' class='editable-field'></td>
             <td style='cursor:pointer;' data-field-name='retrait' class='editable-field'></td>
-            <td style='cursor:pointer;' data-field-name='virement' class='editable-field'></td>
-            <td style='cursor:pointer;' data-field-name='brut' class='editable-field' th:text="${passage.brut}"></td>
+            <td style='cursor:pointer;' data-field-name='virementM' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='brutE'  th:text="${passage.brut}"></td>
         </tr>
 
         <tr>
-            <th scope="row">IMMOBILISATIONS INCORPORELLES</th>
+            <th scope="row">II. IMMOBILISATIONS INCORPORELLES</th>
             <td></td>
             <td></td>
             <td></td>
@@ -91,12 +92,12 @@
             <td style='cursor:pointer;' data-field-name='virement' class='editable-field'></td>
             <td style='cursor:pointer;' data-field-name='cession' class='editable-field'></td>
             <td style='cursor:pointer;' data-field-name='retrait' class='editable-field'></td>
-            <td style='cursor:pointer;' data-field-name='virement' class='editable-field'></td>
-            <td style='cursor:pointer;' data-field-name='brut' class='editable-field' th:text="${passage.brut}"></td>
+            <td style='cursor:pointer;' data-field-name='virementM' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='brutE'  th:text="${passage.brut}"></td>
         </tr>
 
         <tr>
-            <th scope="row">IMMOBILISATIONS CORPORELLES</th>
+            <th scope="row">III. IMMOBILISATIONS CORPORELLE+</th>
             <td></td>
             <td></td>
             <td></td>
@@ -115,8 +116,8 @@
             <td style='cursor:pointer;' data-field-name='virement' class='editable-field'></td>
             <td style='cursor:pointer;' data-field-name='cession' class='editable-field'></td>
             <td style='cursor:pointer;' data-field-name='retrait' class='editable-field'></td>
-            <td style='cursor:pointer;' data-field-name='virement' class='editable-field'></td>
-            <td style='cursor:pointer;' data-field-name='brut' class='editable-field' th:text="${passage.brut}"></td>
+            <td style='cursor:pointer;' data-field-name='virementM' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='brutE'  th:text="${passage.brut}"></td>
         </tr>
 
         </tbody>

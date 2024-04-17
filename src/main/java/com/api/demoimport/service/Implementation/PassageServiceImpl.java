@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -38,16 +40,16 @@ public class PassageServiceImpl implements PassageService {
     }
 
     @Override
-    public Passage updatePassage(Passage updatedPassage) {
+    public Passage updatePassage(Passage updatedPassage,String date) {
         // Vérifier si le passage existe dans la base de données
-        Optional<Passage> optionalPassage = passageRepository.findById(updatedPassage.getId());
+        Passage passage = passageRepository.findPassageByND(updatedPassage.getName(),date);
 
         // Mettre à jour les valeurs du passage existant avec les nouvelles valeurs
-        Passage existingPassage = optionalPassage.get();
-        existingPassage.setName(updatedPassage.getName());
-        existingPassage.setAmountPlus(updatedPassage.getAmountPlus());
-        existingPassage.setAmountMinus(updatedPassage.getAmountMinus());
-        // Vous pouvez également mettre à jour d'autres champs si nécessaire
+        Passage existingPassage = new Passage();
+        existingPassage.setId(passage.getId());
+        existingPassage.setName(passage.getName());
+        existingPassage.setAmountPlus(passage.getAmountPlus());
+        existingPassage.setAmountMinus(passage.getAmountMinus());
 
         // Enregistrer les modifications dans la base de données
         return passageRepository.save(existingPassage);
@@ -87,7 +89,6 @@ public class PassageServiceImpl implements PassageService {
                     if (val.getName().startsWith(name_p)) {
                         val.setAmountPlus(rawPassage.getAmountPlus());
                         val.setAmountMinus(rawPassage.getAmountMinus());
-                        break;
                     }
 
             }
@@ -114,15 +115,17 @@ public class PassageServiceImpl implements PassageService {
     }
 
     @Override
-    public Passage findByNameAndDate(String name, Date date) {
-        return passageRepository.findPassageByNameAndDate(name,date);
+    public Passage findByNameAndDate(String name, String date) {
+        return passageRepository.findPassageByND(name,date);
     }
 
     @Override
     public List<SubAccountActif> findPassageImmo(String date,String company_name) {
+
         List<Object[]> resultrequest = repository.getPassageImmo(date,company_name);
         List<SubAccountActif> bilanActifs = ConvertToBilanActif(resultrequest);
         balanceDetailService.regroupClassesA(bilanActifs);
+        bilanActifs.forEach(x -> System.out.println(x.getBrut()));
         return bilanActifs;
     }
 

@@ -5,7 +5,10 @@ import com.api.demoimport.entity.BalanceDetail;
 import com.api.demoimport.entity.PlanComptable;
 import com.api.demoimport.repository.BalanceRepository;
 import com.api.demoimport.service.ExcelHelperService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import net.sf.jasperreports.engine.util.JRStyledText;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -118,163 +121,62 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
             }
         }
 
-    // Convert data excel to object BalanceDetail
-    public  List<BalanceDetail> excelToBalanceDetail(InputStream is,String date, String company_name) throws ParseException{
-        try {
-            Workbook workbook = new XSSFWorkbook(is);
+    @Override
+    public List<BalanceDetail> excelToBalanceDetail(InputStream is, String date, String company_name) throws ParseException, IOException {
+        XSSFWorkbook workbook = new XSSFWorkbook(is);
+        XSSFSheet sheet = workbook.getSheet("balance");
+        List<BalanceDetail> balanceDetails = new ArrayList<>();
 
-            Sheet sheet = workbook.getSheet("balance_detail");
-            Iterator<Row> rows = sheet.iterator();
+        // Création d'une instance de Balance avec la date
+        Balance balance = new Balance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        balance.setDate(sdf.parse(date));
+        balance.setCompany_name(company_name);
 
-            List<BalanceDetail> balanceDetails = new ArrayList<>();
+        for (int i = sheet.getFirstRowNum(); i < sheet.getLastRowNum() + 1; i++){
 
-            // Création d'une instance de Balance avec la date au 30/12/2023
-            Balance balance = new Balance();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            balance.setDate(sdf.parse(date));
-            balance.setCompany_name(company_name);
-
-
-            int rowNumber = 0;
-            while (rows.hasNext()) {
-                Row currentRow = rows.next();
-
-
-                if (rowNumber == 0) {
-                    rowNumber++;
-                    continue;
-                }
-
-                Iterator<Cell> cellsInRow = currentRow.iterator();
-
-                BalanceDetail balanceDetail = new BalanceDetail();
-
-
-
-                int cellIdx = 0;
-                while (cellsInRow.hasNext()) {
-                    Cell currentCell = cellsInRow.next();
-
-                    balanceDetail.setBalance(balance);
-
-                    switch (cellIdx) {
-// Récupération des données de chaque cellule et assignation aux attributs de l'objet BalanceDetail
-                        case 0:
-
-                            String compte = currentCell.getCellType() == CellType.STRING
-                                    ? currentCell.getStringCellValue()
-                                    : String.valueOf(currentCell.getNumericCellValue()).replace(".", "").replace("E7",
-                                    repeat(11 - String.valueOf(currentCell.getNumericCellValue()).length()));
-
-
-
-                            Double classValue2 = Double.valueOf(compte);
-// Vérifier si la valeur récupéré existe dans la table plan comptable (numéro de compte)
-                            Optional<PlanComptable> planComptable = excelPlanComptableServiceImpl
-                                    .search(classValue2.longValue());
-
-                            if (planComptable.isPresent()) {
-                                balanceDetail.setCompte(planComptable.get());
-                                balanceDetail.setN_Compte(planComptable.get().getNo_compte());
-                                balanceDetail.setThe_class(planComptable.get().getThe_class());
-                            } else {
-                                //System.out.println("here is ; " + compte);
-                            }
-                            break;
-
-                        case 1:
-                            String label = currentCell.getCellType() == CellType.STRING
-                                    ? currentCell.getStringCellValue()
-                                    : String.valueOf(currentCell.getNumericCellValue());
-
-                            balanceDetail.setLabel(label);
-
-                            break;
-
-                        case 2:
-                            String debitDex = currentCell.getCellType() == CellType.STRING
-                                    ? currentCell.getStringCellValue()
-                                    : String.valueOf(currentCell.getNumericCellValue());
-
-                            //Double classValue3 = convertDhStringToDouble(debitDex);
-                            balanceDetail.setDebitDex(Double.parseDouble(debitDex));
-
-                            break;
-
-                        case 3:
-                            String creditDex = currentCell.getCellType() == CellType.STRING
-                                    ? currentCell.getStringCellValue()
-                                    : String.valueOf(currentCell.getNumericCellValue());
-
-                            Double classValue4 = convertDhStringToDouble(creditDex);
-
-                            balanceDetail.setCreditDex(classValue4);
-
-                            break;
-
-                        case 4:
-                            String debitEx = currentCell.getCellType() == CellType.STRING ? currentCell.getStringCellValue()
-                                    : String.valueOf(currentCell.getNumericCellValue());
-
-                            Double classValue5 = convertDhStringToDouble(debitEx);
-
-                            balanceDetail.setDebitEx(classValue5);
-
-                            break;
-
-                        case 5:
-                            String creditEx = currentCell.getCellType() == CellType.STRING
-                                    ? currentCell.getStringCellValue()
-                                    : String.valueOf(currentCell.getNumericCellValue());
-
-                            Double classValue6 = convertDhStringToDouble(creditEx);
-
-                            balanceDetail.setCreditEx(classValue6);
-
-                            break;
-
-                        case 6:
-                            String debitFex = currentCell.getCellType() == CellType.STRING
-                                    ? currentCell.getStringCellValue()
-                                    : String.valueOf(currentCell.getNumericCellValue());
-
-                            Double classValue7 = convertDhStringToDouble(debitFex);
-
-                            balanceDetail.setDebitFex(classValue7);
-
-                            break;
-
-                        case 7:
-                            String creditFex = currentCell.getCellType() == CellType.STRING
-                                    ? currentCell.getStringCellValue()
-                                    : String.valueOf(currentCell.getNumericCellValue());
-
-                            Double classValue8 = convertDhStringToDouble(creditFex);
-
-
-                            balanceDetail.setCreditFex(classValue8);
-
-                            break;
-
-                        default:
-                            break;
-                    }
-
-                    cellIdx++;
-                }
-
-                balanceDetails.add(balanceDetail);
-                balanceRepository.save(balance);
+            if (i == 0) {
+                continue;
             }
 
-            workbook.close();
+            Row row = sheet.getRow(i);
+            BalanceDetail balanceDetail = new BalanceDetail();
+            balanceDetail.setBalance(balance);
+            Double n_compte = getCellValuesAsDouble(row.getCell(0));
+            // Vérifier si la valeur récupéré existe dans la table plan comptable (numéro de compte)
+            Optional<PlanComptable> planComptable = excelPlanComptableServiceImpl
+                    .search(n_compte.longValue());
 
-            return balanceDetails;
-        } catch (IOException e) {
-            throw new RuntimeException("fail to parse Excel file: " + e.getMessage());
+            if (planComptable.isPresent()) {
+                balanceDetail.setCompte(planComptable.get());
+                balanceDetail.setN_Compte(planComptable.get().getNo_compte());
+                balanceDetail.setThe_class(planComptable.get().getThe_class());
+            }
+
+            String label = getCellValuesAsString(row.getCell(1));
+            Double debitDex = getCellValuesAsDouble(row.getCell(2));
+            Double CreditDex = getCellValuesAsDouble(row.getCell(3));
+            Double DebitEx = getCellValuesAsDouble(row.getCell(4));
+            Double CreditEx = getCellValuesAsDouble(row.getCell(5));
+            Double DebitFex = getCellValuesAsDouble(row.getCell(6));
+            Double CreditFex = getCellValuesAsDouble(row.getCell(7));
+
+            balanceDetail.setLabel(label);
+            balanceDetail.setDebitDex(debitDex);
+            balanceDetail.setCreditDex(CreditDex);
+            balanceDetail.setDebitEx(DebitEx);
+            balanceDetail.setCreditEx(CreditEx);
+            balanceDetail.setDebitFex(DebitFex);
+            balanceDetail.setCreditFex(CreditFex);
+
+            balanceDetails.add(balanceDetail);
         }
-    }
 
+        balanceRepository.save(balance);
+        workbook.close();
+
+        return balanceDetails;
+    }
 
     // Cleaning to have format Double
     public Double convertDhStringToDouble(String dhNumber) {
@@ -293,4 +195,50 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
     private static String repeat(int repetitions) {
         return String.join("", Collections.nCopies(repetitions, "0"));
     }
+
+    private static String getCellValuesAsString(Cell cell) {
+        CellType cellType = cell.getCellType();
+        String val = "";
+
+        switch (cellType) {
+            case STRING:
+                val = cell.getStringCellValue();
+                break;
+
+            case NUMERIC:
+                val = String.valueOf(cell.getNumericCellValue());
+                break;
+
+            case BLANK:
+                break;
+        }
+
+        return val;
+
+    }
+
+    private static Double getCellValuesAsDouble(Cell cell) {
+        if(cell == null){
+            return 0.00;
+        }
+        else {
+            Double val = 0.00;
+            CellType cellType = cell.getCellType();
+            switch (cellType) {
+                case STRING:
+                    val = Double.parseDouble(cell.getStringCellValue());
+                    break;
+
+                case NUMERIC:
+                    val = cell.getNumericCellValue();
+                    break;
+
+                case BLANK:
+                    break;
+            }
+            return val;
+        }
+
+    }
+
 }

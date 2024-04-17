@@ -28,7 +28,6 @@ public class Passage {
 
     public static List<Passage> initializeData() {
         List<Passage> passages = new ArrayList<>();
-
         for (PassageCategory passageCategory : PassageCategory.values()) {
             for (String val : passageCategory.getSub_name()) {
                 Passage passage = new Passage();
