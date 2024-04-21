@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface PassageService {
-    List<Passage> getAllPassages();
     Passage createPassage(Passage passage);
     Passage updatePassage(Passage updatedPassage,String date);
     List<Passage> findPassages(String date);
@@ -19,9 +18,6 @@ public interface PassageService {
     List<Passage> processAccountData(List<Passage> rawData);
     void updateMainAccountMap(List<Passage> mainAccountMap, List<Passage> rawData);
     List<Passage> FilterPassages(List<Passage> passages,String m_name);
-
-    Passage PassageById(Long id);
-
     Passage findByNameAndDate(String name, String date);
 
     List<SubAccountActif> findPassageImmo(String date,String company_name);

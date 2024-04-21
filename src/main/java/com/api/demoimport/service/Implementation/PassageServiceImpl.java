@@ -30,11 +30,6 @@ public class PassageServiceImpl implements PassageService {
     private BalanceDetailRepository repository;
 
     @Override
-    public List<Passage> getAllPassages() {
-        return passageRepository.findAll();
-    }
-
-    @Override
     public Passage createPassage(Passage passage) {
         return passageRepository.save(passage);
     }
@@ -104,14 +99,6 @@ public class PassageServiceImpl implements PassageService {
             }
         }
         return filteredList;
-    }
-
-    @Override
-    public Passage PassageById(Long id) {
-        if(id != null){
-            return passageRepository.getById(id);
-        }
-        return null;
     }
 
     @Override

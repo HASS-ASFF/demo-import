@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Immobilisation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <script src="/immobilisation.js"></script>
+    <script src="/fieldInput.js"></script>
+
+</head>
+
+<style>
+    .save-icon{
+        cursor: pointer;
+    }
+</style>
+<body>
+<div>
+
+    <div class="text-center mb-3">
+        <h2>ETAT DE DOTATIONS AUX AMORTISSEMENTS RELATIFS AUX IMMOBILISATIONS</h2>
+        <button id="getImmobilisationByDate" type="button" class="btn btn-primary">Afficher le tableau</button>
+        <input type="text" id="dateBilan" list="datesList" placeholder="Sélectionner une date">
+        <datalist id="datesList"></datalist>
+    </div>
+
+    <table border="1px" class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Immobilisations concernées</th>
+            <th scope="col">Date d'entrée</th>
+            <th scope="col">Valeur à amortir (Prix d'acquisition)</th>
+            <th scope="col">Valeur à amortir - Valeur comptable après réevaluation</th>
+            <th scope="col">Amortissements antérieurs</th>
+            <th scope="col">Amortissements déduits du Bénéfice brut de l'exercice (Taux)</th>
+            <th scope="col">Amortissements déduits du Bénéfice brut de l'exercice Durée</th>
+            <th scope="col">Amortissements déduits du Bénéfice brut de l'exercice Amortissements normaux ou accélérés de l'exercice</th>
+            <th scope="col">Total des amortissements à la fin de l'exercice</th>
+            <th scope="col">Observations</th>
+        </tr>
+        </thead>
+        <tbody id="getResultDiv">
+        <tr  th:each="passage : ${immobilisation}">
+            <td data-field-name='name'  th:text="${immobilisation.name}"></td>
+            <td style='cursor:pointer;' data-field-name='dateAquisition' class='editable-field' th:text="${immobilisation.dateAquisition}"></td>
+            <td style='cursor:pointer;' data-field-name='prixAquisition' class='editable-field' th:text="${immobilisation.prixAquisition}"></td>
+            <td style='cursor:pointer;' data-field-name='coutDeRevient' class='editable-field' th:text="${immobilisation.coutDeRevient}"></td>
+            <td style='cursor:pointer;' data-field-name='amortAnterieur' class='editable-field' th:text="${immobilisation.amortAnterieur}"></td>
+            <td style='cursor:pointer;' data-field-name='taux_amort' class='editable-field' th:text="${immobilisation.taux_amort}"></td>
+            <td style='cursor:pointer;' data-field-name='amortDeduitBenefice' class='editable-field' th:text="${immobilisation.amortDeduitBenefice}"></td>
+            <td style='cursor:pointer;' data-field-name='dea' class='editable-field' th:text="${immobilisation.dea}"></td>
+            <td style='cursor:pointer;' data-field-name='deaGlobal' class='editable-field' th:text="${immobilisation.deaGlobal}"></td>
+            <td data-field-name='name'  th:text="${immobilisation.name}"></td>
+            <td><i class="fa-regular fa-pen-to-square save-icon"></i></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<!-- Ajoutez une boîte de dialogue modale pour la saisie de la date -->
+<div class="modal fade" id="dateModal" tabindex="-1" role="dialog" aria-labelledby="dateModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="dateModalLabel">Sélectionnez la date</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="date" id="inputDate" class="form-control" min="2000-01-01" max="2025-12-31" step="1">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" id="confirmDate">Confirmer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script>
+    // Fonction pour générer les options du datalist avec les dates du 31 décembre
+    function generateDatesList() {
+        var datalist = document.getElementById("datesList");
+        for (var year = 2000; year <= 2025; year++) {
+            var option = document.createElement("option");
+            // Formatage de la date au format DD/MM/AAAA
+            var formattedDate = year + "-12-31";
+            option.value = formattedDate;
+            datalist.appendChild(option);
+        }
+    }
+
+    // Appel de la fonction au chargement de la page
+    window.onload = generateDatesList;
+
+
+</script>
+
+</html>

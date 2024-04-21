@@ -58,22 +58,6 @@ public class ExcelController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
     }
 
-    // Méthode GET pour récupérer la liste des plans comptables
-    @GetMapping("/plan-comptable")
-    public ResponseEntity<List<PlanComptable>> getPlanComptable() {
-        try {
-            List<PlanComptable> planComptables = fileService.getPlanComptables();
-
-            if (planComptables.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-
-            return new ResponseEntity<>(planComptables, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
 
     // Méthode pour télécharger un fichier détail de balance
     @PostMapping("/upload-balance-detail")
@@ -104,22 +88,6 @@ public class ExcelController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
     }
 
-
-    // Méthode pour récupérer la liste des détails de balance
-    @GetMapping("/balancedetails")
-    public ResponseEntity<List<BalanceDetail>> getBalanceDetail() {
-        try {
-            List<BalanceDetail> balanceDetails = fileServiceBalance.getBalanceDetails();
-
-            if (balanceDetails.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-
-            return new ResponseEntity<>(balanceDetails, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
 
     // Méthode pour télécharger un fichier immobilisation

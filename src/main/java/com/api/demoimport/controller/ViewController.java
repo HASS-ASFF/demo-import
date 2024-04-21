@@ -34,6 +34,9 @@ public class ViewController {
     @GetMapping("/detailCPC")
     public String detailCPC(){ return "detailCPC"; }
 
+    @GetMapping("/immobilisation")
+    public String immobilisation(){ return "Immobilisation"; }
+
 
 
 

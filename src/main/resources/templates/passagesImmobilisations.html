@@ -17,16 +17,19 @@
 </head>
 <body>
 
-<div class="container">
-    <h2>Immobilisations Management</h2>
+<div>
 
-    <button id="getPassagesByDate" type="button" class="btn btn-secondary">Afficher le tableau des immobilisations</button>
-    <input type="text" id="dateBilan" list="datesList" placeholder="Sélectionner une date">
+    <div class="text-center mb-3">
+        <h2>Immobilisations Management</h2>
 
-    <datalist id="datesList"></datalist>
+        <button id="getPassagesByDate" type="button" class="btn btn-primary">Afficher le tableau des immobilisations</button>
+        <input type="text" id="dateBilan" list="datesList" placeholder="Sélectionner une date">
 
-    <table border="1px"   class="table table-striped mt-3">
-        <thead>
+        <datalist id="datesList"></datalist>
+    </div>
+
+    <table border="1px"   class="table">
+        <thead class="thead-light">
         <tr>
             <th scope="col" rowspan="2">NATURE</th>
             <th scope="col" rowspan="2">MONTANT BRUT DEBUT EXERCICE</th>

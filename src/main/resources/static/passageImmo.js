@@ -33,13 +33,6 @@ $(document).ready(function() {
 
                         // Construction de HTML pour chaque passage dans la partie
                         partData.forEach(function(passage) {
-                            if(passage.brut == null){passage.brut = '';}
-                            if(passage.acquisition == null){ passage.acquisition = '';}
-                            if(passage.ppe == null){ passage.ppe = '';}
-                            if(passage.virement == null){ passage.virement = '';}
-                            if(passage.cession == null){ passage.cession = '';}
-                            if(passage.retraitMinus == null){ passage.retraitMinus = '';}
-                            if(passage.virementMinus == null){ passage.virementMinus = '';}
                             partHtml += "<tr>"
                                 + "<td data-field-name='name'>" + passage.libelle + "</td>"
                                 + "<td style='cursor:pointer;' data-field-name='brut' class='editable-field'>" + passage.brut + "</td>"
@@ -60,7 +53,7 @@ $(document).ready(function() {
 
                 } else {
                     $("#getResultDiv").html("<strong>No data found for this date</strong>");
-                    console.log("Fail: ", result.status);
+                    console.log("EMPTY (NO DATA): ", result.status);
                 }
             },
             error: function(e) {

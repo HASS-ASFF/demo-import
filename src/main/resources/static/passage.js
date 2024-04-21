@@ -43,8 +43,6 @@ $(document).ready(function() {
 
                         // Construction de HTML pour chaque passage dans la partie
                         partData.forEach(function(passage) {
-                            if(passage.amountPlus == null){passage.amountPlus = '';}
-                            if(passage.amountMinus == null){ passage.amountMinus = '';}
                             partHtml += "<tr>"
                                 + "<td data-field-name='name'>" + passage.name + "</td>"
                                 + "<td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field'>" + passage.amountPlus + "</td>"
@@ -59,7 +57,7 @@ $(document).ready(function() {
 
                 } else {
                     $("#getResultDiv").html("<strong>No data found for this date</strong>");
-                    console.log("Fail: ", result.status);
+                    console.log("EMPTY (NO DATA): ", result.status);
                 }
             },
             error: function(e) {

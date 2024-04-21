@@ -1,10 +1,8 @@
 package com.api.demoimport.service.Implementation;
 
-import com.api.demoimport.entity.Balance;
-import com.api.demoimport.entity.BalanceDetail;
-import com.api.demoimport.entity.Immobilisation;
-import com.api.demoimport.entity.PlanComptable;
+import com.api.demoimport.entity.*;
 import com.api.demoimport.repository.BalanceRepository;
+import com.api.demoimport.repository.ExerciceRepository;
 import com.api.demoimport.repository.ImmobilisationRepository;
 import com.api.demoimport.service.ExcelHelperService;
 import com.sun.org.apache.xpath.internal.operations.Bool;
@@ -29,6 +27,8 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
     private PlanComptableServiceImpl excelPlanComptableServiceImpl;
     @Autowired
     private BalanceRepository balanceRepository;
+    @Autowired
+    private ExerciceRepository exerciceRepository;
 
 
     // Defining type of MIME
@@ -189,6 +189,12 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
         List<Immobilisation> immobilisations = new ArrayList<>();
 
 
+        // Création d'une instance d'exercice avec la date
+        Exercice exercice = new Exercice();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        exercice.setDateExercice(sdf.parse(date));
+        exercice.setCompany_name(company_name);
+
         for (int i = sheet.getFirstRowNum(); i < sheet.getLastRowNum() + 1; i++){
 
             if (i == 0) {
@@ -197,9 +203,11 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
 
             Row row = sheet.getRow(i);
             Immobilisation immobilisation = new Immobilisation();
+            immobilisation.setExercice(exercice);
 
             String name = getCellValuesAsString(row.getCell(0));
-            String date_immo = getCellValuesAsString(row.getCell(1));
+            //DataFormatter dataFormatter = new DataFormatter();
+            Date date_immo = row.getCell(1).getDateCellValue();
             Double prixAcqui = getCellValuesAsDouble(row.getCell(2));
             Double cout = getCellValuesAsDouble(row.getCell(3));
             Double amortAnterieur = getCellValuesAsDouble(row.getCell(4));
@@ -209,7 +217,6 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
             Double deaGlobal = getCellValuesAsDouble(row.getCell(8));
 
             immobilisation.setName(name);
-            /*SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");*/
             immobilisation.setDateAquisition(date_immo);
             immobilisation.setPrixAquisition(prixAcqui);
             immobilisation.setCoutDeRevient(cout);
@@ -222,6 +229,7 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
             immobilisations.add(immobilisation);
         }
 
+        exerciceRepository.save(exercice);
         workbook.close();
 
         return immobilisations;
