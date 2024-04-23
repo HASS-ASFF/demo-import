@@ -14,14 +14,11 @@
 
     <script src="/passage.js"></script>
     <script src="/fieldInput.js"></script>
+    <script src="/dateInput.js"></script>
+
+    <link rel="stylesheet" href="/fieldInput.css">
 
 </head>
-
-<style>
-    .save-icon{
-        cursor: pointer;
-    }
-</style>
 <body>
 <div>
 
@@ -34,8 +31,8 @@
         <datalist id="datesList"></datalist>
     </div>
 
-    <table border="1px" class="table">
-        <thead class="thead-light">
+    <table class="styled-table">
+        <thead>
         <tr>
             <th scope="col">INTITULES</th>
             <th scope="col">MONTANT (+)</th>
@@ -44,170 +41,11 @@
         </tr>
         </thead>
         <tbody id="getResultDiv">
-        <tr>
-            <th>I. RESULTAT NET COMPTABLE</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        <tr  th:each="passage : ${part1}">
-            <td data-field-name='name' th:text="${passage.name}"></td>
-            <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
-            <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
-            <td><i class="fa-regular fa-pen-to-square save-icon"></i></td>
-        </tr>
-
-        <tr>
-            <th>II. REINTEGRATIONS FISCALES</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-
-        <tr  th:each="passage : ${part2}">
-            <td data-field-name='name' th:text="${passage.name}"></td>
-            <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
-            <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
-            <td><i class="fa-regular fa-pen-to-square save-icon"></i></td>
-        </tr>
-
-        <tr>
-            <th>III. DEDUCTIONS FISCALES</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-
-        <tr  th:each="passage : ${part3}">
-            <td data-field-name='name' th:text="${passage.name}"></td>
-            <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
-            <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
-            <td><i class="fa-regular fa-pen-to-square save-icon"></i></td>
-        </tr>
-
-        <tr>
-            <th>TOTAL</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-
-        <tr></tr>
-
-        <tr>
-            <th>IV. RESULTAT BRUT FISCAL</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-
-        <tr  th:each="passage : ${part4}">
-            <td data-field-name='name' th:text="${passage.name}"></td>
-            <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
-            <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
-            <td><i class="fa-regular fa-pen-to-square save-icon"></i></td>
-        </tr>
-
-        <tr>
-            <th>V. REPORTS DEFICITAIRES IMPUTES (C) (1)</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-
-        <tr  th:each="passage : ${part5}">
-            <td data-field-name='name' th:text="${passage.name}"></td>
-            <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
-            <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
-            <td><i class="fa-regular fa-pen-to-square save-icon"></i></td>
-        </tr>
-
-        <tr>
-            <th>VI. RESULTAT NET FISCAL</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-
-        <tr  th:each="passage : ${part6}">
-            <td data-field-name='name' th:text="${passage.name}"></td>
-            <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
-            <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
-            <td><i class="fa-regular fa-pen-to-square save-icon"></i></td>
-        </tr>
-
-        <tr>
-            <th>VII. CUMUL DES AMORTISSEMENTS FISCALEMENT DIFFERES</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-
-        <tr  th:each="passage : ${part7}">
-            <td data-field-name='name' th:text="${passage.name}"></td>
-            <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
-            <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
-            <td><i class="fa-regular fa-pen-to-square save-icon"></i></td>
-        </tr>
-
-        <tr>
-            <th>VIII. CUMUL DES DEFICITS FISCAUX RESTANT A REPORTER</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-
-        <tr  th:each="passage : ${part8}">
-            <td data-field-name='name' th:text="${passage.name}"></td>
-            <td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field' th:text="${passage.amountPlus}"></td>
-            <td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field' th:text="${passage.amountMinus}"></td>
-            <td><i class="fa-regular fa-pen-to-square save-icon"></i></td>
-        </tr>
 
         </tbody>
     </table>
 </div>
 
-<!-- Ajoutez une boîte de dialogue modale pour la saisie de la date -->
-<div class="modal fade" id="dateModal" tabindex="-1" role="dialog" aria-labelledby="dateModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="dateModalLabel">Sélectionnez la date</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <input type="date" id="inputDate" class="form-control" min="2000-01-01" max="2025-12-31" step="1">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-primary" id="confirmDate">Confirmer</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 </body>
-
-<script>
-    // Fonction pour générer les options du datalist avec les dates du 31 décembre
-    function generateDatesList() {
-        var datalist = document.getElementById("datesList");
-        for (var year = 2000; year <= 2025; year++) {
-            var option = document.createElement("option");
-            // Formatage de la date au format DD/MM/AAAA
-            var formattedDate = year + "-12-31";
-            option.value = formattedDate;
-            datalist.appendChild(option);
-        }
-    }
-
-    // Appel de la fonction au chargement de la page
-    window.onload = generateDatesList;
-
-
-</script>
 
 </html>

@@ -23,7 +23,6 @@ public class ImmobilisationController {
     public ResponseEntity<Map<String, Object>> passagesImmoFilter(@RequestParam("date") String dateBilan){
         Map<String, Object> responseMap = new HashMap<>();
         List<Immobilisation> immobilisations = immobilisationService.FindImmobilisation("AL MORAFIQ",dateBilan);
-        System.out.println(immobilisations);
 
         responseMap.put("status", "success");
         responseMap.put("data", immobilisations);
@@ -32,7 +31,7 @@ public class ImmobilisationController {
     }
 
     @PutMapping("/updateImmobilisation/{id}")
-    public ResponseEntity<String> modifyImmobilisation(@PathVariable Long id,@RequestParam("date") String dateString, @RequestBody Immobilisation immobilisation) {
+    public ResponseEntity<String> modifyImmobilisation(@PathVariable Long id, @RequestBody Immobilisation immobilisation) {
         Optional<Immobilisation> immobilisationData = immobilisationService.FindByID(id);
 
         if (immobilisationData.isPresent()) {

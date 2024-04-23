@@ -4,6 +4,7 @@ import com.api.demoimport.dto.ServiceResponse;
 import com.api.demoimport.entity.Bilan.Passage;
 import com.api.demoimport.entity.Bilan.SubAccountActif;
 import com.api.demoimport.entity.Bilan.SubAccountCPC;
+import com.api.demoimport.entity.Immobilisation;
 import com.api.demoimport.enums.AccountCategoryClass2;
 import com.api.demoimport.enums.AccountCategoryClass6;
 import com.api.demoimport.enums.PassageCategory;
@@ -21,6 +22,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -41,47 +43,30 @@ public class PassageController {
     @Autowired
     AccountDataManagerServiceImpl accountDataManagerService;
 
-    @PostMapping("/savePassage")
-    public ResponseEntity<Object> savePassage(@RequestBody Passage passage,@RequestParam("date") String dateString) {
-        Map<String, Object> responseMap = new HashMap<>();
+    @PutMapping("/updatePassage/{name}/{date}")
+    public ResponseEntity<Object> modifyPassage(@PathVariable String name,@PathVariable String date,@RequestBody Passage passage) {
+        Optional<Passage> passageData = passageService.findByNameAndDate(name,date);
 
-        System.out.println(passage.getName());
-
-        // Vérifier si le passage existe déjà en fonction de certains critères, par exemple, le nom et la date
-        Passage existingPassage = passageService.findByNameAndDate(passage.getName(), dateString);
-
-
-
-        if (existingPassage != null) {
-            // Mettre à jour les valeurs existantes du passage avec les nouvelles valeurs
+        if (passageData.isPresent()) {
+            Passage existingPassage = passageData.get();
+            // Mettre à jour les propriétés du passage existante avec les nouvelles valeurs
             existingPassage.setAmountPlus(passage.getAmountPlus());
             existingPassage.setAmountMinus(passage.getAmountMinus());
 
-            // Enregistrer le passage mis à jour dans la base de données
-            Passage updatedPassage = passageService.updatePassage(existingPassage, dateString);
+            // Enregistrer le passage mise à jour dans la base de données
+            Passage updatedPassage = passageService.createPassage(existingPassage);
 
-            if (updatedPassage != null) {
-                responseMap.put("status", "Modification du passage reussi");
-                responseMap.put("data", updatedPassage);
-                return new ResponseEntity<>(responseMap, HttpStatus.OK);
-            } else {
-                responseMap.put("status", "error");
-                responseMap.put("message", "Échec de la mise à jour du passage.");
-                return new ResponseEntity<>(responseMap, HttpStatus.INTERNAL_SERVER_ERROR);
-            }
+            return ResponseEntity.ok("Passage modifiée avec succès !");
         } else {
-            // Si le passage n'existe pas encore, l'enregistrer comme nouveau passage
-            Passage savedPassage = passageService.createPassage(passage);
+            Passage newPassage =new Passage();
+            newPassage.setName(passage.getName());
+            newPassage.setAmountPlus(passage.getAmountPlus());
+            newPassage.setAmountMinus(passage.getAmountMinus());
+            newPassage.setDate(passage.getDate());
 
-            if (savedPassage != null) {
-                responseMap.put("status", "Creation du passage reussi");
-                responseMap.put("data", savedPassage);
-                return new ResponseEntity<>(responseMap, HttpStatus.OK);
-            } else {
-                responseMap.put("status", "error");
-                responseMap.put("message", "Échec de l'enregistrement du nouveau passage.");
-                return new ResponseEntity<>(responseMap, HttpStatus.INTERNAL_SERVER_ERROR);
-            }
+            Passage updatedPassage = passageService.createPassage(newPassage);
+
+            return  ResponseEntity.ok("Nouveau passage ajouté avec succès !");
         }
     }
 
@@ -90,7 +75,7 @@ public class PassageController {
     public ResponseEntity<Map<String, Object>> passagesFilter(@RequestParam("date") String dateString) {
         Map<String, Object> responseMap = new HashMap<>();
 
-        List<Passage> passages_db = passageService.findPassages(dateString);
+        List<Passage> passages_db = passageService.findByDate(dateString);
         List<Passage> passages_final = passageService.processAccountData(passages_db);
 
         List<List<Passage>> parts = new ArrayList<>();

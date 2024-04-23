@@ -10,6 +10,7 @@ import com.api.demoimport.service.AccountDataManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 @Service
@@ -32,6 +33,7 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
 
     @Override
     public List<SubAccountActif> processAccountDataA(List<SubAccountActif> rawData, String n_class) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
         List<SubAccountActif> mainAccountList;
         try{
             //initialize data with empty values
@@ -142,7 +144,7 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
             for (SubAccountActif subAccountActif : accountDataMap) {
 
                 total += FormatUtils.
-                        formatDecimal((subAccountActif.getBrut() != null ? subAccountActif.getBrut() : 0.0));
+                        formatDecimal((subAccountActif.getBrut() != null ? (double) subAccountActif.getBrut() : 0.0));
             }
             total = FormatUtils.formatDecimal(total);
         }catch (Exception e){

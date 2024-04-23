@@ -34,30 +34,10 @@ public class PassageServiceImpl implements PassageService {
         return passageRepository.save(passage);
     }
 
-    @Override
-    public Passage updatePassage(Passage updatedPassage,String date) {
-        // Vérifier si le passage existe dans la base de données
-        Passage passage = passageRepository.findPassageByND(updatedPassage.getName(),date);
-
-        // Mettre à jour les valeurs du passage existant avec les nouvelles valeurs
-        Passage existingPassage = new Passage();
-        existingPassage.setId(passage.getId());
-        existingPassage.setName(passage.getName());
-        existingPassage.setAmountPlus(passage.getAmountPlus());
-        existingPassage.setAmountMinus(passage.getAmountMinus());
-
-        // Enregistrer les modifications dans la base de données
-        return passageRepository.save(existingPassage);
-    }
 
     @Override
-    public List<Passage> findPassages(String date) {
-        return passageRepository.findPassagesByBilanDate(date);
-    }
-
-    @Override
-    public Passage getById(Long id) {
-        return passageRepository.getById(id);
+    public Optional<Passage> FindByID(Long id) {
+        return passageRepository.findById(id);
     }
 
     @Override
@@ -81,7 +61,7 @@ public class PassageServiceImpl implements PassageService {
         for (Passage rawPassage : rawData) {
             String name_p = rawPassage.getName();
             for (Passage val: mainAccountMap) {
-                    if (val.getName().startsWith(name_p)) {
+                    if (name_p != null && val.getName().startsWith(name_p)) {
                         val.setAmountPlus(rawPassage.getAmountPlus());
                         val.setAmountMinus(rawPassage.getAmountMinus());
                     }
@@ -102,8 +82,13 @@ public class PassageServiceImpl implements PassageService {
     }
 
     @Override
-    public Passage findByNameAndDate(String name, String date) {
+    public Optional<Passage> findByNameAndDate(String name, String date) {
         return passageRepository.findPassageByND(name,date);
+    }
+
+    @Override
+    public List<Passage> findByDate(String date) {
+        return passageRepository.findPassagesByDate(date);
     }
 
     @Override

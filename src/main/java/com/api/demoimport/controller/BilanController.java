@@ -42,7 +42,7 @@ public class BilanController {
 
         }catch(RuntimeException e){
             e.printStackTrace();
-            String message = "Failed to upload bilan passif, add a date first (YYYY-MM-DD)" + e.getLocalizedMessage();
+            String message = "Failed to upload bilan passif " + e.getLocalizedMessage();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
         }
     }
@@ -57,7 +57,7 @@ public class BilanController {
 
         }catch(RuntimeException e){
 
-            String message = "Failed to upload bilan actif, add a date first (YYYY-MM-DD)" + e.getLocalizedMessage();
+            String message = "Failed to upload bilan actif " + e.getLocalizedMessage();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
         }
     }
@@ -71,7 +71,7 @@ public class BilanController {
             return new ResponseEntity(reportstream.toByteArray(),httpHeaders,HttpStatus.OK);
 
         }catch(RuntimeException e){
-            String message = "Failed to upload CPC, add a date first (YYYY-MM-DD)" + e.getLocalizedMessage();
+            String message = "Failed to upload CPC " + e.getLocalizedMessage();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
         }
     }

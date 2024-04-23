@@ -20,17 +20,16 @@ $(document).ready(function() {
                     data.forEach(function(immobilisation) {
                             partHtml += "<tr data-id=\"" + immobilisation.id + "\">" +
                                 "<td data-field-name='name'>" + immobilisation.name + "</td>" +
-                                "<td style='cursor:pointer;' data-field-name='dateAquisition' class='editable-field'>" + immobilisation.dateAquisition + "</td>" +
-                                "<td style='cursor:pointer;' data-field-name='prixAquisition' class='editable-field'>" + immobilisation.prixAquisition + "</td>" +
-                                "<td style='cursor:pointer;' data-field-name='coutDeRevient' class='editable-field'>" + immobilisation.coutDeRevient + "</td>" +
-                                "<td style='cursor:pointer;' data-field-name='amortAnterieur' class='editable-field'>" + immobilisation.amortAnterieur + "</td>" +
-                                "<td style='cursor:pointer;' data-field-name='taux_amort' class='editable-field'>" + immobilisation.taux_amort + "</td>" +
-                                "<td style='cursor:pointer;' data-field-name='amortDeduitBenefice' class='editable-field'>" + immobilisation.amortDeduitBenefice + "</td>" +
-                                "<td style='cursor:pointer;' data-field-name='dea' class='editable-field'>" + immobilisation.dea + "</td>" +
-                                "<td style='cursor:pointer;' data-field-name='deaGlobal' class='editable-field'>" + immobilisation.deaGlobal + "</td>" +
+                                "<td data-field-name='dateAquisition' class='editable-field'>" + immobilisation.dateAquisition + "</td>" +
+                                "<td data-field-name='prixAquisition' class='editable-field'>" + immobilisation.prixAquisition + "</td>" +
+                                "<td data-field-name='coutDeRevient' class='editable-field'>" + immobilisation.coutDeRevient + "</td>" +
+                                "<td data-field-name='amortAnterieur' class='editable-field'>" + immobilisation.amortAnterieur + "</td>" +
+                                "<td data-field-name='taux_amort' class='editable-field'>" + immobilisation.taux_amort + "</td>" +
+                                "<td data-field-name='amortDeduitBenefice' class='editable-field'>" + immobilisation.amortDeduitBenefice + "</td>" +
+                                "<td data-field-name='dea' class='editable-field'>" + immobilisation.dea + "</td>" +
+                                "<td data-field-name='deaGlobal' class='editable-field'>" + immobilisation.deaGlobal + "</td>" +
                                 "<td data-field-name='name'>" + immobilisation.name + "</td>" +
                                 "<td><i class='fa-regular fa-pen-to-square save-icon'></i></td>"+
-                                "<td data-field-name=''></td>" +
                                 "</tr>";
                         });
                         // Ajout de HTML pour la partie spécifiée
@@ -50,14 +49,12 @@ $(document).ready(function() {
 
     $(document).on('click', '.save-icon', function(event) {
         event.stopPropagation();
-        var selectedDate = $('#dateBilan').val();
         var id = $(this).closest('tr').data('id');
         var row = $(this).closest('tr');
-        savePassageWithoutDateModal(id,selectedDate,row);
+        savePassageWithoutDateModal(id,row);
 
         // Fonction pour sauvegarder le passage sans ouvrir le modal de date
-        function savePassageWithoutDateModal(id,selectedDate,row) {
-            var name = row.find('[data-field-name="name"]').text().trim();
+        function savePassageWithoutDateModal(id,row) {
             var dateAquisition = row.find('[data-field-name="dateAquisition"]').text().trim();
             var prixAquisition = row.find('[data-field-name="prixAquisition"]').text().trim();
             var coutDeRevient = row.find('[data-field-name="coutDeRevient"]').text().trim();
@@ -68,7 +65,6 @@ $(document).ready(function() {
             var deaGlobal = row.find('[data-field-name="deaGlobal"]').text().trim();
 
             var data = {
-                name: name,
                 dateAquisition: dateAquisition,
                 prixAquisition: prixAquisition,
                 coutDeRevient: coutDeRevient,
@@ -84,7 +80,7 @@ $(document).ready(function() {
 
             $.ajax({
                 type: 'PUT',
-                url: 'updateImmobilisation/' + id + '?date=' + selectedDate,
+                url: 'updateImmobilisation/' + id,
                 contentType: 'application/json',
                 data: JSON.stringify(data),
                 success: function(response) {
@@ -96,4 +92,7 @@ $(document).ready(function() {
             });
         }
     });
+
+    // TO DO (VALIDATION)
+
 });

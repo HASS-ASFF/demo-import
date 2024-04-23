@@ -3,15 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>DETAIL DES POSTES DU C.P.C</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/fieldInput.css">
+    <script src="/dateInput.js"></script>
+
 </head>
 <body>
-    <table border="1px" class="table">
+<div>
+    <div class="text-center mb-3">
+        <h2>DETAIL DES POSTES DU C.P.C</h2>
+        <button id="getImmobilisationByDate" type="button" class="btn btn-primary">Afficher le tableau</button>
+        <input type="text" id="dateBilan" list="datesList" placeholder="Sélectionner une date">
+        <datalist id="datesList"></datalist>
+    </div>
+    <table class="styled-table">
         <thead>
-
+            <tr>
+                <th>POSTE</th>
+                <th>Detail CPC</th>
+                <th>EXERCICE</th>
+                <th>EXERCICE PRECEDENT</th>
+                <th></th>
+            </tr>
         </thead>
         <tbody>
-
+            <tr>
+                <td colspan="5">CHARGES D'EXPLOITATION</td>
+            </tr>
+            <tr>
+                <td colspan="5">CHARGES FINANCIERS</td>
+            </tr>
+            <tr>
+                <td colspan="5">CHARGES NON COURANTES</td>
+            </tr>
+            <tr>
+                <td colspan="5">PRODUITS D'EXPLOITATION</td>
+            </tr>
+            <tr>
+                <td colspan="5">CHARGES FINANCIERS</td>
+            </tr>
         </tbody>
     </table>
+</div>
 </body>
 </html>

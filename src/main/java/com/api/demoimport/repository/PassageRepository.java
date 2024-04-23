@@ -10,12 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PassageRepository extends JpaRepository<Passage,Long> {
-    @Query(nativeQuery = true, value = "SELECT *  FROM Passage WHERE LEFT(date,10) = :bilanDate ")
-    List<Passage> findPassagesByBilanDate(String bilanDate);
+    @Query(nativeQuery = true, value = "SELECT *  FROM Passage WHERE LEFT(date,10) = :date ")
+    List<Passage> findPassagesByDate(String date);
 
     @Query(nativeQuery = true, value = "SELECT *  FROM Passage WHERE name = :name AND LEFT(date,10) = :date")
-    Passage findPassageByND(String name, String date);
+    Optional<Passage> findPassageByND(String name, String date);
 
     boolean existsById(Long id);
-
 }

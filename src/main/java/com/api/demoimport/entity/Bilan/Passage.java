@@ -33,6 +33,8 @@ public class Passage {
                 Passage passage = new Passage();
                 passage.setM_name(passageCategory.getMain_name());
                 passage.setName(val);
+                passage.setAmountPlus(0.00);
+                passage.setAmountMinus(0.00);
                 passages.add(passage);
             }
         }

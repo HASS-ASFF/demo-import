@@ -28,7 +28,7 @@ public class ViewController {
         return "passagesImmobilisations";
     }
 
-    @GetMapping("/passagesESG")
+    @GetMapping("/esg")
     public String passagesESG(){ return "esg"; }
 
     @GetMapping("/detailCPC")

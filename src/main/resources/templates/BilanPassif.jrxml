@@ -739,7 +739,7 @@
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="4"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$P{TotalCapitauxN}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{TotalCapitaux}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement mode="Opaque" x="0" y="153" width="140" height="10" forecolor="#DBEEFF" backcolor="#325A77" uuid="e94393a1-3298-4167-8687-86fd5514d230">
@@ -775,7 +775,7 @@
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="4"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$P{TotalCapitaux}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{TotalCapitaux}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement mode="Opaque" x="0" y="237" width="380" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="6f249f38-b8c1-4b97-a446-80d0f9c424d9">
@@ -845,7 +845,7 @@
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="4"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$P{TotalCapitauxN}+$P{TotalIN}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{TotalCapitauxN}+$P{TotalIN}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="297" width="120" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="7e45e9e5-9609-4a8e-968c-d4bfd9e88488">
@@ -863,7 +863,7 @@
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="4"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$P{TotalCapitaux}+$P{TotalI}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{TotalI}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement mode="Opaque" x="0" y="297" width="140" height="10" forecolor="#DBEEFF" backcolor="#325A77" uuid="65825069-48d6-4a9c-9711-def22912ca3a">
@@ -1031,7 +1031,7 @@
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="4"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$P{TotalII}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{TotalII}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement mode="Opaque" x="0" y="433" width="140" height="10" forecolor="#DBEEFF" backcolor="#325A77" uuid="84d71d56-17ee-4371-bb0e-8106d3553367">
@@ -1067,7 +1067,7 @@
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="4"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$P{TotalIIN}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{TotalIIN}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement mode="Transparent" x="0" y="423" width="140" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="aa2c0b69-46a9-4720-850a-b7e6355a63bc">
@@ -1121,7 +1121,7 @@
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="4"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$P{TotalIIIN}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{TotalIIIN}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="498" width="120" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="1ae10c24-5c39-41d0-b07c-453ac412d12a">
@@ -1139,7 +1139,7 @@
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="4"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$P{TotalIII}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{TotalIII}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement mode="Opaque" x="0" y="498" width="140" height="10" forecolor="#DBEEFF" backcolor="#325A77" uuid="c6300dc2-75b4-4c2b-98d8-757452cb1c80">
@@ -1175,7 +1175,7 @@
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="4"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$P{TotalCapitauxN}+$P{TotalIN}+$P{TotalIIN}+$P{TotalIIIN}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{TotalCapitauxN}+$P{TotalIN}+$P{TotalIIN}+$P{TotalIIIN}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="514" width="120" height="14" forecolor="#FFFFFF" backcolor="#325A77" uuid="0ac3ffa1-6d86-4534-a680-e9ab86d7c16a">
@@ -1192,7 +1192,7 @@
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="4"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$P{TotalCapitaux}+$P{TotalI}+$P{TotalII}+$P{TotalIII}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{TotalCapitaux}+$P{TotalI}+$P{TotalII}+$P{TotalIII}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement mode="Opaque" x="0" y="514" width="140" height="14" forecolor="#DBEEFF" backcolor="#325A77" uuid="7f9c45ed-55d3-4e73-8588-f442ac03335a">

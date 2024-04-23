@@ -22,7 +22,6 @@ $(document).ready(function() {
                 if (result.status === "success") {
                     $('#getResultDiv').empty();
                     var data = result.data;
-
                     // Structure des parties
                     var parts = [
                         { title: "I. RESULTAT NET COMPTABLE", id: "part1" },
@@ -69,53 +68,38 @@ $(document).ready(function() {
 
     $(document).on('click', '.save-icon', function(event) {
         event.stopPropagation();
-
-        // Vérifier si le champ de date est vide
-        if ($('#dateBilan').val().trim() === '') {
-            $('#dateModal').modal('show'); // Afficher le modal seulement si le champ de date est vide
-        } else {
-            // Le champ de date est déjà rempli, procéder à l'envoi des données sans afficher le modal
-            var selectedDate = $('#dateBilan').val();
-            savePassageWithoutDateModal(selectedDate);
-        }
+        var date = $("#dateBilan").val();
+        var row = $(this).closest('tr');
+        savePassageWithoutDateModal(date,row);
 
         // Fonction pour sauvegarder le passage sans ouvrir le modal de date
-        function savePassageWithoutDateModal(selectedDate) {
-            var row = $(this).closest('tr');
+        function savePassageWithoutDateModal(date,row) {
             var name = row.find('[data-field-name="name"]').text().trim();
             var amountPlus = row.find('[data-field-name="amountPlus"]').text().trim();
             var amountMinus = row.find('[data-field-name="amountMinus"]').text().trim();
 
             var data = {
-                name: name,
+                name : name,
                 amountPlus: amountPlus,
                 amountMinus: amountMinus,
-                date: selectedDate
+                date : date
             };
 
             $.ajax({
-                type: 'POST',
-                url: 'savePassage?date=' + selectedDate,
+                type: 'PUT',
+                url: 'updatePassage/' + name +'/' + date,
                 contentType: 'application/json',
                 data: JSON.stringify(data),
                 success: function(response) {
-                    alert("passage added successfully!");
+                    alert("passage updated successfully!");
                 },
                 error: function(xhr, status, error) {
                     alert("Please retry!");
                 }
             });
         }
-
-        // Gestionnaire d'événements pour le bouton "Confirmer" du modal
-        $('#confirmDate').off('click').on('click', function() {
-            var selectedDate = $('#inputDate').val();
-            $('#dateModal').modal('hide'); // Fermer la boîte de dialogue modale pour la date
-
-            savePassageWithoutDateModal(selectedDate);
-        });
     });
 
-
+    // TO DO (VALIDATION)
 
 });

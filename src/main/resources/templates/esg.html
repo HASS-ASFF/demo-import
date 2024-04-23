@@ -3,15 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <title>ETAT DES SOLDES DE GESTION (E.S.G)</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/fieldInput.css">
+
+    <script src="/dateInput.js"></script>
 </head>
 <body>
-    <table border="1px" class="table">
-        <thead>
+<div>
 
+    <div class="text-center mb-3">
+        <h2>ETAT DES SOLDES DE GESTION (E.S.G)</h2>
+        <button id="getImmobilisationByDate" type="button" class="btn btn-primary">Afficher le tableau</button>
+        <input type="text" id="dateBilan" list="datesList" placeholder="Sélectionner une date">
+        <datalist id="datesList"></datalist>
+    </div>
+
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th style="text-align: center;" colspan="5">TABLEAU DE FORMATION DES RESULTATS (T.F.R)</th>
+            </tr>
+
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">RUBRIQUES</th>
+                <th scope="col">EXERCICE</th>
+                <th scope="col">EXERCICE PRECEDENT</th>
+                <th></th>
+            </tr>
         </thead>
         <tbody>
 
         </tbody>
     </table>
+
+    <table class="styled-table">
+        <thead>
+        <tr>
+            <th style="text-align: center;" colspan="5">CAPACITE D'AUTOFINANCEMENT (C.A.F) - AUTOFINANCEMENT</th>
+        </tr>
+
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">RUBRIQUES</th>
+            <th scope="col">EXERCICE</th>
+            <th scope="col">EXERCICE PRECEDENT</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

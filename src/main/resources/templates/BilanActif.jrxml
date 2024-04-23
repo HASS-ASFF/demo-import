@@ -585,7 +585,7 @@
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$P{totalI}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{totalI}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <rectangle>
                 <reportElement mode="Opaque" x="385" y="305" width="170" height="204" backcolor="#325A77" uuid="941fcd2e-1505-4ae2-87b0-8d2ce1a7f569">
@@ -889,7 +889,7 @@
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$P{totalII}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{totalII}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement mode="Opaque" x="0" y="488" width="199" height="10" forecolor="#DBEEFF" backcolor="#325A77" uuid="86d2b3f0-5946-4918-89ad-090c65b5a9c8">
@@ -1183,7 +1183,7 @@
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$P{totalIII}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{totalIII}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement mode="Opaque" x="0" y="560" width="199" height="10" forecolor="#DBEEFF" backcolor="#325A77" uuid="cadb8de0-1452-48da-a978-865f54db6b7f">
@@ -1353,7 +1353,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="60" y="0" width="60" height="10" uuid="3aaf2071-4f77-4f52-822c-d74872e555e1">
