@@ -34,17 +34,6 @@ public class PassageServiceImpl implements PassageService {
         return passageRepository.save(passage);
     }
 
-
-    @Override
-    public Optional<Passage> FindByID(Long id) {
-        return passageRepository.findById(id);
-    }
-
-    @Override
-    public void deletePassage(Long id) {
-        passageRepository.deleteById(id);
-    }
-
     @Override
     public List<Passage> processAccountData(List<Passage> rawData) {
         List<Passage> mainAccountMap = Passage.initializeData();

@@ -1,15 +1,13 @@
 package com.api.demoimport.repository;
 
-import com.api.demoimport.entity.Bilan.Immobilisation;
-import com.api.demoimport.entity.Exercice;
+import com.api.demoimport.entity.Bilan.Esg;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface ExerciceRepository extends JpaRepository<Exercice,Long>{
-
+public interface EsgRepository extends JpaRepository<Esg,Long> {
     @Query(nativeQuery = true, value = "SELECT * FROM esg  JOIN exercice  ON exercice.id = exercice_id " +
             "WHERE DATE_FORMAT(exercice.date_exercice, '%Y-%m-%d') = :date AND exercice.company_name = :name")
-    List<Immobilisation> findEsgByND(String name, String date);
+    List<Esg> findEsgByND(String name, String date);
 }

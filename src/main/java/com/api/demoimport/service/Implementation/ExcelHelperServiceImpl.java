@@ -1,12 +1,10 @@
 package com.api.demoimport.service.Implementation;
 
 import com.api.demoimport.entity.*;
+import com.api.demoimport.entity.Bilan.Immobilisation;
 import com.api.demoimport.repository.BalanceRepository;
 import com.api.demoimport.repository.ExerciceRepository;
-import com.api.demoimport.repository.ImmobilisationRepository;
 import com.api.demoimport.service.ExcelHelperService;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import net.sf.jasperreports.engine.util.JRStyledText;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;

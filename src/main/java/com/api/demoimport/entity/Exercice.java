@@ -22,4 +22,8 @@ public class Exercice {
 
     @Column
     private String company_name;
+
+    @ManyToOne
+    @JoinColumn(name = "balance_id")
+    private Balance balance;
 }

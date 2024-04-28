@@ -1,5 +1,5 @@
 package com.api.demoimport.service.Implementation;
-import com.api.demoimport.entity.Immobilisation;
+import com.api.demoimport.entity.Bilan.Immobilisation;
 import com.api.demoimport.repository.ImmobilisationRepository;
 import com.api.demoimport.service.ImmobilisationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,22 +37,6 @@ public class ImmobilisationServiceImpl implements ImmobilisationService {
     @Override
     public Immobilisation createImmobilisation(Immobilisation immobilisation) {
         return immobilisationRepository.save(immobilisation);
-    }
-
-    @Override
-    public Immobilisation updateImmobilisation(Immobilisation updatedImmobilisation, String date) {
-        return null;
-    }
-
-    @Override
-    public List<Immobilisation> FilterImmobilisation(List<Immobilisation> immobilisations, String m_name) {
-        List<Immobilisation> filteredList = new ArrayList<>();
-        for(Immobilisation val : immobilisations){
-            if(Objects.equals(val.getName(), m_name)){
-                filteredList.add(val);
-            }
-        }
-        return filteredList;
     }
 
     @Override

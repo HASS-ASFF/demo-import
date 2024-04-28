@@ -13,8 +13,6 @@ import java.util.Optional;
 
 public interface PassageService {
     Passage createPassage(Passage passage);
-    Optional<Passage> FindByID(Long id);
-    void deletePassage(Long id);
     List<Passage> processAccountData(List<Passage> rawData);
     void updateMainAccountMap(List<Passage> mainAccountMap, List<Passage> rawData);
     List<Passage> FilterPassages(List<Passage> passages,String m_name);

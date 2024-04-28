@@ -1,29 +1,17 @@
 package com.api.demoimport.controller;
 
-import com.api.demoimport.dto.ServiceResponse;
 import com.api.demoimport.entity.Bilan.Passage;
 import com.api.demoimport.entity.Bilan.SubAccountActif;
-import com.api.demoimport.entity.Bilan.SubAccountCPC;
-import com.api.demoimport.entity.Immobilisation;
 import com.api.demoimport.enums.AccountCategoryClass2;
-import com.api.demoimport.enums.AccountCategoryClass6;
 import com.api.demoimport.enums.PassageCategory;
 import com.api.demoimport.repository.BalanceDetailRepository;
 import com.api.demoimport.service.Implementation.AccountDataManagerServiceImpl;
 import com.api.demoimport.service.Implementation.BalanceDetailServiceImpl;
 import com.api.demoimport.service.Implementation.PassageServiceImpl;
-import com.api.demoimport.service.PassageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @CrossOrigin("http://localhost:8080")
