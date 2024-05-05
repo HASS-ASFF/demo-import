@@ -2,35 +2,26 @@ package com.api.demoimport.entity.Bilan;
 
 import com.api.demoimport.enums.AccountCategoryClass2;
 import com.api.demoimport.enums.PassageCategory;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-@Entity
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class PassageImmo {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @Column
     String m_name;
-    @Column
     String name;
-    @Column
     Double brut;
-    @Column
     Double acquisition;
-    @Column
     Double ppe;
-    @Column
     Double virement;
-    @Column
     Double cession;
-    @Column
     Double retraitMinus;
-    @Column
     Double virementMinus;
 
     public static List<PassageImmo> initializeData() {

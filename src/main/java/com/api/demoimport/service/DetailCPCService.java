@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DetailCPCService {
-
-    DetailCPC createDetailCPC(DetailCPC detailCPC);
+    // DETAIL CPC LOGIC
     List<DetailCPC> FindDetailCPC(String name, String date);
-    Optional<DetailCPC> FindByID(Long id);
 }

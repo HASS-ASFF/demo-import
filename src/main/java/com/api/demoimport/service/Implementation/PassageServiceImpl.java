@@ -1,20 +1,13 @@
 package com.api.demoimport.service.Implementation;
 
-import com.api.demoimport.entity.Bilan.Passage;
+import com.api.demoimport.entity.Passage;
 import com.api.demoimport.entity.Bilan.SubAccountActif;
-import com.api.demoimport.entity.Bilan.SubAccountPassif;
-import com.api.demoimport.enums.AccountCategoryClass1;
-import com.api.demoimport.enums.PassageCategory;
 import com.api.demoimport.repository.BalanceDetailRepository;
 import com.api.demoimport.repository.PassageRepository;
 import com.api.demoimport.service.PassageService;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.ByteArrayOutputStream;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -28,6 +21,15 @@ public class PassageServiceImpl implements PassageService {
 
     @Autowired
     private BalanceDetailRepository repository;
+
+    /**
+     * Service implementation for managing Passage objects, providing methods for creating passages,
+     * processing & updating account data,
+     * filtering passages, finding passages by name and date, and finding passages by date.
+     * Including also implementation for managing passage immobilisation objects.
+     * Uses PassageRepository and BalanceDetailServiceImpl for database operations and additional processing.
+     */
+
 
     @Override
     public Passage createPassage(Passage passage) {

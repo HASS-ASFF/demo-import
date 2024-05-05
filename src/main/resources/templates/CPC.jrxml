@@ -38,7 +38,6 @@
     <parameter name="total5" class="java.lang.Double"/>
     <parameter name="total6" class="java.lang.Double"/>
     <parameter name="total7" class="java.lang.Double"/>
-    <parameter name="total8" class="java.lang.Double"/>
     <parameter name="total9" class="java.lang.Double"/>
     <parameter name="DateN" class="java.lang.String"/>
     <parameter name="DateN1" class="java.lang.String"/>
@@ -59,7 +58,7 @@
                 </graphicElement>
             </rectangle>
             <rectangle>
-                <reportElement mode="Opaque" x="385" y="305" width="170" height="255" backcolor="#325A77" uuid="9e51c334-9aa0-40b1-aee8-80cb7703fd3b">
+                <reportElement mode="Opaque" x="385" y="305" width="170" height="237" backcolor="#325A77" uuid="9e51c334-9aa0-40b1-aee8-80cb7703fd3b">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
@@ -68,7 +67,7 @@
                 </graphicElement>
             </rectangle>
             <staticText>
-                <reportElement mode="Opaque" x="385" y="562" width="170" height="20" forecolor="#FFFFFF" backcolor="#325A77" uuid="cd4e156a-20ef-4aff-8e02-68b98b39a9c3">
+                <reportElement mode="Opaque" x="385" y="547" width="170" height="20" forecolor="#FFFFFF" backcolor="#325A77" uuid="cd4e156a-20ef-4aff-8e02-68b98b39a9c3">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
@@ -77,7 +76,7 @@
                 <text><![CDATA[TOTAL ACTIVE]]></text>
             </staticText>
             <textField>
-                <reportElement mode="Opaque" x="385" y="584" width="83" height="20" forecolor="#FFFFFF" backcolor="#325A77" uuid="1e12f337-6bc0-4318-875f-d84cd3daba5e">
+                <reportElement mode="Opaque" x="385" y="572" width="83" height="20" forecolor="#FFFFFF" backcolor="#325A77" uuid="1e12f337-6bc0-4318-875f-d84cd3daba5e">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
@@ -86,7 +85,7 @@
                 <textFieldExpression><![CDATA[$P{DateN}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement mode="Opaque" x="472" y="584" width="83" height="20" forecolor="#FFFFFF" backcolor="#325A77" uuid="e571ef59-bef7-4ed9-9bbc-fdb4283579c7">
+                <reportElement mode="Opaque" x="472" y="572" width="83" height="20" forecolor="#FFFFFF" backcolor="#325A77" uuid="e571ef59-bef7-4ed9-9bbc-fdb4283579c7">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
@@ -369,7 +368,7 @@ l'exercice (1)]]></text>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="60" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="df518730-53b6-4b64-b454-7836bf910055">
@@ -387,7 +386,7 @@ l'exercice (1)]]></text>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="180" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="1a25e40f-b945-4fa5-b3a5-bc9ee44f848d">
@@ -591,7 +590,7 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="true"/>
                     <paragraph leftIndent="10"/>
                 </textElement>
-                <text><![CDATA[III.Total (I+ II)]]></text>
+                <text><![CDATA[III.Total (I - II)]]></text>
             </staticText>
             <staticText>
                 <reportElement mode="Transparent" x="0" y="247" width="140" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="ae139d96-b35f-411f-851e-b2e4de064b87">
@@ -825,24 +824,6 @@ l'exercice (1)]]></text>
                 </textElement>
                 <text><![CDATA[RESULTAT FINANCIER (IV-V)]]></text>
             </staticText>
-            <staticText>
-                <reportElement mode="Opaque" x="0" y="360" width="140" height="10" forecolor="#DBEEFF" backcolor="#325A77" uuid="c99f3528-52a1-4e0d-9710-1ee75b81b535">
-                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                </reportElement>
-                <box>
-                    <pen lineWidth="1.0" lineColor="#4B87B3"/>
-                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#325A77"/>
-                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#325A77"/>
-                    <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#325A77"/>
-                    <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-                </box>
-                <textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
-                    <font size="6" isBold="true"/>
-                    <paragraph leftIndent="10"/>
-                </textElement>
-                <text><![CDATA[RESULTAT FINANCIER (III-VI)]]></text>
-            </staticText>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="200" y="340" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="f0ed6a80-aadc-496a-ad87-730f48c80f30">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -980,84 +961,6 @@ l'exercice (1)]]></text>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="140" y="360" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="7b83cf2b-b92c-4b63-a8fc-3af5b25bffe0">
-                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
-                </reportElement>
-                <box>
-                    <pen lineWidth="1.0" lineColor="#4B87B3"/>
-                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#325A77"/>
-                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#325A77"/>
-                    <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#325A77"/>
-                    <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-                </box>
-                <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
-                    <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
-                </textElement>
-                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total7}).replaceAll(",",".")]]></textFieldExpression>
-            </textField>
-            <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="200" y="360" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="6d45cf03-6d33-441e-aec5-15443f782aa2">
-                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
-                </reportElement>
-                <box>
-                    <pen lineWidth="1.0" lineColor="#4B87B3"/>
-                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#325A77"/>
-                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#325A77"/>
-                    <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#325A77"/>
-                    <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-                </box>
-                <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
-                    <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
-                </textElement>
-            </textField>
-            <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="260" y="360" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="665b92e7-ee24-48e1-98e9-0e4f79e2c657">
-                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
-                </reportElement>
-                <box>
-                    <pen lineWidth="1.0" lineColor="#4B87B3"/>
-                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#325A77"/>
-                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#325A77"/>
-                    <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#325A77"/>
-                    <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-                </box>
-                <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
-                    <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
-                </textElement>
-                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total7}).replaceAll(",",".")]]></textFieldExpression>
-            </textField>
-            <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="320" y="360" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="c81a255d-52f8-45af-941b-20b383e2459a">
-                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
-                </reportElement>
-                <box>
-                    <pen lineWidth="1.0" lineColor="#4B87B3"/>
-                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#325A77"/>
-                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#325A77"/>
-                    <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#325A77"/>
-                    <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-                </box>
-                <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
-                    <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
-                </textElement>
-            </textField>
-            <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="278" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="5949278e-9cf3-44c6-a912-2e1d50344ec5">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -1172,7 +1075,7 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total1}+$P{total2}).replaceAll(",",".")]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total1}-$P{total2}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="200" y="226" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="d32dcb7c-ab8b-489a-a613-0ba16c1219f9">
@@ -1211,7 +1114,7 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total1}+$P{total2}).replaceAll(",",".")]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total1}-$P{total2}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="216" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="02acbf60-d4bc-45fb-ae35-7bc665856079">
@@ -1370,7 +1273,7 @@ l'exercice (1)]]></text>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total1}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="320" y="370" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="b5cf22fa-425a-432e-ae6f-1a8c52c41dc5">
+                <reportElement mode="Opaque" x="320" y="360" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="b5cf22fa-425a-432e-ae6f-1a8c52c41dc5">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -1389,7 +1292,7 @@ l'exercice (1)]]></text>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="260" y="370" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="d8db19b7-b5c5-4b5a-a677-df899c928940">
+                <reportElement mode="Opaque" x="260" y="360" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="d8db19b7-b5c5-4b5a-a677-df899c928940">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -1406,10 +1309,10 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total7}).replaceAll(",",".")]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format(($P{total1}-$P{total2})+$P{total3}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="200" y="370" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="4ada05cd-f7f9-4c23-8655-850be27d7c1a">
+                <reportElement mode="Opaque" x="200" y="360" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="4ada05cd-f7f9-4c23-8655-850be27d7c1a">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -1428,7 +1331,7 @@ l'exercice (1)]]></text>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="140" y="370" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="56d74c8a-319b-4a90-b299-f9abea4f3079">
+                <reportElement mode="Opaque" x="140" y="360" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="56d74c8a-319b-4a90-b299-f9abea4f3079">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -1445,10 +1348,10 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total7}).replaceAll(",",".")]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format(($P{total1}-$P{total2})+$P{total3}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <staticText>
-                <reportElement mode="Opaque" x="0" y="370" width="140" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="871c1eb2-ee08-4f09-853b-c9e8599c8a1b">
+                <reportElement mode="Opaque" x="0" y="360" width="140" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="871c1eb2-ee08-4f09-853b-c9e8599c8a1b">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                 </reportElement>
@@ -1463,10 +1366,10 @@ l'exercice (1)]]></text>
                     <font size="6" isBold="true"/>
                     <paragraph leftIndent="10"/>
                 </textElement>
-                <text><![CDATA[VII.RESULTAT COURANT (Report)]]></text>
+                <text><![CDATA[VII.RESULTAT COURANT (III+IV)]]></text>
             </staticText>
             <staticText>
-                <reportElement mode="Opaque" x="0" y="382" width="380" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="0085b751-9cdf-4a94-a660-5a29c231d304">
+                <reportElement mode="Opaque" x="0" y="373" width="380" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="0085b751-9cdf-4a94-a660-5a29c231d304">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                 </reportElement>
@@ -1484,7 +1387,7 @@ l'exercice (1)]]></text>
                 <text><![CDATA[VIII.PRODUITS NON COURANTS]]></text>
             </staticText>
             <staticText>
-                <reportElement mode="Transparent" x="0" y="392" width="140" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="3a226e26-a838-41a8-8b8a-c498fab01c4f">
+                <reportElement mode="Transparent" x="0" y="383" width="140" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="3a226e26-a838-41a8-8b8a-c498fab01c4f">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                 </reportElement>
@@ -1502,7 +1405,7 @@ l'exercice (1)]]></text>
                 <text><![CDATA[Produits des cessions d'immobilisations]]></text>
             </staticText>
             <staticText>
-                <reportElement mode="Transparent" x="0" y="402" width="140" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="f16458de-6566-41f1-a291-09f1a084d7ba">
+                <reportElement mode="Transparent" x="0" y="393" width="140" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="f16458de-6566-41f1-a291-09f1a084d7ba">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
                 <box>
@@ -1519,7 +1422,7 @@ l'exercice (1)]]></text>
                 <text><![CDATA[Subventions d'équilibre]]></text>
             </staticText>
             <staticText>
-                <reportElement mode="Transparent" x="0" y="412" width="140" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="b3edb3ee-3331-491a-89f7-480debf5e21f">
+                <reportElement mode="Transparent" x="0" y="403" width="140" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="b3edb3ee-3331-491a-89f7-480debf5e21f">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
                 <box>
@@ -1536,7 +1439,7 @@ l'exercice (1)]]></text>
                 <text><![CDATA[Reprises sur subventions d'investissement]]></text>
             </staticText>
             <staticText>
-                <reportElement mode="Transparent" x="0" y="422" width="140" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="761e4273-55e0-4108-aa0c-904eb99fcac8">
+                <reportElement mode="Transparent" x="0" y="413" width="140" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="761e4273-55e0-4108-aa0c-904eb99fcac8">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                 </reportElement>
@@ -1554,7 +1457,7 @@ l'exercice (1)]]></text>
                 <text><![CDATA[Autres produits non courants]]></text>
             </staticText>
             <staticText>
-                <reportElement mode="Opaque" x="0" y="448" width="140" height="10" forecolor="#DBEEFF" backcolor="#325A77" uuid="5b7dc755-9365-484e-9868-a52507923e7c">
+                <reportElement mode="Opaque" x="0" y="439" width="140" height="10" forecolor="#DBEEFF" backcolor="#325A77" uuid="5b7dc755-9365-484e-9868-a52507923e7c">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                 </reportElement>
@@ -1572,7 +1475,7 @@ l'exercice (1)]]></text>
                 <text><![CDATA[Total VIII]]></text>
             </staticText>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="140" y="448" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="84239fe0-a4fa-4c81-acbe-97462666191c">
+                <reportElement mode="Opaque" x="140" y="439" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="84239fe0-a4fa-4c81-acbe-97462666191c">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -1592,7 +1495,7 @@ l'exercice (1)]]></text>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total5}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="200" y="448" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="3b95229a-be46-459e-9915-cb8fe3b5d10b">
+                <reportElement mode="Opaque" x="200" y="439" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="3b95229a-be46-459e-9915-cb8fe3b5d10b">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -1611,7 +1514,7 @@ l'exercice (1)]]></text>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="260" y="448" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="470cc61b-272a-410c-8228-fe17eb2d41b5">
+                <reportElement mode="Opaque" x="260" y="439" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="470cc61b-272a-410c-8228-fe17eb2d41b5">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -1631,7 +1534,7 @@ l'exercice (1)]]></text>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total5}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="320" y="448" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="21499fd5-8771-43bf-9391-bd2235f91ff1">
+                <reportElement mode="Opaque" x="320" y="439" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="21499fd5-8771-43bf-9391-bd2235f91ff1">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -1650,7 +1553,7 @@ l'exercice (1)]]></text>
                 </textElement>
             </textField>
             <staticText>
-                <reportElement mode="Transparent" x="0" y="432" width="140" height="14" forecolor="#3B3B3B" backcolor="#325A77" uuid="077b368c-4a3c-42e5-bd0b-abe877564159">
+                <reportElement mode="Transparent" x="0" y="423" width="140" height="14" forecolor="#3B3B3B" backcolor="#325A77" uuid="077b368c-4a3c-42e5-bd0b-abe877564159">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                 </reportElement>
@@ -1669,7 +1572,7 @@ l'exercice (1)]]></text>
 charges]]></text>
             </staticText>
             <staticText>
-                <reportElement mode="Opaque" x="0" y="458" width="380" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="8f39ce8b-b5f3-4416-ba1d-1a39e7711183">
+                <reportElement mode="Opaque" x="0" y="449" width="380" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="8f39ce8b-b5f3-4416-ba1d-1a39e7711183">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                 </reportElement>
@@ -1687,25 +1590,7 @@ charges]]></text>
                 <text><![CDATA[IX.CHARGES NON COURANTES]]></text>
             </staticText>
             <staticText>
-                <reportElement mode="Transparent" x="0" y="468" width="140" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="16644131-d63d-44bc-b26a-8d270aff111b">
-                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
-                </reportElement>
-                <box>
-                    <pen lineWidth="1.0" lineColor="#4B87B3"/>
-                    <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#325A77"/>
-                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#325A77"/>
-                    <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#325A77"/>
-                    <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-                </box>
-                <textElement textAlignment="Right" verticalAlignment="Middle">
-                    <font size="5.6" isBold="false"/>
-                    <paragraph rightIndent="4"/>
-                </textElement>
-                <text><![CDATA[CHARGES NON COURANTES]]></text>
-            </staticText>
-            <staticText>
-                <reportElement mode="Transparent" x="0" y="478" width="140" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="e6509161-55b1-4e8d-951e-02581677ba00">
+                <reportElement mode="Transparent" x="0" y="459" width="140" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="e6509161-55b1-4e8d-951e-02581677ba00">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
                 <box>
@@ -1722,7 +1607,7 @@ charges]]></text>
                 <text><![CDATA[Valeurs nettes d'amortisselents des immobilisations cédées]]></text>
             </staticText>
             <staticText>
-                <reportElement mode="Transparent" x="0" y="488" width="140" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="af9b649f-97ef-4b86-96a2-ec2e633ec307">
+                <reportElement mode="Transparent" x="0" y="469" width="140" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="af9b649f-97ef-4b86-96a2-ec2e633ec307">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
                 <box>
@@ -1739,7 +1624,7 @@ charges]]></text>
                 <text><![CDATA[Subventions accordées]]></text>
             </staticText>
             <staticText>
-                <reportElement mode="Transparent" x="0" y="498" width="140" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="e8953ae1-51a8-4701-9be7-d4d36454b9c5">
+                <reportElement mode="Transparent" x="0" y="479" width="140" height="10" forecolor="#3B3B3B" backcolor="#325A77" uuid="e8953ae1-51a8-4701-9be7-d4d36454b9c5">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
                 <box>
@@ -1756,7 +1641,7 @@ charges]]></text>
                 <text><![CDATA[Autres charges non courantes]]></text>
             </staticText>
             <staticText>
-                <reportElement mode="Transparent" x="0" y="508" width="140" height="14" forecolor="#3B3B3B" backcolor="#325A77" uuid="58facf0e-e87f-4cf7-8488-b9c2eab2a572">
+                <reportElement mode="Transparent" x="0" y="489" width="140" height="14" forecolor="#3B3B3B" backcolor="#325A77" uuid="58facf0e-e87f-4cf7-8488-b9c2eab2a572">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                 </reportElement>
@@ -1775,7 +1660,7 @@ charges]]></text>
 amortissements et aux provisions]]></text>
             </staticText>
             <staticText>
-                <reportElement mode="Opaque" x="0" y="524" width="140" height="10" forecolor="#DBEEFF" backcolor="#325A77" uuid="d97676a5-cb11-4049-8364-f3e2c17f0e69">
+                <reportElement mode="Opaque" x="0" y="503" width="140" height="10" forecolor="#DBEEFF" backcolor="#325A77" uuid="d97676a5-cb11-4049-8364-f3e2c17f0e69">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                 </reportElement>
@@ -1793,7 +1678,7 @@ amortissements et aux provisions]]></text>
                 <text><![CDATA[Total IX]]></text>
             </staticText>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="140" y="524" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="200f0f01-ed9b-4472-92b1-0e63620de970">
+                <reportElement mode="Opaque" x="140" y="503" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="200f0f01-ed9b-4472-92b1-0e63620de970">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -1813,7 +1698,7 @@ amortissements et aux provisions]]></text>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total6}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="200" y="524" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="fa06f96e-205d-48f3-8657-38d2ad8224cf">
+                <reportElement mode="Opaque" x="200" y="503" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="fa06f96e-205d-48f3-8657-38d2ad8224cf">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -1832,7 +1717,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="260" y="524" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="55ee065b-c371-4e03-97f0-9b868042365a">
+                <reportElement mode="Opaque" x="260" y="503" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="55ee065b-c371-4e03-97f0-9b868042365a">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -1852,7 +1737,7 @@ amortissements et aux provisions]]></text>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total6}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="320" y="524" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="b632a3cc-2924-452f-b08d-0fac5d58d70e">
+                <reportElement mode="Opaque" x="320" y="503" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="b632a3cc-2924-452f-b08d-0fac5d58d70e">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -1871,7 +1756,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
             </textField>
             <staticText>
-                <reportElement mode="Opaque" x="0" y="534" width="140" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="2b49af12-a882-407b-b910-796fa3a942ae">
+                <reportElement mode="Opaque" x="0" y="513" width="140" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="2b49af12-a882-407b-b910-796fa3a942ae">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                 </reportElement>
@@ -1889,7 +1774,7 @@ amortissements et aux provisions]]></text>
                 <text><![CDATA[X.RESULTAT NON COURANT (VIII-IX)]]></text>
             </staticText>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="140" y="534" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="9168faaf-3666-4fc7-b064-681ac79e900d">
+                <reportElement mode="Opaque" x="140" y="513" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="9168faaf-3666-4fc7-b064-681ac79e900d">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -1909,7 +1794,7 @@ amortissements et aux provisions]]></text>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total5}-$P{total6}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="200" y="534" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="45ac8f92-315b-4f58-9af2-0f43b124ff5b">
+                <reportElement mode="Opaque" x="200" y="513" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="45ac8f92-315b-4f58-9af2-0f43b124ff5b">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -1928,7 +1813,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="260" y="534" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="cfd44c1b-eec5-43fa-a7ff-73bc7d09bf2d">
+                <reportElement mode="Opaque" x="260" y="513" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="cfd44c1b-eec5-43fa-a7ff-73bc7d09bf2d">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -1948,7 +1833,7 @@ amortissements et aux provisions]]></text>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total5}-$P{total6}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="320" y="534" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="ffc61e7b-8f5e-42bf-8c17-82e5a426b656">
+                <reportElement mode="Opaque" x="320" y="513" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="ffc61e7b-8f5e-42bf-8c17-82e5a426b656">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -1967,7 +1852,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
             </textField>
             <staticText>
-                <reportElement mode="Opaque" x="0" y="544" width="140" height="10" forecolor="#DBEEFF" backcolor="#325A77" uuid="73b2e038-50b7-4820-aff9-f8638a55f0e6">
+                <reportElement mode="Opaque" x="0" y="523" width="140" height="10" forecolor="#DBEEFF" backcolor="#325A77" uuid="73b2e038-50b7-4820-aff9-f8638a55f0e6">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                 </reportElement>
@@ -1985,7 +1870,7 @@ amortissements et aux provisions]]></text>
                 <text><![CDATA[XI.RESULTAT AVANT IMPOTS (VII+X)]]></text>
             </staticText>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="140" y="544" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="d761dfc8-656a-4d9a-af13-a1a5d9a35843">
+                <reportElement mode="Opaque" x="140" y="523" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="d761dfc8-656a-4d9a-af13-a1a5d9a35843">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2002,10 +1887,10 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total8}).replaceAll(",",".")]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total7}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="200" y="544" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="f27c3e39-c397-4aca-a8cc-aaa6c4057655">
+                <reportElement mode="Opaque" x="200" y="523" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="f27c3e39-c397-4aca-a8cc-aaa6c4057655">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2024,7 +1909,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="260" y="544" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="e6991b45-8d8f-401e-aee4-0e223e7359e7">
+                <reportElement mode="Opaque" x="260" y="523" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="e6991b45-8d8f-401e-aee4-0e223e7359e7">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2041,10 +1926,10 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total8}).replaceAll(",",".")]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total7}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="320" y="544" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="99b082a2-51aa-4319-bac8-c0f340679d20">
+                <reportElement mode="Opaque" x="320" y="523" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="99b082a2-51aa-4319-bac8-c0f340679d20">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2063,7 +1948,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
             </textField>
             <staticText>
-                <reportElement mode="Opaque" x="0" y="554" width="140" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="cacbdbe2-88db-4bd3-88f5-a5ef54045b15">
+                <reportElement mode="Opaque" x="0" y="533" width="140" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="cacbdbe2-88db-4bd3-88f5-a5ef54045b15">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                 </reportElement>
@@ -2081,7 +1966,7 @@ amortissements et aux provisions]]></text>
                 <text><![CDATA[XII.IMPOTS SUR LES BENEFICES]]></text>
             </staticText>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="140" y="554" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="067659ff-bb54-4df5-bcb0-7b6201787f28">
+                <reportElement mode="Opaque" x="140" y="533" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="067659ff-bb54-4df5-bcb0-7b6201787f28">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2100,7 +1985,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="200" y="554" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="5e775326-da82-490e-8fbc-812e423931ee">
+                <reportElement mode="Opaque" x="200" y="533" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="5e775326-da82-490e-8fbc-812e423931ee">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2119,7 +2004,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="260" y="554" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="55c1f0c8-cc60-4ee0-98f4-0acba51adc19">
+                <reportElement mode="Opaque" x="260" y="533" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="55c1f0c8-cc60-4ee0-98f4-0acba51adc19">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2138,7 +2023,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="320" y="554" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="335d3716-8077-4ebe-98d1-83430ba03900">
+                <reportElement mode="Opaque" x="320" y="533" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="335d3716-8077-4ebe-98d1-83430ba03900">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2157,7 +2042,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="320" y="564" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="468c4788-e55f-40c8-9576-49730547d9e1">
+                <reportElement mode="Opaque" x="320" y="543" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="468c4788-e55f-40c8-9576-49730547d9e1">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2176,7 +2061,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="260" y="564" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="92da1dec-3a43-440a-800e-19a49eaad9f6">
+                <reportElement mode="Opaque" x="260" y="543" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="92da1dec-3a43-440a-800e-19a49eaad9f6">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2193,10 +2078,10 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total3}+($P{total5}-$P{total6})).replaceAll(",",".")]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total7}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="200" y="564" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="53976e14-fdf4-4b3c-bd2c-66eed456f1d8">
+                <reportElement mode="Opaque" x="200" y="543" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="53976e14-fdf4-4b3c-bd2c-66eed456f1d8">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2215,7 +2100,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="140" y="564" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="b975d70a-9645-45bd-a59b-426d039fb112">
+                <reportElement mode="Opaque" x="140" y="543" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="b975d70a-9645-45bd-a59b-426d039fb112">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2232,10 +2117,10 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total3}+($P{total5}-$P{total6})).replaceAll(",",".")]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total7}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <staticText>
-                <reportElement mode="Opaque" x="0" y="564" width="140" height="10" forecolor="#DBEEFF" backcolor="#325A77" uuid="fdde3c7f-bde1-4d12-9363-279a65fe1bef">
+                <reportElement mode="Opaque" x="0" y="543" width="140" height="10" forecolor="#DBEEFF" backcolor="#325A77" uuid="fdde3c7f-bde1-4d12-9363-279a65fe1bef">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                 </reportElement>
@@ -2253,7 +2138,7 @@ amortissements et aux provisions]]></text>
                 <text><![CDATA[XIII.RESULTAT NET (XI-XII)]]></text>
             </staticText>
             <staticText>
-                <reportElement mode="Opaque" x="0" y="574" width="140" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="25aece54-0009-477b-abb4-4c00366581f2">
+                <reportElement mode="Opaque" x="0" y="553" width="140" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="25aece54-0009-477b-abb4-4c00366581f2">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                 </reportElement>
@@ -2271,7 +2156,7 @@ amortissements et aux provisions]]></text>
                 <text><![CDATA[XV.TOTAL DES PRODUITS (I+IV+VIII)]]></text>
             </staticText>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="140" y="574" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="107ff3ac-7570-410d-98c2-9218d00673c3">
+                <reportElement mode="Opaque" x="140" y="553" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="107ff3ac-7570-410d-98c2-9218d00673c3">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2291,7 +2176,7 @@ amortissements et aux provisions]]></text>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total1}+$P{total3}+$P{total5}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="200" y="574" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="3831fd49-8618-46a2-a410-0deaf022b2c0">
+                <reportElement mode="Opaque" x="200" y="553" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="3831fd49-8618-46a2-a410-0deaf022b2c0">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2310,7 +2195,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="260" y="574" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="a229a59f-be6c-4016-930f-7abc07c4fcdf">
+                <reportElement mode="Opaque" x="260" y="553" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="a229a59f-be6c-4016-930f-7abc07c4fcdf">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2330,7 +2215,7 @@ amortissements et aux provisions]]></text>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total1}+$P{total3}+$P{total5}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="320" y="574" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="869dd9d6-1af3-4fcc-bac1-29fa4b1f2381">
+                <reportElement mode="Opaque" x="320" y="553" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="869dd9d6-1af3-4fcc-bac1-29fa4b1f2381">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2349,7 +2234,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
             </textField>
             <staticText>
-                <reportElement mode="Opaque" x="0" y="584" width="140" height="10" forecolor="#DBEEFF" backcolor="#325A77" uuid="7492741b-2ddd-4d6a-8609-d2b817607f02">
+                <reportElement mode="Opaque" x="0" y="563" width="140" height="10" forecolor="#DBEEFF" backcolor="#325A77" uuid="7492741b-2ddd-4d6a-8609-d2b817607f02">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                 </reportElement>
@@ -2367,7 +2252,7 @@ amortissements et aux provisions]]></text>
                 <text><![CDATA[XVI.TOTAL DES CHARGES (II+V+IX+XII)]]></text>
             </staticText>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="140" y="584" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="ba5bb9d7-98a5-4006-ba8d-c38aa9cec8bd">
+                <reportElement mode="Opaque" x="140" y="563" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="ba5bb9d7-98a5-4006-ba8d-c38aa9cec8bd">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2387,7 +2272,7 @@ amortissements et aux provisions]]></text>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total2}+$P{total4}+$P{total6}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="200" y="584" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="24dcfa03-97b4-450b-8b4a-2f0b143cc80b">
+                <reportElement mode="Opaque" x="200" y="563" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="24dcfa03-97b4-450b-8b4a-2f0b143cc80b">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2406,7 +2291,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="260" y="584" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="9407d29e-7cac-4297-8c48-393db9606e1a">
+                <reportElement mode="Opaque" x="260" y="563" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="9407d29e-7cac-4297-8c48-393db9606e1a">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2426,7 +2311,7 @@ amortissements et aux provisions]]></text>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total2}+$P{total4}+$P{total6}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="320" y="584" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="f29b69d6-31e4-4207-b72e-5235c1ee0b8f">
+                <reportElement mode="Opaque" x="320" y="563" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="f29b69d6-31e4-4207-b72e-5235c1ee0b8f">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2445,7 +2330,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="320" y="594" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="b29cceb6-365a-47bd-8153-989dd2951462">
+                <reportElement mode="Opaque" x="320" y="573" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="b29cceb6-365a-47bd-8153-989dd2951462">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2464,7 +2349,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
             </textField>
             <textField>
-                <reportElement mode="Opaque" x="260" y="594" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="c1b67ef0-a462-4e46-a443-fe2417d9521c">
+                <reportElement mode="Opaque" x="260" y="573" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="c1b67ef0-a462-4e46-a443-fe2417d9521c">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2484,7 +2369,7 @@ amortissements et aux provisions]]></text>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total9}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="200" y="594" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="0a383dcb-9f98-46fa-9065-0aac474c9238">
+                <reportElement mode="Opaque" x="200" y="573" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="0a383dcb-9f98-46fa-9065-0aac474c9238">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2503,7 +2388,7 @@ amortissements et aux provisions]]></text>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
-                <reportElement mode="Opaque" x="140" y="594" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="a9a86962-7b38-4c15-91f3-9ca500ec1b90">
+                <reportElement mode="Opaque" x="140" y="573" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="a9a86962-7b38-4c15-91f3-9ca500ec1b90">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
@@ -2523,7 +2408,7 @@ amortissements et aux provisions]]></text>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total9}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <staticText>
-                <reportElement mode="Opaque" x="0" y="594" width="140" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="bbd5b5e0-0f63-4053-b501-a6ab3ca9ac61">
+                <reportElement mode="Opaque" x="0" y="573" width="140" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="bbd5b5e0-0f63-4053-b501-a6ab3ca9ac61">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
                 </reportElement>
@@ -2555,7 +2440,7 @@ des charges )]]></text>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="60" y="0" width="60" height="10" uuid="7f0a6e4a-03a7-44cb-8a57-47ac22a978ef">
@@ -2573,7 +2458,7 @@ des charges )]]></text>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="180" y="0" width="60" height="10" uuid="c501eb8a-e960-4fd5-a043-ddb9765d1e99">
@@ -2600,7 +2485,7 @@ des charges )]]></text>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="60" y="0" width="60" height="10" uuid="2929bc87-a4fb-4eb7-ad67-233f0f1a3bb4">
@@ -2618,7 +2503,7 @@ des charges )]]></text>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="180" y="0" width="60" height="10" uuid="842ee1a8-c8d9-45b0-ac9e-a24b000c1ceb">
@@ -2645,7 +2530,7 @@ des charges )]]></text>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="60" y="0" width="60" height="10" uuid="32b01b8b-1ddd-49ba-a683-3a548dab7193">
@@ -2663,7 +2548,7 @@ des charges )]]></text>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="180" y="0" width="60" height="10" uuid="48aa01da-b5ff-465b-87d6-7ed6a6a66972">
@@ -2677,7 +2562,7 @@ des charges )]]></text>
                 </jr:list>
             </componentElement>
             <componentElement>
-                <reportElement x="140" y="392" width="240" height="10" uuid="9acaf409-1fdf-4e93-ab14-740b6797c400"/>
+                <reportElement x="140" y="383" width="240" height="10" uuid="9acaf409-1fdf-4e93-ab14-740b6797c400"/>
                 <jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
                     <datasetRun subDataset="Dataset5" uuid="42ac8923-e98b-4273-8e78-9520ed373e1d">
                         <dataSourceExpression><![CDATA[$P{param5}]]></dataSourceExpression>
@@ -2690,7 +2575,7 @@ des charges )]]></text>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="60" y="0" width="60" height="10" uuid="14fff011-608a-4724-91a5-613b98494e29">
@@ -2708,7 +2593,7 @@ des charges )]]></text>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="180" y="0" width="60" height="10" uuid="181cf7dd-142d-403e-a736-15177339822e">
@@ -2722,7 +2607,7 @@ des charges )]]></text>
                 </jr:list>
             </componentElement>
             <componentElement>
-                <reportElement x="140" y="468" width="240" height="10" uuid="48051cc0-d876-4cb9-beb0-eb98cae1251b"/>
+                <reportElement x="140" y="459" width="240" height="10" uuid="48051cc0-d876-4cb9-beb0-eb98cae1251b"/>
                 <jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
                     <datasetRun subDataset="Dataset6" uuid="f6e4f677-f5ba-4423-9646-4213b32b07e1">
                         <dataSourceExpression><![CDATA[$P{param6}]]></dataSourceExpression>
@@ -2735,7 +2620,7 @@ des charges )]]></text>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="60" y="0" width="60" height="10" uuid="eb1a9091-5c42-4378-beb6-df13d3388761">
@@ -2753,7 +2638,7 @@ des charges )]]></text>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="180" y="0" width="60" height="10" uuid="6d4c8414-736a-4423-828a-7c56c5cef692">

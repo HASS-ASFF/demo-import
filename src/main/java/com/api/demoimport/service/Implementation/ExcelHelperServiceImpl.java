@@ -1,7 +1,7 @@
 package com.api.demoimport.service.Implementation;
 
 import com.api.demoimport.entity.*;
-import com.api.demoimport.entity.Bilan.Immobilisation;
+import com.api.demoimport.entity.Immobilisation;
 import com.api.demoimport.repository.BalanceRepository;
 import com.api.demoimport.repository.ExerciceRepository;
 import com.api.demoimport.service.ExcelHelperService;
@@ -27,6 +27,13 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
     private BalanceRepository balanceRepository;
     @Autowired
     private ExerciceRepository exerciceRepository;
+
+    /**
+     * Service implementation for handling Excel files including operations like converting Excel data to PlanComptable,
+     * BalanceDetail, and Immobilisation objects.
+     * Provides methods for verifying the format of Excel files, converting Excel data to object representations,
+     * and saving them to respective repositories.
+     */
 
 
     // Defining type of MIME

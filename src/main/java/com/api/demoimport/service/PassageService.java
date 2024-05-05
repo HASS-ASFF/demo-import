@@ -1,17 +1,20 @@
 package com.api.demoimport.service;
 
-import com.api.demoimport.entity.Bilan.Passage;
+import com.api.demoimport.entity.Passage;
 import com.api.demoimport.entity.Bilan.SubAccountActif;
-import com.api.demoimport.entity.Bilan.SubAccountPassif;
 
-import java.io.ByteArrayOutputStream;
-import java.text.ParseException;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 public interface PassageService {
+
+    /**
+     * Interface defining service operations for managing passages.
+     * Methods include creating a passage, processing raw passage data,
+     * updating a main account map, filtering passages, finding a passage by name and date,
+     * and finding passages by date.
+     */
+
     Passage createPassage(Passage passage);
     List<Passage> processAccountData(List<Passage> rawData);
     void updateMainAccountMap(List<Passage> mainAccountMap, List<Passage> rawData);

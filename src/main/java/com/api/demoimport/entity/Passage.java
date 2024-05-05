@@ -1,4 +1,4 @@
-package com.api.demoimport.entity.Bilan;
+package com.api.demoimport.entity;
 
 import com.api.demoimport.enums.PassageCategory;
 import lombok.Getter;

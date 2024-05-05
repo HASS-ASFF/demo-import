@@ -14,13 +14,14 @@
     <link rel="stylesheet" href="/fieldInput.css">
 
     <script src="/dateInput.js"></script>
+    <script src="/passageESG.js"></script>
 </head>
 <body>
 <div>
 
     <div class="text-center mb-3">
         <h2>ETAT DES SOLDES DE GESTION (E.S.G)</h2>
-        <button id="getImmobilisationByDate" type="button" class="btn btn-primary">Afficher le tableau</button>
+        <button id="getEsgByDate" type="button" class="btn btn-primary">Afficher le tableau</button>
         <input type="text" id="dateBilan" list="datesList" placeholder="Sélectionner une date">
         <datalist id="datesList"></datalist>
     </div>
@@ -28,7 +29,7 @@
     <table class="styled-table">
         <thead>
             <tr>
-                <th style="text-align: center;" colspan="5">TABLEAU DE FORMATION DES RESULTATS (T.F.R)</th>
+                <th style="text-align: center;" colspan="4">TABLEAU DE FORMATION DES RESULTATS (T.F.R)</th>
             </tr>
 
             <tr>
@@ -36,10 +37,9 @@
                 <th scope="col">RUBRIQUES</th>
                 <th scope="col">EXERCICE</th>
                 <th scope="col">EXERCICE PRECEDENT</th>
-                <th></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="getResultTFR">
 
         </tbody>
     </table>
@@ -47,7 +47,7 @@
     <table class="styled-table">
         <thead>
         <tr>
-            <th style="text-align: center;" colspan="5">CAPACITE D'AUTOFINANCEMENT (C.A.F) - AUTOFINANCEMENT</th>
+            <th style="text-align: center;" colspan="4">CAPACITE D'AUTOFINANCEMENT (C.A.F) - AUTOFINANCEMENT</th>
         </tr>
 
         <tr>
@@ -55,10 +55,9 @@
             <th scope="col">RUBRIQUES</th>
             <th scope="col">EXERCICE</th>
             <th scope="col">EXERCICE PRECEDENT</th>
-            <th></th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="getResultCAF">
 
         </tbody>
     </table>

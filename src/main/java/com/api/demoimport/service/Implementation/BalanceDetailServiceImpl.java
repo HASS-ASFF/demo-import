@@ -28,6 +28,16 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
     @Autowired
     private AccountDataManagerServiceImpl accountDataManagerService;
 
+    /**
+     * Processing balance detail data involves several steps:
+     * - Parsing Excel data to extract balance details and storing them in the database.
+     * - Retrieving balance details for different account classes (e.g., class 1, class 2, etc.).
+     * - Regrouping balance detail data based on account numbers and calculating total values.
+     * - Converting retrieved data into appropriate subaccount objects (Actif or Passif).
+     * - Handling CPC (Compte de Produit et Charge) accounts, where both debit and credit values may exist.
+     *   (A for Actif and P for Passif)
+     */
+
     // Save file excel balance and retrieve data & save it to db
     @Override
     public void save(MultipartFile file,String date,String company_name) {

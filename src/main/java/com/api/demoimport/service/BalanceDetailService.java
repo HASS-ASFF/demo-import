@@ -10,7 +10,11 @@ import java.util.List;
 
 public interface BalanceDetailService {
 
-    // Getting different classes from BalanceDetail & converting it to SubAccount object
+    /**
+     * Interface defining service operations for handling balance details.
+     * Methods include saving balance details from a file, retrieving balance details,
+     * and converting them into various subaccount objects for the creation of the various balance sheet tables
+     */
 
     void save(MultipartFile file, String date,String company_name);
     List<BalanceDetail> getBalanceDetails();

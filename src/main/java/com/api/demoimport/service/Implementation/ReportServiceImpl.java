@@ -26,6 +26,12 @@ public class ReportServiceImpl implements ReportService {
     @Autowired
     BalanceDetailServiceImpl balanceDetailServiceImpl;
 
+    /**
+     * Service implementation for managing reports, providing methods for exporting reports to PDF format.
+     * Using AccountDataManagerServiceImpl and BalanceDetailServiceImpl to retrieve data for report generation.
+     */
+
+
     // TO CHANGE
     String path = "C:\\Users\\onizu\\OneDrive\\Bureau\\demo-import\\src\\main\\resources\\templates\\";
 
@@ -234,8 +240,11 @@ public class ReportServiceImpl implements ReportService {
         try{
             // CLASS SIX
             List<SubAccountCPC> ClassSix = balanceDetailServiceImpl.getClassSix(date,company_name);
+
             List<SubAccountCPC> FullClassSix = accountDataManagerServiceImpl.
                     processAccountDataCPC(ClassSix,"6");
+            FullClassSix.forEach(t->System.out.println(t.getN_compte()+" "+t.getLibelle()+" "+ t.getBrut() + " "+ t.getMainAccount()));
+            System.out.println("\n");
 
             // CLASS SEVEN
             List<SubAccountCPC> ClassSeven = balanceDetailServiceImpl.getClassSeven(date,company_name);
@@ -248,6 +257,8 @@ public class ReportServiceImpl implements ReportService {
                     FilterAccountDataCPC(FullClassSeven,AccountCategoryClass7.PRODUITS_DEXPLOITATION.getLabel());
             List<SubAccountCPC> dataset2 = accountDataManagerServiceImpl.
                     FilterAccountDataCPC(FullClassSix,AccountCategoryClass6.CHARGES_DEXPLOITATION.getLabel());
+            dataset2.forEach(t->System.out.println(t.getN_compte()+" "+t.getLibelle()+" "+t.getBrut() + " "+ t.getMainAccount()));
+
             List<SubAccountCPC> dataset3 = accountDataManagerServiceImpl.
                     FilterAccountDataCPC(FullClassSeven,AccountCategoryClass7.PRODUITS_FINANCIERS.getLabel());
             List<SubAccountCPC> dataset4 = accountDataManagerServiceImpl.
@@ -293,18 +304,18 @@ public class ReportServiceImpl implements ReportService {
             List<SubAccountCPC> totalListVI = new ArrayList<>();
             totalListVI.addAll(dataset6);
             parameters.put("total6",accountDataManagerServiceImpl.GetTotalBrutCPC(totalListVI));
-            Double total7 = accountDataManagerServiceImpl.GetTotalBrutCPC(totalListI) +
-            accountDataManagerServiceImpl.GetTotalBrutCPC(totalListII)-accountDataManagerServiceImpl.GetTotalBrutCPC(totalListIII);
+
+            Double totaltemp = accountDataManagerServiceImpl.GetTotalBrutCPC(totalListI) -
+            accountDataManagerServiceImpl.GetTotalBrutCPC(totalListII);
+
+            Double total7 = (totaltemp - accountDataManagerServiceImpl.GetTotalBrutCPC(totalListIII)) + (accountDataManagerServiceImpl.GetTotalBrutCPC(totalListV)
+                    - accountDataManagerServiceImpl.GetTotalBrutCPC(totalListVI));
             parameters.put("total7",total7);
 
-            Double total8 = (accountDataManagerServiceImpl.GetTotalBrutCPC(totalListI)
-                    + accountDataManagerServiceImpl.GetTotalBrutCPC(totalListII) - accountDataManagerServiceImpl.GetTotalBrutCPC(totalListIII)) + (accountDataManagerServiceImpl.GetTotalBrutCPC(totalListV)
-                    + accountDataManagerServiceImpl.GetTotalBrutCPC(totalListVI));
-            parameters.put("total8",total8);
 
             Double total9 = (accountDataManagerServiceImpl.GetTotalBrutCPC(totalListI)
-                    + accountDataManagerServiceImpl.GetTotalBrutCPC(totalListIII) - accountDataManagerServiceImpl.GetTotalBrutCPC(totalListV)) - (accountDataManagerServiceImpl.GetTotalBrutCPC(totalListII)
-                    + accountDataManagerServiceImpl.GetTotalBrutCPC(totalListIV) - accountDataManagerServiceImpl.GetTotalBrutCPC(totalListVI));
+                    + accountDataManagerServiceImpl.GetTotalBrutCPC(totalListIII) + accountDataManagerServiceImpl.GetTotalBrutCPC(totalListV)) - (accountDataManagerServiceImpl.GetTotalBrutCPC(totalListII)
+                    + accountDataManagerServiceImpl.GetTotalBrutCPC(totalListIV) + accountDataManagerServiceImpl.GetTotalBrutCPC(totalListVI));
             parameters.put("total9",total9);
 
             parameters.put("DateN",date.substring(0,4));

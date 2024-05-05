@@ -6,12 +6,6 @@ $(document).ready(function() {
         ajaxGetByDate(selectedDate);
     });
 
-    // Gestionnaire d'événements pour le clic sur le bouton "Confirmer"
-    $('#confirmDate').click(function() {
-        // Récupérer la date sélectionnée dans le modal
-        var selectedDate = $('#inputDate').val();
-        ajaxGetByDate(selectedDate);
-    });
 
     // DO GET BY DATE
     function ajaxGetByDate(selectedDate) {
@@ -44,8 +38,8 @@ $(document).ready(function() {
                         partData.forEach(function(passage) {
                             partHtml += "<tr>"
                                 + "<td data-field-name='name'>" + passage.name + "</td>"
-                                + "<td style='cursor:pointer;' data-field-name='amountPlus' class='editable-field'>" + passage.amountPlus + "</td>"
-                                + "<td style='cursor:pointer;' data-field-name='amountMinus' class='editable-field'>" + passage.amountMinus + "</td>"
+                                + "<td style='cursor:pointer;' data-field-name='amountPlus' class='text-right editable-field'>" + parseFloat(passage.amountPlus).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ') + "</td>"
+                                + "<td style='cursor:pointer;' data-field-name='amountMinus' class='text-right editable-field'>" + parseFloat(passage.amountMinus).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ') + "</td>"
                                 + "<td><i class='fa-regular fa-pen-to-square save-icon'></i></td>"
                                 + "</tr>";
                         });

@@ -1,6 +1,6 @@
 package com.api.demoimport.repository;
 
-import com.api.demoimport.entity.Bilan.Immobilisation;
+import com.api.demoimport.entity.Immobilisation;
 import com.api.demoimport.entity.Exercice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

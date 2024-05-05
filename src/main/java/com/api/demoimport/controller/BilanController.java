@@ -1,9 +1,7 @@
 package com.api.demoimport.controller;
 
 
-import com.api.demoimport.entity.Bilan.Passage;
 import com.api.demoimport.message.ResponseMessage;
-import com.api.demoimport.repository.PassageRepository;
 import com.api.demoimport.service.Implementation.PassageServiceImpl;
 import com.api.demoimport.service.Implementation.ReportServiceImpl;
 import net.sf.jasperreports.engine.JRException;
@@ -12,15 +10,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayOutputStream;
-import java.io.Console;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin("http://localhost:8080")
 @RestController

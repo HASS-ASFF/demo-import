@@ -18,16 +18,20 @@ $(document).ready(function() {
                     var partHtml ='';
                     // Construction de HTML pour chaque passage dans la partie
                     data.forEach(function(immobilisation) {
+                        // Formater la date
+                        const dateAquisition = new Date(immobilisation.dateAquisition);
+                        const formattedDateAquisition = dateAquisition.toLocaleDateString('en-US');
+
                             partHtml += "<tr data-id=\"" + immobilisation.id + "\">" +
                                 "<td data-field-name='name'>" + immobilisation.name + "</td>" +
-                                "<td data-field-name='dateAquisition' class='editable-field'>" + immobilisation.dateAquisition + "</td>" +
-                                "<td data-field-name='prixAquisition' class='editable-field'>" + immobilisation.prixAquisition + "</td>" +
-                                "<td data-field-name='coutDeRevient' class='editable-field'>" + immobilisation.coutDeRevient + "</td>" +
-                                "<td data-field-name='amortAnterieur' class='editable-field'>" + immobilisation.amortAnterieur + "</td>" +
-                                "<td data-field-name='taux_amort' class='editable-field'>" + immobilisation.taux_amort + "</td>" +
-                                "<td data-field-name='amortDeduitBenefice' class='editable-field'>" + immobilisation.amortDeduitBenefice + "</td>" +
-                                "<td data-field-name='dea' class='editable-field'>" + immobilisation.dea + "</td>" +
-                                "<td data-field-name='deaGlobal' class='editable-field'>" + immobilisation.deaGlobal + "</td>" +
+                                "<td data-field-name='dateAquisition'>" + formattedDateAquisition + "</td>" +
+                                "<td class='text-right editable-field' data-field-name='prixAquisition'>" +  parseFloat(immobilisation.prixAquisition).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ') + "</td>" +
+                                "<td class='text-right editable-field' data-field-name='coutDeRevient'>" + parseFloat(immobilisation.coutDeRevient).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ') + "</td>" +
+                                "<td class='text-right editable-field' data-field-name='amortAnterieur'>" + parseFloat(immobilisation.amortAnterieur).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ') + "</td>" +
+                                "<td class='text-right editable-field' data-field-name='taux_amort'>" + immobilisation.taux_amort + "</td>" +
+                                "<td class='text-right editable-field' data-field-name='amortDeduitBenefice'>" + parseFloat(immobilisation.amortDeduitBenefice).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ')+ "</td>" +
+                                "<td class='text-right editable-field' data-field-name='dea' >" + parseFloat(immobilisation.dea).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ') + "</td>" +
+                                "<td class='text-right editable-field' data-field-name='deaGlobal'>" + parseFloat(immobilisation.deaGlobal).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ') + "</td>" +
                                 "<td data-field-name='name'>" + immobilisation.name + "</td>" +
                                 "<td><i class='fa-regular fa-pen-to-square save-icon'></i></td>"+
                                 "</tr>";

@@ -1,6 +1,6 @@
 package com.api.demoimport.controller;
 
-import com.api.demoimport.entity.Bilan.Immobilisation;
+import com.api.demoimport.entity.Immobilisation;
 import com.api.demoimport.service.Implementation.ImmobilisationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

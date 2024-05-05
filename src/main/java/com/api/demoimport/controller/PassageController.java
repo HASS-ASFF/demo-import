@@ -1,12 +1,15 @@
 package com.api.demoimport.controller;
 
-import com.api.demoimport.entity.Bilan.Passage;
+import com.api.demoimport.entity.Bilan.Esg;
+import com.api.demoimport.entity.Passage;
 import com.api.demoimport.entity.Bilan.SubAccountActif;
+import com.api.demoimport.entity.Bilan.SubAccountCPC;
 import com.api.demoimport.enums.AccountCategoryClass2;
 import com.api.demoimport.enums.PassageCategory;
 import com.api.demoimport.repository.BalanceDetailRepository;
 import com.api.demoimport.service.Implementation.AccountDataManagerServiceImpl;
 import com.api.demoimport.service.Implementation.BalanceDetailServiceImpl;
+import com.api.demoimport.service.Implementation.EsgServiceImpl;
 import com.api.demoimport.service.Implementation.PassageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +33,9 @@ public class PassageController {
 
     @Autowired
     AccountDataManagerServiceImpl accountDataManagerService;
+
+    @Autowired
+    EsgServiceImpl esgService;
 
     @PutMapping("/updatePassage/{name}/{date}")
     public ResponseEntity<Object> modifyPassage(@PathVariable String name,@PathVariable String date,@RequestBody Passage passage) {
@@ -101,14 +107,72 @@ public class PassageController {
     @RequestMapping(value="/passagesESGFilter", method = RequestMethod.GET)
     public ResponseEntity<Map<String,Object>> passagesESGFilter(@RequestParam("date") String dateBilan){
         Map<String, Object> responseMap = new HashMap<>();
-        // TO DO
+
+        // CLASS SIX
+        List<SubAccountCPC> ClassSix = balanceDetailService.getClassSix(dateBilan,"AL MORAFIQ");
+        List<SubAccountCPC> FullClassSix = accountDataManagerService.
+                processAccountDataCPC(ClassSix,"6");
+
+        // CLASS SEVEN
+        List<SubAccountCPC> ClassSeven = balanceDetailService.getClassSeven(dateBilan,"AL MORAFIQ");
+        List<SubAccountCPC> FullClassSeven = accountDataManagerService.
+                processAccountDataCPC(ClassSeven,"7");
+
+        List<List<Esg>> partsTFR = new ArrayList<>();
+
+        partsTFR.add(esgService.processDataTFR(FullClassSix,FullClassSeven,1));
+        partsTFR.add(esgService.processDataTFR(FullClassSix,FullClassSeven,2));
+        partsTFR.add(esgService.processDataTFR(FullClassSix,FullClassSeven,3));
+        partsTFR.add(esgService.processDataTFR(FullClassSix,FullClassSeven,4));
+        partsTFR.add(esgService.processDataTFR(FullClassSix,FullClassSeven,5));
+
+        List<List<Esg>> partsCAF = new ArrayList<>();
+
+        partsCAF.add(esgService.processDataCAF(FullClassSix,FullClassSeven,1));
+        partsCAF.add(esgService.processDataCAF(FullClassSix,FullClassSeven,2));
+
+        responseMap.put("status", "success");
+
+        responseMap.put("dataTFR", partsTFR);
+
+        responseMap.put("total1",esgService.GetTotalDataEsg(partsTFR.get(0),2));
+        responseMap.put("total2",esgService.GetTotalDataEsg(partsTFR.get(1),1));
+        responseMap.put("total3",esgService.GetTotalDataEsg(partsTFR.get(2),1));
+        responseMap.put("total4",esgService.GetTotalDataEsg(partsTFR.get(3),1));
+        responseMap.put("total5",esgService.GetTotalDataEsg(partsTFR.get(4),1));
+
+        responseMap.put("RF",esgService.GetResultat(FullClassSix,FullClassSeven,"RESULTAT FINANCIER"));
+        responseMap.put("RC",esgService.GetResultat(FullClassSix,FullClassSeven,"RESULTAT COURANT"));
+        responseMap.put("RNC",esgService.GetResultat(FullClassSix,FullClassSeven,"RESULTAT NON COURANT"));
+        responseMap.put("IR",esgService.GetResultat(FullClassSix,FullClassSeven,"Impôt sur les résultats"));
+        responseMap.put("RN",esgService.GetResultat(FullClassSix,FullClassSeven,"RESULTAT NET DE L'EXERCICE"));
+
+        List<Esg> totalCAFList = new ArrayList<>();
+        totalCAFList.addAll(partsCAF.get(0));
+        totalCAFList.addAll(partsCAF.get(1));
+
+        responseMap.put("dataCAF", partsCAF);
+        responseMap.put("totalCAF",esgService.GetTotalDataEsg(totalCAFList,1));
+
+
         return ResponseEntity.ok().body(responseMap);
     }
 
     @RequestMapping(value="/passagesCPCFilter", method = RequestMethod.GET)
     public ResponseEntity<Map<String,Object>> passagesCPCFilter(@RequestParam("date") String dateBilan){
         Map<String, Object> responseMap = new HashMap<>();
-        // TO DO
+        // CLASS SIX
+        List<SubAccountCPC> ClassSix = balanceDetailService.getClassSix(dateBilan,"AL MORAFIQ");
+        List<SubAccountCPC> FullClassSix = accountDataManagerService.
+                processAccountDataCPC(ClassSix,"6");
+
+        // CLASS SEVEN
+        List<SubAccountCPC> ClassSeven = balanceDetailService.getClassSeven(dateBilan,"AL MORAFIQ");
+        List<SubAccountCPC> FullClassSeven = accountDataManagerService.
+                processAccountDataCPC(ClassSeven,"7");
+
+
+
         return ResponseEntity.ok().body(responseMap);
     }
 

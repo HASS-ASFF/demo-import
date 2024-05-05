@@ -1,4 +1,4 @@
-package com.api.demoimport.entity.Bilan;
+package com.api.demoimport.entity;
 
 import com.api.demoimport.entity.Exercice;
 import lombok.Getter;

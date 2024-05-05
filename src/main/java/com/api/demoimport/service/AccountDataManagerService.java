@@ -8,8 +8,11 @@ import java.util.List;
 
 public interface AccountDataManagerService {
 
-    // PROCESS ACCOUNTS ( INITIALIZE / REGROUPING /  GETTING TOTAL / FILTERING )
-
+    /**
+     * Interface defining service operations for managing account data (ACTIF / PASSIF / CPC ).
+     * Methods include processing different types of account data (initialization, regrouping, total retrieval, filtering),
+     * and extracting prefixes from account numbers.
+     */
     List<SubAccountActif> processAccountDataA(List<SubAccountActif> rawData, String n_class);
     List<SubAccountPassif> processAccountDataP(List<SubAccountPassif> rawData, String n_class);
 

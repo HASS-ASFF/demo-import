@@ -1,5 +1,5 @@
 package com.api.demoimport.service.Implementation;
-import com.api.demoimport.entity.Bilan.Immobilisation;
+import com.api.demoimport.entity.Immobilisation;
 import com.api.demoimport.repository.ImmobilisationRepository;
 import com.api.demoimport.service.ImmobilisationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -20,6 +18,14 @@ public class ImmobilisationServiceImpl implements ImmobilisationService {
     ExcelHelperServiceImpl excelHelperServiceImpl;
     @Autowired
     ImmobilisationRepository immobilisationRepository;
+
+    /**
+     * Service implementation for managing Immobilisation objects, providing methods for saving,
+     * creating, and finding immobilisations.
+     * Uses ExcelHelperServiceImpl to convert Excel data to Immobilisation objects
+     * and interacts with ImmobilisationRepository for saving them to database.
+     */
+
 
 
     @Override

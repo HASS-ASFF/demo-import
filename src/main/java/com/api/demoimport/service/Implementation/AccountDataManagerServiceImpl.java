@@ -19,21 +19,17 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
     @Autowired
     BalanceDetailRepository balanceDetailRepository;
 
-    // New Implementation for jasper Report
-
-    // Processing data accounts (MainAccount with their subAccounts values)
-
-    // Initializing with empty values and after filtering with the raw data values from balance
-
-    // Regrouping the same subAccounts (which refers to the number account)
-
-    // Returning a List of subAccounts (Actif or Passif) with all values (empty one & from balance)
-
-    // Same logics with CPC ACCOUNTS ( just for class 6, we can have a debit or credit values )
+    /**
+     * Processing data accounts (MainAccount with their subAccount values),
+     * initializing with empty values and then filtering with raw data values from the balance,
+     * regrouping the same subAccounts (referring to the account number),
+     * and returning a list of subAccounts (Actif or Passif) with all values (both empty and from the balance).
+     * Similar logic applies to CPC accounts, where for class 6, debit or credit values may exist.
+     *   ( A for Actif and P for Passif )
+     */
 
     @Override
     public List<SubAccountActif> processAccountDataA(List<SubAccountActif> rawData, String n_class) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
         List<SubAccountActif> mainAccountList;
         try{
             //initialize data with empty values
@@ -100,7 +96,6 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
     @Override
     public List<SubAccountCPC> processAccountDataCPC(List<SubAccountCPC> rawData, String n_class) {
         List<SubAccountCPC> mainAccountList;
-        Double total = 0.0;
         try{
             //initialize data with empty values
             mainAccountList = SubAccountCPC.initializeData(n_class);
@@ -109,21 +104,25 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
             for (SubAccountCPC result : rawData) {
                 // Get the number account
                 String accountNumber = result.getN_compte();
-                String prefix = accountNumber.substring(0, 3);
+                String prefix = accountNumber.substring(0,3);
+                // Initialize total for each sub-account
+                Double total = 0.0;
 
                 for (SubAccountCPC subAccount : mainAccountList) {
                     // check for the same subAccount
                     if (subAccount.getLibelle().startsWith(prefix) || subAccount.getLibelle().contains(prefix)) {
                         // Adding the values
-                        total += result.getBrut();
+                        if(subAccount.getBrut() != null){
+                            total = subAccount.getBrut() + result.getBrut();
+                        }else{
+                            total = result.getBrut();
+                        }
                         subAccount.setN_compte(result.getN_compte());
                         subAccount.setBrut(total);
                         break;
                     }
 
                 }
-
-                total = 0.0;
             }
         }catch (Exception e){
             throw new RuntimeException("Failed to process data account cpc , error message : "+ e.getMessage());
