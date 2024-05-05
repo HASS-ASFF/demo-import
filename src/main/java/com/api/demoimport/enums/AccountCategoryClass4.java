@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Enumeration representing account categories for class 4.
+ */
 @Getter
 public enum AccountCategoryClass4 {
     DETTES_DU_PASSIF_CIRCULANT("44", "DETTES DU PASSIF CIRCULANT (F)"

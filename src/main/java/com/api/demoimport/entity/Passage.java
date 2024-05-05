@@ -7,7 +7,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.*;
 
-
+/**
+ * An entity class representing a Passage.
+ */
 @Entity
 @Getter
 @Setter

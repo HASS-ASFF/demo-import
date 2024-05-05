@@ -3,6 +3,9 @@ package com.api.demoimport.message;
 import lombok.Data;
 import lombok.Getter;
 
+/**
+ * Class representing a response message.
+ */
 @Data
 public class ResponseMessage {
     private String message;

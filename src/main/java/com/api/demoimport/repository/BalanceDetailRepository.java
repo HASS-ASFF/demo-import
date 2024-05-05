@@ -8,6 +8,10 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Repository interface for accessing and manipulating BalanceDetail entities.
+ */
+
 public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Long> {
 
     // GETTING ACCOUNTS FROM BALANCE AND BY DATE

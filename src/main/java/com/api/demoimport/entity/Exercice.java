@@ -7,6 +7,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * An entity class representing an exercice.
+ */
 @Entity
 @Getter
 @Setter

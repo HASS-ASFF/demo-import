@@ -6,6 +6,9 @@ import lombok.Setter;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Enumeration representing account categories for PASSAGE DU RESULTAT NET COMPTABLE AU RESULTAT NET FISCAL.
+ */
 @Getter
 public enum PassageCategory {
     RESULTAT_NET_COMPTABLE("RESULTAT NET COMPTABLE",

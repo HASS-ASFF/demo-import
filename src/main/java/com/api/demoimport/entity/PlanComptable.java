@@ -7,6 +7,9 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
+/**
+ * An entity class representing a Plan comptable.
+ */
 @Entity
 @Getter
 @Setter

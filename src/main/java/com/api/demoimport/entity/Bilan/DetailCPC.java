@@ -6,6 +6,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+
+/**
+ * An entity class representing a DetailCPC.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

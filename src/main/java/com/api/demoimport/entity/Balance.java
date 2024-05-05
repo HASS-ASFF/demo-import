@@ -8,6 +8,10 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * An entity class representing a balance.
+ */
+
 @Entity
 @Getter
 @Setter

@@ -31,6 +31,11 @@ public class ExcelController {
     @Autowired
     ImmobilisationServiceImpl fileServiceImmo;
 
+    /**
+     * Controller class for handling requests related to Excel files.
+     * Provides endpoints for uploading plan comptable, balance detail, and immobilisation Excel files.
+     */
+
 
 
     // Méthode POST pour télécharger un fichier plan comptable

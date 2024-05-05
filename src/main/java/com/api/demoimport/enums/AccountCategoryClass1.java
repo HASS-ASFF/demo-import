@@ -7,6 +7,9 @@ import lombok.Setter;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Enumeration representing account categories for class 1.
+ */
 @Getter
 public enum AccountCategoryClass1 {
     CAPITAUX_PROPRES("11", "CAPITAUX PROPRES (A)"

@@ -8,6 +8,10 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+/**
+ * An entity class representing a Passage of immobilisation.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

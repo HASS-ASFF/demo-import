@@ -10,6 +10,9 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An entity class representing a CPC.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

@@ -16,6 +16,11 @@ public class ImmobilisationController {
     @Autowired
     ImmobilisationServiceImpl immobilisationService;
 
+    /**
+     * Controller class for handling requests related to immobilisations.
+     * Provides endpoints for filtering immobilisations by date and updating immobilisation details.
+     */
+
     @RequestMapping(value = "/immobilisationFilter", method = RequestMethod.GET)
     public ResponseEntity<Map<String, Object>> passagesImmoFilter(@RequestParam("date") String dateBilan){
         Map<String, Object> responseMap = new HashMap<>();

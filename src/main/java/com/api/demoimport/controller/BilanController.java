@@ -24,6 +24,11 @@ public class BilanController {
     @Autowired
     PassageServiceImpl passageService;
 
+    /**
+     * Controller class for handling requests related to financial reports.
+     * Provides endpoints for generating bilan/cpc PDF format
+     */
+
     @GetMapping("/bilan-passif")
     public ResponseEntity  getBilanPassif(@RequestParam("dateBilan") String date, @RequestParam("companyName") String company_name) throws JRException {
         try{

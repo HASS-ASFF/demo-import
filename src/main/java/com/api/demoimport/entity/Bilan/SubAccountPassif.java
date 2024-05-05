@@ -8,7 +8,9 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * An entity class representing a Bilan Passif.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

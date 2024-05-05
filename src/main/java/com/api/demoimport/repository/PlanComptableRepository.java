@@ -6,6 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 
+/**
+ * Repository interface for accessing and manipulating PlanComptable entities.
+ */
 public interface PlanComptableRepository extends JpaRepository<PlanComptable,Long> {
 
     // Fetching data from PlanComptable BY ACOOUNT NUMBER

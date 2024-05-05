@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Enumeration representing account categories for class 2.
+ */
 @Getter
 public enum AccountCategoryClass2 {
     IMMOBILISATION_NON_VALEURS("21", "IMMOBILISATION en non-valeurs (A)"

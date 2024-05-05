@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Enumeration representing account categories for class 5.
+ */
 @Getter
 public enum AccountCategoryClass5 {
     TRESORERIE_ACTIF("51", "Trésorerie - Actif",

@@ -37,6 +37,11 @@ public class PassageController {
     @Autowired
     EsgServiceImpl esgService;
 
+    /**
+     * Controller class for handling requests related to passages.
+     * Provides endpoints for modifying passages, filtering passages by date, and getting data for immo, ESG, and detailCPC.
+     */
+
     @PutMapping("/updatePassage/{name}/{date}")
     public ResponseEntity<Object> modifyPassage(@PathVariable String name,@PathVariable String date,@RequestBody Passage passage) {
         Optional<Passage> passageData = passageService.findByNameAndDate(name,date);

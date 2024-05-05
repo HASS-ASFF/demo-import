@@ -1,3 +1,8 @@
+
+// This script handles the retrieval of ESG data by date.
+// It triggers a GET request when the "Get ESG by Date" button is clicked,
+// retrieves the data, and dynamically populates tables for TFR and CAF parts.
+
 $(document).ready(function() {
 
     // GET REQUEST BY DATE

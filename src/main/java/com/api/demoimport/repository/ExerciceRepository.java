@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
+/**
+ * Repository interface for accessing and manipulating Exercice entities.
+ */
 public interface ExerciceRepository extends JpaRepository<Exercice,Long>{
 
     @Query(nativeQuery = true, value = "SELECT * FROM esg  JOIN exercice  ON exercice.id = exercice_id " +

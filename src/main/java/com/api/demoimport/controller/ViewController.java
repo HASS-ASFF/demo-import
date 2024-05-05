@@ -12,6 +12,11 @@ public class ViewController {
     @Autowired
     PassageServiceImpl passageService;
 
+    /**
+     * Controller class for handling view-related requests. Provides endpoints for returning different views.
+     */
+
+
     @GetMapping("/passages")
     public String passages() {return "passages";}
 
@@ -28,9 +33,5 @@ public class ViewController {
 
     @GetMapping("/immobilisation")
     public String immobilisation(){ return "Immobilisation"; }
-
-
-
-
 
 }

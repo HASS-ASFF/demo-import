@@ -1,3 +1,8 @@
+
+// This script handles the retrieval of Passage immobilisation data by date.
+// It triggers a GET request when the "Get Passage immobilisation by Date" button is clicked,
+// retrieves the data, and dynamically populates tables for Immobilisation parts.
+
 $(document).ready(function() {
 
     // GET REQUEST BY DATE

@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
+/**
+ * Repository interface for accessing and manipulating Immobilisation entities.
+ */
 public interface ImmobilisationRepository extends JpaRepository<Immobilisation,Long> {
 
     @Query(nativeQuery = true, value = "SELECT * FROM immobilisation  JOIN exercice  ON exercice.id = exercice_id " +

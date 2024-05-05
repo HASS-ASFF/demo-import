@@ -1,3 +1,8 @@
+
+// This script manages the Excel import functionality for immobilization data.
+// It handles the click event on the "Import Excel" button, opens the date selection modal,
+// and triggers the upload and save process when the "Upload and Save" button is clicked.
+
 $(document).ready(function() {
     // Gestion du clic sur le bouton d'importation Excel
     $('#importExcelBtn').click(function() {

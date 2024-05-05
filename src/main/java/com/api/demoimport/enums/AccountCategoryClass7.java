@@ -6,6 +6,10 @@ import lombok.Setter;
 import java.util.Arrays;
 import java.util.List;
 
+
+/**
+ * Enumeration representing account categories for class 7.
+ */
 @Getter
 public enum AccountCategoryClass7 {
 

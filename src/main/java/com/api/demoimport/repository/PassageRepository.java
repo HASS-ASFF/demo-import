@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Repository interface for accessing and manipulating Passage entities.
+ */
 public interface PassageRepository extends JpaRepository<Passage,Long> {
     @Query(nativeQuery = true, value = "SELECT *  FROM Passage WHERE LEFT(date,10) = :date ")
     List<Passage> findPassagesByDate(String date);

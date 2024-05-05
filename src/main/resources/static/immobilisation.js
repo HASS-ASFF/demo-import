@@ -1,3 +1,9 @@
+
+// This script handles the retrieval and editing of immobilisation data based on the selected date.
+// It triggers a GET request to fetch immobilisation data for the specified date and populates the HTML table.
+// The script also allows inline editing of fields, such as price, cost, and depreciation.
+// When the "save" icon is clicked, the edited data is sent via a PUT request to update the immobilisation record in the database.
+
 $(document).ready(function() {
 
     // GET REQUEST BY DATE
