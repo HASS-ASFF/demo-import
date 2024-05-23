@@ -26,7 +26,7 @@ public class BilanController {
 
     /**
      * Controller class for handling requests related to financial reports.
-     * Provides endpoints for generating bilan/cpc PDF format
+     * Provides endpoints for generating bilan PDF format
      */
 
     @GetMapping("/bilan-passif")
@@ -72,4 +72,95 @@ public class BilanController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
         }
     }
+
+    @GetMapping("/passage")
+    public ResponseEntity getPassage(@RequestParam("dateBilan") String date, @RequestParam("companyName") String company_name) throws JRException{
+        try {
+            return null;
+        }catch(RuntimeException e){
+            String message = "Failed to upload passage " + e.getLocalizedMessage();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
+        }
+    }
+
+    @GetMapping("/esg")
+    public ResponseEntity getEsg(@RequestParam("dateBilan") String date, @RequestParam("companyName") String company_name) throws JRException{
+        try {
+            return null;
+        }catch(RuntimeException e){
+            String message = "Failed to upload ESG " + e.getLocalizedMessage();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
+        }
+    }
+
+    @GetMapping("/detailCPC")
+    public ResponseEntity getDetailCPC(@RequestParam("dateBilan") String date, @RequestParam("companyName") String company_name) throws JRException{
+        try {
+            return null;
+        }catch(RuntimeException e){
+            String message = "Failed to upload detail CPC " + e.getLocalizedMessage();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
+        }
+    }
+
+    @GetMapping("/table12")
+    public ResponseEntity getTable12(@RequestParam("dateBilan") String date, @RequestParam("companyName") String company_name) throws JRException{
+        try {
+            return null;
+        }catch(RuntimeException e){
+            String message = "Failed to upload table " + e.getLocalizedMessage();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
+        }
+    }
+
+    @GetMapping("/table14")
+    public ResponseEntity getTable14(@RequestParam("dateBilan") String date, @RequestParam("companyName") String company_name) throws JRException{
+        try {
+            return null;
+        }catch(RuntimeException e){
+            String message = "Failed to upload table " + e.getLocalizedMessage();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
+        }
+    }
+
+    @GetMapping("/table15")
+    public ResponseEntity getTable15(@RequestParam("dateBilan") String date, @RequestParam("companyName") String company_name) throws JRException{
+        try {
+            return null;
+        }catch(RuntimeException e){
+            String message = "Failed to upload table " + e.getLocalizedMessage();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
+        }
+    }
+
+    @GetMapping("/table17")
+    public ResponseEntity getTable17(@RequestParam("dateBilan") String date, @RequestParam("companyName") String company_name) throws JRException{
+        try {
+            return null;
+        }catch(RuntimeException e){
+            String message = "Failed to upload table " + e.getLocalizedMessage();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
+        }
+    }
+
+    @GetMapping("/table18")
+    public ResponseEntity getTable18(@RequestParam("dateBilan") String date, @RequestParam("companyName") String company_name) throws JRException{
+        try {
+            return null;
+        }catch(RuntimeException e){
+            String message = "Failed to upload table " + e.getLocalizedMessage();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
+        }
+    }
+
+    @GetMapping("/table20")
+    public ResponseEntity getTable20(@RequestParam("dateBilan") String date, @RequestParam("companyName") String company_name) throws JRException{
+        try {
+            return null;
+        }catch(RuntimeException e){
+            String message = "Failed to upload table " + e.getLocalizedMessage();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
+        }
+    }
+
 }

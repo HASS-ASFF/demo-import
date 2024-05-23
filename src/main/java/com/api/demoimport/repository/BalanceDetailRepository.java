@@ -31,21 +31,21 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
     List<Object[]> getBilanC1(String dateBilan,String company_name);
 
     // GET ACCOUNTS CLASS 2
-    @Query(nativeQuery = true, value = "SELECT b.n_compte AS num_compte,\n " +
-            "b.label AS comptes,\n" +
-            "COALESCE(SUM(b.debit_fex), 0) AS brut,\n" +
-            "COALESCE(SUM(amort.credit_fex), 0) AS total_amort,\n" +
-            "COALESCE(SUM(b.debit_dex),0) AS netn\n"+
-            "FROM balance_detail b\n" +
-            "LEFT JOIN balance_detail amort ON \n" +
-            "    b.the_class = 2 AND\n" +
-            "    amort.the_class = 2 AND\n" +
-            "    amort.n_compte LIKE '28%' AND\n" +
-            "    LEFT(b.n_compte, 3) = LEFT(CONCAT(REPLACE(amort.n_compte, '8', ''),'0'),3)\n" +
-            "JOIN balance ON balance.id = b.balance_id\n" +
-            "WHERE b.the_class = 2 AND  b.n_compte NOT LIKE '28%' AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :dateBilan\n" +
-            "AND company_name = :company_name\n"+
-            "GROUP BY b.n_compte,b.label, b.debit_fex, b.debit_dex;")
+    @Query(nativeQuery = true, value = "SELECT b.n_compte AS num_compte,\n" +
+            "            b.label AS comptes,\n" +
+            "            b.debit_fex AS brut,\n" +
+            "            coalesce(amort.credit_fex,0) AS total_amort,\n" +
+            "            b.debit_dex AS netn\n" +
+            "            FROM balance_detail b\n" +
+            "            LEFT JOIN balance_detail amort ON \n" +
+            "                b.the_class = 2 AND\n" +
+            "                amort.the_class = 2 AND\n" +
+            "                amort.n_compte LIKE '28%' AND\n" +
+            "                LEFT(b.n_compte, 3) = LEFT(CONCAT(REPLACE(amort.n_compte, '8', ''),'0'),3)\n" +
+            "            JOIN balance ON balance.id = b.balance_id\n" +
+            "            WHERE b.the_class = 2 AND  b.n_compte NOT LIKE '28%' AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :dateBilan\n" +
+            "            AND company_name = :company_name\n" +
+            "            GROUP BY b.n_compte,b.label, b.debit_fex,amort.credit_fex, b.debit_dex;")
     List<Object[]> getBilanC2(String dateBilan,String company_name);
 
     // GET PASSAGES IMMOBILISATIONS

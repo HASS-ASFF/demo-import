@@ -3,7 +3,9 @@ package com.api.demoimport.service.Implementation;
 import com.api.demoimport.entity.Bilan.SubAccountActif;
 import com.api.demoimport.entity.Bilan.SubAccountCPC;
 import com.api.demoimport.entity.Bilan.SubAccountPassif;
+import com.api.demoimport.entity.Societe;
 import com.api.demoimport.enums.*;
+import com.api.demoimport.repository.SocieteRepository;
 import com.api.demoimport.service.ReportService;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -15,7 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
@@ -25,6 +30,10 @@ public class ReportServiceImpl implements ReportService {
     AccountDataManagerServiceImpl accountDataManagerServiceImpl;
     @Autowired
     BalanceDetailServiceImpl balanceDetailServiceImpl;
+    @Autowired
+    EsgServiceImpl esgService;
+    @Autowired
+    SocieteRepository societeRepository;
 
     /**
      * Service implementation for managing reports, providing methods for exporting reports to PDF format.
@@ -32,8 +41,8 @@ public class ReportServiceImpl implements ReportService {
      */
 
 
-    // TO CHANGE
-    String path = "C:\\Users\\onizu\\OneDrive\\Bureau\\demo-import\\src\\main\\resources\\templates\\";
+    // TO CHANGE (PATH)
+    String path = "C:\\Users\\onizu\\OneDrive\\Bureau\\demo-import\\src\\main\\resources\\templates\\jasperReport\\";
 
     // EXPORT DATA PASSIF TO PDF
     public ByteArrayOutputStream exportReportPassif(String  date,String company_name) throws JRException {
@@ -51,6 +60,16 @@ public class ReportServiceImpl implements ReportService {
 
             List<SubAccountPassif> dataset1 = accountDataManagerServiceImpl.
                     FilterAccountDataP(FullClassOne, AccountCategoryClass1.CAPITAUX_PROPRES.getLabel());
+            // CLASS SIX
+            List<SubAccountCPC> ClassSix = balanceDetailServiceImpl.getClassSix(date,company_name);
+            List<SubAccountCPC> FullClassSix = accountDataManagerServiceImpl.
+                    processAccountDataCPC(ClassSix,"6");
+            // CLASS SEVEN
+            List<SubAccountCPC> ClassSeven = balanceDetailServiceImpl.getClassSeven(date,company_name);
+            List<SubAccountCPC> FullClassSeven = accountDataManagerServiceImpl.
+                    processAccountDataCPC(ClassSeven,"7");
+            Double resultat_net = esgService.GetResultat(FullClassSix,FullClassSeven,"RESULTAT NET DE L'EXERCICE");
+            dataset1.get(10).setBrut(resultat_net);
             List<SubAccountPassif> dataset2 = accountDataManagerServiceImpl.
                     FilterAccountDataP(FullClassOne,AccountCategoryClass1.CAPITAUX_PROPRES_ASSIMILES.getLabel());
             List<SubAccountPassif> dataset3 = accountDataManagerServiceImpl.
@@ -243,8 +262,6 @@ public class ReportServiceImpl implements ReportService {
 
             List<SubAccountCPC> FullClassSix = accountDataManagerServiceImpl.
                     processAccountDataCPC(ClassSix,"6");
-            FullClassSix.forEach(t->System.out.println(t.getN_compte()+" "+t.getLibelle()+" "+ t.getBrut() + " "+ t.getMainAccount()));
-            System.out.println("\n");
 
             // CLASS SEVEN
             List<SubAccountCPC> ClassSeven = balanceDetailServiceImpl.getClassSeven(date,company_name);
@@ -257,8 +274,6 @@ public class ReportServiceImpl implements ReportService {
                     FilterAccountDataCPC(FullClassSeven,AccountCategoryClass7.PRODUITS_DEXPLOITATION.getLabel());
             List<SubAccountCPC> dataset2 = accountDataManagerServiceImpl.
                     FilterAccountDataCPC(FullClassSix,AccountCategoryClass6.CHARGES_DEXPLOITATION.getLabel());
-            dataset2.forEach(t->System.out.println(t.getN_compte()+" "+t.getLibelle()+" "+t.getBrut() + " "+ t.getMainAccount()));
-
             List<SubAccountCPC> dataset3 = accountDataManagerServiceImpl.
                     FilterAccountDataCPC(FullClassSeven,AccountCategoryClass7.PRODUITS_FINANCIERS.getLabel());
             List<SubAccountCPC> dataset4 = accountDataManagerServiceImpl.
@@ -324,6 +339,34 @@ public class ReportServiceImpl implements ReportService {
             parameters.put("name_company",company_name);
 
 
+            Double impots_benefices = 0.0;
+
+            // CHECK FOR COMPANY IF THEY HAVE MORE THAN 3 LOSSES
+            if(!companyLessThanThreeLosses(FullClassSix,FullClassSeven,date,company_name)){
+
+                // COTISATION MINIMALE
+
+                Double  cot_min = (accountDataManagerServiceImpl.GetTotalBrutCPC(totalListI)*0.0025);
+
+                // BENEFICE NET FISCAL
+
+                Double benefice_net_fiscal = esgService.GetResultat(FullClassSix,FullClassSeven,"RESULTAT NET DE L'EXERCICE");
+
+                benefice_net_fiscal = calculateBeneficeNetFiscal(benefice_net_fiscal);
+
+                if(cot_min > benefice_net_fiscal){
+                    impots_benefices = cot_min;
+                }else if(benefice_net_fiscal < 3000){
+                    impots_benefices = 3000.00;
+                }else {
+                    impots_benefices = benefice_net_fiscal;
+                }
+            }
+
+
+            parameters.put("Impots",impots_benefices);
+
+
             return jasperConfiguration(pathCPC,parameters);
         }catch (RuntimeException e){
             String message = "Failed to report CPC " + e.getLocalizedMessage() + "!";
@@ -331,6 +374,59 @@ public class ReportServiceImpl implements ReportService {
         }
 
     }
+
+    private boolean companyLessThanThreeLosses(List<SubAccountCPC> ClassSix,List<SubAccountCPC> ClassSeven,String date,String company_name) {
+
+        // Convertir la date en objet LocalDate
+        LocalDate datetemp = LocalDate.parse(date);
+
+        // Avoir la date debut de la société et le convertir en localDate
+        String start_date = societeRepository.getStartDateActivity(company_name);
+        LocalDate dateSociete = LocalDate.parse(start_date);
+
+        // Obtenir les années précédentes
+        LocalDate previousYear1 = datetemp.minusYears(1);
+        LocalDate previousYear2 = datetemp.minusYears(2);
+
+        if(!start_date.isEmpty() && isSocieteActiveForThreeYears(dateSociete,datetemp)){
+            // CLASS SIX N-1 & N-2
+            List<SubAccountCPC> ClassSixN1 = balanceDetailServiceImpl.getClassSix(previousYear1.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                    company_name);
+
+            List<SubAccountCPC> ClassSevenN1 = balanceDetailServiceImpl.getClassSeven(previousYear1.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                    company_name);
+
+            // CLASS SEVEN N-1 & N-2
+            List<SubAccountCPC> ClassSixN2 = balanceDetailServiceImpl.getClassSix(previousYear2.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                    company_name);
+            List<SubAccountCPC> ClassSevenN2 = balanceDetailServiceImpl.getClassSeven(previousYear1.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                    company_name);
+
+            // CHECK IF THERE IS DATA AVAILABLE FIRST
+            if(ClassSixN1.isEmpty() || ClassSevenN1.isEmpty() || ClassSixN2.isEmpty() || ClassSevenN2.isEmpty()){
+                return true;
+            }
+            else{
+                // GET RESULTAT NET FOR EACH YEAR (N & N-1 & N-2)
+                Double resultat_netN = esgService.GetResultat(ClassSix,ClassSeven,"RESULTAT NET DE L'EXERCICE");
+                Double resultat_netN1 = esgService.GetResultat(ClassSixN1,ClassSevenN1,"RESULTAT NET DE L'EXERCICE");
+                Double resultat_netN2 = esgService.GetResultat(ClassSixN2,ClassSevenN2,"RESULTAT NET DE L'EXERCICE");
+                return (resultat_netN < 0 && resultat_netN1 < 0 && resultat_netN2 < 0);
+            }
+        }
+
+        return true;
+
+    }
+
+    private boolean isSocieteActiveForThreeYears(LocalDate startDate, LocalDate currentDate) {
+        // Date trois ans avant la date actuelle
+        LocalDate currentDateMinusThreeYears = currentDate.minusYears(3);
+
+        // Comparaison pour vérifier si la société existe depuis plus de trois ans
+        return startDate.isBefore(currentDateMinusThreeYears) || startDate.isEqual(currentDateMinusThreeYears);
+    }
+
 
     // Configurate the Jasper report
     public ByteArrayOutputStream jasperConfiguration(String path,Map<String,Object> parameters) throws JRException {
@@ -352,6 +448,20 @@ public class ReportServiceImpl implements ReportService {
         LocalDate date = LocalDate.parse(dateString);
         LocalDate getLastYear = date.minusYears(1);
         return getLastYear.toString();
+    }
+
+    private Double calculateBeneficeNetFiscal(Double benefice_net_fiscal){
+        if(benefice_net_fiscal <= 300000){
+            benefice_net_fiscal = benefice_net_fiscal * 0.15;
+        }else if(benefice_net_fiscal > 300000 && benefice_net_fiscal < 1000000){
+            benefice_net_fiscal = benefice_net_fiscal * 0.2;
+        }else if(benefice_net_fiscal > 1000000 && benefice_net_fiscal < 100000000){
+            benefice_net_fiscal = benefice_net_fiscal * 0.255;
+        }else{
+            benefice_net_fiscal = benefice_net_fiscal * 0.33;
+        }
+
+        return benefice_net_fiscal;
     }
 
 

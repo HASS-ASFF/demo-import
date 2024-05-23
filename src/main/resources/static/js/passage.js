@@ -39,15 +39,31 @@ $(document).ready(function() {
                         var part = parts[i];
                         var partData = data[i];
                         var partHtml = '<tr><th>' + part.title + '</th><th></th><th></th><th></th></tr>';
+                        var total_amountplus = 0.0;
+                        var total_amountminus = 0.0;
 
                         // Construction de HTML pour chaque passage dans la partie
                         partData.forEach(function(passage) {
-                            partHtml += "<tr>"
-                                + "<td data-field-name='name'>" + passage.name + "</td>"
-                                + "<td style='cursor:pointer;' data-field-name='amountPlus' class='text-right editable-field'>" + parseFloat(passage.amountPlus).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ') + "</td>"
-                                + "<td style='cursor:pointer;' data-field-name='amountMinus' class='text-right editable-field'>" + parseFloat(passage.amountMinus).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ') + "</td>"
-                                + "<td><i class='fa-regular fa-pen-to-square save-icon'></i></td>"
-                                + "</tr>";
+                            total_amountplus += passage.amountPlus;
+                            total_amountminus += passage.amountMinus;
+
+                            if(part.id === "part1"){
+                                partHtml += "<tr>"
+                                    + "<td data-field-name='name'>" + passage.name + "</td>"
+                                    + "<td  data-field-name='amountPlus' class='text-right'>" + parseFloat(passage.amountPlus).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ') + "</td>"
+                                    + "<td  data-field-name='amountMinus' class='text-right'>" + parseFloat(passage.amountMinus).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ') + "</td>"
+                                    + "<td></td>"
+                                    + "</tr>";
+                            }
+                            else{
+                                partHtml += "<tr>"
+                                    + "<td data-field-name='name'>" + passage.name + "</td>"
+                                    + "<td style='cursor:pointer;' data-field-name='amountPlus' class='text-right editable-field'>" + parseFloat(passage.amountPlus).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ') + "</td>"
+                                    + "<td style='cursor:pointer;' data-field-name='amountMinus' class='text-right editable-field'>" + parseFloat(passage.amountMinus).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ') + "</td>"
+                                    + "<td><i class='fa-regular fa-pen-to-square save-icon'></i></td>"
+                                    + "</tr>";
+                            }
+
                         });
                         // Ajout de HTML pour la partie spécifiée
                         $('#getResultDiv').append(partHtml);

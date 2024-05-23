@@ -75,6 +75,10 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
 
         List<SubAccountActif> bilanActifs = ConvertToBilanActif(resultsrequest);
 
+        bilanActifs.forEach(x->System.out.println(
+                x.getMainAccount()+" "+x.getLibelle()+" "+x.getBrut()+" "+x.getN_compte()
+        ));
+
         regroupClassesA(bilanActifs);
 
 
@@ -139,7 +143,10 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
 
         List<SubAccountCPC> subAccountCPCS = ConvertToCPC(resultsrequest);
 
-        regroupClassesCPC(subAccountCPCS);
+        subAccountCPCS.forEach(x->System.out.println(x.getMainAccount()
+                +" "+ x.getLibelle() + " " + x.getBrut()));
+
+        //regroupClassesCPC(subAccountCPCS);
 
         return subAccountCPCS;
     }
@@ -151,7 +158,9 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
 
         List<SubAccountCPC> subAccountCPCS = ConvertToCPC(resultsrequest);
 
-        regroupClassesCPC(subAccountCPCS);
+
+
+        //regroupClassesCPC(subAccountCPCS);
 
         return subAccountCPCS;
     }
@@ -359,7 +368,13 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
                         n_compte, libelle, val.getBrut());
                 subAccountCPCMap.put(n_sous_compte, subAccountCPC);
             }else{
-                subAccountCPC.setBrut(subAccountCPC.getBrut() + val.getBrut());
+                if (val.getBrut() == null){
+                    subAccountCPC.setBrut(subAccountCPC.getBrut());
+                }
+                else {
+                    subAccountCPC.setBrut(subAccountCPC.getBrut() + val.getBrut());
+                }
+
                 subAccountCPC.setBrut(FormatUtils.formatDecimal(subAccountCPC.getBrut()));
             }
         }

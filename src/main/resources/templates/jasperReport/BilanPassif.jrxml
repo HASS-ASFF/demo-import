@@ -863,7 +863,7 @@
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="4"/>
                 </textElement>
-                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{TotalI}).replaceAll(",",".")]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{TotalI}+$P{TotalCapitaux}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement mode="Opaque" x="0" y="297" width="140" height="10" forecolor="#DBEEFF" backcolor="#325A77" uuid="65825069-48d6-4a9c-9711-def22912ca3a">
@@ -1279,14 +1279,14 @@
                             <textElement textAlignment="Right">
                                 <font size="6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="116" height="10" uuid="ffe9321e-c67f-4224-9af7-9a4eaff0f8af"/>
                             <textElement textAlignment="Right">
                                 <font size="6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brutP}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brutP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>
@@ -1303,14 +1303,14 @@
                             <textElement textAlignment="Right">
                                 <font size="6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="116" height="10" uuid="673e0b68-c4b9-476c-a599-2bdb8f57a355"/>
                             <textElement textAlignment="Right">
                                 <font size="6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brutP}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brutP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>
@@ -1327,14 +1327,14 @@
                             <textElement textAlignment="Right">
                                 <font size="6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="116" height="10" uuid="80b64fbf-5b22-476c-a6ea-360ae6024ef9"/>
                             <textElement textAlignment="Right">
                                 <font size="6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brutP}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brutP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>
@@ -1351,14 +1351,14 @@
                             <textElement textAlignment="Right">
                                 <font size="6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="116" height="10" uuid="b6430871-fd37-4a1e-93c3-b204a20db12d"/>
                             <textElement textAlignment="Right">
                                 <font size="6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brutP}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brutP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>
@@ -1375,14 +1375,14 @@
                             <textElement textAlignment="Right">
                                 <font size="6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="116" height="10" uuid="df2a9ce1-a3c7-4be8-ae36-87e9fe38255d"/>
                             <textElement textAlignment="Right">
                                 <font size="6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brutP}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brutP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>
@@ -1399,14 +1399,14 @@
                             <textElement textAlignment="Right">
                                 <font size="6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="116" height="10" uuid="c640d9a7-256d-43c8-a4fd-93a968e5780d"/>
                             <textElement textAlignment="Right">
                                 <font size="6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brutP}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brutP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>
@@ -1423,14 +1423,14 @@
                             <textElement textAlignment="Right">
                                 <font size="6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="116" height="10" uuid="8e2a3f7a-698a-4f42-85a0-e644ade696e6"/>
                             <textElement textAlignment="Right">
                                 <font size="6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brutP}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brutP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>
@@ -1447,14 +1447,14 @@
                             <textElement textAlignment="Right">
                                 <font size="6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="116" height="10" uuid="fe5593ed-5bd0-4a04-8bcf-2ef109bb2fab"/>
                             <textElement textAlignment="Right">
                                 <font size="6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brutP}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brutP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>
@@ -1471,14 +1471,14 @@
                             <textElement textAlignment="Right">
                                 <font size="6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="116" height="10" uuid="312690fc-32bc-44ea-9dad-8b54a26ef5eb"/>
                             <textElement textAlignment="Right">
                                 <font size="6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brutP}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brutP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>

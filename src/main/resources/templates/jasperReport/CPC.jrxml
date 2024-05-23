@@ -39,6 +39,7 @@
     <parameter name="total6" class="java.lang.Double"/>
     <parameter name="total7" class="java.lang.Double"/>
     <parameter name="total9" class="java.lang.Double"/>
+    <parameter name="Impots" class="java.lang.Double"/>
     <parameter name="DateN" class="java.lang.String"/>
     <parameter name="DateN1" class="java.lang.String"/>
     <parameter name="name_company" class="java.lang.String"/>
@@ -1983,6 +1984,7 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{Impots}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="200" y="533" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="5e775326-da82-490e-8fbc-812e423931ee">
@@ -2021,6 +2023,7 @@ amortissements et aux provisions]]></text>
                     <font size="6" isBold="false"/>
                     <paragraph leftIndent="0" rightIndent="10"/>
                 </textElement>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{Impots}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="533" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="335d3716-8077-4ebe-98d1-83430ba03900">

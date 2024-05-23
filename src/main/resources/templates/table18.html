@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TABLE 18</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/css/fieldInput.css">
+    <script src="/js/dateInput.js"></script>
+    <script src="/js/table18.js"></script>
+
+</head>
+<body>
+<div>
+    <div class="text-center mb-3">
+        <h2>ETAT DES INTERETS DES EMPRUNTS CONTRACTES AUTRES DES ASSOCIES ET DES TIERS AUTRES QUE LES ORGANISMES DE BANQUE OU DE CREDIT</h2>
+        <button id="getTable18ByDate" type="button" class="btn btn-primary">Afficher le tableau</button>
+        <input type="text" id="dateBilan" list="datesList" placeholder="Sélectionner une date">
+        <datalist id="datesList"></datalist>
+    </div>
+    <table class="styled-table">
+        <thead>
+        <tr>
+            <th scope="col" rowspan="2">Nom, Prénom ou raison sociale</th>
+            <th scope="col" rowspan="2">Adresse</th>
+            <th scope="col" rowspan="2">N° C.I.N. ou Article I.S.</th>
+            <th scope="col" rowspan="2">Montant du prêt</th>
+            <th scope="col" rowspan="2">Date du prêt</th>
+            <th scope="col" rowspan="2">Durée du prêt (en mois)</th>
+            <th scope="col" rowspan="2">Taux d'intérêt</th>
+            <th scope="col" rowspan="2">Charge financière globale</th>
+
+            <th scope="col" colspan="2">Remboursement Exercices antérieurs</th>
+            <th scope="col" colspan="2">Remboursement Exercices actuel</th>
+
+            <th scope="col" rowspan="2">Observations</th>
+        </tr>
+        <tr>
+            <th scope="col">(Principal)</th>
+            <th scope="col">(Intérêt)</th>
+
+            <th scope="col">(Principal)</th>
+            <th scope="col">(Intérêt)</th>
+
+        </tr>
+        </thead>
+        <tbody id="getResultDiv">
+
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+
+
+

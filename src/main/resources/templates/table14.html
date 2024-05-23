@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ETAT DES SOLDES DE GESTION (E.S.G)</title>
+    <title>TABLE 14</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
             crossorigin="anonymous"></script>
@@ -12,55 +12,34 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="/css/fieldInput.css">
-
     <script src="/js/dateInput.js"></script>
-    <script src="/js/passageESG.js"></script>
+    <script src="/js/table14.js"></script>
+
 </head>
 <body>
 <div>
-
     <div class="text-center mb-3">
-        <h2>ETAT DES SOLDES DE GESTION (E.S.G)</h2>
-        <button id="getEsgByDate" type="button" class="btn btn-primary">Afficher le tableau</button>
+        <h2>ETAT D'AFFECTATION DES RESULTATS INTERVENUE AU COURS DE L'EXERCICE</h2>
+        <button id="getTable14ByDate" type="button" class="btn btn-primary">Afficher le tableau</button>
         <input type="text" id="dateBilan" list="datesList" placeholder="Sélectionner une date">
         <datalist id="datesList"></datalist>
     </div>
-
     <table class="styled-table">
         <thead>
-            <tr>
-                <th style="text-align: center;" colspan="4">TABLEAU DE FORMATION DES RESULTATS (T.F.R)</th>
-            </tr>
-
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">RUBRIQUES</th>
-                <th scope="col">EXERCICE</th>
-                <th scope="col">EXERCICE PRECEDENT</th>
-            </tr>
-        </thead>
-        <tbody id="getResultTFR">
-
-        </tbody>
-    </table>
-
-    <table class="styled-table">
-        <thead>
-        <tr>
-            <th style="text-align: center;" colspan="4">CAPACITE D'AUTOFINANCEMENT (C.A.F) - AUTOFINANCEMENT</th>
-        </tr>
-
         <tr>
             <th scope="col"></th>
-            <th scope="col">RUBRIQUES</th>
-            <th scope="col">EXERCICE</th>
-            <th scope="col">EXERCICE PRECEDENT</th>
+            <th scope="col">MONTANT</th>
+            <th scope="col"></th>
+            <th scope="col">MONTANT</th>
         </tr>
         </thead>
-        <tbody id="getResultCAF">
+        <tbody id="getResultDiv">
 
         </tbody>
     </table>
 </div>
 </body>
 </html>
+
+
+

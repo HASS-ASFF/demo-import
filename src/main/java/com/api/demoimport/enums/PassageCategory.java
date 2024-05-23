@@ -19,12 +19,14 @@ public enum PassageCategory {
     REINTEGRATIONS_FISCALES("REINTEGRATIONS FISCALES",
             Arrays.asList(
                     "COURANTES",
-                    "NON COURANTES"
+                    "NON COURANTES",
+                    "AUTRES CHARGES NON COURANT"
             )),
     DEDUCTIONS_FISCALES("DEDUCTIONS FISCALES",
             Arrays.asList(
                     "COURANTES",
-                    "NON COURANTES"
+                    "NON COURANTES",
+                    "AUTRES PRODUITS NON COURANTS"
             )),
     RESULTAT_BRUT_FISCAL("RESULTAT BRUT FISCAL",
             Arrays.asList(

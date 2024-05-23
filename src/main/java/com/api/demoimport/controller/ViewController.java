@@ -34,4 +34,23 @@ public class ViewController {
     @GetMapping("/immobilisation")
     public String immobilisation(){ return "Immobilisation"; }
 
+    @GetMapping("/table12")
+    public String tableau12(){ return "table12"; }
+
+    @GetMapping("/table14")
+    public String tableau14(){ return "table14"; }
+
+    @GetMapping("/table15")
+    public String tableau15(){ return "table15"; }
+
+    @GetMapping("/table17")
+    public String tableau17(){ return "table17"; }
+
+    @GetMapping("/table18")
+    public String tableau18(){ return "table18"; }
+
+    @GetMapping("/table20")
+    public String tableau20(){ return "table20"; }
+
+
 }

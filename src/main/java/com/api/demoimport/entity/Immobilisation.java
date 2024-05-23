@@ -36,7 +36,7 @@ public class Immobilisation {
     @Column
     private Double deaGlobal;
     @ManyToOne
-    @JoinColumn(name = "exercice_id")
-    private Exercice exercice;
+    @JoinColumn(name = "balance_id")
+    private Balance balance;
 
 }

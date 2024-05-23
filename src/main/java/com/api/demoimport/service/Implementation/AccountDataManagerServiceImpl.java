@@ -107,15 +107,15 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
                 String prefix = accountNumber.substring(0,3);
                 // Initialize total for each sub-account
                 Double total = 0.0;
-
+                //System.out.println(result.getBrut());
                 for (SubAccountCPC subAccount : mainAccountList) {
                     // check for the same subAccount
                     if (subAccount.getLibelle().startsWith(prefix) || subAccount.getLibelle().contains(prefix)) {
                         // Adding the values
                         if(subAccount.getBrut() != null){
-                            total = subAccount.getBrut() + result.getBrut();
+                            total = subAccount.getBrut() + (result.getBrut() == null ? 0.0:result.getBrut());
                         }else{
-                            total = result.getBrut();
+                            total = (result.getBrut() == null ? 0.0:result.getBrut());
                         }
                         subAccount.setN_compte(result.getN_compte());
                         subAccount.setBrut(total);
@@ -125,6 +125,7 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
                 }
             }
         }catch (Exception e){
+            e.printStackTrace();
             throw new RuntimeException("Failed to process data account cpc , error message : "+ e.getMessage());
         }
         return mainAccountList;

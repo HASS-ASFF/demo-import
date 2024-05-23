@@ -39,7 +39,7 @@ public class PassageServiceImpl implements PassageService {
     @Override
     public List<Passage> processAccountData(List<Passage> rawData) {
         List<Passage> mainAccountMap = Passage.initializeData();
-
+        System.out.println(rawData);
         if (rawData != null) {
             updateMainAccountMap(mainAccountMap, rawData);
         }

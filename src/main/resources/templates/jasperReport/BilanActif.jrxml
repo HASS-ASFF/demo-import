@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Actif"  pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fb2d0027-ea95-4dce-883f-84c0472dfea8">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Actif" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fb2d0027-ea95-4dce-883f-84c0472dfea8">
     <subDataset name="dataset1" uuid="59e8ed91-18a7-454d-860d-a48aea2c9315">
         <queryString>
             <![CDATA[]]>
@@ -73,7 +73,6 @@
         <field name="net" class="java.lang.Double"/>
         <field name="netN" class="java.lang.Double"/>
     </subDataset>
-
     <parameter name="param1" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
     <parameter name="param2" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
     <parameter name="param3" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
@@ -82,18 +81,12 @@
     <parameter name="param6" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
     <parameter name="param7" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
     <parameter name="param8" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
-
     <parameter name="totalI" class="java.lang.Double"/>
     <parameter name="totalII" class="java.lang.Double"/>
     <parameter name="totalIII" class="java.lang.Double"/>
-
     <parameter name="DateN" class="java.lang.String"/>
     <parameter name="DateN1" class="java.lang.String"/>
-
-    <parameter name="name_company" class="java.lang.String" />
-
-
-
+    <parameter name="name_company" class="java.lang.String"/>
     <background>
         <band splitType="Stretch"/>
     </background>
@@ -1364,7 +1357,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{total_amo}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{total_amo} != null ? new java.text.DecimalFormat("#,##0.00").format($F{total_amo}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="60" height="10" uuid="df465f90-d283-4158-a698-ba25ce1102ab">
@@ -1375,7 +1368,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{net}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{net} != null ? new java.text.DecimalFormat("#,##0.00").format($F{net}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="180" y="0" width="60" height="10" uuid="228411df-c74c-472d-b980-9dc5868d4bf5">
@@ -1386,7 +1379,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{netN}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{netN} != null ? new java.text.DecimalFormat("#,##0.00").format($F{netN}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>
@@ -1406,7 +1399,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="60" y="0" width="60" height="10" uuid="6a1b3f80-91ec-4e7e-aae5-037f27a473f5">
@@ -1417,7 +1410,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{total_amo}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{total_amo} != null ? new java.text.DecimalFormat("#,##0.00").format($F{total_amo}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="60" height="10" uuid="ff738959-1b13-44a8-ab57-5deca85a648c">
@@ -1428,7 +1421,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{net}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{net} != null ? new java.text.DecimalFormat("#,##0.00").format($F{net}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="180" y="0" width="60" height="10" uuid="061abb82-dfa7-4353-88f3-e32719013a6a">
@@ -1439,7 +1432,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{netN}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{netN} != null ? new java.text.DecimalFormat("#,##0.00").format($F{netN}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>
@@ -1459,7 +1452,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="60" y="0" width="60" height="10" uuid="76af7a33-14de-4471-a288-9c93156336d8">
@@ -1470,7 +1463,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{total_amo}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{total_amo} != null ? new java.text.DecimalFormat("#,##0.00").format($F{total_amo}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="60" height="10" uuid="a250d505-74a5-4ed1-a20d-35d87358fbc4">
@@ -1481,7 +1474,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{net}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{net} != null ? new java.text.DecimalFormat("#,##0.00").format($F{net}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="180" y="0" width="60" height="10" uuid="7d42ad01-5d03-45a1-9090-68095ea58640">
@@ -1492,7 +1485,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{netN}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{netN} != null ? new java.text.DecimalFormat("#,##0.00").format($F{netN}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>
@@ -1512,7 +1505,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="60" y="0" width="60" height="10" uuid="d3802d71-f072-497f-a3e3-9855ed46e86c">
@@ -1523,7 +1516,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{total_amo}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{total_amo} != null ? new java.text.DecimalFormat("#,##0.00").format($F{total_amo}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="60" height="10" uuid="c24dd311-ed80-46a1-b28a-d3c4f0dc3866">
@@ -1534,7 +1527,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{net}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{net} != null ? new java.text.DecimalFormat("#,##0.00").format($F{net}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="180" y="0" width="60" height="10" uuid="9e690e3c-cdf3-405e-a147-a98a922ab418">
@@ -1545,7 +1538,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{netN}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{netN} != null ? new java.text.DecimalFormat("#,##0.00").format($F{netN}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>
@@ -1565,7 +1558,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="60" y="0" width="60" height="10" uuid="179e414b-5104-429e-886e-f4293ff37c87">
@@ -1576,7 +1569,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{total_amo}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{total_amo} != null ? new java.text.DecimalFormat("#,##0.00").format($F{total_amo}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="60" height="10" uuid="92618396-e8aa-4ef9-920c-f3e79a9ce8b4">
@@ -1587,7 +1580,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{net}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{net} != null ? new java.text.DecimalFormat("#,##0.00").format($F{net}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="180" y="0" width="60" height="10" uuid="51da074d-c440-4c50-b5ba-6634f97298bb">
@@ -1598,7 +1591,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{netN}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{netN} != null ? new java.text.DecimalFormat("#,##0.00").format($F{netN}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>
@@ -1618,7 +1611,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="60" y="0" width="60" height="10" uuid="ea94f4c6-5824-4b60-b3d2-4c240095dae1">
@@ -1629,7 +1622,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{total_amo}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{total_amo} != null ? new java.text.DecimalFormat("#,##0.00").format($F{total_amo}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="60" height="10" uuid="0d575db0-581f-4d23-9b9f-78e11eefabd3">
@@ -1640,7 +1633,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{net}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{net} != null ? new java.text.DecimalFormat("#,##0.00").format($F{net}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="180" y="0" width="60" height="10" uuid="707611c3-3ad4-47e9-8d32-059a142b1333">
@@ -1651,7 +1644,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{netN}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{netN} != null ? new java.text.DecimalFormat("#,##0.00").format($F{netN}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>
@@ -1671,7 +1664,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="60" y="0" width="60" height="10" uuid="a2eac7c3-c85c-431e-9568-9b71793d5919">
@@ -1682,7 +1675,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{total_amo}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{total_amo} != null ? new java.text.DecimalFormat("#,##0.00").format($F{total_amo}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="60" height="10" uuid="edc4736a-8279-4461-82ef-17585ba76c76">
@@ -1693,7 +1686,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{net}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{net} != null ? new java.text.DecimalFormat("#,##0.00").format($F{net}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="180" y="0" width="60" height="10" uuid="3e38d990-88d7-40fa-b954-f0f27ea0cf73">
@@ -1704,7 +1697,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{netN}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{netN} != null ? new java.text.DecimalFormat("#,##0.00").format($F{netN}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>
@@ -1724,7 +1717,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="60" y="0" width="60" height="10" uuid="93e35ccd-4621-45fc-a0d4-1eacf176770a">
@@ -1735,7 +1728,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{total_amo}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{total_amo} != null ? new java.text.DecimalFormat("#,##0.00").format($F{total_amo}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="60" height="10" uuid="a25dcd43-790d-4848-a547-da4500ec4748">
@@ -1746,7 +1739,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{net}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{net} != null ? new java.text.DecimalFormat("#,##0.00").format($F{net}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="180" y="0" width="60" height="10" uuid="a0aa9da3-a5d9-43cf-bab5-9c7dd278fc6c">
@@ -1757,7 +1750,7 @@
                                 <font size="5.6"/>
                                 <paragraph rightIndent="4"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{netN}]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{netN} != null ? new java.text.DecimalFormat("#,##0.00").format($F{netN}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>

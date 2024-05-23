@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ETAT DES SOLDES DE GESTION (E.S.G)</title>
+    <title>TABLE 20</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
             crossorigin="anonymous"></script>
@@ -12,55 +12,39 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="/css/fieldInput.css">
-
     <script src="/js/dateInput.js"></script>
-    <script src="/js/passageESG.js"></script>
+    <script src="/js/table20.js"></script>
+
 </head>
 <body>
 <div>
-
     <div class="text-center mb-3">
-        <h2>ETAT DES SOLDES DE GESTION (E.S.G)</h2>
-        <button id="getEsgByDate" type="button" class="btn btn-primary">Afficher le tableau</button>
+        <h2>ETAT DETAILLE DES STOCKS</h2>
+        <button id="getTable20ByDate" type="button" class="btn btn-primary">Afficher le tableau</button>
         <input type="text" id="dateBilan" list="datesList" placeholder="Sélectionner une date">
         <datalist id="datesList"></datalist>
     </div>
-
-    <table class="styled-table">
-        <thead>
-            <tr>
-                <th style="text-align: center;" colspan="4">TABLEAU DE FORMATION DES RESULTATS (T.F.R)</th>
-            </tr>
-
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">RUBRIQUES</th>
-                <th scope="col">EXERCICE</th>
-                <th scope="col">EXERCICE PRECEDENT</th>
-            </tr>
-        </thead>
-        <tbody id="getResultTFR">
-
-        </tbody>
-    </table>
-
     <table class="styled-table">
         <thead>
         <tr>
-            <th style="text-align: center;" colspan="4">CAPACITE D'AUTOFINANCEMENT (C.A.F) - AUTOFINANCEMENT</th>
-        </tr>
+            <th scope="col">STOCKS</th>
+            <th scope="col">STOCK FINAL : Montant brut (1)</th>
+            <th scope="col">STOCK FINAL : Provision pour dépréciation (2)</th>
+            <th scope="col">STOCK FINAL : Montant net (3)</th>
+            <th scope="col">STOCK INITIAL : Montant brut (4)</th>
+            <th scope="col">STOCK INITIAL : Provision pour dépréciation (5)</th>
+            <th scope="col">STOCK INITIAL : Montant net (6)</th>
+            <th scope="col">Variation de stock en valeur (+ ou -) (7=6-3)</th>
 
-        <tr>
-            <th scope="col"></th>
-            <th scope="col">RUBRIQUES</th>
-            <th scope="col">EXERCICE</th>
-            <th scope="col">EXERCICE PRECEDENT</th>
         </tr>
         </thead>
-        <tbody id="getResultCAF">
+        <tbody id="getResultDiv">
 
         </tbody>
     </table>
 </div>
 </body>
 </html>
+
+
+

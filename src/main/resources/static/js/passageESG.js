@@ -136,12 +136,14 @@ $(document).ready(function() {
 
 
                 } else {
-                    $("#getResultDiv").html("<strong>No data found for this date</strong>");
+                    $("#getResultTFR").html("<strong>No data found for this date</strong>");
+
                     console.log("EMPTY (NO DATA): ", result.status);
                 }
             },
             error: function(e) {
-                $("#getResultDiv").html("<strong>Error</strong>");
+                $("#getResultTFR").html("<strong>Error</strong>");
+
                 console.log("ERROR: ", e);
             }
         });

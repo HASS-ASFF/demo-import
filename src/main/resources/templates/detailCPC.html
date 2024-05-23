@@ -11,15 +11,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="/fieldInput.css">
-    <script src="/dateInput.js"></script>
+    <link rel="stylesheet" href="/css/fieldInput.css">
+    <script src="/js/dateInput.js"></script>
+    <script src="/js/detailCPC.js"></script>
 
 </head>
 <body>
 <div>
     <div class="text-center mb-3">
         <h2>DETAIL DES POSTES DU C.P.C</h2>
-        <button id="getImmobilisationByDate" type="button" class="btn btn-primary">Afficher le tableau</button>
+        <button id="getDetailCPCByDate" type="button" class="btn btn-primary">Afficher le tableau</button>
         <input type="text" id="dateBilan" list="datesList" placeholder="Sélectionner une date">
         <datalist id="datesList"></datalist>
     </div>
@@ -30,25 +31,10 @@
                 <th>Detail CPC</th>
                 <th>EXERCICE</th>
                 <th>EXERCICE PRECEDENT</th>
-                <th></th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td colspan="5">CHARGES D'EXPLOITATION</td>
-            </tr>
-            <tr>
-                <td colspan="5">CHARGES FINANCIERS</td>
-            </tr>
-            <tr>
-                <td colspan="5">CHARGES NON COURANTES</td>
-            </tr>
-            <tr>
-                <td colspan="5">PRODUITS D'EXPLOITATION</td>
-            </tr>
-            <tr>
-                <td colspan="5">CHARGES FINANCIERS</td>
-            </tr>
+        <tbody id="getResultDiv">
+
         </tbody>
     </table>
 </div>

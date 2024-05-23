@@ -2,8 +2,10 @@ package com.api.demoimport.service.Implementation;
 
 import com.api.demoimport.entity.*;
 import com.api.demoimport.entity.Immobilisation;
+import com.api.demoimport.exception.BalanceNonExisteException;
+import com.api.demoimport.exception.SocieteNonExistException;
 import com.api.demoimport.repository.BalanceRepository;
-import com.api.demoimport.repository.ExerciceRepository;
+import com.api.demoimport.repository.SocieteRepository;
 import com.api.demoimport.service.ExcelHelperService;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -26,7 +28,7 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
     @Autowired
     private BalanceRepository balanceRepository;
     @Autowired
-    private ExerciceRepository exerciceRepository;
+    private SocieteRepository societeRepository;
 
     /**
      * Service implementation for handling Excel files including operations like converting Excel data to PlanComptable,
@@ -139,7 +141,19 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
         Balance balance = new Balance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         balance.setDate(sdf.parse(date));
-        balance.setCompany_name(company_name);
+
+        // Recherche de la société dans la base de données
+        Optional<Societe> societeOptional = societeRepository.findBySocialReason(company_name);
+
+        if (societeOptional.isPresent()) {
+            Societe societe = societeOptional.get();
+
+            // Associez la société à la balance
+            balance.setSociete(societe);
+
+        } else {
+            throw new SocieteNonExistException("L'entreprise '" + company_name + "' n'existe pas encore. Veuillez la créer d'abord.");
+        }
 
         for (int i = sheet.getFirstRowNum(); i < sheet.getLastRowNum() + 1; i++){
 
@@ -151,6 +165,7 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
             BalanceDetail balanceDetail = new BalanceDetail();
             balanceDetail.setBalance(balance);
             Double n_compte = getCellValuesAsDouble(row.getCell(0));
+
             // Vérifier si la valeur récupéré existe dans la table plan comptable (numéro de compte)
             Optional<PlanComptable> planComptable = excelPlanComptableServiceImpl
                     .search(n_compte.longValue());
@@ -193,12 +208,16 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
         XSSFSheet sheet = workbook.getSheet("immobilisation");
         List<Immobilisation> immobilisations = new ArrayList<>();
 
+        // Recherche de la balance correspondante à la date et à la société dans la base de données
+        Optional<Balance> balanceOptional = balanceRepository.findByDateAndCompanyName(date, company_name);
 
-        // Création d'une instance d'exercice avec la date
-        Exercice exercice = new Exercice();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        exercice.setDateExercice(sdf.parse(date));
-        exercice.setCompany_name(company_name);
+        if (!balanceOptional.isPresent()) {
+            // Si la balance n'existe pas, lancer une exception BalanceNonExisteException
+            String message = "La balance pour la société '" + company_name + "' à la date '" + date + "' n'existe pas.";
+            throw new BalanceNonExisteException(message);
+        }
+
+        Balance balance = balanceOptional.get();
 
         for (int i = sheet.getFirstRowNum(); i < sheet.getLastRowNum() + 1; i++){
 
@@ -208,7 +227,7 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
 
             Row row = sheet.getRow(i);
             Immobilisation immobilisation = new Immobilisation();
-            immobilisation.setExercice(exercice);
+            immobilisation.setBalance(balance);
 
             String name = getCellValuesAsString(row.getCell(0));
             //DataFormatter dataFormatter = new DataFormatter();
@@ -233,8 +252,6 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
 
             immobilisations.add(immobilisation);
         }
-
-        exerciceRepository.save(exercice);
         workbook.close();
 
         return immobilisations;
