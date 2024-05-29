@@ -1,6 +1,5 @@
 package com.api.demoimport.entity;
 
-import com.api.demoimport.entity.Exercice;
 import lombok.Getter;
 import lombok.Setter;
 

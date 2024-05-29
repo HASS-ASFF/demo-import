@@ -168,13 +168,19 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
 
             // Vérifier si la valeur récupéré existe dans la table plan comptable (numéro de compte)
             Optional<PlanComptable> planComptable = excelPlanComptableServiceImpl
-                    .search(n_compte.longValue());
+                        .search(n_compte.longValue());
 
             if (planComptable.isPresent()) {
+                if(n_compte == 34551000 || n_compte == 34552000){
+                    balanceDetail.setN_Compte(n_compte.longValue());
+                }else{
+                    balanceDetail.setN_Compte(planComptable.get().getNo_compte());
+                }
+
                 balanceDetail.setCompte(planComptable.get());
-                balanceDetail.setN_Compte(planComptable.get().getNo_compte());
                 balanceDetail.setThe_class(planComptable.get().getThe_class());
             }
+
 
             //String label = getCellValuesAsString(row.getCell(1));
             Double debitDex = getCellValuesAsDouble(row.getCell(2));
