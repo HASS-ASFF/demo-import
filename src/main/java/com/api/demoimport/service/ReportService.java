@@ -20,6 +20,8 @@ public interface ReportService {
 
     ByteArrayOutputStream exportCPC(String date, String company_name) throws JRException;
 
+    ByteArrayOutputStream exportDetailTva(String date, String company_name) throws JRException;
+
     ByteArrayOutputStream jasperConfiguration(String path, Map<String,Object> parameters) throws JRException;
 
     String getLastYear(String dateString);

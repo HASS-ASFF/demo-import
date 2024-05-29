@@ -1,5 +1,6 @@
 package com.api.demoimport.service.Implementation;
 
+import com.api.demoimport.dto.Tvadto;
 import com.api.demoimport.entity.BalanceDetail;
 import com.api.demoimport.entity.Bilan.FormatUtils;
 import com.api.demoimport.entity.Bilan.SubAccountActif;
@@ -163,6 +164,12 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
         //regroupClassesCPC(subAccountCPCS);
 
         return subAccountCPCS;
+    }
+
+    @Override
+    public List<Tvadto> getTvaData(String date, String company_name) {
+        List<Object []> resultrequest;
+        return null;
     }
 
     // Convert object to SubAccountActif

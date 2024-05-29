@@ -176,7 +176,7 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
                 balanceDetail.setThe_class(planComptable.get().getThe_class());
             }
 
-            String label = getCellValuesAsString(row.getCell(1));
+            //String label = getCellValuesAsString(row.getCell(1));
             Double debitDex = getCellValuesAsDouble(row.getCell(2));
             Double CreditDex = getCellValuesAsDouble(row.getCell(3));
             Double DebitEx = getCellValuesAsDouble(row.getCell(4));
@@ -184,7 +184,7 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
             Double DebitFex = getCellValuesAsDouble(row.getCell(6));
             Double CreditFex = getCellValuesAsDouble(row.getCell(7));
 
-            balanceDetail.setLabel(label);
+            //balanceDetail.setLabel(label);
             balanceDetail.setDebitDex(debitDex);
             balanceDetail.setCreditDex(CreditDex);
             balanceDetail.setDebitEx(DebitEx);

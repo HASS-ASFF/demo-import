@@ -106,7 +106,10 @@ public class BilanController {
     @GetMapping("/table12")
     public ResponseEntity getTable12(@RequestParam("dateBilan") String date, @RequestParam("companyName") String company_name) throws JRException{
         try {
-            return null;
+            ByteArrayOutputStream reportstream = reportServiceImpl.exportDetailTva(date,company_name);
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.setContentType(MediaType.APPLICATION_PDF);
+            return new ResponseEntity(reportstream.toByteArray(),httpHeaders,HttpStatus.OK);
         }catch(RuntimeException e){
             String message = "Failed to upload table " + e.getLocalizedMessage();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));

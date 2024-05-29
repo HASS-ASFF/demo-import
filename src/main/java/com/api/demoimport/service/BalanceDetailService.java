@@ -1,5 +1,6 @@
 package com.api.demoimport.service;
 
+import com.api.demoimport.dto.Tvadto;
 import com.api.demoimport.entity.BalanceDetail;
 import com.api.demoimport.entity.Bilan.SubAccountActif;
 import com.api.demoimport.entity.Bilan.SubAccountCPC;
@@ -28,6 +29,8 @@ public interface BalanceDetailService {
 
     List<SubAccountCPC> getClassSix(String date,String company_name);
     List<SubAccountCPC> getClassSeven(String date,String company_name);
+
+    List<Tvadto> getTvaData(String date,String company_name);
 
     List<SubAccountActif> ConvertToBilanActif(List<Object[]> resultsrequest);
     List<SubAccountPassif> ConvertToBilanPassif(List<Object[]> resultsrequest);

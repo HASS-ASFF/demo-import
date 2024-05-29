@@ -110,7 +110,6 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
             "GROUP BY b.n_compte,b.label, b.credit_fex, b.credit_dex;")
     List<Object[]> getBilanC5P(String dateBilan,String company_name);
 
-
     // GET CLASS 6
     @Query(nativeQuery = true, value = "SELECT b.n_compte AS num_compte, b.label AS comptes,\n" +
             "CASE \n"+
@@ -124,7 +123,6 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
             "GROUP BY b.n_compte,b.label, b.debit_fex, b.credit_fex;")
     List<Object []> getCPCC6(String date,String company_name);
 
-
     // GET CLASS 7
     @Query(nativeQuery = true, value = "SELECT b.n_compte AS num_compte,\n"+
             "b.label AS comptes,\n"+
@@ -136,4 +134,33 @@ public interface BalanceDetailRepository extends JpaRepository<BalanceDetail,Lon
             "GROUP BY b.n_compte,b.label, b.credit_fex;")
     List<Object []> getCPCC7(String date,String company_name);
 
+    @Query(nativeQuery = true, value = "SELECT ifnull(b.credit_dex,0) AS credit_dex,\n" +
+            "ifnull(b.credit_ex,0) AS credit_ex, \n" +
+            "ifnull(b.debit_ex,0) AS debit_ex \n" +
+            "FROM balance_detail b\n" +
+            "JOIN balance ON balance.id = b.balance_id\n" +
+            "WHERE b.n_compte LIKE '44550000'\n" +
+            "AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :date\n" +
+            "AND company_name = :company_name")
+    List<Object []> getTvaValues(String date,String company_name);
+
+    @Query(nativeQuery = true, value = "SELECT ifnull(b.debit_dex,0) AS debit_dex, \n" +
+            "ifnull(b.debit_ex,0) AS debit_ex,\n" +
+            "ifnull(b.credit_ex,0) AS credit_ex \n" +
+            "FROM balance_detail b\n" +
+            "JOIN balance ON balance.id = b.balance_id\n" +
+            "WHERE b.n_compte LIKE '34552000'\n" +
+            "AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :date\n" +
+            "AND company_name = :company_name")
+    List<Object []> getTvaSCValues(String date,String company_name);
+
+    @Query(nativeQuery = true, value = "SELECT ifnull(b.debit_dex,0) AS debit_dex, \n" +
+            "ifnull(b.debit_ex,0) AS debit_ex, \n" +
+            "ifnull(b.credit_ex,0) AS credit_ex\n" +
+            "FROM balance_detail b\n" +
+            "JOIN balance ON balance.id = b.balance_id\n" +
+            "WHERE b.n_compte LIKE '34551000'\n" +
+            "AND DATE_FORMAT(balance.date, '%Y-%m-%d') = :date\n" +
+            "AND balance.company_name = :company_name")
+    List<Object []> getTvaSIValues(String date,String company_name);
 }

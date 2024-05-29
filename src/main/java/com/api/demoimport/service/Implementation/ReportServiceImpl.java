@@ -1,5 +1,6 @@
 package com.api.demoimport.service.Implementation;
 
+import com.api.demoimport.dto.Tvadto;
 import com.api.demoimport.entity.Bilan.SubAccountActif;
 import com.api.demoimport.entity.Bilan.SubAccountCPC;
 import com.api.demoimport.entity.Bilan.SubAccountPassif;
@@ -34,6 +35,8 @@ public class ReportServiceImpl implements ReportService {
     EsgServiceImpl esgService;
     @Autowired
     SocieteRepository societeRepository;
+    @Autowired
+    TvaServiceImpl tvaService;
 
     /**
      * Service implementation for managing reports, providing methods for exporting reports to PDF format.
@@ -370,6 +373,65 @@ public class ReportServiceImpl implements ReportService {
             return jasperConfiguration(pathCPC,parameters);
         }catch (RuntimeException e){
             String message = "Failed to report CPC " + e.getLocalizedMessage() + "!";
+            throw new RuntimeException(message);
+        }
+
+    }
+
+    @Override
+    public ByteArrayOutputStream exportDetailTva(String date, String company_name) throws JRException {
+        // TO DO
+        String pathTva = path+"DetailTva.jrxml";
+
+        try {
+            // DATASET 1
+            List<Tvadto> tvaFacturee = new ArrayList<>();
+            tvaFacturee.add(tvaService.getTvaF(date,company_name));
+            tvaService.getTotalTva(tvaFacturee.get(0));
+
+            // DATASET 2
+            List<Tvadto> tvaSc = new ArrayList<>();
+            tvaSc.add(tvaService.getTvaRSc(date,company_name));
+            tvaService.getTotalTva(tvaSc.get(0));
+
+            // DATASET 3
+            List<Tvadto> tvaSi = new ArrayList<>();
+            tvaSi.add(tvaService.getTvaRSi(date,company_name));
+            tvaService.getTotalTva(tvaSi.get(0));
+
+
+            //data sources for each dataset
+            JRBeanCollectionDataSource dataSource1 = new JRBeanCollectionDataSource(tvaFacturee);
+            JRBeanCollectionDataSource dataSource2 = new JRBeanCollectionDataSource(tvaSc);
+            JRBeanCollectionDataSource dataSource3 = new JRBeanCollectionDataSource(tvaSi);
+
+            Map<String, Object> parameters = new HashMap<>();
+
+            parameters.put("param1", dataSource1);
+            parameters.put("param2", dataSource2);
+            parameters.put("param3", dataSource3);
+
+            List<Double> tvaRecuperable = tvaService.getTotalTvaRecup(tvaSc.get(0),tvaSi.get(0));
+            List<Double> tvaDu = tvaService.getTvaAMinusB(tvaFacturee.get(0),tvaRecuperable);
+
+            parameters.put("total1", tvaRecuperable.get(0));
+            parameters.put("total2", tvaRecuperable.get(1));
+            parameters.put("total3", tvaRecuperable.get(2));
+            parameters.put("total4", tvaRecuperable.get(3));
+
+            parameters.put("total5", tvaDu.get(0));
+            parameters.put("total6", tvaDu.get(1));
+            parameters.put("total7", tvaDu.get(2));
+            parameters.put("total8", tvaDu.get(3));
+
+            parameters.put("DateN",date.substring(0,4));
+            parameters.put("DateN1",getLastYear(date).substring(0,4));
+
+            parameters.put("name_company",company_name);
+
+            return jasperConfiguration(pathTva,parameters);
+        }catch (RuntimeException e){
+            String message = "Failed to report Tva table " + e.getLocalizedMessage() + "!";
             throw new RuntimeException(message);
         }
 
