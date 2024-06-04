@@ -50,7 +50,7 @@ public class ReportServiceImpl implements ReportService {
     // EXPORT DATA PASSIF TO PDF
     public ByteArrayOutputStream exportReportPassif(String  date,String company_name) throws JRException {
 
-        // TO DO
+        // TO CHECK
         String pathP = path+"BilanPassif.jrxml";
 
         // Generer automatiquement le bilan passif
@@ -161,7 +161,7 @@ public class ReportServiceImpl implements ReportService {
     // EXPORT DATA ACTIF TO PDF
     public ByteArrayOutputStream exportReportActif(String date,String company_name) throws JRException {
 
-        // TO DO
+        // TO CHECK
         String pathA = path+"BilanActif.jrxml";
 
         // Generer automatiquement le bilan actif
@@ -255,7 +255,7 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public ByteArrayOutputStream exportCPC(String date, String company_name) throws JRException {
 
-        // TO DO
+        // TO CHECK
         String pathCPC = path+"CPC.jrxml";
 
         // Generer automatiquement le CPC
@@ -380,7 +380,7 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public ByteArrayOutputStream exportDetailTva(String date, String company_name) throws JRException {
-        // TO DO
+        // TO CHECK
         String pathTva = path+"DetailTva.jrxml";
 
         try {
@@ -435,6 +435,116 @@ public class ReportServiceImpl implements ReportService {
             throw new RuntimeException(message);
         }
 
+    }
+
+    @Override
+    public ByteArrayOutputStream exportTable14(String date, String company_name) throws JRException {
+        try {
+            // TO CHECK 
+            String pathTva = path+"table14.jrxml";
+
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("a1", 0.0);
+            parameters.put("a2", 0.0);
+            parameters.put("a3", 0.0);
+            parameters.put("a4", 0.0);
+            parameters.put("a5", 0.0);
+            parameters.put("a6", 0.0);
+
+            parameters.put("b1", 0.0);
+            parameters.put("b2", 0.0);
+            parameters.put("b3", 0.0);
+            parameters.put("b4", 0.0);
+            parameters.put("b5", 0.0);
+            parameters.put("b6", 0.0);
+            parameters.put("b7", 0.0);
+
+            parameters.put("DateN",date.substring(0,4));
+            parameters.put("DateN1",getLastYear(date).substring(0,4));
+
+            parameters.put("name_company",company_name);
+
+            return jasperConfiguration(pathTva,parameters);
+        }catch (RuntimeException e){
+            String message = "Failed to report Table 14 " + e.getLocalizedMessage() + "!";
+            throw new RuntimeException(message);
+        }
+    }
+
+    @Override
+    public ByteArrayOutputStream exportTable15(String date, String company_name) throws JRException {
+        try {
+            // TO CHECK
+            String pathTva = path+"table15.jrxml";
+
+            Map<String, Object> parameters = new HashMap<>();
+
+            parameters.put("DateN",date.substring(0,4));
+            parameters.put("DateN1",getLastYear(date).substring(0,4));
+
+            parameters.put("name_company",company_name);
+            return jasperConfiguration(pathTva,parameters);
+        }catch (RuntimeException e){
+            String message = "Failed to report Table 15 " + e.getLocalizedMessage() + "!";
+            throw new RuntimeException(message);
+        }
+    }
+
+    @Override
+    public ByteArrayOutputStream exportTable17(String date, String company_name) throws JRException {
+        try {
+            // TO CHECK
+            String pathTva = path+"table17.jrxml";
+
+            Map<String, Object> parameters = new HashMap<>();
+
+            parameters.put("DateN",date.substring(0,4));
+            parameters.put("DateN1",getLastYear(date).substring(0,4));
+
+            parameters.put("name_company",company_name);
+            return jasperConfiguration(pathTva,parameters);
+        }catch (RuntimeException e){
+            String message = "Failed to report Table 17 " + e.getLocalizedMessage() + "!";
+            throw new RuntimeException(message);
+        }
+    }
+
+    @Override
+    public ByteArrayOutputStream exportTable18(String date, String company_name) throws JRException {
+        try {
+            // TO CHECK
+            String pathTva = path+"table18.jrxml";
+
+            Map<String, Object> parameters = new HashMap<>();
+
+            parameters.put("DateN",date.substring(0,4));
+            parameters.put("DateN1",getLastYear(date).substring(0,4));
+
+            parameters.put("name_company",company_name);
+            return jasperConfiguration(pathTva,parameters);
+        }catch (RuntimeException e){
+            String message = "Failed to report Table 18 " + e.getLocalizedMessage() + "!";
+            throw new RuntimeException(message);
+        }
+    }
+
+    @Override
+    public ByteArrayOutputStream exportTable20(String date, String company_name) throws JRException {
+        try {
+            // TO CHECK
+            String pathTva = path+"table20.jrxml";
+
+            Map<String, Object> parameters = new HashMap<>();
+
+            parameters.put("DateN",date.substring(0,4));
+            parameters.put("DateN1",getLastYear(date).substring(0,4));
+
+            parameters.put("name_company",company_name);
+            return jasperConfiguration(pathTva,parameters);
+        }catch (RuntimeException e){
+            String message = "Failed to report Table 20 " + e.getLocalizedMessage() + "!";
+            throw new RuntimeException(message);
+        }
     }
 
     private boolean companyLessThanThreeLosses(List<SubAccountCPC> ClassSix,List<SubAccountCPC> ClassSeven,String date,String company_name) {

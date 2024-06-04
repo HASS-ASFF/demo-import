@@ -22,6 +22,18 @@ public interface ReportService {
 
     ByteArrayOutputStream exportDetailTva(String date, String company_name) throws JRException;
 
+    ByteArrayOutputStream exportTable14(String date, String company_name) throws JRException;
+
+    ByteArrayOutputStream exportTable15(String date, String company_name) throws JRException;
+
+    ByteArrayOutputStream exportTable17(String date, String company_name) throws JRException;
+
+    ByteArrayOutputStream exportTable18(String date, String company_name) throws JRException;
+
+    ByteArrayOutputStream exportTable20(String date, String company_name) throws JRException;
+
+
+
     ByteArrayOutputStream jasperConfiguration(String path, Map<String,Object> parameters) throws JRException;
 
     String getLastYear(String dateString);

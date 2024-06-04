@@ -119,7 +119,10 @@ public class BilanController {
     @GetMapping("/table14")
     public ResponseEntity getTable14(@RequestParam("dateBilan") String date, @RequestParam("companyName") String company_name) throws JRException{
         try {
-            return null;
+            ByteArrayOutputStream reportstream = reportServiceImpl.exportTable14(date,company_name);
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.setContentType(MediaType.APPLICATION_PDF);
+            return new ResponseEntity(reportstream.toByteArray(),httpHeaders,HttpStatus.OK);
         }catch(RuntimeException e){
             String message = "Failed to upload table " + e.getLocalizedMessage();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
@@ -129,7 +132,10 @@ public class BilanController {
     @GetMapping("/table15")
     public ResponseEntity getTable15(@RequestParam("dateBilan") String date, @RequestParam("companyName") String company_name) throws JRException{
         try {
-            return null;
+            ByteArrayOutputStream reportstream = reportServiceImpl.exportTable15(date,company_name);
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.setContentType(MediaType.APPLICATION_PDF);
+            return new ResponseEntity(reportstream.toByteArray(),httpHeaders,HttpStatus.OK);
         }catch(RuntimeException e){
             String message = "Failed to upload table " + e.getLocalizedMessage();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
@@ -139,7 +145,10 @@ public class BilanController {
     @GetMapping("/table17")
     public ResponseEntity getTable17(@RequestParam("dateBilan") String date, @RequestParam("companyName") String company_name) throws JRException{
         try {
-            return null;
+            ByteArrayOutputStream reportstream = reportServiceImpl.exportTable17(date,company_name);
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.setContentType(MediaType.APPLICATION_PDF);
+            return new ResponseEntity(reportstream.toByteArray(),httpHeaders,HttpStatus.OK);
         }catch(RuntimeException e){
             String message = "Failed to upload table " + e.getLocalizedMessage();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
@@ -149,7 +158,10 @@ public class BilanController {
     @GetMapping("/table18")
     public ResponseEntity getTable18(@RequestParam("dateBilan") String date, @RequestParam("companyName") String company_name) throws JRException{
         try {
-            return null;
+            ByteArrayOutputStream reportstream = reportServiceImpl.exportTable18(date,company_name);
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.setContentType(MediaType.APPLICATION_PDF);
+            return new ResponseEntity(reportstream.toByteArray(),httpHeaders,HttpStatus.OK);
         }catch(RuntimeException e){
             String message = "Failed to upload table " + e.getLocalizedMessage();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
@@ -159,7 +171,10 @@ public class BilanController {
     @GetMapping("/table20")
     public ResponseEntity getTable20(@RequestParam("dateBilan") String date, @RequestParam("companyName") String company_name) throws JRException{
         try {
-            return null;
+            ByteArrayOutputStream reportstream = reportServiceImpl.exportTable20(date,company_name);
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.setContentType(MediaType.APPLICATION_PDF);
+            return new ResponseEntity(reportstream.toByteArray(),httpHeaders,HttpStatus.OK);
         }catch(RuntimeException e){
             String message = "Failed to upload table " + e.getLocalizedMessage();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
