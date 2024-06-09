@@ -76,10 +76,6 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
 
         List<SubAccountActif> bilanActifs = ConvertToBilanActif(resultsrequest);
 
-        bilanActifs.forEach(x->System.out.println(
-                x.getMainAccount()+" "+x.getLibelle()+" "+x.getBrut()+" "+x.getN_compte()
-        ));
-
         regroupClassesA(bilanActifs);
 
 
@@ -144,8 +140,6 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
 
         List<SubAccountCPC> subAccountCPCS = ConvertToCPC(resultsrequest);
 
-        subAccountCPCS.forEach(x->System.out.println(x.getMainAccount()
-                +" "+ x.getLibelle() + " " + x.getBrut()));
 
         //regroupClassesCPC(subAccountCPCS);
 
@@ -243,7 +237,6 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
             bilanPassif.setN_compte(n_compte);
             bilanPassif.setLibelle(libelle);
             bilanPassif.setBrut(brut == 0 ? null : FormatUtils.formatDecimal(brut));
-            //bilanPassif.setBrutP(brutp == 0 ? null : FormatUtils.formatDecimal(brutp));
             bilansPassifs.add(bilanPassif);
         }
 

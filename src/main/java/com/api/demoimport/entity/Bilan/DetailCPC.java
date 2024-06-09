@@ -4,6 +4,7 @@ import com.api.demoimport.enums.AccountCategoryClass6;
 import com.api.demoimport.enums.AccountCategoryClass7;
 import com.api.demoimport.enums.DetailCPCCategoryClass6;
 import com.api.demoimport.enums.DetailCPCCategoryClass7;
+import com.api.demoimport.service.Updatable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class DetailCPC {
+public class DetailCPC implements Updatable {
     private Long id;
     private String main_account;
     private String n_compte;
@@ -65,4 +66,18 @@ public class DetailCPC {
         detailCPC.setExerciceP(0.0);
     }
 
+    @Override
+    public String getMainAccount() {
+        return this.main_account;
+    }
+
+    @Override
+    public Double getCurrentExercice() {
+        return this.exercice;
+    }
+
+    @Override
+    public void setPreviousExercice(Double exerciceP) {
+        this.exerciceP = exerciceP;
+    }
 }

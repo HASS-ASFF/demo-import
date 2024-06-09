@@ -1,5 +1,6 @@
 package com.api.demoimport.entity.Bilan;
 
+import com.api.demoimport.service.Updatable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,10 +15,30 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Esg {
+public class Esg implements Updatable {
     private Long id;
     private String name;
     private Double exercice;
     private Double exerciceP;
+
+    @Override
+    public String getMainAccount() {
+        return name;
+    }
+
+    @Override
+    public String getN_compte() {
+        return null;
+    }
+
+    @Override
+    public Double getCurrentExercice() {
+        return exercice;
+    }
+
+    @Override
+    public void setPreviousExercice(Double exerciceP) {
+        this.exerciceP = exerciceP;
+    }
 
 }

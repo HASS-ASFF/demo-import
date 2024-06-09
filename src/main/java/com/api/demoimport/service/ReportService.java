@@ -20,6 +20,11 @@ public interface ReportService {
 
     ByteArrayOutputStream exportCPC(String date, String company_name) throws JRException;
 
+    ByteArrayOutputStream exportEsg(String date, String company_name) throws JRException;
+
+    ByteArrayOutputStream exportDetailCPC(String date, String company_name) throws JRException;
+
+
     ByteArrayOutputStream exportDetailTva(String date, String company_name) throws JRException;
 
     ByteArrayOutputStream exportTable14(String date, String company_name) throws JRException;

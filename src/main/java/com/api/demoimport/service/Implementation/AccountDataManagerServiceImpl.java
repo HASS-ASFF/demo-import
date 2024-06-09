@@ -7,6 +7,7 @@ import com.api.demoimport.entity.Bilan.SubAccountPassif;
 import com.api.demoimport.enums.*;
 import com.api.demoimport.repository.BalanceDetailRepository;
 import com.api.demoimport.service.AccountDataManagerService;
+import com.api.demoimport.service.Updatable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,7 +50,7 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
                         subAccount.setTotal_amo(result.getTotal_amo());
                         subAccount.setBrut(result.getBrut());
                         subAccount.setNet(result.getNet());
-                        subAccount.setNetN(result.getNetN());
+                        subAccount.setNetN(0.0);
                         break;
                     }
 
@@ -107,7 +108,6 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
                 String prefix = accountNumber.substring(0,3);
                 // Initialize total for each sub-account
                 Double total = 0.0;
-                //System.out.println(result.getBrut());
                 for (SubAccountCPC subAccount : mainAccountList) {
                     // check for the same subAccount
                     if (subAccount.getLibelle().startsWith(prefix) || subAccount.getLibelle().contains(prefix)) {
@@ -250,6 +250,23 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
         }
         return filteredList;
     }
+
+    @Override
+    public <T extends Updatable> void updateExerciceP(List<T> datasetPrevious, List<T> datasetCurrent) {
+        if(!datasetPrevious.isEmpty()){
+            for (T previous : datasetPrevious) {
+                for (T current : datasetCurrent) {
+                    if (previous.getMainAccount().equals(current.getMainAccount()) &&
+                            (previous.getN_compte() == null || previous.getN_compte().equals(current.getN_compte()))) {
+
+                        current.setPreviousExercice(previous.getCurrentExercice());
+
+                    }
+                }
+            }
+        }
+    }
+
 
     public String  getMainAccountOne(String mainAccount) {
         switch (mainAccount) {

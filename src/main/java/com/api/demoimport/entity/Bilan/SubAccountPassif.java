@@ -3,6 +3,7 @@ package com.api.demoimport.entity.Bilan;
 import com.api.demoimport.enums.AccountCategoryClass1;
 import com.api.demoimport.enums.AccountCategoryClass4;
 import com.api.demoimport.enums.AccountCategoryClass5;
+import com.api.demoimport.service.Updatable;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class SubAccountPassif {
+public class SubAccountPassif implements Updatable {
     private String mainAccount;
     private String n_compte;
     private String libelle;
@@ -75,5 +76,15 @@ public class SubAccountPassif {
     private static void getPassif(String val, SubAccountPassif subAccountPassif) {
         subAccountPassif.setN_compte(val.substring(0,3)+"00000");
         subAccountPassif.setLibelle(val);
+    }
+
+    @Override
+    public Double getCurrentExercice() {
+        return this.brut;
+    }
+
+    @Override
+    public void setPreviousExercice(Double exerciceP) {
+        this.brutP = exerciceP;
     }
 }

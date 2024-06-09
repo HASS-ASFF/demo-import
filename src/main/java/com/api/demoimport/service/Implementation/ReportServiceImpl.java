@@ -14,15 +14,17 @@ import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
+import org.apache.logging.log4j.LogManager;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.io.ByteArrayOutputStream;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import org.slf4j.Logger;
 
 @Service
 public class ReportServiceImpl implements ReportService {
@@ -37,6 +39,8 @@ public class ReportServiceImpl implements ReportService {
     SocieteRepository societeRepository;
     @Autowired
     TvaServiceImpl tvaService;
+
+    private static final Logger logger = LoggerFactory.getLogger(ReportServiceImpl.class);
 
     /**
      * Service implementation for managing reports, providing methods for exporting reports to PDF format.
@@ -55,6 +59,55 @@ public class ReportServiceImpl implements ReportService {
 
         // Generer automatiquement le bilan passif
         try{
+
+            // ANNEE N-1 (exercice precedent)
+
+            // CLASS ONE
+            List<SubAccountPassif> ClassOneN = balanceDetailServiceImpl.getClassOne(getLastYear(date),company_name);
+            List<SubAccountPassif> FullClassOneN = accountDataManagerServiceImpl.
+                    processAccountDataP(ClassOneN,"1");
+
+            List<SubAccountPassif> dataset1N = accountDataManagerServiceImpl.
+                    FilterAccountDataP(FullClassOneN, AccountCategoryClass1.CAPITAUX_PROPRES.getLabel());
+            // CLASS SIX
+            List<SubAccountCPC> ClassSixN = balanceDetailServiceImpl.getClassSix(getLastYear(date),company_name);
+            List<SubAccountCPC> FullClassSixN = accountDataManagerServiceImpl.
+                    processAccountDataCPC(ClassSixN,"6");
+            // CLASS SEVEN
+            List<SubAccountCPC> ClassSevenN = balanceDetailServiceImpl.getClassSeven(getLastYear(date),company_name);
+            List<SubAccountCPC> FullClassSevenN = accountDataManagerServiceImpl.
+                    processAccountDataCPC(ClassSevenN,"7");
+            Double resultat_netN = esgService.GetResultat(FullClassSixN,FullClassSevenN,"RESULTAT NET DE L'EXERCICE");
+            dataset1N.get(10).setBrut(resultat_netN);
+            List<SubAccountPassif> dataset2N = accountDataManagerServiceImpl.
+                    FilterAccountDataP(FullClassOneN,AccountCategoryClass1.CAPITAUX_PROPRES_ASSIMILES.getLabel());
+            List<SubAccountPassif> dataset3N = accountDataManagerServiceImpl.
+                    FilterAccountDataP(FullClassOneN,AccountCategoryClass1.DETTES_DE_FINANCEMENT.getLabel());
+            List<SubAccountPassif> dataset4N = accountDataManagerServiceImpl.
+                    FilterAccountDataP(FullClassOneN,AccountCategoryClass1.PROVISIONS_DURABLES_POUR_RISQUES_ET_CHARGES.getLabel());
+            List<SubAccountPassif> dataset5N = accountDataManagerServiceImpl.
+                    FilterAccountDataP(FullClassOneN,AccountCategoryClass1.ECARTS_DE_CONVERSION_PASSIF.getLabel());
+
+
+            // CLASS FOUR
+            List<SubAccountPassif> ClassFourN = balanceDetailServiceImpl.getClassFour(getLastYear(date),company_name);
+            List<SubAccountPassif> FullClassFourN = accountDataManagerServiceImpl.
+                    processAccountDataP(ClassFourN,"4");
+            List<SubAccountPassif> dataset6N = accountDataManagerServiceImpl.
+                    FilterAccountDataP(FullClassFourN, AccountCategoryClass4.DETTES_DU_PASSIF_CIRCULANT.getLabel());
+            List<SubAccountPassif> dataset7N = accountDataManagerServiceImpl.
+                    FilterAccountDataP(FullClassFourN,AccountCategoryClass4.AUTRES_PROVISIONS_POUR_RISQUES_ET_CHARGES.getLabel());
+            List<SubAccountPassif> dataset8N = accountDataManagerServiceImpl.
+                    FilterAccountDataP(FullClassFourN,AccountCategoryClass4.ECARTS_DE_CONVERSION_PASSIF.getLabel());
+
+            //CLASS FIVE PASSIF
+            List<SubAccountPassif> ClassFivePN = balanceDetailServiceImpl.getClassFivePassif(getLastYear(date),company_name);
+            List<SubAccountPassif> FullClassFivePN =  accountDataManagerServiceImpl.
+                    processAccountDataP(ClassFivePN,"5");
+            List<SubAccountPassif> dataset9N = accountDataManagerServiceImpl.
+                    FilterAccountDataP(FullClassFivePN,AccountCategoryClass5.TRESORERIE_PASSIF.getLabel());
+
+            // ANNEE N (exercice brut)
 
             // CLASS ONE
             List<SubAccountPassif> ClassOne = balanceDetailServiceImpl.getClassOne(date,company_name);
@@ -100,6 +153,18 @@ public class ReportServiceImpl implements ReportService {
                             processAccountDataP(ClassFiveP,"5");
             List<SubAccountPassif> dataset9 = accountDataManagerServiceImpl.
                     FilterAccountDataP(FullClassFiveP,AccountCategoryClass5.TRESORERIE_PASSIF.getLabel());
+
+
+            // ADD THE DATA OF EXERCICE PRECEDENT IN THE ACTUAL DATASETS (ANNEE N)
+            accountDataManagerServiceImpl.updateExerciceP(dataset1N,dataset1);
+            accountDataManagerServiceImpl.updateExerciceP(dataset2N,dataset2);
+            accountDataManagerServiceImpl.updateExerciceP(dataset3N,dataset3);
+            accountDataManagerServiceImpl.updateExerciceP(dataset4N,dataset4);
+            accountDataManagerServiceImpl.updateExerciceP(dataset5N,dataset5);
+            accountDataManagerServiceImpl.updateExerciceP(dataset6N,dataset6);
+            accountDataManagerServiceImpl.updateExerciceP(dataset7N,dataset7);
+            accountDataManagerServiceImpl.updateExerciceP(dataset8N,dataset8);
+            accountDataManagerServiceImpl.updateExerciceP(dataset9N,dataset9);
 
 
             // CREATE INSTANCES OF JRBEANCOLLECTIONDATASOURCE FOR OUR JAVA BEAN OBJECTS
@@ -164,8 +229,49 @@ public class ReportServiceImpl implements ReportService {
         // TO CHECK
         String pathA = path+"BilanActif.jrxml";
 
+        long startTime = System.currentTimeMillis(); // Début du chronométrage
+
         // Generer automatiquement le bilan actif
         try{
+            // ANNEE N-1 (exercice precedent)
+
+            // CLASS TWO
+            List<SubAccountActif> ClassTwoN = balanceDetailServiceImpl.getClassTwo(getLastYear(date),company_name);
+            List<SubAccountActif> FullClassTwoN = accountDataManagerServiceImpl.
+                    processAccountDataA(ClassTwoN,"2");
+
+            List<SubAccountActif> dataset1N = accountDataManagerServiceImpl.
+                    FilterAccountDataA(FullClassTwoN, AccountCategoryClass2.IMMOBILISATION_NON_VALEURS.getLabel());
+            List<SubAccountActif> dataset2N = accountDataManagerServiceImpl.
+                    FilterAccountDataA(FullClassTwoN,AccountCategoryClass2.IMMOBILISATION_INCORPORELLES.getLabel());
+            List<SubAccountActif> dataset3N = accountDataManagerServiceImpl.
+                    FilterAccountDataA(FullClassTwoN,AccountCategoryClass2.IMMOBILISATION_CORPORELLES.getLabel());
+            List<SubAccountActif> dataset4N = accountDataManagerServiceImpl.
+                    FilterAccountDataA(FullClassTwoN,AccountCategoryClass2.IMMOBILISATION_FINANCIERES.getLabel());
+            List<SubAccountActif> dataset5N = accountDataManagerServiceImpl.
+                    FilterAccountDataA(FullClassTwoN,AccountCategoryClass2.ECART_CONVERSION_ACTIF.getLabel());
+
+            // CLASS THREE
+            List<SubAccountActif> ClassThreeN = balanceDetailServiceImpl.getClassThree(getLastYear(date),company_name);
+            List<SubAccountActif> FullClassThreeN = accountDataManagerServiceImpl.
+                    processAccountDataA(ClassThreeN,"3");
+
+            List<SubAccountActif> dataset6N = accountDataManagerServiceImpl.
+                    FilterAccountDataA(FullClassThreeN, AccountCategoryClass3.STOCKS.getLabel());
+            List<SubAccountActif> dataset7N = accountDataManagerServiceImpl.
+                    FilterAccountDataA(FullClassThreeN,AccountCategoryClass3.CREANCES_ACTIF_CIRCULANT.getLabel());
+
+
+            // CLASS FIVE
+            List<SubAccountActif> ClassFiveAN = balanceDetailServiceImpl.getClassFiveActif(getLastYear(date),company_name);
+            List<SubAccountActif> FullClassFiveAN = accountDataManagerServiceImpl.processAccountDataA
+                    (ClassFiveAN,"5");
+            List<SubAccountActif> dataset8N = accountDataManagerServiceImpl.
+                    FilterAccountDataA(FullClassFiveAN, AccountCategoryClass5.TRESORERIE_ACTIF.getLabel());
+
+
+
+            // ANNEE N (exercice brut)
 
             // CLASS TWO
             List<SubAccountActif> ClassTwo = balanceDetailServiceImpl.getClassTwo(date,company_name);
@@ -200,6 +306,19 @@ public class ReportServiceImpl implements ReportService {
                     (ClassFiveA,"5");
             List<SubAccountActif> dataset8 = accountDataManagerServiceImpl.
                     FilterAccountDataA(FullClassFiveA, AccountCategoryClass5.TRESORERIE_ACTIF.getLabel());
+
+
+
+
+            // ADD THE DATA OF EXERCICE PRECEDENT IN THE ACTUAL DATASETS (ANNEE N)
+            accountDataManagerServiceImpl.updateExerciceP(dataset1N,dataset1);
+            accountDataManagerServiceImpl.updateExerciceP(dataset2N,dataset2);
+            accountDataManagerServiceImpl.updateExerciceP(dataset3N,dataset3);
+            accountDataManagerServiceImpl.updateExerciceP(dataset4N,dataset4);
+            accountDataManagerServiceImpl.updateExerciceP(dataset5N,dataset5);
+            accountDataManagerServiceImpl.updateExerciceP(dataset6N,dataset6);
+            accountDataManagerServiceImpl.updateExerciceP(dataset7N,dataset7);
+            accountDataManagerServiceImpl.updateExerciceP(dataset8N,dataset8);
 
 
             // CREATE INSTANCES OF JRBEANCOLLECTIONDATASOURCE FOR OUR JAVA BEAN OBJECTS
@@ -244,12 +363,18 @@ public class ReportServiceImpl implements ReportService {
 
             parameters.put("name_company",company_name);
 
+            long endTime = System.currentTimeMillis(); // Fin du chronométrage
+            long executionTime = endTime - startTime;
+            logger.info("Temps d'exécution : {} ms", executionTime);
+
             return jasperConfiguration(pathA,parameters);
 
         }catch(RuntimeException e) {
             String message = "Failed to report bilan actif " + e.getLocalizedMessage() + "!";
             throw new RuntimeException(message);
         }
+
+
     }
 
     @Override
@@ -260,6 +385,9 @@ public class ReportServiceImpl implements ReportService {
 
         // Generer automatiquement le CPC
         try{
+            // ANNEE N-1 (exercice precedent)
+
+            // ANNEE N (exercice brut)
             // CLASS SIX
             List<SubAccountCPC> ClassSix = balanceDetailServiceImpl.getClassSix(date,company_name);
 
@@ -379,6 +507,37 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
+    public ByteArrayOutputStream exportEsg(String date, String company_name) throws JRException {
+
+        try {
+            // ANNEE N-1 (exercice precedent)
+
+            // ANNEE N (exercice brut)
+
+
+        }catch (RuntimeException e) {
+            String message = "Failed to report ESG " + e.getLocalizedMessage() + "!";
+            throw new RuntimeException(message);
+        }
+        return null;
+    }
+
+    @Override
+    public ByteArrayOutputStream exportDetailCPC(String date, String company_name) throws JRException {
+
+        try {
+            // ANNEE N-1 (exercice precedent)
+
+            // ANNEE N (exercice brut)
+
+        }catch (RuntimeException e){
+            String message = "Failed to report CPC " + e.getLocalizedMessage() + "!";
+            throw new RuntimeException(message);
+        }
+        return null;
+    }
+
+    @Override
     public ByteArrayOutputStream exportDetailTva(String date, String company_name) throws JRException {
         // TO CHECK
         String pathTva = path+"DetailTva.jrxml";
@@ -440,7 +599,8 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public ByteArrayOutputStream exportTable14(String date, String company_name) throws JRException {
         try {
-            // TO CHECK 
+            // TO CHECK
+            // ANNEE N-1 (exercice precedent)
             String pathTva = path+"table14.jrxml";
 
             Map<String, Object> parameters = new HashMap<>();

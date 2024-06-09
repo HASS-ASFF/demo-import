@@ -2,6 +2,7 @@ package com.api.demoimport.entity.Bilan;
 
 import com.api.demoimport.enums.AccountCategoryClass6;
 import com.api.demoimport.enums.AccountCategoryClass7;
+import com.api.demoimport.service.Updatable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class SubAccountCPC {
+public class SubAccountCPC implements Updatable {
 
     private String mainAccount;
     private String n_compte;
@@ -68,5 +69,15 @@ public class SubAccountCPC {
     private static void getCPC(String val,SubAccountCPC subAccountCPC){
         subAccountCPC.setN_compte(val.substring(0,3)+"00000");
         subAccountCPC.setLibelle(val);
+    }
+
+    @Override
+    public Double getCurrentExercice() {
+        return this.brut;
+    }
+
+    @Override
+    public void setPreviousExercice(Double exerciceP) {
+        this.brutP = exerciceP;
     }
 }

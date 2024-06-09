@@ -3,6 +3,7 @@ package com.api.demoimport.service;
 import com.api.demoimport.entity.Bilan.SubAccountActif;
 import com.api.demoimport.entity.Bilan.SubAccountCPC;
 import com.api.demoimport.entity.Bilan.SubAccountPassif;
+import org.apache.poi.ss.formula.functions.T;
 
 import java.util.List;
 
@@ -30,4 +31,6 @@ public interface AccountDataManagerService {
     List<SubAccountPassif> FilterAccountDataP(List<SubAccountPassif> subAccountPassifs,String mainAccount);
 
     List<SubAccountCPC> FilterAccountDataCPC(List<SubAccountCPC> subAccountCPCS, String mainAccount);
+
+    <T extends Updatable> void updateExerciceP(List<T> dataset6Previous, List<T> dataset6Current);
 }
