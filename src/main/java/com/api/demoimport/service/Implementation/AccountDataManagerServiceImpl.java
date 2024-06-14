@@ -42,6 +42,8 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
                 String accountNumber = result.getN_compte();
                 String prefix = extractPrefix(accountNumber);
 
+                System.out.println(result.getBrut() + "  " + result.getN_compte());
+
                 for (SubAccountActif subAccount : mainAccountList) {
                     // check for the same subAccount
                     if (subAccount.getLibelle().startsWith(prefix)) {
@@ -107,15 +109,15 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
                 String accountNumber = result.getN_compte();
                 String prefix = accountNumber.substring(0,3);
                 // Initialize total for each sub-account
-                Double total = 0.0;
+                Double total = null;
                 for (SubAccountCPC subAccount : mainAccountList) {
                     // check for the same subAccount
                     if (subAccount.getLibelle().startsWith(prefix) || subAccount.getLibelle().contains(prefix)) {
                         // Adding the values
-                        if(subAccount.getBrut() != null){
-                            total = subAccount.getBrut() + (result.getBrut() == null ? 0.0:result.getBrut());
-                        }else{
-                            total = (result.getBrut() == null ? 0.0:result.getBrut());
+                        if(subAccount.getBrut() != null && result.getBrut() != null){
+                            total = subAccount.getBrut() + result.getBrut();
+                        }else if(result.getBrut() != null){
+                             total = result.getBrut();
                         }
                         subAccount.setN_compte(result.getN_compte());
                         subAccount.setBrut(total);
@@ -252,13 +254,39 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
     }
 
     @Override
+    public void updateTotalBrutCPC(List<SubAccountCPC> datasetCurrent) {
+        if(!datasetCurrent.isEmpty()){
+                for(SubAccountCPC current : datasetCurrent){
+                    if(current.getBrut() != null && current.getBrutP() != null ){
+                        current.setTotalbrut(current.getBrut() + current.getBrutP());
+                    }
+                    if(current.getBrut() != null && current.getBrutP() == null){
+                        current.setTotalbrut(current.getBrut());
+                    }
+                }
+        }
+    }
+
+    /*@Override
+    public void updateTotalBrutCPCP(List<SubAccountCPC> datasetPrevious) {
+        if(!datasetPrevious.isEmpty()){
+            for(SubAccountCPC current : datasetPrevious){
+                current.setTotalbrutP(current.getBrut()+current.getBrutP());
+            }
+        }
+    }*/
+
+    @Override
     public <T extends Updatable> void updateExerciceP(List<T> datasetPrevious, List<T> datasetCurrent) {
         if(!datasetPrevious.isEmpty()){
             for (T previous : datasetPrevious) {
                 for (T current : datasetCurrent) {
-                    if (previous.getMainAccount().equals(current.getMainAccount()) &&
-                            (previous.getN_compte() == null || previous.getN_compte().equals(current.getN_compte()))) {
+                    if (previous.getMainAccountAccess().equals(current.getMainAccountAccess()) &&
+                            (previous.getN_compteAccess() == null || previous.getN_compteAccess().equals(current.getN_compteAccess()))) {
 
+                        if (previous instanceof SubAccountCPC && current instanceof SubAccountCPC){
+                            ((SubAccountCPC) current).setTotalbrutP(((SubAccountCPC) previous).getTotalbrut());
+                        }
                         current.setPreviousExercice(previous.getCurrentExercice());
 
                     }

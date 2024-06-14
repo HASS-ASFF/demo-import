@@ -63,12 +63,16 @@ public class DetailCPC implements Updatable {
         detailCPC.setPoste(val.substring(0,4)+"0000");
         detailCPC.setName(val);
         detailCPC.setExercice(0.0);
-        detailCPC.setExerciceP(0.0);
     }
 
     @Override
-    public String getMainAccount() {
-        return this.main_account;
+    public String getMainAccountAccess() {
+        return this.name;
+    }
+
+    @Override
+    public String getN_compteAccess() {
+        return this.n_compte;
     }
 
     @Override

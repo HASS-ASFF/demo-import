@@ -24,6 +24,8 @@ public class SubAccountCPC implements Updatable {
     private String n_compte;
     private String libelle;
     private Double brut;
+    private Double totalbrut;
+    private Double totalbrutP;
     private Double brutP;
 
     public SubAccountCPC(String mainAccount, String nCompte, String libelle, Double brut) {
@@ -69,6 +71,16 @@ public class SubAccountCPC implements Updatable {
     private static void getCPC(String val,SubAccountCPC subAccountCPC){
         subAccountCPC.setN_compte(val.substring(0,3)+"00000");
         subAccountCPC.setLibelle(val);
+    }
+
+    @Override
+    public String getMainAccountAccess() {
+        return this.mainAccount;
+    }
+
+    @Override
+    public String getN_compteAccess() {
+        return this.n_compte;
     }
 
     @Override

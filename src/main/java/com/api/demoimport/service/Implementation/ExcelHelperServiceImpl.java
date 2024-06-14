@@ -157,49 +157,57 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
 
         for (int i = sheet.getFirstRowNum(); i < sheet.getLastRowNum() + 1; i++){
 
-            if (i == 0) {
+            if (i == 0){
                 continue;
             }
+                Row row = sheet.getRow(i);
+                BalanceDetail balanceDetail = new BalanceDetail();
+                balanceDetail.setBalance(balance);
+                Double n_compte = (Double) processOptional(getCellValues(row.getCell(0)));
+                Optional<PlanComptable> planComptable =Optional.empty();
 
-            Row row = sheet.getRow(i);
-            BalanceDetail balanceDetail = new BalanceDetail();
-            balanceDetail.setBalance(balance);
-            Double n_compte = getCellValuesAsDouble(row.getCell(0));
-
-            // Vérifier si la valeur récupéré existe dans la table plan comptable (numéro de compte)
-            Optional<PlanComptable> planComptable = excelPlanComptableServiceImpl
-                        .search(n_compte.longValue());
-
-            if (planComptable.isPresent()) {
-                if(n_compte == 34551000 || n_compte == 34552000){
-                    balanceDetail.setN_Compte(n_compte.longValue());
-                }else{
-                    balanceDetail.setN_Compte(planComptable.get().getNo_compte());
+                if(n_compte != null){
+                    // Vérifier si la valeur récupéré existe dans la table plan comptable (numéro de compte)
+                    planComptable = excelPlanComptableServiceImpl
+                            .search(n_compte.longValue());
                 }
 
-                balanceDetail.setCompte(planComptable.get());
-                balanceDetail.setThe_class(planComptable.get().getThe_class());
+                if (planComptable.isPresent()) {
+                    if(n_compte == 34551000 || n_compte == 34552000){
+                        balanceDetail.setN_Compte(n_compte.longValue());
+                    }else{
+                        balanceDetail.setN_Compte(planComptable.get().getNo_compte());
+                    }
+
+                    balanceDetail.setCompte(planComptable.get());
+                    balanceDetail.setThe_class(planComptable.get().getThe_class());
+                }
+
+
+                Double debitDex = (Double) processOptional(getCellValues(row.getCell(2)));
+                Double CreditDex = (Double) processOptional(getCellValues(row.getCell(3)));
+                Double DebitEx = (Double) processOptional(getCellValues(row.getCell(4)));
+                Double CreditEx = (Double) processOptional(getCellValues(row.getCell(5)));
+
+                Double DebitFex = getCellValuesAsDouble(row.getCell(6));
+                Double CreditFex = getCellValuesAsDouble(row.getCell(7));
+
+
+                System.out.println(row.getCell(6).getCellType() + " " + DebitFex);
+
+                //balanceDetail.setLabel(label);
+                balanceDetail.setDebitDex(debitDex);
+                balanceDetail.setCreditDex(CreditDex);
+                balanceDetail.setDebitEx(DebitEx);
+                balanceDetail.setCreditEx(CreditEx);
+                balanceDetail.setDebitFex(DebitFex);
+                balanceDetail.setCreditFex(CreditFex);
+
+                balanceDetails.add(balanceDetail);
             }
 
 
-            //String label = getCellValuesAsString(row.getCell(1));
-            Double debitDex = getCellValuesAsDouble(row.getCell(2));
-            Double CreditDex = getCellValuesAsDouble(row.getCell(3));
-            Double DebitEx = getCellValuesAsDouble(row.getCell(4));
-            Double CreditEx = getCellValuesAsDouble(row.getCell(5));
-            Double DebitFex = getCellValuesAsDouble(row.getCell(6));
-            Double CreditFex = getCellValuesAsDouble(row.getCell(7));
 
-            //balanceDetail.setLabel(label);
-            balanceDetail.setDebitDex(debitDex);
-            balanceDetail.setCreditDex(CreditDex);
-            balanceDetail.setDebitEx(DebitEx);
-            balanceDetail.setCreditEx(CreditEx);
-            balanceDetail.setDebitFex(DebitFex);
-            balanceDetail.setCreditFex(CreditFex);
-
-            balanceDetails.add(balanceDetail);
-        }
 
         balanceRepository.save(balance);
         workbook.close();
@@ -235,7 +243,7 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
             Immobilisation immobilisation = new Immobilisation();
             immobilisation.setBalance(balance);
 
-            String name = getCellValuesAsString(row.getCell(0));
+            String name = String.valueOf(getCellValues(row.getCell(0)));
             //DataFormatter dataFormatter = new DataFormatter();
             Date date_immo = row.getCell(1).getDateCellValue();
             Double prixAcqui = getCellValuesAsDouble(row.getCell(2));
@@ -268,8 +276,6 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
         // enlever les caractères du résultat string ( à savoir , et DH )
         String cleanedInput = dhNumber.replaceAll(",", "");
         cleanedInput = cleanedInput.replaceAll(" DH", "");
-
-        System.out.println(cleanedInput);
         try {
             return Double.parseDouble(cleanedInput);
         } catch (NumberFormatException e) {
@@ -283,18 +289,30 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
         return String.join("", Collections.nCopies(repetitions, "0"));
     }
 
-    private static String getCellValuesAsString(Cell cell) {
+    private static Double checkStringValue(String valCompte){
+        if(valCompte == ""){
+            return null;
+        }else {
+            return Double.parseDouble(valCompte);
+        }
+    }
+    private static Optional<Object> getCellValues(Cell cell) {
         CellType cellType = cell.getCellType();
-        String val = "";
+        Optional<Object> val = Optional.empty();
 
         switch (cellType) {
             case STRING:
-                val = cell.getStringCellValue();
+                String sval = cell.getStringCellValue();
+                //convert
+                val = Optional.of(sval);
                 break;
 
             case NUMERIC:
-                val = String.valueOf(cell.getNumericCellValue());
+                Double dval = cell.getNumericCellValue();
+                //convert
+                val = Optional.of(dval);
                 break;
+
 
             case BLANK:
                 break;
@@ -304,27 +322,35 @@ public class ExcelHelperServiceImpl implements ExcelHelperService {
 
     }
 
-    private static Double getCellValuesAsDouble(Cell cell) {
-        if(cell == null){
-            return 0.00;
-        }
-        else {
-            Double val = 0.00;
-            CellType cellType = cell.getCellType();
-            switch (cellType) {
-                case STRING:
-                    val = Double.parseDouble(cell.getStringCellValue());
-                    break;
-
-                case NUMERIC:
-                    val = cell.getNumericCellValue();
-                    break;
-
-                case BLANK:
-                    break;
+    private static Object processOptional(Optional<Object> optional) {
+        if (optional.isPresent()) {
+            Object value = optional.get();
+            if (value instanceof String) {
+                String strValue = (String) value;
+            } else if (value instanceof Double) {
+                Double doubleValue = (Double) value;
             }
-            return val;
+            return value;
         }
+        return null;
+    }
+
+    private static Double getCellValuesAsDouble(Cell cell) {
+            Double val = 0.00;
+            if(cell.getCellType() == CellType.FORMULA ){
+                switch (cell.getCachedFormulaResultType()) {
+                    case STRING:
+                        val = convertDhStringToDouble(cell.getStringCellValue());
+                        break;
+
+                    case NUMERIC:
+                        val = cell.getNumericCellValue();
+                        break;
+                }
+            }
+
+            return val;
+
 
     }
 

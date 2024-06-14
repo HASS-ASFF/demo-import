@@ -54,33 +54,38 @@ $(document).ready(function() {
                         $('#getResultTFR').append(partHtmlTFR);
                     }
 
-                    partHtmlTFR = "<tr><td>IV</td>" +
+                    partHtmlTFR = "<tr><td><strong>VI</strong></td>"
+                        +"<td><strong>RESULTAT D'EXPLOITATION (+ou-)</strong></td>"
+                        +"<td class='text-right' >"+parseFloat(result.RE).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ')+"</td>"
                         +"<td></td>"
-                        +"<td>RESULTAT FINANCIER</td>"
+
+                        +"</tr><tr>"
+                        +"<td><strong>VII</strong></td>"
+                        +"<td><strong>RESULTAT FINANCIER</strong></td>"
                         +"<td class='text-right' >"+parseFloat(result.RF).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ')+"</td>"
                         +"<td></td>"
 
                         +"</tr><tr>"
-                        +"<td>V</td>"
-                        +"<td>RESULTAT COURANT</td>"
+                        +"<td><strong>VII</strong></td>"
+                        +"<td><strong>RESULTAT COURANT</strong></td>"
                         +"<td class='text-right'>"+parseFloat(result.RC).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ')+"</td>"
                         +"<td></td>"
 
                         +"</tr><tr>"
-                        +"<td>VI</td>"
-                        +"<td>RESULTAT NON COURANT</td>"
+                        +"<td><strong>VIII</strong></td>"
+                        +"<td><strong>RESULTAT NON COURANT</strong></td>"
                         +"<td class='text-right'>"+parseFloat(result.RNC).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ')+"</td>"
                         +"<td></td>"
 
                         +"</tr><tr>"
-                        +"<td>VII</td>"
-                        +"<td>Impôt sur les résultats</td>"
+                        +"<td><strong>IX</strong></td>"
+                        +"<td><strong>Impôt sur les résultats</strong></td>"
                         +"<td class='text-right'>"+parseFloat(result.IR).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ')+"</td>"
                         +"<td></td>"
 
                         +"</tr><tr>"
-                        +"<td>VIII</td>"
-                        +"<td>RESULTAT NET DE L'EXERCICE</td>"
+                        +"<td><strong>X</strong></td>"
+                        +"<td><strong>RESULTAT NET DE L'EXERCICE</strong></td>"
                         +"<td class='text-right'>"+parseFloat(result.RN).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ')+"</td>"
                         +"<td></td>"
                         +"</tr>"
@@ -113,21 +118,21 @@ $(document).ready(function() {
                         });
                         $('#getResultCAF').append(partHtmlCAF)
                     }
-                    partHtmlCAF = "<tr><td>I</td>" +
+                    partHtmlCAF = "<tr><td><strong>I</strong></td>" +
                         +"<td></td>"
-                        +"<td>CAPACITE D'AUTOFINANCEMENT (C.A.F.)</td>"
+                        +"<td><strong>CAPACITE D'AUTOFINANCEMENT (C.A.F.)</strong></td>"
                         +"<td class='text-right'>"+parseFloat(result.totalCAF).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ')+"</td>"
                         +"<td></td>"
 
                         +"</tr><tr>"
                         +"<td></td>"
-                        +"<td>Distributions de bénéfices</td>"
+                        +"<td><strong>Distributions de bénéfices</strong></td>"
                         +"<td></td>"
                         +"<td></td>"
 
                         +"</tr><tr>"
-                        +"<td>II</td>"
-                        +"<td>AUTOFINANCEMENT</td>"
+                        +"<td><strong>II</strong></td>"
+                        +"<td><strong>AUTOFINANCEMENT</strong></td>"
                         +"<td class='text-right'>"+parseFloat(result.totalCAF).toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).replaceAll(',', ' ')+"</td>"
                         +"<td></td>"
                         +"</tr>";

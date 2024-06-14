@@ -1,8 +1,8 @@
 package com.api.demoimport.service;
 
 public interface Updatable {
-    String getMainAccount();
-    String getN_compte();
+    String getMainAccountAccess();
+    String getN_compteAccess();
     Double getCurrentExercice();
     void setPreviousExercice(Double exerciceP);
 

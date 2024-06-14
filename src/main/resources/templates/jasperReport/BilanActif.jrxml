@@ -1323,14 +1323,6 @@
                 <textElement textAlignment="Center" verticalAlignment="Middle"/>
                 <textFieldExpression><![CDATA[$P{name_company}]]></textFieldExpression>
             </textField>
-            <staticText>
-                <reportElement mode="Opaque" x="470" y="0" width="85" height="21" forecolor="#FFFFFF" backcolor="#325A77" uuid="37997897-59b4-484d-8340-20552d20bd40">
-                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.y" value="pixel"/>
-                </reportElement>
-                <textElement textAlignment="Center" verticalAlignment="Middle"/>
-                <text><![CDATA[2024]]></text>
-            </staticText>
             <componentElement>
                 <reportElement x="140" y="41" width="240" height="10" uuid="ff78d7ff-a208-42a9-a36e-39d610eb7316"/>
                 <jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
@@ -1755,6 +1747,14 @@
                     </jr:listContents>
                 </jr:list>
             </componentElement>
+            <textField>
+                <reportElement mode="Opaque" x="470" y="0" width="85" height="21" forecolor="#FFFFFF" backcolor="#325A77" uuid="3f57e31e-4459-49e1-9c58-2f6b788b3ade">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$P{DateN}]]></textFieldExpression>
+            </textField>
         </band>
     </detail>
 </jasperReport>

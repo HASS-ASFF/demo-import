@@ -1,0 +1,1305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ETAT_DES_SOLDES_DE_GESTION" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2eea6a43-874c-4447-95b0-93f5eeb7d622">
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+    <style name="PrimaryAreaStyle" mode="Opaque" forecolor="#FFFFFF" backcolor="#325A77"/>
+    <style name="SecondaryAreaTitleStyle" mode="Opaque" forecolor="#030303" backcolor="#CDE5F7" hTextAlign="Left" vTextAlign="Middle" pattern="" isBlankWhenNull="true" fontSize="8" isBold="true">
+        <box>
+            <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#030303"/>
+            <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#030303"/>
+            <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#030303"/>
+            <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#030303"/>
+        </box>
+        <paragraph firstLineIndent="0"/>
+    </style>
+    <style name="SecondaryAreaTextStyle" mode="Opaque" forecolor="#030303" backcolor="#CDE5F7" hTextAlign="Right" vTextAlign="Middle" pattern="" isBlankWhenNull="true" fontSize="8" isBold="true">
+        <box>
+            <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+        </box>
+        <paragraph firstLineIndent="0"/>
+    </style>
+    <style name="TertiaryAreaTitleStyle" hTextAlign="Left" vTextAlign="Middle" isBlankWhenNull="true" fontSize="8"/>
+    <style name="TertiaryAreaTextStyle" hTextAlign="Right" vTextAlign="Middle" isBlankWhenNull="true" fontSize="8"/>
+    <style name="HTableStyle" hTextAlign="Center" vTextAlign="Middle" isBold="true">
+        <box>
+            <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+            <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+            <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="PrimaryLineStyle" hTextAlign="Left" vTextAlign="Middle" fontSize="8" isBold="true">
+        <box>
+            <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+            <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+            <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+        </box>
+        <paragraph leftIndent="5"/>
+    </style>
+    <style name="SecondaryLineStyle" hTextAlign="Left" vTextAlign="Middle" fontSize="8" isBold="false">
+        <box>
+            <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+        </box>
+        <paragraph leftIndent="5"/>
+    </style>
+    <style name="SecondaryLineDataStyle" hTextAlign="Right" vTextAlign="Middle" isBlankWhenNull="true" fontSize="8" isBold="false">
+        <box>
+            <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+        </box>
+        <paragraph leftIndent="0" rightIndent="5"/>
+    </style>
+    <style name="SecondaryLineColStyle" hTextAlign="Right" vTextAlign="Middle" fontSize="8" isBold="false">
+        <box>
+            <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+        </box>
+        <paragraph leftIndent="0" rightIndent="5"/>
+    </style>
+    <style name="PrimaryLineColStyle" hTextAlign="Left" vTextAlign="Middle" fontSize="8" isBold="true">
+        <box>
+            <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+            <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+            <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+        </box>
+        <paragraph leftIndent="5"/>
+    </style>
+    <style name="PrimaryLineDataStyle" hTextAlign="Right" vTextAlign="Middle" isBlankWhenNull="true" fontSize="8" isBold="true">
+        <box>
+            <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+            <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+            <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+        </box>
+        <paragraph leftIndent="0" rightIndent="5"/>
+    </style>
+    <subDataset name="Dataset1" uuid="2f9eddc1-86c1-4abb-a2d0-56df0ef88103">
+        <queryString>
+            <![CDATA[]]>
+        </queryString>
+        <field name="exercice" class="java.lang.Double"/>
+        <field name="exerciceP" class="java.lang.Double"/>
+    </subDataset>
+    <subDataset name="Dataset2" uuid="f5b3cdf8-f32a-4c93-89e1-ec7ef5b32166">
+        <queryString>
+            <![CDATA[]]>
+        </queryString>
+        <field name="exercice" class="java.lang.Double"/>
+        <field name="exerciceP" class="java.lang.Double"/>
+    </subDataset>
+    <subDataset name="Dataset3" uuid="2f566bf3-69c3-4f88-999b-794e13d7d468">
+        <queryString>
+            <![CDATA[]]>
+        </queryString>
+        <field name="exercice" class="java.lang.Double"/>
+        <field name="exerciceP" class="java.lang.Double"/>
+    </subDataset>
+    <subDataset name="Dataset4" uuid="f9ac4a8e-c285-4cec-913d-665d5f17330f">
+        <queryString>
+            <![CDATA[]]>
+        </queryString>
+        <field name="exercice" class="java.lang.Double"/>
+        <field name="exerciceP" class="java.lang.Double"/>
+    </subDataset>
+    <subDataset name="Dataset5" uuid="3905d425-1378-4623-bb01-ecc4a4c39b8e">
+        <queryString>
+            <![CDATA[]]>
+        </queryString>
+        <field name="exercice" class="java.lang.Double"/>
+        <field name="exerciceP" class="java.lang.Double"/>
+    </subDataset>
+    <subDataset name="Dataset6" uuid="c5fe4b75-b238-4077-8a6c-7095de7ecbe9">
+        <queryString>
+            <![CDATA[]]>
+        </queryString>
+        <field name="exercice" class="java.lang.Double"/>
+        <field name="exerciceP" class="java.lang.Double"/>
+    </subDataset>
+    <subDataset name="Dataset7" uuid="60013cbb-4b1b-4fba-a31a-bea807e04eac">
+        <queryString>
+            <![CDATA[]]>
+        </queryString>
+        <field name="exercice" class="java.lang.Double"/>
+        <field name="exerciceP" class="java.lang.Double"/>
+    </subDataset>
+    <parameter name="DateN1" class="java.lang.String"/>
+    <parameter name="name_company" class="java.lang.String"/>
+    <parameter name="DateN" class="java.lang.String"/>
+    <parameter name="param1" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+    <parameter name="param2" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+    <parameter name="param3" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+    <parameter name="param4" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+    <parameter name="param5" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+    <parameter name="total1" class="java.lang.Double"/>
+    <parameter name="total2" class="java.lang.Double"/>
+    <parameter name="total3" class="java.lang.Double"/>
+    <parameter name="total4" class="java.lang.Double"/>
+    <parameter name="total5" class="java.lang.Double"/>
+    <parameter name="RF" class="java.lang.Double"/>
+    <parameter name="RC" class="java.lang.Double"/>
+    <parameter name="RNC" class="java.lang.Double"/>
+    <parameter name="IR" class="java.lang.Double"/>
+    <parameter name="RN" class="java.lang.Double"/>
+    <parameter name="totalCAF" class="java.lang.Double"/>
+    <parameter name="param6" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+    <parameter name="param7" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+    <parameter name="RE" class="java.lang.Double"/>
+    <parameter name="total1P" class="java.lang.Double"/>
+    <parameter name="total2P" class="java.lang.Double"/>
+    <parameter name="total3P" class="java.lang.Double"/>
+    <parameter name="total4P" class="java.lang.Double"/>
+    <parameter name="total5P" class="java.lang.Double"/>
+    <parameter name="REPrevious" class="java.lang.Double"/>
+    <parameter name="RFPrevious" class="java.lang.Double"/>
+    <parameter name="RCPrevious" class="java.lang.Double"/>
+    <parameter name="RNCPrevious" class="java.lang.Double"/>
+    <parameter name="IRPrevious" class="java.lang.Double"/>
+    <parameter name="RNPrevious" class="java.lang.Double"/>
+    <parameter name="totalCAFP" class="java.lang.Double"/>
+    <parameter name="Parameter1" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <field name="T1_1_L1_E" class="java.lang.Double"/>
+    <field name="T1_1_L2_E" class="java.lang.Double"/>
+    <field name="T1_1_L1_EP" class="java.lang.Double"/>
+    <field name="T1_1_L2_EP" class="java.lang.Double"/>
+    <field name="T1_I_L1_E" class="java.lang.Double"/>
+    <field name="T1_I_L1_EP" class="java.lang.Double"/>
+    <field name="T1_II_L1_E" class="java.lang.Double"/>
+    <field name="T1_II_L1_EP" class="java.lang.Double"/>
+    <field name="T1_II_L2_E" class="java.lang.Double"/>
+    <field name="T1_II_L2_EP" class="java.lang.Double"/>
+    <field name="T1_II_L4_E" class="java.lang.Double"/>
+    <field name="T1_II_L4_EP" class="java.lang.Double"/>
+    <field name="T1_II_L5_E" class="java.lang.Double"/>
+    <field name="T1_II_L5_EP" class="java.lang.Double"/>
+    <field name="T1_III_L1_E" class="java.lang.Double"/>
+    <field name="T1_III_L1_EP" class="java.lang.Double"/>
+    <field name="T1_III_L2_E" class="java.lang.Double"/>
+    <field name="T1_III_L2_EP" class="java.lang.Double"/>
+    <field name="T1_III_L3_E" class="java.lang.Double"/>
+    <field name="T1_III_L3_EP" class="java.lang.Double"/>
+    <field name="T1_IV_L1_E" class="java.lang.Double"/>
+    <field name="T1_IV_L1_EP" class="java.lang.Double"/>
+    <field name="T1_IV_L2_E" class="java.lang.Double"/>
+    <field name="T1_IV_L2_EP" class="java.lang.Double"/>
+    <field name="T1_IV_L3_E" class="java.lang.Double"/>
+    <field name="T1_IV_L3_EP" class="java.lang.Double"/>
+    <field name="T1_IV_L4_E" class="java.lang.Double"/>
+    <field name="T1_IV_L4_EP" class="java.lang.Double"/>
+    <field name="T1_V_L1_E" class="java.lang.Double"/>
+    <field name="T1_V_L1_EP" class="java.lang.Double"/>
+    <field name="T1_V_L2_E" class="java.lang.Double"/>
+    <field name="T1_V_L2_EP" class="java.lang.Double"/>
+    <field name="T1_V_L3_E" class="java.lang.Double"/>
+    <field name="T1_V_L3_EP" class="java.lang.Double"/>
+    <field name="T1_V_L4_E" class="java.lang.Double"/>
+    <field name="T1_V_L4_EP" class="java.lang.Double"/>
+    <field name="T1_V_L5_E" class="java.lang.Double"/>
+    <field name="T1_V_L5_EP" class="java.lang.Double"/>
+    <field name="T1_VI_L1_E" class="java.lang.Double"/>
+    <field name="T1_VI_L1_EP" class="java.lang.Double"/>
+    <field name="T1_VII_L1_E" class="java.lang.Double"/>
+    <field name="T1_VII_L1_EP" class="java.lang.Double"/>
+    <field name="T1_VII_L2_E" class="java.lang.Double"/>
+    <field name="T1_VII_L2_EP" class="java.lang.Double"/>
+    <field name="T1_VIII_L1_E" class="java.lang.Double"/>
+    <field name="T1_VIII_L1_EP" class="java.lang.Double"/>
+    <field name="T1_IX_L1_E" class="java.lang.Double"/>
+    <field name="T1_IX_L1_EP" class="java.lang.Double"/>
+    <field name="T1_X_L1_E" class="java.lang.Double"/>
+    <field name="T1_X_L1_EP" class="java.lang.Double"/>
+    <field name="T2_1_L1_E" class="java.lang.Double"/>
+    <field name="T2_1_L1_EP" class="java.lang.Double"/>
+    <field name="T2_1_L2_E" class="java.lang.Double"/>
+    <field name="T2_1_L2_EP" class="java.lang.Double"/>
+    <field name="T2_1_L3_E" class="java.lang.Double"/>
+    <field name="T2_1_L3_EP" class="java.lang.Double"/>
+    <field name="T2_1_L4_E" class="java.lang.Double"/>
+    <field name="T2_1_L4_EP" class="java.lang.Double"/>
+    <field name="T2_1_L5_E" class="java.lang.Double"/>
+    <field name="T2_1_L5_EP" class="java.lang.Double"/>
+    <field name="T2_1_L6_E" class="java.lang.Double"/>
+    <field name="T2_1_L6_EP" class="java.lang.Double"/>
+    <field name="T2_1_L7_E" class="java.lang.Double"/>
+    <field name="T2_1_L7_EP" class="java.lang.Double"/>
+    <field name="T2_1_L8_E" class="java.lang.Double"/>
+    <field name="T2_1_L8_EP" class="java.lang.Double"/>
+    <field name="T2_1_L9_E" class="java.lang.Double"/>
+    <field name="T2_1_L9_EP" class="java.lang.Double"/>
+    <field name="T2_I_L1_E" class="java.lang.Double"/>
+    <field name="T2_I_L1_EP" class="java.lang.Double"/>
+    <field name="T2_I_L2_E" class="java.lang.Double"/>
+    <field name="T2_I_L2_EP" class="java.lang.Double"/>
+    <field name="T2_II_L1_E" class="java.lang.Double"/>
+    <field name="T2_II_L1_EP" class="java.lang.Double"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <detail>
+        <band height="802" splitType="Stretch">
+            <textField>
+                <reportElement style="PrimaryAreaStyle" x="475" y="782" width="84" height="20" uuid="110f5615-4ffa-4337-b420-619731e3fa2b">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$P{DateN1}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement style="PrimaryAreaStyle" x="389" y="761" width="170" height="20" uuid="c9b55524-0870-4583-8232-ffed0077c6f8">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[TOTAL ACTIVE]]></text>
+            </staticText>
+            <textField>
+                <reportElement mode="Opaque" x="474" y="0" width="85" height="20" forecolor="#FFFFFF" backcolor="#325A77" uuid="82a29d15-6d3a-413d-bd3c-29d9d2575c04">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$P{DateN1}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="PrimaryAreaStyle" x="389" y="782" width="84" height="20" uuid="ff9aaa4d-8116-4ec6-aaed-f56be43d3775">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$P{DateN}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="PrimaryAreaStyle" mode="Opaque" x="389" y="0" width="85" height="20" uuid="4248617a-f6c2-4cdf-a602-ff1eadd3ed2d">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$P{name_company}]]></textFieldExpression>
+            </textField>
+            <rectangle>
+                <reportElement style="PrimaryAreaStyle" mode="Opaque" x="389" y="20" width="170" height="740" uuid="42ecda75-4867-4eb6-9993-42159f32c7e4">
+                    <property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+                </reportElement>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <staticText>
+                <reportElement style="PrimaryAreaStyle" mode="Opaque" x="0" y="0" width="384" height="20" uuid="4db603bd-3011-43e4-b511-11f3ff6f7ba5">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[ETAT DES SOLDES DE GESTION (E.S.G)
+]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryAreaTitleStyle" mode="Opaque" x="0" y="22" width="384" height="20" uuid="0675caf1-d5e0-47c9-8164-11aa6d0d3b58">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[TABLEAU DE FORMATION DES RESULTATS (T.F.R)]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="HTableStyle" x="0" y="42" width="30" height="35" uuid="e606a56d-1cf1-4826-8649-5fa4624b1db2">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="HTableStyle" x="314" y="42" width="70" height="35" uuid="d3085c18-c419-46d7-b69c-f0691482eb1d">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="1.0"/>
+                    <leftPen lineWidth="0.0"/>
+                </box>
+                <text><![CDATA[EXERCICE
+PRECEDENT
+]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="HTableStyle" x="244" y="42" width="70" height="35" uuid="d18aa02a-96d5-426c-bfe5-a6058cff0a9c">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+                </reportElement>
+                <text><![CDATA[EXERCICE]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="HTableStyle" x="30" y="42" width="214" height="35" uuid="cfd2b4b0-572c-4378-b052-9e5cfc91b51f">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[RUBRIQUES]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineDataStyle" x="30" y="77" width="214" height="17" uuid="f6017e98-de41-4faf-9ae2-6e5e70de5b1a">
+                    <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Left">
+                    <paragraph leftIndent="5" rightIndent="0"/>
+                </textElement>
+                <text><![CDATA[Ventes de Marchandises (en l'état)
+]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="94" width="214" height="17" uuid="eefaea10-cd12-49dd-a6f3-fc695fdfcc8c"/>
+                <text><![CDATA[Achats revendus de marchandises]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineColStyle" x="0" y="77" width="30" height="34" uuid="d784f491-a2d2-4dce-a759-5798457c271c">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[1]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="PrimaryLineColStyle" x="0" y="111" width="30" height="17" uuid="0ffae858-23c1-4dd3-8ceb-ebef993fe6ec">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[I]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="PrimaryLineStyle" x="30" y="111" width="214" height="17" uuid="fc152d6e-78af-4d1b-af13-6ff2545db5c6"/>
+                <text><![CDATA[MARGE BRUTES VENTES EN L'ETAT]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="314" y="111" width="70" height="17" uuid="dcd4c3e8-1103-42c2-9b69-6a8e09ea35e4"/>
+                <box>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textFieldExpression><![CDATA[$P{total1P}  != null ? new java.text.DecimalFormat("#,##0.00").format($P{total1P}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="244" y="111" width="70" height="17" uuid="aac6026e-8e41-4c76-904e-8bb880fdf5d2">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textFieldExpression><![CDATA[$P{total1} != null ? new java.text.DecimalFormat("#,##0.00").format($P{total1}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement style="PrimaryLineStyle" x="30" y="128" width="214" height="17" uuid="dad7d973-fa1c-4d42-b788-420f5c856738"/>
+                <text><![CDATA[PRODUCTION DE L'EXERCICE (3+4+5)]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="PrimaryLineColStyle" x="0" y="128" width="30" height="17" uuid="16af5b4d-fef9-48e4-8c2a-92fd81f450a4">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[II]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="244" y="128" width="70" height="17" uuid="a681873e-5bff-4682-a405-b260eca5be4f"/>
+                <textFieldExpression><![CDATA[$P{total2}  != null ? new java.text.DecimalFormat("#,##0.00").format($P{total2}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="314" y="128" width="70" height="17" uuid="1236a1a2-1d3a-4148-9eeb-c71c78722fdb">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textFieldExpression><![CDATA[$P{total2P}  != null ? new java.text.DecimalFormat("#,##0.00").format($P{total2P}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement style="SecondaryLineColStyle" x="0" y="145" width="30" height="50" uuid="fa371ccf-fb57-4d71-824d-b9b7699f855b">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="145" width="214" height="17" uuid="5d340b94-fd95-4a42-91a3-4ff9b18c621a"/>
+                <text><![CDATA[Ventes de biens et services produits
+]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="162" width="214" height="17" uuid="7ca168bb-43c9-4509-ba44-2457aaccee3a"/>
+                <text><![CDATA[Variation stocks des produits]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="179" width="214" height="17" uuid="f800983c-8f79-449e-aa25-338928f28136"/>
+                <text><![CDATA[Variation stocks des produits]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="PrimaryLineColStyle" x="0" y="195" width="30" height="52" uuid="9d1a2c9f-354a-4c4b-b542-41c67867680a">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[III]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="244" y="196" width="70" height="17" uuid="f6059bbf-ed6c-4404-91af-8d6552b19d8e"/>
+                <textFieldExpression><![CDATA[$P{total3}  != null ? new java.text.DecimalFormat("#,##0.00").format($P{total3}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="213" width="214" height="17" uuid="e6232fca-1588-4ec8-b660-68c8a18f3ebc">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <text><![CDATA[Achats consommées de matières et fournitures
+]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="230" width="214" height="17" uuid="02ba52be-6889-401d-b2cc-9016565b8db1"/>
+                <text><![CDATA[Autres charges externes]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="314" y="196" width="70" height="17" uuid="57f7ce09-fc51-489a-ba1b-8d79e772b14b"/>
+                <box>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textFieldExpression><![CDATA[$P{total3P}  != null ? new java.text.DecimalFormat("#,##0.00").format($P{total3P}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement style="PrimaryLineStyle" x="30" y="196" width="214" height="17" uuid="3785df01-5f3e-4d46-9fce-d26c8a294140">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <text><![CDATA[COSOMMATIONS DE L'EXERCICE (6+7)
+]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="PrimaryLineColStyle" x="0" y="247" width="30" height="17" uuid="40ca7ef5-7f17-4b5d-aa9b-138f3145acd7">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[IV]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="264" width="214" height="17" uuid="558ff5b9-2d80-4d6b-8efb-22a67ec777eb"/>
+                <text><![CDATA[Subventions d'exploitation
+]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="281" width="214" height="17" uuid="897e6b3a-74ea-4397-b8b6-ab3881d22479"/>
+                <text><![CDATA[Impôts et taxes
+]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="314" y="247" width="70" height="17" uuid="2a3a61a8-a820-43e8-b6e0-303d842af5fa"/>
+                <box>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textFieldExpression><![CDATA[$P{total4P}  != null ? new java.text.DecimalFormat("#,##0.00").format($P{total4P}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement style="SecondaryLineColStyle" x="0" y="264" width="30" height="51" uuid="b04b1288-fab6-4622-af46-57937ee8300a">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="244" y="247" width="70" height="17" uuid="8d040a17-d489-4eb4-bbeb-a337865f220c"/>
+                <textFieldExpression><![CDATA[$P{total4}  != null ? new java.text.DecimalFormat("#,##0.00").format($P{total4}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement style="PrimaryLineStyle" x="30" y="247" width="214" height="17" uuid="deceee31-0030-4930-a631-15709277f153">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <text><![CDATA[VALEUR AJOUTEE (I+II+III)]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="298" width="214" height="17" uuid="95983f99-966d-4e8d-9494-9f0909e69326"/>
+                <text><![CDATA[charges de personnel]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="PrimaryLineStyle" x="30" y="315" width="214" height="22" uuid="0782f18e-51f9-4b83-97bd-94cfe080160c"/>
+                <text><![CDATA[EXCEDENT BRUT D'EXPLOITATION (EBE) OU INSUFFISANCE BRUTE D'EXPLOITATION (IBE)
+]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="244" y="315" width="70" height="22" uuid="247530ba-9f14-4f66-88d4-fecb6731abc0">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$P{total5}  != null ? new java.text.DecimalFormat("#,##0.00").format($P{total5}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="354" width="214" height="17" uuid="35e4304b-f613-48ff-a125-c50929ad2036"/>
+                <text><![CDATA[Autres charges d'exploitation]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="371" width="214" height="17" uuid="3002e4d4-6ca5-4fe6-8a96-8be66cf78d3c"/>
+                <text><![CDATA[Reprises d'exploitation, transferts de charges]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="314" y="315" width="70" height="22" uuid="21940aa8-2d8f-42c4-a7f8-03066c6769b8">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textFieldExpression><![CDATA[$P{total5P}  != null ? new java.text.DecimalFormat("#,##0.00").format($P{total5P}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="337" width="214" height="17" uuid="cd8ceec7-cfaa-4942-9c97-a60cff72e490"/>
+                <text><![CDATA[Autres produits d'exploitation]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="PrimaryLineColStyle" x="0" y="315" width="30" height="22" uuid="e6036503-b6bc-43b0-8493-eb196e62d648">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[V]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineColStyle" x="0" y="337" width="30" height="68" uuid="49d1db25-6578-46c7-8388-763fd080bbf5">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="388" width="214" height="17" uuid="89d4afd2-32c3-4126-8ea5-d65285dc2eef"/>
+                <text><![CDATA[Dotations d'exploitation]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="PrimaryLineStyle" x="30" y="405" width="214" height="17" uuid="dedffc20-57f0-46f3-86e6-bdeaa2d91573">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <text><![CDATA[RESULTAT D'EXPLOITATION (+ou-)
+]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="PrimaryLineColStyle" x="0" y="405" width="30" height="17" uuid="0550e1a8-f8e0-4dd2-8d05-5959b5e3492c">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[VI]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="244" y="405" width="70" height="17" uuid="48a19594-6da2-4133-bf7b-b0f9963b18c8"/>
+                <textFieldExpression><![CDATA[$P{RE} != null ? new java.text.DecimalFormat("#,##0.00").format($P{RE}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="314" y="405" width="70" height="17" uuid="68de897f-dafa-4e19-8727-c27e44b39f00"/>
+                <box>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textFieldExpression><![CDATA[$P{REPrevious} != null ? new java.text.DecimalFormat("#,##0.00").format($P{REPrevious}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement style="PrimaryLineStyle" x="30" y="422" width="214" height="17" uuid="71b8c600-f1b4-40ed-9b60-72df62a4c34e"/>
+                <text><![CDATA[RESULTAT FINANCIER]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="244" y="422" width="70" height="17" uuid="f7c11b09-48b0-42f8-aadf-7c652decbe43"/>
+                <textFieldExpression><![CDATA[$P{RF} != null ? new java.text.DecimalFormat("#,##0.00").format($P{RF}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement style="PrimaryLineColStyle" x="0" y="422" width="30" height="17" uuid="ebffaadb-998a-4deb-912b-9bd85f15bdc1">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[VII]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="314" y="422" width="70" height="17" uuid="421154f1-1587-4d6d-8e52-f7030a234084"/>
+                <box>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textFieldExpression><![CDATA[$P{RFPrevious} != null ? new java.text.DecimalFormat("#,##0.00").format($P{RFPrevious}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="314" y="439" width="70" height="17" uuid="95deefb5-8e88-4aa7-8f9d-f546c6d19410"/>
+                <box>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textFieldExpression><![CDATA[$P{RCPrevious} != null ? new java.text.DecimalFormat("#,##0.00").format($P{RCPrevious}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement style="PrimaryLineStyle" x="30" y="439" width="214" height="17" uuid="1e6f83b5-cb34-4eba-91e1-57fd56cc1074"/>
+                <text><![CDATA[RESULTAT COURANT (+ou-)
+]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="PrimaryLineColStyle" x="0" y="439" width="30" height="17" uuid="a85af479-66ad-4aa4-b054-c7569348fd36">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[VII]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="244" y="439" width="70" height="17" uuid="f620f728-3922-4792-a4ad-20f82f60d864"/>
+                <textFieldExpression><![CDATA[$P{RC} != null ? new java.text.DecimalFormat("#,##0.00").format($P{RC}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="244" y="456" width="70" height="17" uuid="502750ad-b273-4267-8242-2e40dda988b5"/>
+                <textFieldExpression><![CDATA[$P{RNC} != null ? new java.text.DecimalFormat("#,##0.00").format($P{RNC}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement style="PrimaryLineColStyle" x="0" y="456" width="30" height="17" uuid="c6b88e62-8493-4bd1-a946-6c08005195ba">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[VIII]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="314" y="456" width="70" height="17" uuid="35a29409-50f5-4704-af43-f38f2c66d169"/>
+                <box>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textFieldExpression><![CDATA[$P{RNCPrevious} != null ? new java.text.DecimalFormat("#,##0.00").format($P{RNCPrevious}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement style="PrimaryLineStyle" x="30" y="456" width="214" height="17" uuid="ccf65217-84d4-4bbc-a35f-beab727b8386"/>
+                <text><![CDATA[RESULTAT NON COURANT
+]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="PrimaryLineColStyle" x="0" y="473" width="30" height="17" uuid="fb6d209b-6f7b-449a-96af-9a5160d07d6c">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[IX]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="314" y="473" width="70" height="17" uuid="f9a01fe7-b2f8-4fef-b240-15c362c685e7"/>
+                <box>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textFieldExpression><![CDATA[$P{IRPrevious} != null ? new java.text.DecimalFormat("#,##0.00").format($P{IRPrevious}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement style="PrimaryLineStyle" x="30" y="473" width="214" height="17" uuid="8cf5ebac-8f2a-4215-8c0a-e6016417e2be"/>
+                <text><![CDATA[Impôt sur les résultats]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="244" y="473" width="70" height="17" uuid="6478ae49-9116-4ca8-bff0-08beb16b6e74"/>
+                <textFieldExpression><![CDATA[$P{IR} != null ? new java.text.DecimalFormat("#,##0.00").format($P{IR}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement style="PrimaryLineStyle" x="30" y="490" width="214" height="17" uuid="03f427f6-495b-4032-ad56-9aeee17fcc10"/>
+                <text><![CDATA[RESULTAT NET DE L'EXERCICE]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="PrimaryLineColStyle" x="0" y="490" width="30" height="17" uuid="173e32c4-20a2-4e99-a1d5-3949964c017c">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[X]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="244" y="490" width="70" height="17" uuid="78d9c824-e98a-4d70-8ec6-8f4c6585196c"/>
+                <textFieldExpression><![CDATA[$P{RN} != null ? new java.text.DecimalFormat("#,##0.00").format($P{RN}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="314" y="490" width="70" height="17" uuid="4e33383e-fd57-4dac-be2d-bfef87368ed5">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textFieldExpression><![CDATA[$P{RNPrevious} != null ? new java.text.DecimalFormat("#,##0.00").format($P{RNPrevious}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement style="SecondaryAreaTitleStyle" mode="Opaque" x="0" y="507" width="384" height="20" uuid="31cb5596-92c3-4786-9ea7-e22a30007a26">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[CAPACITE D'AUTOFINANCEMENT (C.A.F) - AUTOFINANCEMENT
+]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="527" width="214" height="17" uuid="2f9c73fb-5feb-4b22-b6dc-dc84081a3f1b">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <text><![CDATA[Résultat net de l'exercice
+Bénéfice+
+Perte -
+
+]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineColStyle" x="0" y="527" width="30" height="153" uuid="5c098fb8-d01c-4f7c-87a9-a610da7782dd">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[1]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="544" width="214" height="17" uuid="10d8ddac-06be-4e7c-a4d4-6c414fa5b148">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <text><![CDATA[Dotations d'exploitation (1)]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="561" width="214" height="17" uuid="2dad22cb-388c-4136-8569-2ec2d5484099">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <text><![CDATA[Dotations financières (1)]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="595" width="214" height="17" uuid="3f43c5ad-b514-4d93-a45e-b1c8783f8ed3">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <text><![CDATA[Reprises d'exploitation (2) ]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="578" width="214" height="17" uuid="716bc66f-dbf9-4754-a64f-40d0d9e4e140">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <text><![CDATA[Dotations non courantes (1)
+]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="629" width="214" height="17" uuid="817888d7-86a9-437f-902e-35ad10f96f18">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <text><![CDATA[Dotations financières (1)]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="663" width="214" height="17" uuid="b1200590-3a09-4008-b01a-c01ac9ab2999">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <text><![CDATA[Reprises d'exploitation (2) ]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="646" width="214" height="17" uuid="d6d575fb-78ec-4b37-a0bb-44d7d6a2af41">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <text><![CDATA[Dotations non courantes (1)
+]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="612" width="214" height="17" uuid="f071c1bb-f0e4-4b2f-ae6e-76ad53217762">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <text><![CDATA[Dotations d'exploitation (1)]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="PrimaryLineColStyle" x="0" y="680" width="30" height="17" uuid="69db713e-a96f-4d8e-9fec-8359666d135d">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[I]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="314" y="680" width="70" height="17" uuid="140eba2a-3619-4f00-bf4f-0d279eb6d7f3">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textFieldExpression><![CDATA[$P{totalCAFP} != null ? new java.text.DecimalFormat("#,##0.00").format($P{totalCAFP}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="244" y="680" width="70" height="17" uuid="bc5725d1-9ccb-49e2-87dd-009b95eca2aa"/>
+                <textFieldExpression><![CDATA[$P{totalCAF} != null ? new java.text.DecimalFormat("#,##0.00").format($P{totalCAF}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement style="PrimaryLineStyle" x="30" y="680" width="214" height="17" uuid="9be9313c-de1e-4fd4-aef2-b251cd33d46f"/>
+                <text><![CDATA[CAPACITE D'AUTOFINANCEMENT (C.A.F.)]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="SecondaryLineDataStyle" x="244" y="697" width="70" height="17" uuid="3d6bf1f1-f260-4c49-9153-db5faf5f2413"/>
+            </textField>
+            <textField>
+                <reportElement style="SecondaryLineDataStyle" x="314" y="697" width="70" height="17" uuid="98b582bc-f906-4cf8-b9fd-62c6b2ec1024"/>
+                <box>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+            </textField>
+            <staticText>
+                <reportElement style="SecondaryLineStyle" x="30" y="697" width="214" height="17" uuid="6a69f7ca-9131-485d-86b3-c4e2e66afd90"/>
+                <text><![CDATA[Distributions de bénéfices]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SecondaryLineColStyle" x="0" y="697" width="30" height="16" uuid="a1cd59cf-e947-4f44-a21d-145042817a7f">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="244" y="714" width="70" height="17" uuid="3f0c65d9-36ba-42f4-b648-692b4ccba825"/>
+                <textFieldExpression><![CDATA[$P{totalCAF} != null ? new java.text.DecimalFormat("#,##0.00").format($P{totalCAF}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement style="PrimaryLineStyle" x="30" y="714" width="214" height="17" uuid="228b8248-aefa-4f44-83ab-e7cd6c496110"/>
+                <text><![CDATA[AUTOFINANCEMENT]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryLineDataStyle" x="314" y="714" width="70" height="17" uuid="87daaf91-bc60-4c8a-9002-9eae2205dbf7"/>
+                <box>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textFieldExpression><![CDATA[$P{totalCAFP} != null ? new java.text.DecimalFormat("#,##0.00").format($P{totalCAFP}).replaceAll(",",".") : ""]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement style="PrimaryLineColStyle" x="0" y="714" width="30" height="17" uuid="3f2d99bd-814a-4980-b7ac-972ffebe820c">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <bottomPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[II]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="0" y="750" width="385" height="52" uuid="c932f741-7a3d-4e8f-9c9d-57860f2b6a65"/>
+                <textElement verticalAlignment="Middle">
+                    <font size="9"/>
+                    <paragraph lineSpacing="Fixed" lineSpacingSize="8.0"/>
+                </textElement>
+                <text><![CDATA[(1) A l'exclusion des dotations relatives aux actifs et passifs circulants et à la trésorerie.
+
+(2) A l'exclusion des reprises relatives aux actifs circulants et à la trésorerie.
+
+(3) Y compris reprises sur subvention d'investissement.
+]]></text>
+            </staticText>
+            <componentElement>
+                <reportElement x="244" y="77" width="140" height="17" forecolor="#000000" uuid="c8d3668c-470c-4a6c-b607-6784f6c3f63f">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+                    <datasetRun subDataset="Dataset1" uuid="825d6d8a-1bb6-4bc6-ab7e-8f3eee38777e">
+                        <dataSourceExpression><![CDATA[$P{param1}]]></dataSourceExpression>
+                    </datasetRun>
+                    <jr:listContents height="17" width="140">
+                        <textField>
+                            <reportElement x="0" y="0" width="70" height="17" uuid="67bda0f1-c6b0-40a8-8c76-3222a0315afd">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="1.0"/>
+                                <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                            </box>
+                            <textElement textAlignment="Right" verticalAlignment="Middle">
+                                <font size="8"/>
+                                <paragraph rightIndent="5"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{exercice} != null ? new java.text.DecimalFormat("#,##0.00").format($F{exercice}).replaceAll(",",".") : ""]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="70" y="0" width="70" height="17" uuid="e3887b5e-1f75-405f-9630-cb9d547d8503">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="1.0"/>
+                                <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                            </box>
+                            <textElement textAlignment="Right" verticalAlignment="Middle">
+                                <font size="8"/>
+                                <paragraph rightIndent="5"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{exerciceP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{exerciceP}).replaceAll(",",".") : ""]]></textFieldExpression>
+                        </textField>
+                    </jr:listContents>
+                </jr:list>
+            </componentElement>
+            <componentElement>
+                <reportElement x="244" y="145" width="140" height="17" uuid="ffc9b3e5-3b89-4b8b-8e11-51bad6fa19dd">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+                    <datasetRun subDataset="Dataset2" uuid="577f34c9-fea2-41eb-af74-c0b57ae0289b">
+                        <dataSourceExpression><![CDATA[$P{param2}]]></dataSourceExpression>
+                    </datasetRun>
+                    <jr:listContents height="17" width="140">
+                        <textField>
+                            <reportElement x="0" y="0" width="70" height="17" uuid="f7506364-308c-4069-ba15-3830534bf960">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="1.0"/>
+                                <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                            </box>
+                            <textElement textAlignment="Right" verticalAlignment="Middle">
+                                <font size="8"/>
+                                <paragraph rightIndent="5"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{exercice} != null ? new java.text.DecimalFormat("#,##0.00").format($F{exercice}).replaceAll(",",".") : ""]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="70" y="0" width="70" height="17" uuid="88a25564-a158-4faa-86da-80583df8e480">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="1.0"/>
+                                <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                            </box>
+                            <textElement textAlignment="Right" verticalAlignment="Middle">
+                                <font size="8"/>
+                                <paragraph rightIndent="5"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{exerciceP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{exerciceP}).replaceAll(",",".") : ""]]></textFieldExpression>
+                        </textField>
+                    </jr:listContents>
+                </jr:list>
+            </componentElement>
+            <componentElement>
+                <reportElement x="244" y="213" width="140" height="17" uuid="3b6e9c29-36ba-41fb-b4fc-4da7a84cefd8">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+                    <datasetRun subDataset="Dataset3" uuid="1d689081-b669-4893-ad67-7479421bd9b7">
+                        <dataSourceExpression><![CDATA[$P{param3}]]></dataSourceExpression>
+                    </datasetRun>
+                    <jr:listContents height="17" width="140">
+                        <textField>
+                            <reportElement x="0" y="0" width="70" height="17" uuid="239908ec-5491-4e61-8169-fc10876b3f46">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="1.0"/>
+                                <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                            </box>
+                            <textElement textAlignment="Right" verticalAlignment="Middle">
+                                <font size="8"/>
+                                <paragraph rightIndent="5"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{exercice} != null ? new java.text.DecimalFormat("#,##0.00").format($F{exercice}).replaceAll(",",".") : ""]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="70" y="0" width="70" height="17" uuid="bd65428d-64f4-4788-8ecb-e9d2cf90cc08">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="1.0"/>
+                                <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                            </box>
+                            <textElement textAlignment="Right" verticalAlignment="Middle">
+                                <font size="8"/>
+                                <paragraph rightIndent="5"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{exerciceP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{exerciceP}).replaceAll(",",".") : ""]]></textFieldExpression>
+                        </textField>
+                    </jr:listContents>
+                </jr:list>
+            </componentElement>
+            <componentElement>
+                <reportElement x="244" y="264" width="140" height="17" uuid="1fb64a23-ba4c-4c7a-929a-b5ce0afc24ef">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+                    <datasetRun subDataset="Dataset4" uuid="add8a5f8-5eb4-4cb6-810a-db3e7e59f8a4">
+                        <dataSourceExpression><![CDATA[$P{param4}]]></dataSourceExpression>
+                    </datasetRun>
+                    <jr:listContents height="17" width="140">
+                        <textField>
+                            <reportElement x="0" y="0" width="70" height="17" uuid="428d38f2-569e-44e2-a07e-116bfaee1050">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="1.0"/>
+                                <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                            </box>
+                            <textElement textAlignment="Right" verticalAlignment="Middle">
+                                <font size="8"/>
+                                <paragraph rightIndent="5"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{exercice} != null ? new java.text.DecimalFormat("#,##0.00").format($F{exercice}).replaceAll(",",".") : ""]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="70" y="0" width="70" height="17" uuid="9dad4f3a-5860-4799-8985-fd0de58759c2">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="1.0"/>
+                                <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                            </box>
+                            <textElement textAlignment="Right" verticalAlignment="Middle">
+                                <font size="8"/>
+                                <paragraph rightIndent="5"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{exerciceP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{exerciceP}).replaceAll(",",".") : ""]]></textFieldExpression>
+                        </textField>
+                    </jr:listContents>
+                </jr:list>
+            </componentElement>
+            <componentElement>
+                <reportElement x="244" y="337" width="140" height="17" uuid="6bdf49ba-f1d9-4d61-9405-d23f2675df10">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+                    <datasetRun subDataset="Dataset5" uuid="6d3e3738-e162-4364-8cbe-a81fcddffcb8">
+                        <dataSourceExpression><![CDATA[$P{param5}]]></dataSourceExpression>
+                    </datasetRun>
+                    <jr:listContents height="17" width="140">
+                        <textField>
+                            <reportElement x="0" y="0" width="70" height="17" uuid="8cf606fb-c87f-4463-bf5d-d52e1eaf441f">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="1.0"/>
+                                <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                            </box>
+                            <textElement textAlignment="Right" verticalAlignment="Middle">
+                                <font size="8"/>
+                                <paragraph rightIndent="5"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{exercice} != null ? new java.text.DecimalFormat("#,##0.00").format($F{exercice}).replaceAll(",",".") : ""]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="70" y="0" width="70" height="17" uuid="c35b0b72-2f44-4c50-84bc-1d64e324040b">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="1.0"/>
+                                <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                            </box>
+                            <textElement textAlignment="Right" verticalAlignment="Middle">
+                                <font size="8"/>
+                                <paragraph rightIndent="5"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{exerciceP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{exerciceP}).replaceAll(",",".") : ""]]></textFieldExpression>
+                        </textField>
+                    </jr:listContents>
+                </jr:list>
+            </componentElement>
+            <componentElement>
+                <reportElement x="244" y="527" width="140" height="17" uuid="636b6626-4f3e-48da-a5e9-51d48eb904b5">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+                    <datasetRun subDataset="Dataset6" uuid="e696441b-65fb-4e59-bf09-a49d98dc4fd3">
+                        <dataSourceExpression><![CDATA[$P{param6}]]></dataSourceExpression>
+                    </datasetRun>
+                    <jr:listContents height="17" width="140">
+                        <textField>
+                            <reportElement x="0" y="0" width="70" height="17" uuid="8c4ccb84-8017-4ef3-85c6-71845379aaa0">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="1.0"/>
+                                <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                            </box>
+                            <textElement textAlignment="Right" verticalAlignment="Middle">
+                                <font size="8"/>
+                                <paragraph rightIndent="5"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{exercice} != null ? new java.text.DecimalFormat("#,##0.00").format($F{exercice}).replaceAll(",",".") : ""]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="70" y="0" width="70" height="17" uuid="eb7ac16a-faa2-4a49-9b35-72f0a6989d35">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="1.0"/>
+                                <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                            </box>
+                            <textElement textAlignment="Right" verticalAlignment="Middle">
+                                <font size="8"/>
+                                <paragraph rightIndent="5"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{exerciceP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{exerciceP}).replaceAll(",",".") : ""]]></textFieldExpression>
+                        </textField>
+                    </jr:listContents>
+                </jr:list>
+            </componentElement>
+            <componentElement>
+                <reportElement x="244" y="544" width="140" height="17" uuid="211eeaed-6834-4275-8fc2-dbed315b6153">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+                    <datasetRun subDataset="Dataset7" uuid="62a5aada-c7bb-4f6a-88ed-c6683a59cc94">
+                        <dataSourceExpression><![CDATA[$P{param7}]]></dataSourceExpression>
+                    </datasetRun>
+                    <jr:listContents height="17" width="140">
+                        <textField>
+                            <reportElement x="0" y="0" width="70" height="17" uuid="4ec2c8ab-0769-49dd-b8df-e499fceefb05">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="1.0"/>
+                                <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                            </box>
+                            <textElement textAlignment="Right" verticalAlignment="Middle">
+                                <font size="8"/>
+                                <paragraph rightIndent="5"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{exercice} != null ? new java.text.DecimalFormat("#,##0.00").format($F{exercice}).replaceAll(",",".") : ""]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="70" y="0" width="70" height="17" uuid="1073271c-7a97-4a06-91da-045a50aa83d6">
+                                <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+                            </reportElement>
+                            <box>
+                                <pen lineWidth="1.0"/>
+                                <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                            </box>
+                            <textElement textAlignment="Right" verticalAlignment="Middle">
+                                <font size="8"/>
+                                <paragraph rightIndent="5"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{exerciceP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{exerciceP}).replaceAll(",",".") : ""]]></textFieldExpression>
+                        </textField>
+                    </jr:listContents>
+                </jr:list>
+            </componentElement>
+        </band>
+    </detail>
+</jasperReport>

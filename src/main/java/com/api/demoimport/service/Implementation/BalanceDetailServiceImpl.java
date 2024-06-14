@@ -259,7 +259,7 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
             subAccountCPC.setMainAccount(mainA);
             subAccountCPC.setN_compte(n_compte);
             subAccountCPC.setLibelle(libelle);
-            subAccountCPC.setBrut(brut == 0 ? null : FormatUtils.formatDecimal(brut));
+            subAccountCPC.setBrut(brut == 0.00 ? null : FormatUtils.formatDecimal(brut));
             accountCPCS.add(subAccountCPC);
         }
 

@@ -22,18 +22,18 @@ public class Esg implements Updatable {
     private Double exerciceP;
 
     @Override
-    public String getMainAccount() {
-        return name;
+    public String getMainAccountAccess() {
+        return this.name;
     }
 
     @Override
-    public String getN_compte() {
+    public String getN_compteAccess() {
         return null;
     }
 
     @Override
     public Double getCurrentExercice() {
-        return exercice;
+        return this.exercice;
     }
 
     @Override

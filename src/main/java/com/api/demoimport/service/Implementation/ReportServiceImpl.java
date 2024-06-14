@@ -1,10 +1,7 @@
 package com.api.demoimport.service.Implementation;
 
 import com.api.demoimport.dto.Tvadto;
-import com.api.demoimport.entity.Bilan.SubAccountActif;
-import com.api.demoimport.entity.Bilan.SubAccountCPC;
-import com.api.demoimport.entity.Bilan.SubAccountPassif;
-import com.api.demoimport.entity.Societe;
+import com.api.demoimport.entity.Bilan.*;
 import com.api.demoimport.enums.*;
 import com.api.demoimport.repository.SocieteRepository;
 import com.api.demoimport.service.ReportService;
@@ -14,14 +11,11 @@ import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
-import org.apache.logging.log4j.LogManager;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.io.ByteArrayOutputStream;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import org.slf4j.Logger;
@@ -35,6 +29,8 @@ public class ReportServiceImpl implements ReportService {
     BalanceDetailServiceImpl balanceDetailServiceImpl;
     @Autowired
     EsgServiceImpl esgService;
+    @Autowired
+    DetailCPCServiceImpl detailCPCService;
     @Autowired
     SocieteRepository societeRepository;
     @Autowired
@@ -308,9 +304,14 @@ public class ReportServiceImpl implements ReportService {
                     FilterAccountDataA(FullClassFiveA, AccountCategoryClass5.TRESORERIE_ACTIF.getLabel());
 
 
+            dataset1.forEach(d -> System.out.println(d.getMainAccount() + " "+ d.getBrut()));
+            dataset2.forEach(d -> System.out.println(d.getMainAccount() + " "+ d.getBrut()));
+            dataset3.forEach(d -> System.out.println(d.getMainAccount() + " "+ d.getBrut()));
+            dataset4.forEach(d -> System.out.println(d.getMainAccount() + " "+ d.getBrut()));
+            dataset5.forEach(d -> System.out.println(d.getMainAccount() + " "+ d.getBrut()));
+            dataset6.forEach(d -> System.out.println(d.getMainAccount() + " "+ d.getBrut()));
 
-
-            // ADD THE DATA OF EXERCICE PRECEDENT IN THE ACTUAL DATASETS (ANNEE N)
+            /*// ADD THE DATA OF EXERCICE PRECEDENT IN THE ACTUAL DATASETS (ANNEE N)
             accountDataManagerServiceImpl.updateExerciceP(dataset1N,dataset1);
             accountDataManagerServiceImpl.updateExerciceP(dataset2N,dataset2);
             accountDataManagerServiceImpl.updateExerciceP(dataset3N,dataset3);
@@ -318,7 +319,7 @@ public class ReportServiceImpl implements ReportService {
             accountDataManagerServiceImpl.updateExerciceP(dataset5N,dataset5);
             accountDataManagerServiceImpl.updateExerciceP(dataset6N,dataset6);
             accountDataManagerServiceImpl.updateExerciceP(dataset7N,dataset7);
-            accountDataManagerServiceImpl.updateExerciceP(dataset8N,dataset8);
+            accountDataManagerServiceImpl.updateExerciceP(dataset8N,dataset8);*/
 
 
             // CREATE INSTANCES OF JRBEANCOLLECTIONDATASOURCE FOR OUR JAVA BEAN OBJECTS
@@ -385,7 +386,72 @@ public class ReportServiceImpl implements ReportService {
 
         // Generer automatiquement le CPC
         try{
+            Map<String, Object> parameters = new HashMap<>();
+
             // ANNEE N-1 (exercice precedent)
+
+            // CLASS SIX
+            List<SubAccountCPC> ClassSixN = balanceDetailServiceImpl.getClassSix(getLastYear(date),company_name);
+
+            List<SubAccountCPC> FullClassSixN = accountDataManagerServiceImpl.
+                    processAccountDataCPC(ClassSixN,"6");
+
+            // CLASS SEVEN
+            List<SubAccountCPC> ClassSevenN = balanceDetailServiceImpl.getClassSeven(getLastYear(date),company_name);
+            List<SubAccountCPC> FullClassSevenN = accountDataManagerServiceImpl.
+                    processAccountDataCPC(ClassSevenN,"7");
+
+            // CREATE INSTANCES OF JRBEANCOLLECTIONDATASOURCE FOR OUR JAVA BEAN OBJECTS
+
+            List<SubAccountCPC> dataset1N = accountDataManagerServiceImpl.
+                    FilterAccountDataCPC(FullClassSevenN,AccountCategoryClass7.PRODUITS_DEXPLOITATION.getLabel());
+            List<SubAccountCPC> dataset2N = accountDataManagerServiceImpl.
+                    FilterAccountDataCPC(FullClassSixN,AccountCategoryClass6.CHARGES_DEXPLOITATION.getLabel());
+            List<SubAccountCPC> dataset3N = accountDataManagerServiceImpl.
+                    FilterAccountDataCPC(FullClassSevenN,AccountCategoryClass7.PRODUITS_FINANCIERS.getLabel());
+            List<SubAccountCPC> dataset4N = accountDataManagerServiceImpl.
+                    FilterAccountDataCPC(FullClassSixN,AccountCategoryClass6.CHARGES_FINANCIERES.getLabel());
+            List<SubAccountCPC> dataset5N = accountDataManagerServiceImpl.
+                    FilterAccountDataCPC(FullClassSevenN,AccountCategoryClass7.PRODUITS_NON_COURANTS.getLabel());
+            List<SubAccountCPC> dataset6N = accountDataManagerServiceImpl.
+                    FilterAccountDataCPC(FullClassSixN,AccountCategoryClass6.CHARGES_NON_COURANTES.getLabel());
+
+            if(!ClassSevenN.isEmpty() && !ClassSixN.isEmpty()){
+
+                List<SubAccountCPC> totalListIN = new ArrayList<>();
+                totalListIN.addAll(dataset1N);
+                parameters.put("total1P",accountDataManagerServiceImpl.GetTotalBrutCPC(totalListIN));
+                List<SubAccountCPC> totalListIIN = new ArrayList<>();
+                totalListIIN.addAll(dataset2N);
+                parameters.put("total2P",accountDataManagerServiceImpl.GetTotalBrutCPC(totalListIIN));
+                List<SubAccountCPC> totalListIIIN = new ArrayList<>();
+                totalListIIIN.addAll(dataset3N);
+                parameters.put("total3P",accountDataManagerServiceImpl.GetTotalBrutCPC(totalListIIIN));
+                List<SubAccountCPC> totalListIVN = new ArrayList<>();
+                totalListIVN.addAll(dataset4N);
+                parameters.put("total4P",accountDataManagerServiceImpl.GetTotalBrutCPC(totalListIVN));
+                List<SubAccountCPC> totalListVN = new ArrayList<>();
+                totalListVN.addAll(dataset5N);
+                parameters.put("total5P",accountDataManagerServiceImpl.GetTotalBrutCPC(totalListVN));
+                List<SubAccountCPC> totalListVIN = new ArrayList<>();
+                totalListVIN.addAll(dataset6N);
+                parameters.put("total6P",accountDataManagerServiceImpl.GetTotalBrutCPC(totalListVIN));
+
+                Double totaltempN = accountDataManagerServiceImpl.GetTotalBrutCPC(totalListIN) -
+                        accountDataManagerServiceImpl.GetTotalBrutCPC(totalListIIN);
+
+                Double total7N = (totaltempN - accountDataManagerServiceImpl.GetTotalBrutCPC(totalListIIIN)) + (accountDataManagerServiceImpl.GetTotalBrutCPC(totalListVN)
+                        - accountDataManagerServiceImpl.GetTotalBrutCPC(totalListVIN));
+                parameters.put("total7P",total7N);
+
+
+                Double total9N = (accountDataManagerServiceImpl.GetTotalBrutCPC(totalListIN)
+                        + accountDataManagerServiceImpl.GetTotalBrutCPC(totalListIIIN) + accountDataManagerServiceImpl.GetTotalBrutCPC(totalListVN)) - (accountDataManagerServiceImpl.GetTotalBrutCPC(totalListIIN)
+                        + accountDataManagerServiceImpl.GetTotalBrutCPC(totalListIVN) + accountDataManagerServiceImpl.GetTotalBrutCPC(totalListVIN));
+                parameters.put("total9P",total9N);
+            }
+
+
 
             // ANNEE N (exercice brut)
             // CLASS SIX
@@ -414,6 +480,24 @@ public class ReportServiceImpl implements ReportService {
             List<SubAccountCPC> dataset6 = accountDataManagerServiceImpl.
                     FilterAccountDataCPC(FullClassSix,AccountCategoryClass6.CHARGES_NON_COURANTES.getLabel());
 
+            accountDataManagerServiceImpl.updateTotalBrutCPC(dataset1);
+            accountDataManagerServiceImpl.updateTotalBrutCPC(dataset2);
+            accountDataManagerServiceImpl.updateTotalBrutCPC(dataset3);
+            accountDataManagerServiceImpl.updateTotalBrutCPC(dataset4);
+            accountDataManagerServiceImpl.updateTotalBrutCPC(dataset5);
+            accountDataManagerServiceImpl.updateTotalBrutCPC(dataset6);
+
+           /* // ADD THE DATA OF EXERCICE PRECEDENT IN THE ACTUAL DATASETS (ANNEE N)
+            accountDataManagerServiceImpl.updateExerciceP(dataset1N,dataset1);
+            accountDataManagerServiceImpl.updateExerciceP(dataset2N,dataset2);
+            accountDataManagerServiceImpl.updateExerciceP(dataset3N,dataset3);
+            accountDataManagerServiceImpl.updateExerciceP(dataset4N,dataset4);
+            accountDataManagerServiceImpl.updateExerciceP(dataset5N,dataset5);
+            accountDataManagerServiceImpl.updateExerciceP(dataset6N,dataset6);*/
+
+
+
+
             JRBeanCollectionDataSource dataSource1 = new JRBeanCollectionDataSource(dataset1);
             JRBeanCollectionDataSource dataSource2 = new JRBeanCollectionDataSource(dataset2);
             JRBeanCollectionDataSource dataSource3 = new JRBeanCollectionDataSource(dataset3);
@@ -421,7 +505,7 @@ public class ReportServiceImpl implements ReportService {
             JRBeanCollectionDataSource dataSource5 = new JRBeanCollectionDataSource(dataset5);
             JRBeanCollectionDataSource dataSource6 = new JRBeanCollectionDataSource(dataset6);
 
-            Map<String, Object> parameters = new HashMap<>();
+
 
             // SETTING PARAMETERS
 
@@ -500,6 +584,7 @@ public class ReportServiceImpl implements ReportService {
 
             return jasperConfiguration(pathCPC,parameters);
         }catch (RuntimeException e){
+            e.printStackTrace();
             String message = "Failed to report CPC " + e.getLocalizedMessage() + "!";
             throw new RuntimeException(message);
         }
@@ -509,32 +594,339 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public ByteArrayOutputStream exportEsg(String date, String company_name) throws JRException {
 
+        // TO CHECK
+        String pathEsg = path+"esg.jrxml";
+
         try {
             // ANNEE N-1 (exercice precedent)
 
+            // CLASS SIX
+            List<SubAccountCPC> ClassSixN = balanceDetailServiceImpl.getClassSix(getLastYear(date),company_name);
+            List<SubAccountCPC> FullClassSixN = accountDataManagerServiceImpl.
+                    processAccountDataCPC(ClassSixN,"6");
+            // CLASS SEVEN
+            List<SubAccountCPC> ClassSevenN = balanceDetailServiceImpl.getClassSeven(getLastYear(date),company_name);
+            List<SubAccountCPC> FullClassSevenN = accountDataManagerServiceImpl.
+                    processAccountDataCPC(ClassSevenN,"7");
+
+            // TFR PART
+            List<Esg> dataset1N = esgService.processDataTFR(FullClassSixN,FullClassSevenN,1);
+            List<Esg> dataset2N = esgService.processDataTFR(FullClassSixN,FullClassSevenN,2);
+            List<Esg> dataset3N = esgService.processDataTFR(FullClassSixN,FullClassSevenN,3);
+            List<Esg> dataset4N = esgService.processDataTFR(FullClassSixN,FullClassSevenN,4);
+            List<Esg> dataset5N = esgService.processDataTFR(FullClassSixN,FullClassSevenN,5);
+            // CAF PART
+            List<Esg> dataset6N = esgService.processDataCAF(FullClassSixN,FullClassSevenN,1);
+            List<Esg> dataset7N = esgService.processDataCAF(FullClassSixN,FullClassSevenN,2);
+
+            Double total1P = esgService.GetTotalDataEsg(dataset1N,2);
+            Double total2P = esgService.GetTotalDataEsg(dataset2N,1);
+            Double total3P = esgService.GetTotalDataEsg(dataset3N,1);
+            Double total4P = esgService.GetTotalDataEsg(dataset4N,1);
+            Double total5P = esgService.GetTotalDataEsg(dataset5N,1);
+
+            Map<String, Object> parameters = new HashMap<>();
+
+            List<Esg> totalCAFListP = new ArrayList<>();
+            totalCAFListP.addAll(dataset6N);
+            totalCAFListP.addAll(dataset7N);
+
+            parameters.put("totalCAFP",esgService.GetTotalDataEsg(totalCAFListP,1));
+
+
+            if(!FullClassSevenN.isEmpty() && !FullClassSixN.isEmpty()){
+                Double REPrevious = esgService.GetResultat(FullClassSixN,FullClassSevenN,"RESULTAT D'EXPLOITATION");
+                Double RFPrevious = esgService.GetResultat(FullClassSixN,FullClassSevenN,"RESULTAT FINANCIER");
+                Double RCPrevious = esgService.GetResultat(FullClassSixN,FullClassSevenN,"RESULTAT COURANT");
+                Double RNCPrevious = esgService.GetResultat(FullClassSixN,FullClassSevenN,"RESULTAT NON COURANT");
+                Double IRPrevious = esgService.GetResultat(FullClassSixN,FullClassSevenN,"Impôt sur les résultats");
+                Double RNPrevious = esgService.GetResultat(FullClassSixN,FullClassSevenN,"RESULTAT NET DE L'EXERCICE");
+
+                parameters.put("REPrevious",REPrevious);
+                parameters.put("RFPrevious",RFPrevious);
+                parameters.put("RCPrevious",RCPrevious);
+                parameters.put("RNCPrevious",RNCPrevious);
+                parameters.put("IRPrevious",IRPrevious);
+                parameters.put("RNPrevious",RNPrevious);
+
+            }
+
             // ANNEE N (exercice brut)
 
+            // CLASS SIX
+            List<SubAccountCPC> ClassSix = balanceDetailServiceImpl.getClassSix(date,company_name);
+            List<SubAccountCPC> FullClassSix = accountDataManagerServiceImpl.
+                    processAccountDataCPC(ClassSix,"6");
+            // CLASS SEVEN
+            List<SubAccountCPC> ClassSeven = balanceDetailServiceImpl.getClassSeven(date,company_name);
+            List<SubAccountCPC> FullClassSeven = accountDataManagerServiceImpl.
+                    processAccountDataCPC(ClassSeven,"7");
 
+            // CREATE INSTANCES OF JRBEANCOLLECTIONDATASOURCE FOR OUR JAVA BEAN OBJECTS
+
+            // TFR PART
+            List<Esg> dataset1 = esgService.processDataTFR(FullClassSix,FullClassSeven,1);
+            List<Esg> dataset2 = esgService.processDataTFR(FullClassSix,FullClassSeven,2);
+            List<Esg> dataset3 = esgService.processDataTFR(FullClassSix,FullClassSeven,3);
+            List<Esg> dataset4 = esgService.processDataTFR(FullClassSix,FullClassSeven,4);
+            List<Esg> dataset5 = esgService.processDataTFR(FullClassSix,FullClassSeven,5);
+            // CAF PART
+            List<Esg> dataset6 = esgService.processDataCAF(FullClassSix,FullClassSeven,1);
+            List<Esg> dataset7 = esgService.processDataCAF(FullClassSix,FullClassSeven,2);
+
+            // ADD THE DATA OF EXERCICE PRECEDENT IN THE ACTUAL DATASETS (ANNEE N)
+            accountDataManagerServiceImpl.updateExerciceP(dataset1N,dataset1);
+            accountDataManagerServiceImpl.updateExerciceP(dataset2N,dataset2);
+            accountDataManagerServiceImpl.updateExerciceP(dataset3N,dataset3);
+            accountDataManagerServiceImpl.updateExerciceP(dataset4N,dataset4);
+            accountDataManagerServiceImpl.updateExerciceP(dataset5N,dataset5);
+            accountDataManagerServiceImpl.updateExerciceP(dataset6N,dataset6);
+            accountDataManagerServiceImpl.updateExerciceP(dataset7N,dataset7);
+
+
+            JRBeanCollectionDataSource dataSource1 = new JRBeanCollectionDataSource(dataset1);
+            JRBeanCollectionDataSource dataSource2 = new JRBeanCollectionDataSource(dataset2);
+            JRBeanCollectionDataSource dataSource3 = new JRBeanCollectionDataSource(dataset3);
+            JRBeanCollectionDataSource dataSource4 = new JRBeanCollectionDataSource(dataset4);
+            JRBeanCollectionDataSource dataSource5 = new JRBeanCollectionDataSource(dataset5);
+
+            JRBeanCollectionDataSource dataSource6 = new JRBeanCollectionDataSource(dataset6);
+            JRBeanCollectionDataSource dataSource7 = new JRBeanCollectionDataSource(dataset7);
+
+
+
+            parameters.put("param1",dataSource1);
+            parameters.put("param2",dataSource2);
+            parameters.put("param3",dataSource3);
+            parameters.put("param4",dataSource4);
+            parameters.put("param5",dataSource5);
+
+            parameters.put("param6",dataSource6);
+            parameters.put("param7",dataSource7);
+
+            parameters.put("total1",esgService.GetTotalDataEsg(dataset1,2));
+            parameters.put("total2",esgService.GetTotalDataEsg(dataset2,1));
+            parameters.put("total3",esgService.GetTotalDataEsg(dataset3,1));
+            parameters.put("total4",esgService.GetTotalDataEsg(dataset4,1));
+            parameters.put("total5",esgService.GetTotalDataEsg(dataset5,1));
+
+            parameters.put("total1P",total1P);
+            parameters.put("total2P",total2P);
+            parameters.put("total3P",total3P);
+            parameters.put("total4P",total4P);
+            parameters.put("total5P",total5P);
+
+            parameters.put("RE",esgService.GetResultat(FullClassSix,FullClassSeven,"RESULTAT D'EXPLOITATION"));
+            parameters.put("RF",esgService.GetResultat(FullClassSix,FullClassSeven,"RESULTAT FINANCIER"));
+            parameters.put("RC",esgService.GetResultat(FullClassSix,FullClassSeven,"RESULTAT COURANT"));
+            parameters.put("RNC",esgService.GetResultat(FullClassSix,FullClassSeven,"RESULTAT NON COURANT"));
+            parameters.put("IR",esgService.GetResultat(FullClassSix,FullClassSeven,"Impôt sur les résultats"));
+            parameters.put("RN",esgService.GetResultat(FullClassSix,FullClassSeven,"RESULTAT NET DE L'EXERCICE"));
+
+            List<Esg> totalCAFList = new ArrayList<>();
+            totalCAFList.addAll(dataset6);
+            totalCAFList.addAll(dataset7);
+
+            parameters.put("totalCAF",esgService.GetTotalDataEsg(totalCAFList,1));
+
+            parameters.put("DateN",date.substring(0,4));
+            parameters.put("DateN1",getLastYear(date).substring(0,4));
+
+            parameters.put("name_company",company_name);
+
+            return jasperConfiguration(pathEsg,parameters);
         }catch (RuntimeException e) {
             String message = "Failed to report ESG " + e.getLocalizedMessage() + "!";
             throw new RuntimeException(message);
         }
-        return null;
     }
 
     @Override
     public ByteArrayOutputStream exportDetailCPC(String date, String company_name) throws JRException {
 
+        // TO CHECK
+        String pathDetailCPC1 = path+"DetailCPC1.jrxml";
+        String pathDetailCPC2 = path+"DetailCPC2.jrxml";
+
         try {
             // ANNEE N-1 (exercice precedent)
 
+            // CLASS SIX
+            List<SubAccountCPC> ClassSixN = balanceDetailServiceImpl.getClassSix(getLastYear(date),company_name);
+            List<DetailCPC> FullClassSixN = detailCPCService.processDataSix(ClassSixN);
+
+            List<DetailCPC> dataset1N = detailCPCService.FilterAccountDataDetailCPC(FullClassSixN,
+                    DetailCPCCategoryClass6.ACHAT_REVENDUS.getLabel());
+            List<DetailCPC> dataset2N = detailCPCService.FilterAccountDataDetailCPC(FullClassSixN,
+                    DetailCPCCategoryClass6.ACHAT_CONSOMES.getLabel());
+            List<DetailCPC> dataset3N = detailCPCService.FilterAccountDataDetailCPC(FullClassSixN,
+                    DetailCPCCategoryClass6.AUTRES_CHARGES_EXTERNES.getLabel());
+            List<DetailCPC> dataset4N = detailCPCService.FilterAccountDataDetailCPC(FullClassSixN,
+                    DetailCPCCategoryClass6.CHARGES_PERSONEL.getLabel());
+            List<DetailCPC> dataset5N = detailCPCService.FilterAccountDataDetailCPC(FullClassSixN,
+                    DetailCPCCategoryClass6.AUTRES_CHARGES_EXPLOITATION.getLabel());
+            List<DetailCPC> dataset6N = detailCPCService.FilterAccountDataDetailCPC(FullClassSixN,
+                    DetailCPCCategoryClass6.AUTRES_CHARGES_FINANCIERES.getLabel());
+            List<DetailCPC> dataset7N = detailCPCService.FilterAccountDataDetailCPC(FullClassSixN,
+                    DetailCPCCategoryClass6.AUTRES_CHARGES_NON_COURANTES.getLabel());
+
+            // CLASS SEVEN
+            List<SubAccountCPC> ClassSevenN = balanceDetailServiceImpl.getClassSeven(getLastYear(date),company_name);
+            List<DetailCPC> FullClassSevenN = detailCPCService.processDataSeven(ClassSevenN);
+
+            List<DetailCPC> dataset8N = detailCPCService.FilterAccountDataDetailCPC(FullClassSevenN,
+                    DetailCPCCategoryClass7.VENTES_MARCHANDISES.getLabel());
+            List<DetailCPC> dataset9N = detailCPCService.FilterAccountDataDetailCPC(FullClassSevenN,
+                    DetailCPCCategoryClass7.VENTES_BIENS_SERVICES.getLabel());
+            List<DetailCPC> dataset10N = detailCPCService.FilterAccountDataDetailCPC(FullClassSevenN,
+                    DetailCPCCategoryClass7.VAR_STOCK_PRODUITS.getLabel());
+            List<DetailCPC> dataset11N = detailCPCService.FilterAccountDataDetailCPC(FullClassSevenN,
+                    DetailCPCCategoryClass7.AUTRES_PRODUITS_EXP.getLabel());
+            List<DetailCPC> dataset12N = detailCPCService.FilterAccountDataDetailCPC(FullClassSevenN,
+                    DetailCPCCategoryClass7.REPRISE_EXPLOITATION.getLabel());
+            List<DetailCPC> dataset13N = detailCPCService.FilterAccountDataDetailCPC(FullClassSevenN,
+                    DetailCPCCategoryClass7.INTERETS_ASSIMILES.getLabel());
+
+
             // ANNEE N (exercice brut)
 
+            // CLASS SIX
+            List<SubAccountCPC> ClassSix = balanceDetailServiceImpl.getClassSix(date,company_name);
+            List<DetailCPC> FullClassSix = detailCPCService.processDataSix(ClassSix);
+
+            List<DetailCPC> dataset1 = detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
+                    DetailCPCCategoryClass6.ACHAT_REVENDUS.getLabel());
+            List<DetailCPC> dataset2 = detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
+                    DetailCPCCategoryClass6.ACHAT_CONSOMES.getLabel());
+            List<DetailCPC> dataset3 = detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
+                    DetailCPCCategoryClass6.AUTRES_CHARGES_EXTERNES.getLabel());
+            List<DetailCPC> dataset4 = detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
+                    DetailCPCCategoryClass6.CHARGES_PERSONEL.getLabel());
+            List<DetailCPC> dataset5 = detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
+                    DetailCPCCategoryClass6.AUTRES_CHARGES_EXPLOITATION.getLabel());
+            List<DetailCPC> dataset6 = detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
+                    DetailCPCCategoryClass6.AUTRES_CHARGES_FINANCIERES.getLabel());
+            List<DetailCPC> dataset7 = detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
+                    DetailCPCCategoryClass6.AUTRES_CHARGES_NON_COURANTES.getLabel());
+
+            // CLASS SEVEN
+            List<SubAccountCPC> ClassSeven = balanceDetailServiceImpl.getClassSeven(date,company_name);
+            List<DetailCPC> FullClassSeven = detailCPCService.processDataSeven(ClassSeven);
+
+            List<DetailCPC> dataset8 = detailCPCService.FilterAccountDataDetailCPC(FullClassSeven,
+                    DetailCPCCategoryClass7.VENTES_MARCHANDISES.getLabel());
+            List<DetailCPC> dataset9 = detailCPCService.FilterAccountDataDetailCPC(FullClassSeven,
+                    DetailCPCCategoryClass7.VENTES_BIENS_SERVICES.getLabel());
+            List<DetailCPC> dataset10 = detailCPCService.FilterAccountDataDetailCPC(FullClassSeven,
+                    DetailCPCCategoryClass7.VAR_STOCK_PRODUITS.getLabel());
+            List<DetailCPC> dataset11 = detailCPCService.FilterAccountDataDetailCPC(FullClassSeven,
+                    DetailCPCCategoryClass7.AUTRES_PRODUITS_EXP.getLabel());
+            List<DetailCPC> dataset12 = detailCPCService.FilterAccountDataDetailCPC(FullClassSeven,
+                    DetailCPCCategoryClass7.REPRISE_EXPLOITATION.getLabel());
+            List<DetailCPC> dataset13 = detailCPCService.FilterAccountDataDetailCPC(FullClassSeven,
+                    DetailCPCCategoryClass7.INTERETS_ASSIMILES.getLabel());
+
+
+
+            Map<String, Object> parameters1 = new HashMap<>();
+            Map<String, Object> parameters2 = new HashMap<>();
+
+            // PARAMETER PAGE 1 ( DATA CLASS SIX )
+
+            // ADD THE DATA OF EXERCICE PRECEDENT IN THE ACTUAL DATASETS (ANNEE N)
+            accountDataManagerServiceImpl.updateExerciceP(dataset1N,dataset1);
+            accountDataManagerServiceImpl.updateExerciceP(dataset2N,dataset2);
+            accountDataManagerServiceImpl.updateExerciceP(dataset3N,dataset3);
+            accountDataManagerServiceImpl.updateExerciceP(dataset4N,dataset4);
+            accountDataManagerServiceImpl.updateExerciceP(dataset5N,dataset5);
+            accountDataManagerServiceImpl.updateExerciceP(dataset6N,dataset6);
+            accountDataManagerServiceImpl.updateExerciceP(dataset7N,dataset7);
+
+            JRBeanCollectionDataSource dataSource1 = new JRBeanCollectionDataSource(dataset1);
+            JRBeanCollectionDataSource dataSource2 = new JRBeanCollectionDataSource(dataset2);
+            JRBeanCollectionDataSource dataSource3 = new JRBeanCollectionDataSource(dataset3);
+            JRBeanCollectionDataSource dataSource4 = new JRBeanCollectionDataSource(dataset4);
+            JRBeanCollectionDataSource dataSource5 = new JRBeanCollectionDataSource(dataset5);
+            JRBeanCollectionDataSource dataSource6 = new JRBeanCollectionDataSource(dataset6);
+            JRBeanCollectionDataSource dataSource7 = new JRBeanCollectionDataSource(dataset7);
+
+            parameters1.put("param1",dataSource1);
+            parameters1.put("param2",dataSource2);
+            parameters1.put("param3",dataSource3);
+            parameters1.put("param4",dataSource4);
+            parameters1.put("param5",dataSource5);
+            parameters1.put("param6",dataSource6);
+            parameters1.put("param7",dataSource7);
+
+            parameters1.put("total1",detailCPCService.GetTotalDataDetailCPCC(dataset1));
+            parameters1.put("total2",detailCPCService.GetTotalDataDetailCPCC(dataset2));
+            parameters1.put("total3",detailCPCService.GetTotalDataDetailCPCC(dataset3));
+            parameters1.put("total4",detailCPCService.GetTotalDataDetailCPCC(dataset4));
+            parameters1.put("total5",detailCPCService.GetTotalDataDetailCPCC(dataset5));
+            parameters1.put("total6",detailCPCService.GetTotalDataDetailCPCC(dataset6));
+            parameters1.put("total7",detailCPCService.GetTotalDataDetailCPCC(dataset7));
+
+            parameters1.put("total1P",detailCPCService.GetTotalDataDetailCPCC(dataset1N));
+            parameters1.put("total2P",detailCPCService.GetTotalDataDetailCPCC(dataset2N));
+            parameters1.put("total3P",detailCPCService.GetTotalDataDetailCPCC(dataset3N));
+            parameters1.put("total4P",detailCPCService.GetTotalDataDetailCPCC(dataset4N));
+            parameters1.put("total5P",detailCPCService.GetTotalDataDetailCPCC(dataset5N));
+            parameters1.put("total6P",detailCPCService.GetTotalDataDetailCPCC(dataset6N));
+            parameters1.put("total7P",detailCPCService.GetTotalDataDetailCPCC(dataset7N));
+
+            parameters1.put("DateN",date.substring(0,4));
+            parameters1.put("DateN1",getLastYear(date).substring(0,4));
+
+            parameters1.put("name_company",company_name);
+
+            // PARAMETER PAGE 2 (DATA CLASS 7)
+            // ADD THE DATA OF EXERCICE PRECEDENT IN THE ACTUAL DATASETS (ANNEE N)
+            accountDataManagerServiceImpl.updateExerciceP(dataset8N,dataset8);
+            accountDataManagerServiceImpl.updateExerciceP(dataset9N,dataset9);
+            accountDataManagerServiceImpl.updateExerciceP(dataset10N,dataset10);
+            accountDataManagerServiceImpl.updateExerciceP(dataset11N,dataset11);
+            accountDataManagerServiceImpl.updateExerciceP(dataset12N,dataset12);
+            accountDataManagerServiceImpl.updateExerciceP(dataset13N,dataset13);
+
+            JRBeanCollectionDataSource dataSource8 = new JRBeanCollectionDataSource(dataset8);
+            JRBeanCollectionDataSource dataSource9 = new JRBeanCollectionDataSource(dataset9);
+            JRBeanCollectionDataSource dataSource10 = new JRBeanCollectionDataSource(dataset10);
+            JRBeanCollectionDataSource dataSource11 = new JRBeanCollectionDataSource(dataset11);
+            JRBeanCollectionDataSource dataSource12 = new JRBeanCollectionDataSource(dataset12);
+            JRBeanCollectionDataSource dataSource13 = new JRBeanCollectionDataSource(dataset13);
+
+            parameters2.put("param8",dataSource8);
+            parameters2.put("param9",dataSource9);
+            parameters2.put("param10",dataSource10);
+            parameters2.put("param11",dataSource11);
+            parameters2.put("param12",dataSource12);
+            parameters2.put("param13",dataSource13);
+
+            parameters1.put("total8",detailCPCService.GetTotalDataDetailCPCC(dataset8));
+            parameters1.put("total9",detailCPCService.GetTotalDataDetailCPCC(dataset9));
+            parameters1.put("total10",detailCPCService.GetTotalDataDetailCPCC(dataset10));
+            parameters1.put("total11",detailCPCService.GetTotalDataDetailCPCC(dataset11));
+            parameters1.put("total12",detailCPCService.GetTotalDataDetailCPCC(dataset12));
+            parameters1.put("total13",detailCPCService.GetTotalDataDetailCPCC(dataset13));
+
+            parameters1.put("total8P",detailCPCService.GetTotalDataDetailCPCC(dataset8N));
+            parameters1.put("total9P",detailCPCService.GetTotalDataDetailCPCC(dataset9N));
+            parameters1.put("total10P",detailCPCService.GetTotalDataDetailCPCC(dataset10N));
+            parameters1.put("total11P",detailCPCService.GetTotalDataDetailCPCC(dataset11N));
+            parameters1.put("total12P",detailCPCService.GetTotalDataDetailCPCC(dataset12N));
+            parameters1.put("total13P",detailCPCService.GetTotalDataDetailCPCC(dataset13N));
+
+            parameters2.put("DateN",date.substring(0,4));
+            parameters2.put("DateN1",getLastYear(date).substring(0,4));
+
+            parameters2.put("name_company",company_name);
+
+
+            return jasperConfigurationCPC(pathDetailCPC1,pathDetailCPC2,parameters1,parameters2);
         }catch (RuntimeException e){
-            String message = "Failed to report CPC " + e.getLocalizedMessage() + "!";
+            String message = "Failed to report DetailCPC " + e.getLocalizedMessage() + "!";
             throw new RuntimeException(message);
         }
-        return null;
     }
 
     @Override
@@ -714,6 +1106,9 @@ public class ReportServiceImpl implements ReportService {
 
         // Avoir la date debut de la société et le convertir en localDate
         String start_date = societeRepository.getStartDateActivity(company_name);
+        if(start_date == null){
+            return true;
+        }
         LocalDate dateSociete = LocalDate.parse(start_date);
 
         // Obtenir les années précédentes
@@ -773,6 +1168,30 @@ public class ReportServiceImpl implements ReportService {
         jrPdfExporter.setExporterInput(new SimpleExporterInput(jasperPrint));
         jrPdfExporter.setExporterOutput(new SimpleOutputStreamExporterOutput(byteArrayOutputStream));
         jrPdfExporter.exportReport();
+        return byteArrayOutputStream;
+    }
+
+    public ByteArrayOutputStream jasperConfigurationCPC(String path1,String path2,Map<String,Object> parameters1,Map<String,Object> parameters2) throws JRException {
+
+        JasperReport report1 = JasperCompileManager.compileReport(path1);
+        JasperPrint jasperPrint1 = JasperFillManager.fillReport(report1, parameters1, new JREmptyDataSource());
+
+        JasperReport report2 = JasperCompileManager.compileReport(path2);
+        JasperPrint jasperPrint2 = JasperFillManager.fillReport(report2, parameters2, new JREmptyDataSource());
+
+        List<JasperPrint> jasperPrintList = new ArrayList<JasperPrint>();
+        jasperPrintList.add(jasperPrint1);
+        jasperPrintList.add(jasperPrint2);
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        JRPdfExporter exporter = new JRPdfExporter();
+        exporter.setExporterInput(SimpleExporterInput.getInstance(jasperPrintList));
+        exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(byteArrayOutputStream));
+        SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
+        configuration.setCreatingBatchModeBookmarks(true);
+        exporter.setConfiguration(configuration);
+        exporter.exportReport();
+
         return byteArrayOutputStream;
     }
 

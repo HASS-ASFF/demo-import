@@ -4,26 +4,32 @@
     <subDataset name="Dataset1" whenResourceMissingType="Empty" uuid="255de2b7-0ce0-4a1c-b145-b3f6df4ebdf8">
         <field name="brut" class="java.lang.Double"/>
         <field name="brutP" class="java.lang.Double"/>
+        <field name="totalbrut" class="java.lang.Double"/>
     </subDataset>
     <subDataset name="Dataset2" whenResourceMissingType="Empty" uuid="599d0c83-11cd-4be9-a2f5-c28cbe3c372e">
         <field name="brut" class="java.lang.Double"/>
         <field name="brutP" class="java.lang.Double"/>
+        <field name="totalbrut" class="java.lang.Double"/>
     </subDataset>
     <subDataset name="Dataset3" whenResourceMissingType="Empty" uuid="4d76a89a-8a8f-4f91-b356-be620b66870b">
         <field name="brut" class="java.lang.Double"/>
         <field name="brutP" class="java.lang.Double"/>
+        <field name="totalbrut" class="java.lang.Double"/>
     </subDataset>
     <subDataset name="Dataset4" whenResourceMissingType="Empty" uuid="cd1cc4eb-205d-4c31-a6ab-4f2152a4da6a">
         <field name="brut" class="java.lang.Double"/>
         <field name="brutP" class="java.lang.Double"/>
+        <field name="totalbrut" class="java.lang.Double"/>
     </subDataset>
     <subDataset name="Dataset5" whenResourceMissingType="Empty" uuid="0b660997-647d-4e33-87e7-3411de6dd855">
         <field name="brut" class="java.lang.Double"/>
         <field name="brutP" class="java.lang.Double"/>
+        <field name="totalbrut" class="java.lang.Double"/>
     </subDataset>
     <subDataset name="Dataset6" whenResourceMissingType="Empty" uuid="bf79907a-4166-4495-9796-076611501d9b">
         <field name="brut" class="java.lang.Double"/>
         <field name="brutP" class="java.lang.Double"/>
+        <field name="totalbrut" class="java.lang.Double"/>
     </subDataset>
     <parameter name="param1" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
     <parameter name="param2" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
@@ -43,6 +49,15 @@
     <parameter name="DateN" class="java.lang.String"/>
     <parameter name="DateN1" class="java.lang.String"/>
     <parameter name="name_company" class="java.lang.String"/>
+    <parameter name="total1P" class="java.lang.Double"/>
+    <parameter name="total2P" class="java.lang.Double"/>
+    <parameter name="total3P" class="java.lang.Double"/>
+    <parameter name="total4P" class="java.lang.Double"/>
+    <parameter name="total5P" class="java.lang.Double"/>
+    <parameter name="total6P" class="java.lang.Double"/>
+    <parameter name="total7P" class="java.lang.Double"/>
+    <parameter name="total9P" class="java.lang.Double"/>
+    <parameter name="ImpotsP" class="java.lang.Double"/>
     <background>
         <band splitType="Stretch"/>
     </background>
@@ -59,7 +74,7 @@
                 </graphicElement>
             </rectangle>
             <rectangle>
-                <reportElement mode="Opaque" x="385" y="305" width="170" height="237" backcolor="#325A77" uuid="9e51c334-9aa0-40b1-aee8-80cb7703fd3b">
+                <reportElement mode="Opaque" x="385" y="305" width="170" height="227" backcolor="#325A77" uuid="9e51c334-9aa0-40b1-aee8-80cb7703fd3b">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
@@ -68,7 +83,7 @@
                 </graphicElement>
             </rectangle>
             <staticText>
-                <reportElement mode="Opaque" x="385" y="547" width="170" height="20" forecolor="#FFFFFF" backcolor="#325A77" uuid="cd4e156a-20ef-4aff-8e02-68b98b39a9c3">
+                <reportElement mode="Opaque" x="385" y="538" width="170" height="20" forecolor="#FFFFFF" backcolor="#325A77" uuid="cd4e156a-20ef-4aff-8e02-68b98b39a9c3">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
@@ -77,7 +92,7 @@
                 <text><![CDATA[TOTAL ACTIVE]]></text>
             </staticText>
             <textField>
-                <reportElement mode="Opaque" x="385" y="572" width="83" height="20" forecolor="#FFFFFF" backcolor="#325A77" uuid="1e12f337-6bc0-4318-875f-d84cd3daba5e">
+                <reportElement mode="Opaque" x="385" y="563" width="83" height="20" forecolor="#FFFFFF" backcolor="#325A77" uuid="1e12f337-6bc0-4318-875f-d84cd3daba5e">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
@@ -86,7 +101,7 @@
                 <textFieldExpression><![CDATA[$P{DateN}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement mode="Opaque" x="472" y="572" width="83" height="20" forecolor="#FFFFFF" backcolor="#325A77" uuid="e571ef59-bef7-4ed9-9bbc-fdb4283579c7">
+                <reportElement mode="Opaque" x="472" y="563" width="83" height="20" forecolor="#FFFFFF" backcolor="#325A77" uuid="e571ef59-bef7-4ed9-9bbc-fdb4283579c7">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
@@ -365,9 +380,11 @@ l'exercice (1)]]></text>
                         <textField isBlankWhenNull="true">
                             <reportElement x="0" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="62cd9027-626e-482c-8648-3a72882e92b1">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
                             <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
@@ -378,24 +395,34 @@ l'exercice (1)]]></text>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brutP}]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="120" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="e1a175a7-a9c0-4cfc-9ae1-f73da89b153c">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{totalbrut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{totalbrut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
                             <reportElement x="180" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="1a25e40f-b945-4fa5-b3a5-bc9ee44f848d">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
+                            <box>
+                                <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                            </box>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
+                            <textFieldExpression><![CDATA[$F{brutP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brutP}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>
@@ -773,7 +800,6 @@ l'exercice (1)]]></text>
                 <reportElement mode="Opaque" x="140" y="340" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="2b7795f3-aae4-445c-8666-900f2f071c4c">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -785,7 +811,7 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total4}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -829,7 +855,6 @@ l'exercice (1)]]></text>
                 <reportElement mode="Opaque" x="200" y="340" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="f0ed6a80-aadc-496a-ad87-730f48c80f30">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -841,14 +866,13 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="340" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="fb4af75f-c90a-4341-bcb3-57b40c032187">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -860,7 +884,7 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total4}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -868,7 +892,6 @@ l'exercice (1)]]></text>
                 <reportElement mode="Opaque" x="320" y="340" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="2716c4e7-a47a-4383-9573-acd152351041">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -880,14 +903,13 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="350" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="73e66826-0b63-4785-818c-ab0b24d9d1ac">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -899,7 +921,7 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total3}-$P{total4}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -907,7 +929,6 @@ l'exercice (1)]]></text>
                 <reportElement mode="Opaque" x="200" y="350" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="4ab3ea80-4a55-4c27-9729-bbd352ccc71f">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -919,14 +940,13 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="350" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="095b4ae1-3fd9-4b12-b6af-17acd805f483">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -938,7 +958,7 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total3}-$P{total4}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -946,7 +966,6 @@ l'exercice (1)]]></text>
                 <reportElement mode="Opaque" x="320" y="350" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="7bf54d7a-87cd-4216-be45-86f909d0a321">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -958,14 +977,13 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="278" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="5949278e-9cf3-44c6-a912-2e1d50344ec5">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -977,14 +995,13 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="278" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="b3895d97-148e-4a68-8cfa-d5a86aa535dc">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -996,7 +1013,7 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total3}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -1016,14 +1033,13 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="278" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="095e64ed-8888-4699-b4c4-5655c5e55d16">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1035,7 +1051,7 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total3}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -1043,7 +1059,6 @@ l'exercice (1)]]></text>
                 <reportElement mode="Opaque" x="320" y="226" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="a2483554-628e-421f-9fa7-61c5868dbe8b">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1055,14 +1070,13 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="226" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="d228c8d3-4fc3-4332-8c0b-53c9785e4322">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1074,7 +1088,7 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total1}-$P{total2}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -1082,7 +1096,6 @@ l'exercice (1)]]></text>
                 <reportElement mode="Opaque" x="200" y="226" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="d32dcb7c-ab8b-489a-a613-0ba16c1219f9">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1094,14 +1107,13 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="226" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="e670e74c-ab38-4d74-9f4d-10ecd2a822e2">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1113,7 +1125,7 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total1}-$P{total2}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -1121,7 +1133,6 @@ l'exercice (1)]]></text>
                 <reportElement mode="Opaque" x="320" y="216" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="02acbf60-d4bc-45fb-ae35-7bc665856079">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1133,7 +1144,7 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
@@ -1152,7 +1163,7 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total2}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -1160,7 +1171,6 @@ l'exercice (1)]]></text>
                 <reportElement mode="Opaque" x="200" y="216" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="29568413-b82f-42c6-882a-a18dc302de44">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1172,14 +1182,13 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="216" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="4de2c0f1-1a9a-47cd-adf8-198d3162846c">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1191,7 +1200,7 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total2}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -1211,7 +1220,7 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
@@ -1230,7 +1239,7 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total1}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -1269,7 +1278,7 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total1}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -1277,7 +1286,6 @@ l'exercice (1)]]></text>
                 <reportElement mode="Opaque" x="320" y="360" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="b5cf22fa-425a-432e-ae6f-1a8c52c41dc5">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1289,7 +1297,7 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
@@ -1308,7 +1316,7 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format(($P{total1}-$P{total2})+$P{total3}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -1316,7 +1324,6 @@ l'exercice (1)]]></text>
                 <reportElement mode="Opaque" x="200" y="360" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="4ada05cd-f7f9-4c23-8655-850be27d7c1a">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1328,14 +1335,13 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="360" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="56d74c8a-319b-4a90-b299-f9abea4f3079">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1347,7 +1353,7 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format(($P{total1}-$P{total2})+$P{total3}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -1479,7 +1485,6 @@ l'exercice (1)]]></text>
                 <reportElement mode="Opaque" x="140" y="439" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="84239fe0-a4fa-4c81-acbe-97462666191c">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1491,7 +1496,7 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total5}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -1499,7 +1504,6 @@ l'exercice (1)]]></text>
                 <reportElement mode="Opaque" x="200" y="439" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="3b95229a-be46-459e-9915-cb8fe3b5d10b">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1511,14 +1515,13 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="439" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="470cc61b-272a-410c-8228-fe17eb2d41b5">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1530,7 +1533,7 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total5}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -1550,7 +1553,7 @@ l'exercice (1)]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <staticText>
@@ -1682,7 +1685,6 @@ amortissements et aux provisions]]></text>
                 <reportElement mode="Opaque" x="140" y="503" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="200f0f01-ed9b-4472-92b1-0e63620de970">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1694,7 +1696,7 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total6}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -1702,7 +1704,6 @@ amortissements et aux provisions]]></text>
                 <reportElement mode="Opaque" x="200" y="503" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="fa06f96e-205d-48f3-8657-38d2ad8224cf">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1714,14 +1715,13 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="503" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="55ee065b-c371-4e03-97f0-9b868042365a">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1733,7 +1733,7 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total6}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -1741,7 +1741,6 @@ amortissements et aux provisions]]></text>
                 <reportElement mode="Opaque" x="320" y="503" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="b632a3cc-2924-452f-b08d-0fac5d58d70e">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1753,7 +1752,7 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <staticText>
@@ -1778,7 +1777,6 @@ amortissements et aux provisions]]></text>
                 <reportElement mode="Opaque" x="140" y="513" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="9168faaf-3666-4fc7-b064-681ac79e900d">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1790,7 +1788,7 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total5}-$P{total6}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -1798,7 +1796,6 @@ amortissements et aux provisions]]></text>
                 <reportElement mode="Opaque" x="200" y="513" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="45ac8f92-315b-4f58-9af2-0f43b124ff5b">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1810,14 +1807,13 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="513" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="cfd44c1b-eec5-43fa-a7ff-73bc7d09bf2d">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1829,7 +1825,7 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total5}-$P{total6}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -1837,7 +1833,6 @@ amortissements et aux provisions]]></text>
                 <reportElement mode="Opaque" x="320" y="513" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="ffc61e7b-8f5e-42bf-8c17-82e5a426b656">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1849,7 +1844,7 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <staticText>
@@ -1874,7 +1869,6 @@ amortissements et aux provisions]]></text>
                 <reportElement mode="Opaque" x="140" y="523" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="d761dfc8-656a-4d9a-af13-a1a5d9a35843">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1886,7 +1880,7 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total7}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -1894,7 +1888,6 @@ amortissements et aux provisions]]></text>
                 <reportElement mode="Opaque" x="200" y="523" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="f27c3e39-c397-4aca-a8cc-aaa6c4057655">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1906,14 +1899,13 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="523" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="e6991b45-8d8f-401e-aee4-0e223e7359e7">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1925,7 +1917,7 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total7}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -1933,7 +1925,6 @@ amortissements et aux provisions]]></text>
                 <reportElement mode="Opaque" x="320" y="523" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="99b082a2-51aa-4319-bac8-c0f340679d20">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1945,7 +1936,7 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <staticText>
@@ -1970,7 +1961,6 @@ amortissements et aux provisions]]></text>
                 <reportElement mode="Opaque" x="140" y="533" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="067659ff-bb54-4df5-bcb0-7b6201787f28">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -1982,7 +1972,7 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{Impots}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -1990,7 +1980,6 @@ amortissements et aux provisions]]></text>
                 <reportElement mode="Opaque" x="200" y="533" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="5e775326-da82-490e-8fbc-812e423931ee">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -2002,14 +1991,13 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="533" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="55c1f0c8-cc60-4ee0-98f4-0acba51adc19">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -2021,7 +2009,7 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{Impots}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -2029,7 +2017,6 @@ amortissements et aux provisions]]></text>
                 <reportElement mode="Opaque" x="320" y="533" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="335d3716-8077-4ebe-98d1-83430ba03900">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -2041,14 +2028,13 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="543" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="468c4788-e55f-40c8-9576-49730547d9e1">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -2060,14 +2046,13 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="543" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="92da1dec-3a43-440a-800e-19a49eaad9f6">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -2079,7 +2064,7 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total7}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -2087,7 +2072,6 @@ amortissements et aux provisions]]></text>
                 <reportElement mode="Opaque" x="200" y="543" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="53976e14-fdf4-4b3c-bd2c-66eed456f1d8">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -2099,14 +2083,13 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="543" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="b975d70a-9645-45bd-a59b-426d039fb112">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -2118,7 +2101,7 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total7}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -2162,7 +2145,6 @@ amortissements et aux provisions]]></text>
                 <reportElement mode="Opaque" x="140" y="553" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="107ff3ac-7570-410d-98c2-9218d00673c3">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -2174,7 +2156,7 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total1}+$P{total3}+$P{total5}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -2182,7 +2164,6 @@ amortissements et aux provisions]]></text>
                 <reportElement mode="Opaque" x="200" y="553" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="3831fd49-8618-46a2-a410-0deaf022b2c0">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -2194,14 +2175,13 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="553" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="a229a59f-be6c-4016-930f-7abc07c4fcdf">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -2213,7 +2193,7 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total1}+$P{total3}+$P{total5}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -2233,7 +2213,7 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <staticText>
@@ -2258,7 +2238,6 @@ amortissements et aux provisions]]></text>
                 <reportElement mode="Opaque" x="140" y="563" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="ba5bb9d7-98a5-4006-ba8d-c38aa9cec8bd">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -2270,7 +2249,7 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total2}+$P{total4}+$P{total6}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -2278,7 +2257,6 @@ amortissements et aux provisions]]></text>
                 <reportElement mode="Opaque" x="200" y="563" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="24dcfa03-97b4-450b-8b4a-2f0b143cc80b">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -2290,14 +2268,13 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="260" y="563" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="9407d29e-7cac-4297-8c48-393db9606e1a">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -2309,7 +2286,7 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total2}+$P{total4}+$P{total6}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -2317,7 +2294,6 @@ amortissements et aux provisions]]></text>
                 <reportElement mode="Opaque" x="320" y="563" width="60" height="10" forecolor="#FFFFFF" backcolor="#325A77" uuid="f29b69d6-31e4-4207-b72e-5235c1ee0b8f">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -2329,14 +2305,13 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="320" y="573" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="b29cceb6-365a-47bd-8153-989dd2951462">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -2348,14 +2323,13 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField>
                 <reportElement mode="Opaque" x="260" y="573" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="c1b67ef0-a462-4e46-a443-fe2417d9521c">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -2367,7 +2341,7 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total9}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -2375,7 +2349,6 @@ amortissements et aux provisions]]></text>
                 <reportElement mode="Opaque" x="200" y="573" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="0a383dcb-9f98-46fa-9065-0aac474c9238">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -2387,14 +2360,13 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
             </textField>
             <textField isBlankWhenNull="true">
                 <reportElement mode="Opaque" x="140" y="573" width="60" height="10" forecolor="#3B3B3B" backcolor="#CDE5F7" uuid="a9a86962-7b38-4c15-91f3-9ca500ec1b90">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-                    <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
                 <box>
@@ -2406,7 +2378,7 @@ amortissements et aux provisions]]></text>
                 </box>
                 <textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
                     <font size="6" isBold="false"/>
-                    <paragraph leftIndent="0" rightIndent="10"/>
+                    <paragraph leftIndent="0" rightIndent="5"/>
                 </textElement>
                 <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($P{total9}).replaceAll(",",".")]]></textFieldExpression>
             </textField>
@@ -2430,226 +2402,296 @@ amortissements et aux provisions]]></text>
 des charges )]]></text>
             </staticText>
             <componentElement>
-                <reportElement x="140" y="145" width="240" height="10" uuid="ebe3ae60-bc5c-4ed0-9d23-db68db67157f"/>
+                <reportElement x="140" y="145" width="240" height="10" isRemoveLineWhenBlank="true" uuid="d232ef92-5927-45e5-886b-28a0c34d68f6"/>
                 <jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
-                    <datasetRun subDataset="Dataset2" uuid="4d518e36-4aad-472c-a8a2-1a0332716889">
+                    <datasetRun subDataset="Dataset2" uuid="c32095a9-fd0c-493b-a65c-7d63eca69601">
                         <dataSourceExpression><![CDATA[$P{param2}]]></dataSourceExpression>
                     </datasetRun>
                     <jr:listContents height="10" width="240">
                         <textField isBlankWhenNull="true">
-                            <reportElement x="0" y="0" width="60" height="10" uuid="2764e364-c884-44fc-96e4-efc89867b921">
+                            <reportElement x="0" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="818533b8-ff6b-485e-871d-4e4880d95d79">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
                             <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
-                            <reportElement x="60" y="0" width="60" height="10" uuid="7f0a6e4a-03a7-44cb-8a57-47ac22a978ef">
+                            <reportElement x="60" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="f1c5395d-b0a9-4dc8-988e-573633bcd2fe">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brutP}]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
-                            <reportElement x="120" y="0" width="60" height="10" uuid="95d3c3a8-9743-43e5-8b7e-b85fc9d2bdcb">
+                            <reportElement x="120" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="39881dac-486d-4313-be09-13f0dd7a446c">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{totalbrut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{totalbrut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
-                            <reportElement x="180" y="0" width="60" height="10" uuid="c501eb8a-e960-4fd5-a043-ddb9765d1e99">
+                            <reportElement x="180" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="46063e32-693b-41a0-8ed0-9c268e6da723">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
+                            <box>
+                                <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                            </box>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
+                            <textFieldExpression><![CDATA[$F{brutP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brutP}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>
             </componentElement>
             <componentElement>
-                <reportElement x="140" y="247" width="240" height="10" uuid="eba20ade-869e-43fb-a043-9b6c0f46984b"/>
+                <reportElement x="140" y="247" width="240" height="10" isRemoveLineWhenBlank="true" uuid="8ca041e5-f730-4811-bcc4-4578f3a3c26e"/>
                 <jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
-                    <datasetRun subDataset="Dataset3" uuid="f4b71551-c502-4bc0-84ec-575028e74ea0">
+                    <datasetRun subDataset="Dataset3" uuid="d20b47f5-6bbe-4e9e-bafc-7625ea744d73">
                         <dataSourceExpression><![CDATA[$P{param3}]]></dataSourceExpression>
                     </datasetRun>
                     <jr:listContents height="10" width="240">
                         <textField isBlankWhenNull="true">
-                            <reportElement x="0" y="0" width="60" height="10" uuid="2dbbd616-df50-48f8-a7cf-0c3089bb57b4">
+                            <reportElement x="0" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="7c9cbd0f-8ce5-4d99-af7a-b46489594cf0">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
                             <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
-                            <reportElement x="60" y="0" width="60" height="10" uuid="2929bc87-a4fb-4eb7-ad67-233f0f1a3bb4">
+                            <reportElement x="60" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="017f808d-340a-4fbc-a0f1-54c7e30cc873">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brutP}]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
-                            <reportElement x="120" y="0" width="60" height="10" uuid="f5dfb093-5b26-47a8-89be-fd83d83110e3">
+                            <reportElement x="120" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="4d2af4e7-eb59-47ab-bef1-7056304ef78a">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{totalbrut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{totalbrut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
-                            <reportElement x="180" y="0" width="60" height="10" uuid="842ee1a8-c8d9-45b0-ac9e-a24b000c1ceb">
+                            <reportElement x="180" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="a62611a3-3217-44f3-9c8b-9446cbcef7f0">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
+                            <box>
+                                <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                            </box>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
+                            <textFieldExpression><![CDATA[$F{brutP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brutP}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>
             </componentElement>
             <componentElement>
-                <reportElement x="140" y="298" width="240" height="10" uuid="145b561e-243f-4aeb-b91b-9d247e42e6a2"/>
+                <reportElement x="140" y="298" width="240" height="10" isRemoveLineWhenBlank="true" uuid="e25a8ebc-d124-4f1d-b92d-68435e850800"/>
                 <jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
-                    <datasetRun subDataset="Dataset4" uuid="bb755909-3ba5-4b61-8104-07ec50bf332c">
+                    <datasetRun subDataset="Dataset4" uuid="734de0b7-e487-4057-a3b7-e6dbf3bd8335">
                         <dataSourceExpression><![CDATA[$P{param4}]]></dataSourceExpression>
                     </datasetRun>
                     <jr:listContents height="10" width="240">
                         <textField isBlankWhenNull="true">
-                            <reportElement x="0" y="0" width="60" height="10" uuid="d58b6bd3-e1eb-44d3-94fa-67b3b2b42924">
+                            <reportElement x="0" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="3d09de6c-a883-41d8-a3c7-b4d415b3a6b6">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
                             <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
-                            <reportElement x="60" y="0" width="60" height="10" uuid="32b01b8b-1ddd-49ba-a683-3a548dab7193">
+                            <reportElement x="60" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="1a858f8e-23bb-4be6-b545-f9455577c298">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brutP}]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
-                            <reportElement x="120" y="0" width="60" height="10" uuid="ac0c3ab0-30b2-4765-b865-057246811718">
+                            <reportElement x="120" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="ca10212f-07ea-43e0-9fc8-f41825bc9d58">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{totalbrut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{totalbrut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
-                            <reportElement x="180" y="0" width="60" height="10" uuid="48aa01da-b5ff-465b-87d6-7ed6a6a66972">
+                            <reportElement x="180" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="cb5e6dd5-77a7-46dc-abd3-b6ec6a285249">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
+                            <box>
+                                <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                            </box>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
+                            <textFieldExpression><![CDATA[$F{brutP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brutP}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>
             </componentElement>
             <componentElement>
-                <reportElement x="140" y="383" width="240" height="10" uuid="9acaf409-1fdf-4e93-ab14-740b6797c400"/>
+                <reportElement x="140" y="383" width="240" height="10" isRemoveLineWhenBlank="true" uuid="267393f3-0164-4e47-9d34-061926d72c5c"/>
                 <jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
-                    <datasetRun subDataset="Dataset5" uuid="42ac8923-e98b-4273-8e78-9520ed373e1d">
+                    <datasetRun subDataset="Dataset5" uuid="e48b6f72-5d9f-481a-9dbc-f51ff1538e1f">
                         <dataSourceExpression><![CDATA[$P{param5}]]></dataSourceExpression>
                     </datasetRun>
                     <jr:listContents height="10" width="240">
                         <textField isBlankWhenNull="true">
-                            <reportElement x="0" y="0" width="60" height="10" uuid="f73c5549-2faf-4c0e-8bdf-87e18cf7569a">
+                            <reportElement x="0" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="9a453fce-b6e7-4cda-9d19-7cbc5381afe9">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
                             <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
-                            <reportElement x="60" y="0" width="60" height="10" uuid="14fff011-608a-4724-91a5-613b98494e29">
+                            <reportElement x="60" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="f3b5e912-37da-47cf-b11e-dcced41ef4a0">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brutP}]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
-                            <reportElement x="120" y="0" width="60" height="10" uuid="5f71375b-293b-447c-a480-16ea0cec9336">
+                            <reportElement x="120" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="42ca6102-dc0c-4a26-bdfa-d13b82605524">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{totalbrut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{totalbrut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
-                            <reportElement x="180" y="0" width="60" height="10" uuid="181cf7dd-142d-403e-a736-15177339822e">
+                            <reportElement x="180" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="6a44359d-3c55-47ae-8d24-a552cd6f115c">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
+                            <box>
+                                <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                            </box>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
+                            <textFieldExpression><![CDATA[$F{brutP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brutP}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>
             </componentElement>
             <componentElement>
-                <reportElement x="140" y="459" width="240" height="10" uuid="48051cc0-d876-4cb9-beb0-eb98cae1251b"/>
+                <reportElement x="140" y="459" width="240" height="10" isRemoveLineWhenBlank="true" uuid="04b9acf0-e376-472a-a5cf-9446bc17b83b"/>
                 <jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
-                    <datasetRun subDataset="Dataset6" uuid="f6e4f677-f5ba-4423-9646-4213b32b07e1">
+                    <datasetRun subDataset="Dataset6" uuid="b83863e4-08a2-447b-b6ba-b5967cbe9838">
                         <dataSourceExpression><![CDATA[$P{param6}]]></dataSourceExpression>
                     </datasetRun>
                     <jr:listContents height="10" width="240">
                         <textField isBlankWhenNull="true">
-                            <reportElement x="0" y="0" width="60" height="10" uuid="ec2bf5bf-877f-4206-a7ea-1e5daeb894a7">
+                            <reportElement x="0" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="b37afe8c-0695-4241-b86c-eb85d9b8cf28">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
                             <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
-                            <reportElement x="60" y="0" width="60" height="10" uuid="eb1a9091-5c42-4378-beb6-df13d3388761">
+                            <reportElement x="60" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="88ba675d-735d-4ddd-9960-04f5385448e0">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brutP}]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
-                            <reportElement x="120" y="0" width="60" height="10" uuid="a5dfd907-452a-45de-8cd3-8f8370e3b097">
+                            <reportElement x="120" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="d8a01a6f-f7bd-4214-8a63-f72ab3349a5a">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
-                            <textFieldExpression><![CDATA[$F{brut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brut}).replaceAll(",",".") : ""]]></textFieldExpression>
+                            <textFieldExpression><![CDATA[$F{totalbrut} != null ? new java.text.DecimalFormat("#,##0.00").format($F{totalbrut}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                         <textField isBlankWhenNull="true">
-                            <reportElement x="180" y="0" width="60" height="10" uuid="6d4c8414-736a-4423-828a-7c56c5cef692">
+                            <reportElement x="180" y="0" width="60" height="10" isRemoveLineWhenBlank="true" uuid="8914a91e-60e7-4684-b4f8-84fb0f4516eb">
                                 <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                                <property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
                             </reportElement>
+                            <box>
+                                <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                                <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+                            </box>
                             <textElement textAlignment="Right" verticalAlignment="Middle">
                                 <font size="5.6"/>
+                                <paragraph rightIndent="5"/>
                             </textElement>
+                            <textFieldExpression><![CDATA[$F{brutP} != null ? new java.text.DecimalFormat("#,##0.00").format($F{brutP}).replaceAll(",",".") : ""]]></textFieldExpression>
                         </textField>
                     </jr:listContents>
                 </jr:list>

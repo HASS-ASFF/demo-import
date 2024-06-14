@@ -79,6 +79,16 @@ public class SubAccountPassif implements Updatable {
     }
 
     @Override
+    public String getMainAccountAccess() {
+        return this.mainAccount;
+    }
+
+    @Override
+    public String getN_compteAccess() {
+        return this.n_compte;
+    }
+
+    @Override
     public Double getCurrentExercice() {
         return this.brut;
     }
