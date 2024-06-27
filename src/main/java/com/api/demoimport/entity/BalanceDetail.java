@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 
+/**
+ * An entity class representing a balance details.
+ */
 @Entity
 @Getter
 @Setter

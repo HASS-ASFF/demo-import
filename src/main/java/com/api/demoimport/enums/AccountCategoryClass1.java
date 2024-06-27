@@ -1,17 +1,17 @@
 package com.api.demoimport.enums;
 
 
-import com.api.demoimport.entity.Bilan.SubAccountPassif;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Enumeration representing account categories for class 1.
+ */
 @Getter
 public enum AccountCategoryClass1 {
-    CLASSE_1("Classe 1", "",new ArrayList<>()),
     CAPITAUX_PROPRES("11", "CAPITAUX PROPRES (A)"
             , Arrays.asList(
             "111 - Capital social ou personnel",

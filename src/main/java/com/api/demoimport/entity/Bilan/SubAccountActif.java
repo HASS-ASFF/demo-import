@@ -4,16 +4,20 @@ package com.api.demoimport.entity.Bilan;
 import com.api.demoimport.enums.AccountCategoryClass2;
 import com.api.demoimport.enums.AccountCategoryClass3;
 import com.api.demoimport.enums.AccountCategoryClass5;
+import com.api.demoimport.service.Updatable;
 import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An entity class representing a Bilan Actif.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class SubAccountActif {
+public class SubAccountActif implements Updatable {
 
     private String mainAccount;
     private String n_compte;
@@ -23,23 +27,22 @@ public class SubAccountActif {
     private Double net;
     private Double netN;
 
-
-    public SubAccountActif(String mainA, String nCompte, String libelle, Double brut, Double totalAmort, Double net) {
+    public SubAccountActif(String mainA, String nCompte, String libelle, Double brut, Double net, Double netn) {
         this.mainAccount=mainA;
         this.n_compte=nCompte;
         this.libelle=libelle;
         this.brut=brut;
-        this.total_amo=totalAmort;
         this.net=net;
+        this.netN=netn;
     }
 
-    public SubAccountActif(String mainA, String nCompte, String libelle, Double brut, Double net) {
+    public SubAccountActif(String mainA, String nCompte, String libelle, Double brut) {
         this.mainAccount = mainA;
-        this.n_compte = nCompte;
+        this.n_compte=nCompte;
         this.libelle=libelle;
         this.brut=brut;
-        this.net=net;
     }
+
 
     public static List<SubAccountActif> initializeData(String n_class){
 
@@ -84,4 +87,23 @@ public class SubAccountActif {
         subAccountActif.setLibelle(val);
     }
 
+    @Override
+    public String getMainAccountAccess() {
+        return this.mainAccount;
+    }
+
+    @Override
+    public String getN_compteAccess() {
+        return this.n_compte;
+    }
+
+    @Override
+    public Double getCurrentExercice() {
+        return net;
+    }
+
+    @Override
+    public void setPreviousExercice(Double exerciceP) {
+        this.netN = exerciceP;
+    }
 }

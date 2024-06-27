@@ -1,0 +1,731 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="table_15" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b4d05c52-696d-4da2-99e8-01158b71f68a">
+    <property name="com.jaspersoft.studio.unit." value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+    <property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+    <style name="PrimaryAreaStyle" mode="Opaque" forecolor="#FFFFFF" backcolor="#325A77"/>
+    <style name="HTableStyle" hTextAlign="Center" vTextAlign="Middle" isBold="true">
+        <box>
+            <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+            <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+            <rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+        </box>
+        <paragraph leftIndent="1" rightIndent="1"/>
+    </style>
+    <style name="TTableStyle" hTextAlign="Left" vTextAlign="Middle" fontSize="10" isBold="true">
+        <box>
+            <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+            <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+            <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+        </box>
+        <paragraph leftIndent="5"/>
+    </style>
+    <style name="PrimaryLineStyle" hTextAlign="Right" vTextAlign="Middle" markup="html" isBlankWhenNull="true" fontSize="9" isBold="true">
+        <box>
+            <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+            <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+        </box>
+        <paragraph rightIndent="5"/>
+    </style>
+    <style name="TTableSecondaryStyle" hTextAlign="Left" vTextAlign="Middle" fontSize="10">
+        <box>
+            <leftPen lineWidth="1.0"/>
+            <rightPen lineWidth="1.0"/>
+        </box>
+        <paragraph leftIndent="5"/>
+    </style>
+    <style name="SecondaryLineStyle" hTextAlign="Right" vTextAlign="Middle" markup="html" isBlankWhenNull="true" fontSize="9" isBold="false">
+        <box>
+            <topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+            <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+        </box>
+        <paragraph rightIndent="5"/>
+    </style>
+    <parameter name="DateN1" class="java.lang.String"/>
+    <parameter name="name_company" class="java.lang.String"/>
+    <parameter name="DateN" class="java.lang.String"/>
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <field name="L00_C1" class="java.lang.Double"/>
+    <field name="L00_C2" class="java.lang.Double"/>
+    <field name="L00_C3" class="java.lang.Double"/>
+    <field name="L01_C1" class="java.lang.Double"/>
+    <field name="L01_C2" class="java.lang.Double"/>
+    <field name="L01_C3" class="java.lang.Double"/>
+    <field name="L02_C1" class="java.lang.Double"/>
+    <field name="L02_C2" class="java.lang.Double"/>
+    <field name="L02_C3" class="java.lang.Double"/>
+    <field name="L03_C1" class="java.lang.Double"/>
+    <field name="L03_C2" class="java.lang.Double"/>
+    <field name="L03_C3" class="java.lang.Double"/>
+    <field name="L00a_C1" class="java.lang.Double"/>
+    <field name="L00a_C2" class="java.lang.Double"/>
+    <field name="L00a_C3" class="java.lang.Double"/>
+    <field name="L04_C1" class="java.lang.Double"/>
+    <field name="L04_C2" class="java.lang.Double"/>
+    <field name="L04_C3" class="java.lang.Double"/>
+    <field name="L05_C1" class="java.lang.Double"/>
+    <field name="L05_C2" class="java.lang.Double"/>
+    <field name="L05_C3" class="java.lang.Double"/>
+    <field name="L06_C1" class="java.lang.Double"/>
+    <field name="L06_C2" class="java.lang.Double"/>
+    <field name="L06_C3" class="java.lang.Double"/>
+    <field name="L00b_C1" class="java.lang.Double"/>
+    <field name="L00b_C2" class="java.lang.Double"/>
+    <field name="L00b_C3" class="java.lang.Double"/>
+    <field name="L07_C1" class="java.lang.Double"/>
+    <field name="L07_C2" class="java.lang.Double"/>
+    <field name="L07_C3" class="java.lang.Double"/>
+    <field name="L08_C1" class="java.lang.Double"/>
+    <field name="L08_C2" class="java.lang.Double"/>
+    <field name="L08_C3" class="java.lang.Double"/>
+    <field name="L09_C1" class="java.lang.Double"/>
+    <field name="L09_C2" class="java.lang.Double"/>
+    <field name="L09_C3" class="java.lang.Double"/>
+    <field name="L10_C1" class="java.lang.Double"/>
+    <field name="L10_C2" class="java.lang.Double"/>
+    <field name="L10_C3" class="java.lang.Double"/>
+    <field name="L11_C1" class="java.lang.Double"/>
+    <field name="L11_C2" class="java.lang.Double"/>
+    <field name="L11_C3" class="java.lang.Double"/>
+    <field name="L12_C1" class="java.lang.Double"/>
+    <field name="L12_C2" class="java.lang.Double"/>
+    <field name="L12_C3" class="java.lang.Double"/>
+    <field name="L12a_C1" class="java.lang.Double"/>
+    <field name="L12a_C2" class="java.lang.Double"/>
+    <field name="L12a_C3" class="java.lang.Double"/>
+    <field name="L12b_C1" class="java.lang.Double"/>
+    <field name="L12b_C2" class="java.lang.Double"/>
+    <field name="L12b_C3" class="java.lang.Double"/>
+    <field name="L12c_C1" class="java.lang.Double"/>
+    <field name="L12c_C2" class="java.lang.Double"/>
+    <field name="L12c_C3" class="java.lang.Double"/>
+    <field name="L13_C1" class="java.lang.Double"/>
+    <field name="L13_C2" class="java.lang.Double"/>
+    <field name="L13_C3" class="java.lang.Double"/>
+    <field name="L14_C1" class="java.lang.Double"/>
+    <field name="L14_C2" class="java.lang.Double"/>
+    <field name="L14_C3" class="java.lang.Double"/>
+    <field name="L15_16" class="java.lang.Double"/>
+    <field name="total_general" class="java.lang.Double"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <detail>
+        <band height="555" splitType="Stretch">
+            <staticText>
+                <reportElement style="PrimaryAreaStyle" mode="Opaque" x="0" y="0" width="625" height="33" uuid="65ab363f-b550-47ec-b360-caf7dd5ac42f">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[ETAT POUR LE CALCUL DE L'IMPOT DU PAR LES ENTREPRISES BENEFICIANTS DES MESURES D'ENCOURAGEMENTS AUX INVESTISSEMENTS]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryAreaStyle" mode="Opaque" x="632" y="0" width="85" height="20" uuid="9da0ac85-dfcd-48c7-9a5f-da3dcd0767f6">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$P{name_company}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement mode="Opaque" x="717" y="0" width="85" height="20" forecolor="#FFFFFF" backcolor="#325A77" uuid="9f11dd92-a3e3-467a-8deb-2563ee43c922">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$P{DateN}]]></textFieldExpression>
+            </textField>
+            <rectangle>
+                <reportElement style="PrimaryAreaStyle" mode="Opaque" x="632" y="20" width="170" height="455" uuid="7177fd43-d3ba-4857-8b17-1bd2ac87dc79">
+                    <property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <staticText>
+                <reportElement style="PrimaryAreaStyle" x="632" y="478" width="170" height="20" uuid="17d2a2c3-99b1-41b9-9e23-fb7149235010">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[TOTAL ACTIVE]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryAreaStyle" x="632" y="502" width="84" height="20" uuid="2263e1b7-2146-4735-bcce-8ea6db828a6f">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$P{DateN}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="PrimaryAreaStyle" x="717" y="502" width="84" height="20" uuid="74ecd73a-ff93-466d-963f-c67302b53ca5">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$P{DateN1}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement style="HTableStyle" x="0" y="36" width="25" height="65" uuid="dc51952d-e2e0-426b-a184-7a4db3f6d8a4">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="HTableStyle" x="25" y="36" width="180" height="65" uuid="0143ce66-6b2f-487c-a4a9-411f87617ce9">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <text><![CDATA[RUBRIQUES (1)]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="HTableStyle" x="205" y="36" width="140" height="65" uuid="6358ac74-6e7d-48a7-9172-c195a2037d18">
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <text><![CDATA[ENSEMNBLES DES PRODUITS]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="HTableStyle" x="345" y="36" width="140" height="65" uuid="f48250f2-7f34-4df9-b845-514ccc2babb4">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <text><![CDATA[ENSEMNBLES DES PRODUITS
+CORRESPONDANT A LA BASE IMPOSABLE]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="HTableStyle" x="485" y="36" width="140" height="65" uuid="d910b313-6907-411f-a9f0-20d2219bb1ee">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                </reportElement>
+                <box>
+                    <leftPen lineWidth="1.0"/>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <text><![CDATA[ENSEMNBLES DES PRODUITS
+CORRESPONDANT AU
+NUMERATEUR
+TAXABLE]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableStyle" x="0" y="101" width="25" height="17" uuid="ffe60e58-3e57-476f-b27a-f85b811bae8d">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableStyle" x="25" y="101" width="180" height="17" uuid="3304fb78-27f5-4f1e-8170-df813d20c12f">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[Ventes]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="25" y="118" width="180" height="17" uuid="8aee28b3-15bc-4fe0-ac57-ffe55955dad7">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[Ventes imposables]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="0" y="118" width="25" height="17" uuid="98e5a001-4246-44fc-937e-3df24146a054">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[1]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="25" y="135" width="180" height="17" uuid="749c9b27-0206-41c6-9a3e-2ce450a67ca1">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[Ventes exonérées à 100%]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="0" y="135" width="25" height="17" uuid="ce4c88ea-103d-4227-9e69-342b15a59abd">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <text><![CDATA[2]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="0" y="152" width="25" height="17" uuid="c8b63a34-522f-4289-b8bd-92d8f8566812">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[3]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="25" y="152" width="180" height="17" uuid="c21e9a50-dba8-4b88-895c-1be923059a7b">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[Ventes exonérées à 50%]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableStyle" x="25" y="169" width="180" height="27" uuid="f58e3e66-9b17-4f2a-9fec-6a978ee26642">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <text><![CDATA[Lotissement et promotion immobilière]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="25" y="230" width="180" height="17" uuid="055f11c1-4cba-40c3-a2ef-6c1614e66019">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[Ventes et locations exclues à 50%]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="25" y="196" width="180" height="17" uuid="eb64ab3e-a0cf-4538-9b16-9e71517fab21">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[Ventes et locations imposables]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableStyle" x="0" y="169" width="25" height="27" uuid="b7cf3043-df5b-4990-8206-ec5c8ad0dffc">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="0" y="213" width="25" height="17" uuid="2a14f954-5a40-4030-b23b-1814d6c4893a">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[5]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="0" y="230" width="25" height="17" uuid="f20a496a-b25a-417d-862f-32663945714a">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[6]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="0" y="196" width="25" height="17" uuid="a4545529-9b29-4a75-ada2-ba4c7fb867ca">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[4]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="25" y="213" width="180" height="17" uuid="b4af1ff0-ab8b-4965-a1f2-60e5988b319d">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[Ventes et locations exclues à 100%]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="25" y="264" width="180" height="17" uuid="16d22722-92d5-4b6a-8b00-cec7bf71f8d1">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[Imposables]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableStyle" x="0" y="247" width="25" height="17" uuid="1dababc8-e360-4938-90a0-16bfa3fb4411">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="0" y="281" width="25" height="17" uuid="4e1330ec-9507-49e0-b65e-bade97cf61c9">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[8]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="0" y="298" width="25" height="17" uuid="ca3b1dde-fe83-40ec-90d7-3bacb3b4546c">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[9]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="25" y="281" width="180" height="17" uuid="c4663a1e-1f56-4813-89f2-96a2716eb519">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[Exonérées à 100%]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableStyle" x="25" y="247" width="180" height="17" uuid="d01d6697-f474-4697-b565-fe3625af3387">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[Prestations de services]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="25" y="298" width="180" height="17" uuid="8b5640ee-6867-42f6-be10-dba1b322d6d1">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[Exonérées à 50%]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="0" y="264" width="25" height="17" uuid="f696d2aa-5532-427a-bf89-ae6468ddc2de">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[7]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="0" y="332" width="25" height="27" uuid="05f648b5-2a79-4f38-98a7-328dfbe5d41b">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <text><![CDATA[11]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableStyle" x="0" y="315" width="25" height="17" uuid="5fe578e4-072d-4775-b2fa-db38aac2b09d">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[10]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableStyle" x="25" y="315" width="180" height="17" uuid="e96d30bf-13ec-4907-9b0b-3aaf282224bb">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[Produits et Subventions]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="25" y="332" width="180" height="27" uuid="99c6d7eb-69ab-4556-938a-ca47fcf3f165">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <text><![CDATA[Produits accessoires. Produits financiers, dons et libéralités]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="0" y="359" width="25" height="17" uuid="4164c5b2-9df1-4ca3-88af-9725571816e4">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[12]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="25" y="376" width="180" height="17" uuid="94bf8830-62ef-44a7-a4fb-be8028c1f2ef">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[Subventions d'équilibre]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="0" y="376" width="25" height="17" uuid="19078b39-dd6b-47b5-bf2d-3d53f3dd58fe">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[12a]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="25" y="359" width="180" height="17" uuid="9da2ee24-a79c-4496-ae10-6e7ba8a0bf47">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <rightPen lineWidth="1.0"/>
+                </box>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Subventions d'équipement]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="25" y="410" width="180" height="17" uuid="49b33e51-b793-4c37-8083-7ba56819960a">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[Exonérées à 100%]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="0" y="393" width="25" height="17" uuid="d62cf757-f5b9-4607-91a9-1bbd4a86a804">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <text><![CDATA[12b]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="0" y="410" width="25" height="17" uuid="842d601c-7869-4511-a7fc-f4d6532ca9db">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <text><![CDATA[12c]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="25" y="393" width="180" height="17" uuid="d9226958-70f6-4862-bacc-a2160350f0bf">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[Imposables]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableStyle" x="25" y="427" width="180" height="17" uuid="10903fc0-7c80-4378-860c-a43c5843dba4">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <bottomPen lineWidth="1.0"/>
+                </box>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[Exonérées à 50%]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableStyle" x="0" y="427" width="25" height="17" uuid="44fa3c69-6d4d-4482-9484-9b714948c346">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <bottomPen lineWidth="1.0"/>
+                </box>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[13]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="0" y="444" width="25" height="17" uuid="a5313f2d-0ed1-4e22-8c79-de3eaf8002b6">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[14]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="25" y="444" width="180" height="17" uuid="7b418ee7-dddb-4d80-9bb4-b0610fa5fc31">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[Totaux partiels]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="0" y="461" width="25" height="27" uuid="4a8d37ec-3530-4be1-aee2-20eb447253fc">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <text><![CDATA[15]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableSecondaryStyle" x="25" y="461" width="180" height="27" uuid="e89ba986-1882-4961-ba23-e73673767e86">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[Profit net global des cessions après abattement pondéré]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableStyle" x="25" y="488" width="180" height="17" uuid="fb27764c-9657-4571-b9d5-f16073f49d9a">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[Autres profils exceptionnels]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableStyle" x="0" y="488" width="25" height="17" uuid="391039eb-7419-4727-abc0-a08a5208389b">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[16]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableStyle" x="0" y="505" width="25" height="17" uuid="138c2ca4-6643-4d2f-9895-c9a57d837933">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <bottomPen lineWidth="1.0"/>
+                </box>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TTableStyle" x="25" y="505" width="180" height="17" uuid="ced9ce51-91a7-472d-9bfa-3818e6ca64c0">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <box>
+                    <bottomPen lineWidth="1.0"/>
+                </box>
+                <textElement>
+                    <font isBold="false"/>
+                </textElement>
+                <text><![CDATA[Total général (lignes 13+ 14+ 15 )]]></text>
+            </staticText>
+            <textField>
+                <reportElement style="PrimaryLineStyle" x="205" y="101" width="140" height="17" uuid="119116cb-0cdb-47c7-9e86-55f4b8cb8f85">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{L00_C1}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="PrimaryLineStyle" x="345" y="101" width="140" height="17" uuid="29b1ce01-626d-49a0-badf-d7b2790d008a">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{L00_C2}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="PrimaryLineStyle" x="485" y="101" width="140" height="17" uuid="7ddc914e-5a29-4d71-992f-a73b31153311">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{L00_C3}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="PrimaryLineStyle" x="205" y="169" width="140" height="27" uuid="0314585d-4c4c-49cc-8a08-97fc6deeb23a">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{L00a_C1}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="PrimaryLineStyle" x="345" y="169" width="140" height="27" uuid="b66fd792-404a-4ef7-939f-e24142d935ad">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{L00a_C2}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="PrimaryLineStyle" x="485" y="169" width="140" height="27" uuid="a9ac7913-9883-4727-aeba-55e9fb15e69b">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{L00a_C3}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="PrimaryLineStyle" x="205" y="247" width="140" height="17" uuid="50d7bf85-2431-4862-94b3-c0bc1989a706">
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{L00b_C1}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="PrimaryLineStyle" x="345" y="247" width="140" height="17" uuid="458f62db-96d0-4f7e-9693-2269f8a4f896">
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{L00b_C2}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="PrimaryLineStyle" x="485" y="247" width="140" height="17" uuid="c4a3c1b9-7ac4-4f5b-8e81-97b79ba3296d">
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{L00b_C3}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="SecondaryLineStyle" x="205" y="359" width="140" height="17" uuid="05ddfcf7-5a37-4e4d-a593-fa7a0adcc855">
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{L12_C1}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="SecondaryLineStyle" x="345" y="359" width="140" height="17" uuid="1aa27240-a7d5-4878-845d-672478bcd776">
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{L12_C2}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="SecondaryLineStyle" x="485" y="359" width="140" height="17" uuid="966795cb-6c6a-45e1-8fd4-5861e701b5a1">
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{L12_C3}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="205" y="461" width="420" height="44" uuid="3764088f-4be3-4590-8c38-cccf01389f64"/>
+                <box>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="205" y="505" width="420" height="17" uuid="7c5b10dd-d86f-4cb0-948b-c7a8ae5dcdab">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                    <rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+            </textField>
+            <staticText>
+                <reportElement x="0" y="525" width="390" height="30" uuid="bc09b8d4-9ddb-43ef-9c61-e3d0338f68e2"/>
+                <textElement verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <text><![CDATA[(1) Faires figurer dans ces cases la moitié du montant figurant dans la colonne 3-même ligne
+(2) Faires figurer dans ces cases la moitié du montant figurant dans la colonne 2-même ligne ]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="400" y="525" width="150" height="30" uuid="25071613-3f76-45b4-85e0-236c91bd36b2"/>
+                <textElement verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <text><![CDATA[Elements de calcul de l'impôt]]></text>
+            </staticText>
+        </band>
+    </detail>
+</jasperReport>

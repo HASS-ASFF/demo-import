@@ -7,6 +7,9 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
+/**
+ * An entity class representing a Plan comptable.
+ */
 @Entity
 @Getter
 @Setter
@@ -24,7 +27,5 @@ public class PlanComptable {
     private Long the_class;
     @Column
     private Long amort;
-
-
 
 }

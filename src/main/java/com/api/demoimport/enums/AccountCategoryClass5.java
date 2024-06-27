@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Enumeration representing account categories for class 5.
+ */
 @Getter
 public enum AccountCategoryClass5 {
-    CLASSE_5("Classe 5", "", new ArrayList<String>()),
     TRESORERIE_ACTIF("51", "Trésorerie - Actif",
             Arrays.asList(
                     "511 - Chèques et valeurs à encaisser",

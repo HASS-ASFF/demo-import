@@ -8,6 +8,10 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * An entity class representing a balance.
+ */
+
 @Entity
 @Getter
 @Setter
@@ -20,7 +24,8 @@ public class Balance {
     @Column(length = 50)
     private Date date;
 
-    @Column
-    private String company_name;
+    @ManyToOne
+    @JoinColumn(name = "company_name", referencedColumnName = "social_reason")
+    private Societe societe;
 
 }

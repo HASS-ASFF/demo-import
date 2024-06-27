@@ -3,32 +3,31 @@ package com.api.demoimport.entity.Bilan;
 import com.api.demoimport.enums.AccountCategoryClass1;
 import com.api.demoimport.enums.AccountCategoryClass4;
 import com.api.demoimport.enums.AccountCategoryClass5;
+import com.api.demoimport.service.Updatable;
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * An entity class representing a Bilan Passif.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class SubAccountPassif {
+public class SubAccountPassif implements Updatable {
     private String mainAccount;
     private String n_compte;
     private String libelle;
     private Double brut;
     private Double brutP;
 
-
-    public SubAccountPassif(String mainAccount, String nCompte, String libelle) {
-        this.mainAccount=mainAccount;
-        this.n_compte=nCompte;
-        this.libelle=libelle;
+    SubAccountPassif(String mainAccount,String n_compte,String libelle){
+        this.mainAccount = mainAccount;
+        this.n_compte = n_compte;
+        this.libelle = libelle;
     }
-
-
     public static List<SubAccountPassif> initializeData(String n_class){
 
         List<SubAccountPassif> subAccountPassifs = new ArrayList<>();
@@ -43,6 +42,12 @@ public class SubAccountPassif {
                         subAccountPassifs.add(subAccountPassif);
                     }
                 }
+                subAccountPassifs.add(1, new SubAccountPassif(AccountCategoryClass1.CAPITAUX_PROPRES.getLabel(),
+                        "11190000","Moins : actionnaires, capital souscrit non appelé"));
+                subAccountPassifs.add(2, new SubAccountPassif(AccountCategoryClass1.CAPITAUX_PROPRES.getLabel(),
+                        "11191000","Moins : Capital appelé"));
+                subAccountPassifs.add(3,new SubAccountPassif(AccountCategoryClass1.CAPITAUX_PROPRES.getLabel(),
+                        "11192000","Moins : Dont versé"));
                 break;
             case "4":
                 for (AccountCategoryClass4 category : AccountCategoryClass4.values()) {
@@ -71,5 +76,25 @@ public class SubAccountPassif {
     private static void getPassif(String val, SubAccountPassif subAccountPassif) {
         subAccountPassif.setN_compte(val.substring(0,3)+"00000");
         subAccountPassif.setLibelle(val);
+    }
+
+    @Override
+    public String getMainAccountAccess() {
+        return this.mainAccount;
+    }
+
+    @Override
+    public String getN_compteAccess() {
+        return this.n_compte;
+    }
+
+    @Override
+    public Double getCurrentExercice() {
+        return this.brut;
+    }
+
+    @Override
+    public void setPreviousExercice(Double exerciceP) {
+        this.brutP = exerciceP;
     }
 }

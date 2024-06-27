@@ -1,13 +1,13 @@
 package com.api.demoimport.service.Implementation;
 
+import com.api.demoimport.dto.Tvadto;
 import com.api.demoimport.entity.BalanceDetail;
 import com.api.demoimport.entity.Bilan.FormatUtils;
 import com.api.demoimport.entity.Bilan.SubAccountActif;
+import com.api.demoimport.entity.Bilan.SubAccountCPC;
 import com.api.demoimport.entity.Bilan.SubAccountPassif;
 import com.api.demoimport.repository.BalanceDetailRepository;
 import com.api.demoimport.service.BalanceDetailService;
-import com.api.demoimport.service.Implementation.AccountDataManagerServiceImpl;
-import com.api.demoimport.service.Implementation.ExcelHelperServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,7 +29,18 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
     @Autowired
     private AccountDataManagerServiceImpl accountDataManagerService;
 
+    /**
+     * Processing balance detail data involves several steps:
+     * - Parsing Excel data to extract balance details and storing them in the database.
+     * - Retrieving balance details for different account classes (e.g., class 1, class 2, etc.).
+     * - Regrouping balance detail data based on account numbers and calculating total values.
+     * - Converting retrieved data into appropriate subaccount objects (Actif or Passif).
+     * - Handling CPC (Compte de Produit et Charge) accounts, where both debit and credit values may exist.
+     *   (A for Actif and P for Passif)
+     */
+
     // Save file excel balance and retrieve data & save it to db
+    @Override
     public void save(MultipartFile file,String date,String company_name) {
         try {
             List<BalanceDetail> balanceDetails = excelHelperServiceImpl.excelToBalanceDetail(file.getInputStream(),date,company_name);
@@ -42,6 +53,7 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
 
 
     // Get all details of a balance
+    @Override
     public List<BalanceDetail> getBalanceDetails() {
         return repository.findAll();
     }
@@ -51,9 +63,6 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
     public List<SubAccountPassif> getClassOne(String dateBilan,String company_name){
 
         List<Object[]> resultsrequest =  repository.getBilanC1(dateBilan,company_name);
-
-
-        //regroupClassesP(bilanPassifs);
 
         return ConvertToBilanPassif(resultsrequest);
 
@@ -124,6 +133,39 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
         return bilanPassifs;
     }
 
+    // fetching data for the class 6
+    @Override
+    public List<SubAccountCPC> getClassSix(String date, String company_name) {
+        List<Object []> resultsrequest = repository.getCPCC6(date,company_name);
+
+        List<SubAccountCPC> subAccountCPCS = ConvertToCPC(resultsrequest);
+
+
+        //regroupClassesCPC(subAccountCPCS);
+
+        return subAccountCPCS;
+    }
+
+    // fetching data for the class 7
+    @Override
+    public List<SubAccountCPC> getClassSeven(String date, String company_name) {
+        List<Object []> resultsrequest = repository.getCPCC7(date,company_name);
+
+        List<SubAccountCPC> subAccountCPCS = ConvertToCPC(resultsrequest);
+
+
+
+        //regroupClassesCPC(subAccountCPCS);
+
+        return subAccountCPCS;
+    }
+
+    @Override
+    public List<Tvadto> getTvaData(String date, String company_name) {
+        List<Object []> resultrequest;
+        return null;
+    }
+
     // Convert object to SubAccountActif
     @Override
     public List<SubAccountActif> ConvertToBilanActif(List<Object[]> resultsrequest){
@@ -157,15 +199,17 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
             Double net=brut;
             if(n_compte.startsWith("2")){
                 Double totalAmort = (Double) resultat[3];
+                Double netn = (Double) resultat[4];
                 if (totalAmort == 0) {totalAmort =null;}
                 else {FormatUtils.formatDecimal(totalAmort);
                 net=FormatUtils.formatDecimal(brut-totalAmort);}
                 return new SubAccountActif(mainA, n_compte, libelle,
-                       brut, totalAmort, net);
+                       brut, totalAmort, net, netn);
             }
             else{
+                Double netn = (Double) resultat[3];
                 return new SubAccountActif(mainA, n_compte, libelle,
-                        brut, net);
+                        brut, net, netn);
             }
 
         }catch(RuntimeException e){
@@ -186,6 +230,7 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
             String n_compte =  resultat[0].toString();
             String libelle = (String) resultat[1];
             Double brut = (Double) resultat[2];
+            //Double brutp = (Double) resultat[3];
 
             SubAccountPassif bilanPassif = new SubAccountPassif();
             bilanPassif.setMainAccount(mainA);
@@ -196,6 +241,29 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
         }
 
         return bilansPassifs;
+    }
+
+    @Override
+    public List<SubAccountCPC> ConvertToCPC(List<Object[]> resultsrequest) {
+        List<SubAccountCPC> accountCPCS = new ArrayList<>();
+
+        // Parcourir les résultats et convertir chaque élément en Bilan
+        for (Object[] resultat : resultsrequest) {
+
+            String mainA = getMainAccount(resultat[0].toString());
+            String n_compte =  resultat[0].toString();
+            String libelle = (String) resultat[1];
+            Double brut = (Double) resultat[2];
+
+            SubAccountCPC subAccountCPC = new SubAccountCPC();
+            subAccountCPC.setMainAccount(mainA);
+            subAccountCPC.setN_compte(n_compte);
+            subAccountCPC.setLibelle(libelle);
+            subAccountCPC.setBrut(brut == 0.00 ? null : FormatUtils.formatDecimal(brut));
+            accountCPCS.add(subAccountCPC);
+        }
+
+        return accountCPCS;
     }
 
     // Regroup actif classes in case we have the same account number at beginning
@@ -239,6 +307,14 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
            throw new RuntimeException("Failed to regroup data actif "+ e.getMessage());
        }
 
+       // Effacer la liste initiale
+       bilanActifdata.clear();
+
+       // Ajouter les éléments regroupés à la liste initiale
+       for (Map.Entry<String, SubAccountActif> entry : mapBilanActif.entrySet()) {
+           bilanActifdata.add(entry.getValue());
+       }
+
    }
 
     // Regroup passif classes in case we have the same account number at beginning
@@ -259,15 +335,57 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
                 mapBilanPassif.put(n_sous_compte, bilanPassif);
             }else{
                 if (bilanPassif.getBrut() != null && val.getBrut() != null) {
-                bilanPassif.setBrut(bilanPassif.getBrut() + val.getBrut());
-                bilanPassif.setBrut(FormatUtils.formatDecimal(bilanPassif.getBrut()));
+                    bilanPassif.setBrut(bilanPassif.getBrut() + val.getBrut());
+                    bilanPassif.setBrut(FormatUtils.formatDecimal(bilanPassif.getBrut()));
                 }
             }
-
-
-
         }
 
+        // Effacer la liste initiale
+        bilanPassifdata.clear();
+
+        // Ajouter les éléments regroupés à la liste initiale
+        for (Map.Entry<String, SubAccountPassif> entry : mapBilanPassif.entrySet()) {
+            bilanPassifdata.add(entry.getValue());
+        }
+
+    }
+
+    // Regroup CPC classes in case we have the same account number at beginning
+    @Override
+    public void regroupClassesCPC(List<SubAccountCPC> cpcAccount) {
+        Map<String, SubAccountCPC> subAccountCPCMap = new HashMap<>();
+
+        // Regrouper les éléments par les trois premiers chiffres du compte
+        for (SubAccountCPC val : cpcAccount) {
+            String n_sous_compte = val.getN_compte().substring(0, 3);
+            String n_compte = n_sous_compte + "00000"; // Ajout de 5 zéros pour avoir 8 chiffres
+            String libelle = val.getLibelle();
+            SubAccountCPC subAccountCPC = subAccountCPCMap.get(n_sous_compte);
+
+            if (subAccountCPC == null) {
+                subAccountCPC = new SubAccountCPC(getMainAccount(n_compte),
+                        n_compte, libelle, val.getBrut());
+                subAccountCPCMap.put(n_sous_compte, subAccountCPC);
+            }else{
+                if (val.getBrut() == null){
+                    subAccountCPC.setBrut(subAccountCPC.getBrut());
+                }
+                else {
+                    subAccountCPC.setBrut(subAccountCPC.getBrut() + val.getBrut());
+                }
+
+                subAccountCPC.setBrut(FormatUtils.formatDecimal(subAccountCPC.getBrut()));
+            }
+        }
+
+        // Effacer la liste initiale
+        cpcAccount.clear();
+
+        // Ajouter les éléments regroupés à la liste initiale
+        for (Map.Entry<String, SubAccountCPC> entry : subAccountCPCMap.entrySet()) {
+            cpcAccount.add(entry.getValue());
+        }
     }
 
     // Get the Main account of a subaccount
@@ -291,6 +409,12 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
 
             case '5':
                 return accountDataManagerService.getMainAccountFive(n_compte.substring(0,2));
+
+            case '6':
+                return accountDataManagerService.getMainAccountSix(n_compte.substring(0,2));
+
+            case '7':
+                return accountDataManagerService.getMainAccountSeven(n_compte.substring(0,2));
 
             default:
                 return null;

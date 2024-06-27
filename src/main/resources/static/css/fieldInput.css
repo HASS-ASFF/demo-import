@@ -1,0 +1,60 @@
+body {
+    font-size: 100%;
+}
+
+h2 {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.text-right{
+    text-align: right !important;
+}
+
+#getImmobilisationByDate,#getPassagesByDate{
+    margin-right: 10px;
+}
+
+.styled-table {
+    border-collapse: separate;
+    margin: 25px 0;
+    font-size: 0.8em;
+    font-family: sans-serif;
+    min-width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #007bff;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #ffffff;
+    background-color: #f3f3f3;
+}
+
+
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #007bff;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.save-icon{
+    cursor: pointer;
+}
+
+.editable-field{
+    cursor: pointer;
+}

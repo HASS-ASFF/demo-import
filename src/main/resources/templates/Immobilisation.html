@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Immobilisation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <script src="/js/immobilisation.js"></script>
+    <script src="/js/fieldInput.js"></script>
+    <script src="/js/dateInput.js"></script>
+    <script src="/js/importExcelFile.js"></script>
+
+    <link rel="stylesheet" href="/css/fieldInput.css">
+
+</head>
+<body>
+<div>
+
+    <div class="text-center mb-3">
+        <h2>ETAT DE DOTATIONS AUX AMORTISSEMENTS RELATIFS AUX IMMOBILISATIONS</h2>
+        <button id="importExcelBtn" type="button" class="btn btn-success">Importer fichier Excel</button>
+        <button id="getImmobilisationByDate" type="button" class="btn btn-primary">Afficher le tableau</button>
+        <input type="text" id="dateBilan" list="datesList" placeholder="Sélectionner une date">
+        <datalist id="datesList"></datalist>
+    </div>
+
+    <table class="styled-table">
+        <thead>
+        <tr>
+            <th scope="col">Immobilisations concernées</th>
+            <th scope="col">Date d'entrée</th>
+            <th scope="col">Valeur à amortir (Prix d'acquisition)</th>
+            <th scope="col">Valeur à amortir - Valeur comptable après réevaluation</th>
+            <th scope="col">Amortissements antérieurs</th>
+            <th scope="col">Amortissements déduits du Bénéfice brut de l'exercice (Taux)</th>
+            <th scope="col">Amortissements déduits du Bénéfice brut de l'exercice Durée</th>
+            <th scope="col">Amortissements déduits du Bénéfice brut de l'exercice Amortissements normaux ou accélérés de l'exercice</th>
+            <th scope="col">Total des amortissements à la fin de l'exercice</th>
+            <th scope="col">Observations</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody id="getResultDiv">
+
+        </tbody>
+    </table>
+</div>
+
+
+<div class="modal fade" id="datePickerModal" tabindex="-1" role="dialog" aria-labelledby="datePickerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="datePickerModalLabel">Sélectionner une date et uploader le fichier</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="selectedDateInput" list="datesList" placeholder="Sélectionner une date" class="form-control">
+                <datalist id="datesListModal"></datalist>
+                <!-- Champ d'entrée de type fichier -->
+                <input type="file" id="excelFileInput" class="form-control-file" accept=".xls,.xlsx">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" id="uploadAndSaveBtn">Uploader et Sauvegarder</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Succès</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="successMessage">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

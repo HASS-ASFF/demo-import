@@ -2,13 +2,16 @@ package com.api.demoimport.service.Implementation;
 
 import com.api.demoimport.entity.Bilan.FormatUtils;
 import com.api.demoimport.entity.Bilan.SubAccountActif;
+import com.api.demoimport.entity.Bilan.SubAccountCPC;
 import com.api.demoimport.entity.Bilan.SubAccountPassif;
 import com.api.demoimport.enums.*;
 import com.api.demoimport.repository.BalanceDetailRepository;
 import com.api.demoimport.service.AccountDataManagerService;
+import com.api.demoimport.service.Updatable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 @Service
@@ -17,11 +20,14 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
     @Autowired
     BalanceDetailRepository balanceDetailRepository;
 
-    // New Implementation for jasper Report
-    // Processing data accounts (MainAccount with their subAccounts values)
-    // Initializing with empty values and after filtering with the raw data values from balance
-    // Regrouping the same subAccounts (which refers to the number account)
-    // Returning a List of subAccounts (Actif or Passif) with all values (empty one & from balance)
+    /**
+     * Processing data accounts (MainAccount with their subAccount values),
+     * initializing with empty values and then filtering with raw data values from the balance,
+     * regrouping the same subAccounts (referring to the account number),
+     * and returning a list of subAccounts (Actif or Passif) with all values (both empty and from the balance).
+     * Similar logic applies to CPC accounts, where for class 6, debit or credit values may exist.
+     *   ( A for Actif and P for Passif )
+     */
 
     @Override
     public List<SubAccountActif> processAccountDataA(List<SubAccountActif> rawData, String n_class) {
@@ -36,6 +42,8 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
                 String accountNumber = result.getN_compte();
                 String prefix = extractPrefix(accountNumber);
 
+                System.out.println(result.getBrut() + "  " + result.getN_compte());
+
                 for (SubAccountActif subAccount : mainAccountList) {
                     // check for the same subAccount
                     if (subAccount.getLibelle().startsWith(prefix)) {
@@ -44,6 +52,7 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
                         subAccount.setTotal_amo(result.getTotal_amo());
                         subAccount.setBrut(result.getBrut());
                         subAccount.setNet(result.getNet());
+                        subAccount.setNetN(0.0);
                         break;
                     }
 
@@ -87,6 +96,42 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
         return mainAccountList;
     }
 
+    @Override
+    public List<SubAccountCPC> processAccountDataCPC(List<SubAccountCPC> rawData, String n_class) {
+        List<SubAccountCPC> mainAccountList;
+        try{
+            //initialize data with empty values
+            mainAccountList = SubAccountCPC.initializeData(n_class);
+
+            // loop after raw data values of balance
+            for (SubAccountCPC result : rawData) {
+                // Get the number account
+                String accountNumber = result.getN_compte();
+                String prefix = accountNumber.substring(0,3);
+                // Initialize total for each sub-account
+                Double total = null;
+                for (SubAccountCPC subAccount : mainAccountList) {
+                    // check for the same subAccount
+                    if (subAccount.getLibelle().startsWith(prefix) || subAccount.getLibelle().contains(prefix)) {
+                        // Adding the values
+                        if(subAccount.getBrut() != null && result.getBrut() != null){
+                            total = subAccount.getBrut() + result.getBrut();
+                        }else if(result.getBrut() != null){
+                             total = result.getBrut();
+                        }
+                        subAccount.setN_compte(result.getN_compte());
+                        subAccount.setBrut(total);
+                        break;
+                    }
+
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException("Failed to process data account cpc , error message : "+ e.getMessage());
+        }
+        return mainAccountList;
+    }
 
 
     public String extractPrefix(String accountNumber) {
@@ -101,7 +146,7 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
             for (SubAccountActif subAccountActif : accountDataMap) {
 
                 total += FormatUtils.
-                        formatDecimal((subAccountActif.getBrut() != null ? subAccountActif.getBrut() : 0.0));
+                        formatDecimal((subAccountActif.getBrut() != null ? (double) subAccountActif.getBrut() : 0.0));
             }
             total = FormatUtils.formatDecimal(total);
         }catch (Exception e){
@@ -159,6 +204,22 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
         return total;
     }
 
+    public Double GetTotalBrutCPC(List<SubAccountCPC> accountData) {
+        Double total = 0.0;
+        try {
+            for (SubAccountCPC subAccountCPC : accountData) {
+
+                total += FormatUtils.
+                        formatDecimal((subAccountCPC.getBrut() != null ? subAccountCPC.getBrut() : 0.0));
+
+            }
+        }catch (Exception e){
+            throw new RuntimeException("Failed to get total accounts, error message: "+e.getMessage());
+        }
+
+        return total;
+    }
+
     @Override
     public List<SubAccountActif> FilterAccountDataA(List<SubAccountActif> subAccountActifs,String mainAccount) {
         List<SubAccountActif> filteredList = new ArrayList<>();
@@ -180,6 +241,60 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
         }
         return filteredList;
     }
+
+    @Override
+    public List<SubAccountCPC> FilterAccountDataCPC(List<SubAccountCPC> subAccountCPCS, String mainAccount) {
+        List<SubAccountCPC> filteredList = new ArrayList<>();
+        for(SubAccountCPC val : subAccountCPCS){
+            if(Objects.equals(val.getMainAccount(), mainAccount)){
+                filteredList.add(val);
+            }
+        }
+        return filteredList;
+    }
+
+    @Override
+    public void updateTotalBrutCPC(List<SubAccountCPC> datasetCurrent) {
+        if(!datasetCurrent.isEmpty()){
+                for(SubAccountCPC current : datasetCurrent){
+                    if(current.getBrut() != null && current.getBrutP() != null ){
+                        current.setTotalbrut(current.getBrut() + current.getBrutP());
+                    }
+                    if(current.getBrut() != null && current.getBrutP() == null){
+                        current.setTotalbrut(current.getBrut());
+                    }
+                }
+        }
+    }
+
+    /*@Override
+    public void updateTotalBrutCPCP(List<SubAccountCPC> datasetPrevious) {
+        if(!datasetPrevious.isEmpty()){
+            for(SubAccountCPC current : datasetPrevious){
+                current.setTotalbrutP(current.getBrut()+current.getBrutP());
+            }
+        }
+    }*/
+
+    @Override
+    public <T extends Updatable> void updateExerciceP(List<T> datasetPrevious, List<T> datasetCurrent) {
+        if(!datasetPrevious.isEmpty()){
+            for (T previous : datasetPrevious) {
+                for (T current : datasetCurrent) {
+                    if (previous.getMainAccountAccess().equals(current.getMainAccountAccess()) &&
+                            (previous.getN_compteAccess() == null || previous.getN_compteAccess().equals(current.getN_compteAccess()))) {
+
+                        if (previous instanceof SubAccountCPC && current instanceof SubAccountCPC){
+                            ((SubAccountCPC) current).setTotalbrutP(((SubAccountCPC) previous).getTotalbrut());
+                        }
+                        current.setPreviousExercice(previous.getCurrentExercice());
+
+                    }
+                }
+            }
+        }
+    }
+
 
     public String  getMainAccountOne(String mainAccount) {
         switch (mainAccount) {
@@ -266,6 +381,38 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
                         .getLabel();
             case "55":
                 return AccountCategoryClass5.TRESORERIE_PASSIF
+                        .getLabel();
+            default:
+                return null;
+        }
+    }
+
+    public String getMainAccountSix(String mainAccount) {
+        switch (mainAccount) {
+            case "61":
+                return AccountCategoryClass6.CHARGES_DEXPLOITATION
+                        .getLabel();
+            case "63":
+                return AccountCategoryClass6.CHARGES_FINANCIERES
+                        .getLabel();
+            case "65":
+                return AccountCategoryClass6.CHARGES_NON_COURANTES
+                        .getLabel();
+            default:
+                return null;
+        }
+    }
+
+    public String getMainAccountSeven(String mainAccount) {
+        switch (mainAccount) {
+            case "71":
+                return AccountCategoryClass7.PRODUITS_DEXPLOITATION
+                        .getLabel();
+            case "73":
+                return AccountCategoryClass7.PRODUITS_FINANCIERS
+                        .getLabel();
+            case "75":
+                return AccountCategoryClass7.PRODUITS_NON_COURANTS
                         .getLabel();
             default:
                 return null;

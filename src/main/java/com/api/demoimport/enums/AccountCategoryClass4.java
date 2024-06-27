@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Enumeration representing account categories for class 4.
+ */
 @Getter
 public enum AccountCategoryClass4 {
-    CLASSE_4("Classe 4", "",new ArrayList<>()),
     DETTES_DU_PASSIF_CIRCULANT("44", "DETTES DU PASSIF CIRCULANT (F)"
             , Arrays.asList(
             "441 - Fournisseurs et comptes rattachés",

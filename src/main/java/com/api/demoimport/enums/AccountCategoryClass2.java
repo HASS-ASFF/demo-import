@@ -8,9 +8,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Enumeration representing account categories for class 2.
+ */
 @Getter
 public enum AccountCategoryClass2 {
-    CLASSE_2("Classe 2", "",new ArrayList<>()),
     IMMOBILISATION_NON_VALEURS("21", "IMMOBILISATION en non-valeurs (A)"
     ,Arrays.asList(
             "211 - Frais préliminaires",

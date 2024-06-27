@@ -1,7 +1,5 @@
 package com.api.demoimport.entity.Bilan;
 
-import java.text.DecimalFormat;
-
 public class FormatUtils {
     public static Double formatDecimal(double number) {
         try {

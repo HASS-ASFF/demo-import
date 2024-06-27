@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Tableaux des immobilisations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <script src="/js/passageImmo.js"></script>
+    <script src="/js/fieldInput.js"></script>
+    <link rel="stylesheet" href="/css/fieldInput.css">
+</head>
+<body>
+
+<div>
+
+    <div class="text-center mb-3">
+        <h2>Immobilisations Management</h2>
+
+        <button id="getPassagesByDate" type="button" class="btn btn-primary">Afficher le tableau des immobilisations</button>
+        <input type="text" id="dateBilan" list="datesList" placeholder="Sélectionner une date">
+
+        <datalist id="datesList"></datalist>
+    </div>
+
+    <table  class="styled-table">
+        <thead>
+        <tr>
+            <th scope="col" rowspan="2">NATURE</th>
+            <th scope="col" rowspan="2">MONTANT BRUT DEBUT EXERCICE</th>
+            <th scope="col" colspan="3">Augmentations</th>
+            <th scope="col" colspan="3">Diminutions</th>
+            <th scope="col" rowspan="2">MONTANT BRUT FIN EXERCICE</th>
+        </tr>
+        <tr>
+            <th scope="col">Acquisition</th>
+            <th scope="col">PPE PEM(*)</th>
+            <th scope="col">Virement</th>
+
+            <th scope="col">Cession</th>
+            <th scope="col">(-)Retrait</th>
+            <th scope="col">(-)Virement</th>
+        </tr>
+
+
+        </thead>
+        <tbody id="getResultDiv">
+
+        <tr>
+            <th scope="row">I. IMMOBILISATION EN NON-VALEURS</th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        <tr th:each="passage : ${part1}">
+            <td data-field-name='name' th:text="${passage.libelle}"></td>
+            <td style='cursor:pointer;' data-field-name='brut' class='editable-field' th:text="${passage.brut}"></td>
+            <td style='cursor:pointer;' data-field-name='acquisition' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='ppe' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='virement' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='cession' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='retrait' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='virementM' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='brutE'  th:text="${passage.brut}"></td>
+        </tr>
+
+        <tr>
+            <th scope="row">II. IMMOBILISATIONS INCORPORELLES</th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        <tr th:each="passage : ${part2}">
+            <td data-field-name='name' th:text="${passage.libelle}"></td>
+            <td style='cursor:pointer;' data-field-name='brut' class='editable-field' th:text="${passage.brut}"></td>
+            <td style='cursor:pointer;' data-field-name='acquisition' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='ppe' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='virement' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='cession' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='retrait' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='virementM' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='brutE'  th:text="${passage.brut}"></td>
+        </tr>
+
+        <tr>
+            <th scope="row">III. IMMOBILISATIONS CORPORELLE+</th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        <tr th:each="passage : ${part3}">
+            <td data-field-name='name' th:text="${passage.libelle}"></td>
+            <td style='cursor:pointer;' data-field-name='brut' class='editable-field' th:text="${passage.brut}"></td>
+            <td style='cursor:pointer;' data-field-name='acquisition' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='ppe' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='virement' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='cession' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='retrait' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='virementM' class='editable-field'></td>
+            <td style='cursor:pointer;' data-field-name='brutE'  th:text="${passage.brut}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+</body>
+
+<script>
+    // Fonction pour générer les options du datalist avec les dates du 31 décembre
+    function generateDatesList() {
+        var datalist = document.getElementById("datesList");
+        for (var year = 2000; year <= 2025; year++) {
+            var option = document.createElement("option");
+            // Formatage de la date au format DD/MM/AAAA
+            var formattedDate = "31/12/" + year;
+            option.value = formattedDate;
+            datalist.appendChild(option);
+        }
+    }
+
+    // Appel de la fonction au chargement de la page
+    window.onload = generateDatesList;
+
+    // Fonction pour ouvrir le modal au chargement de la page
+    $(document).ready(function() {
+        // Ouvrir le modal
+        $('#dateModal').modal('show');
+    });
+
+</script>
+
+</html>

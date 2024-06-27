@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Enumeration representing account categories for class 3.
+ */
 @Getter
 public enum AccountCategoryClass3 {
-    CLASSE_3("Classe 3", "",new ArrayList<String>()),
     STOCKS("31", "Stocks (F)",
             Arrays.asList(
                     "311 - Marchandises",
