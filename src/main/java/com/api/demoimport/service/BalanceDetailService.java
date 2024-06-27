@@ -8,6 +8,7 @@ import com.api.demoimport.entity.Bilan.SubAccountPassif;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface BalanceDetailService {
 
@@ -18,7 +19,6 @@ public interface BalanceDetailService {
      */
 
     void save(MultipartFile file, String date,String company_name);
-    List<BalanceDetail> getBalanceDetails();
     List<SubAccountPassif> getClassOne(String date,String company_name);
     List<SubAccountActif> getClassTwo(String date,String company_name);
     List<SubAccountActif> getClassThree(String date,String company_name);
@@ -43,4 +43,7 @@ public interface BalanceDetailService {
     void regroupClassesCPC(List<SubAccountCPC> cpcAccount);
 
     String getMainAccount(String n_compte);
+    Optional<Double> getMaterielInfoValue(String date,String compny_name);
+
+    List<Double> getDetailStockValues(String date,String company_name);
 }

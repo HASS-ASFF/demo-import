@@ -311,7 +311,7 @@ public class ReportServiceImpl implements ReportService {
             dataset5.forEach(d -> System.out.println(d.getMainAccount() + " "+ d.getBrut()));
             dataset6.forEach(d -> System.out.println(d.getMainAccount() + " "+ d.getBrut()));
 
-            /*// ADD THE DATA OF EXERCICE PRECEDENT IN THE ACTUAL DATASETS (ANNEE N)
+            // ADD THE DATA OF EXERCICE PRECEDENT IN THE ACTUAL DATASETS (ANNEE N)
             accountDataManagerServiceImpl.updateExerciceP(dataset1N,dataset1);
             accountDataManagerServiceImpl.updateExerciceP(dataset2N,dataset2);
             accountDataManagerServiceImpl.updateExerciceP(dataset3N,dataset3);
@@ -319,7 +319,7 @@ public class ReportServiceImpl implements ReportService {
             accountDataManagerServiceImpl.updateExerciceP(dataset5N,dataset5);
             accountDataManagerServiceImpl.updateExerciceP(dataset6N,dataset6);
             accountDataManagerServiceImpl.updateExerciceP(dataset7N,dataset7);
-            accountDataManagerServiceImpl.updateExerciceP(dataset8N,dataset8);*/
+            accountDataManagerServiceImpl.updateExerciceP(dataset8N,dataset8);
 
 
             // CREATE INSTANCES OF JRBEANCOLLECTIONDATASOURCE FOR OUR JAVA BEAN OBJECTS
@@ -366,7 +366,8 @@ public class ReportServiceImpl implements ReportService {
 
             long endTime = System.currentTimeMillis(); // Fin du chronométrage
             long executionTime = endTime - startTime;
-            logger.info("Temps d'exécution : {} ms", executionTime);
+
+            logger.info("Temps d'exécution exportReportActif : {} ms", executionTime);
 
             return jasperConfiguration(pathA,parameters);
 
@@ -487,13 +488,13 @@ public class ReportServiceImpl implements ReportService {
             accountDataManagerServiceImpl.updateTotalBrutCPC(dataset5);
             accountDataManagerServiceImpl.updateTotalBrutCPC(dataset6);
 
-           /* // ADD THE DATA OF EXERCICE PRECEDENT IN THE ACTUAL DATASETS (ANNEE N)
+            // ADD THE DATA OF EXERCICE PRECEDENT IN THE ACTUAL DATASETS (ANNEE N)
             accountDataManagerServiceImpl.updateExerciceP(dataset1N,dataset1);
             accountDataManagerServiceImpl.updateExerciceP(dataset2N,dataset2);
             accountDataManagerServiceImpl.updateExerciceP(dataset3N,dataset3);
             accountDataManagerServiceImpl.updateExerciceP(dataset4N,dataset4);
             accountDataManagerServiceImpl.updateExerciceP(dataset5N,dataset5);
-            accountDataManagerServiceImpl.updateExerciceP(dataset6N,dataset6);*/
+            accountDataManagerServiceImpl.updateExerciceP(dataset6N,dataset6);
 
 
 
@@ -589,6 +590,65 @@ public class ReportServiceImpl implements ReportService {
             throw new RuntimeException(message);
         }
 
+    }
+
+    @Override
+    public ByteArrayOutputStream exportPassage(String date, String company_name) throws JRException {
+        return null;
+    }
+
+    @Override
+    public ByteArrayOutputStream exportTable4(String date, String company_name) throws JRException {
+        // TO CHECK
+        String pathTable4 = path+"table4.jrxml";
+        try {
+            Optional<Double> mat_inf;
+            Double matInfo = null;
+
+            // CLASS TWO
+            List<SubAccountActif> ClassTwo = balanceDetailServiceImpl.getClassTwo(date,company_name);
+            List<SubAccountActif> FullClassTwo = accountDataManagerServiceImpl.
+                    processAccountDataA(ClassTwo,"2");
+
+            List<SubAccountActif> dataset1 = accountDataManagerServiceImpl.
+                    FilterAccountDataA(FullClassTwo, AccountCategoryClass2.IMMOBILISATION_NON_VALEURS.getLabel());
+            List<SubAccountActif> dataset2 = accountDataManagerServiceImpl.
+                    FilterAccountDataA(FullClassTwo,AccountCategoryClass2.IMMOBILISATION_INCORPORELLES.getLabel());
+            List<SubAccountActif> dataset3 = accountDataManagerServiceImpl.
+                    FilterAccountDataA(FullClassTwo,AccountCategoryClass2.IMMOBILISATION_CORPORELLES.getLabel());
+
+            JRBeanCollectionDataSource dataSource1 = new JRBeanCollectionDataSource(dataset1);
+            JRBeanCollectionDataSource dataSource2 = new JRBeanCollectionDataSource(dataset2);
+            JRBeanCollectionDataSource dataSource3 = new JRBeanCollectionDataSource(dataset3);
+
+            mat_inf = balanceDetailServiceImpl.getMaterielInfoValue(date,company_name);
+            if(mat_inf.isPresent()){
+                matInfo = mat_inf.get();
+            }
+
+            Map<String, Object> parameters = new HashMap<>();
+
+            parameters.put("param1",dataSource1);
+            parameters.put("param2",dataSource2);
+            parameters.put("param3",dataSource3);
+
+            parameters.put("param4",dataSource1);
+            parameters.put("param5",dataSource2);
+            parameters.put("param6",dataSource3);
+
+            parameters.put("matInfo",matInfo);
+
+            parameters.put("DateN",date.substring(0,4));
+            parameters.put("DateN1",getLastYear(date).substring(0,4));
+
+            parameters.put("name_company",company_name);
+
+            return jasperConfiguration(pathTable4,parameters);
+
+        }catch (RuntimeException e) {
+            String message = "Failed to report table 4 " + e.getLocalizedMessage() + "!";
+            throw new RuntimeException(message);
+        }
     }
 
     @Override
@@ -930,6 +990,16 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
+    public ByteArrayOutputStream exportTable8(String date, String company_name) throws JRException {
+        return null;
+    }
+
+    @Override
+    public ByteArrayOutputStream exportTable9(String date, String company_name) throws JRException {
+        return null;
+    }
+
+    @Override
     public ByteArrayOutputStream exportDetailTva(String date, String company_name) throws JRException {
         // TO CHECK
         String pathTva = path+"DetailTva.jrxml";
@@ -994,22 +1064,66 @@ public class ReportServiceImpl implements ReportService {
             // TO CHECK
             // ANNEE N-1 (exercice precedent)
             String pathTva = path+"table14.jrxml";
+            // CLASS SIX
+            List<SubAccountCPC> ClassSix = balanceDetailServiceImpl.getClassSix(getLastYear(date),company_name);
+            List<SubAccountCPC> FullClassSix = accountDataManagerServiceImpl.
+                    processAccountDataCPC(ClassSix,"6");
+
+            // CLASS SEVEN
+            List<SubAccountCPC> ClassSeven = balanceDetailServiceImpl.getClassSeven(getLastYear(date),company_name);
+            List<SubAccountCPC> FullClassSeven = accountDataManagerServiceImpl.
+                    processAccountDataCPC(ClassSeven,"7");
+            // CLASS ONE
+            List<SubAccountPassif> ClassOne = balanceDetailServiceImpl.getClassOne(getLastYear(date),company_name);
+            List<SubAccountPassif> FullClassOne = accountDataManagerServiceImpl.
+                    processAccountDataP(ClassOne,"1");
+
+            // OUR DATASET TO WORK
+            List<SubAccountPassif> dataset1 = accountDataManagerServiceImpl.
+                    FilterAccountDataP(FullClassOne, AccountCategoryClass1.CAPITAUX_PROPRES.getLabel());
+
+            Double resultat_net = esgService.GetResultat(FullClassSix,FullClassSeven,"RESULTAT NET DE L'EXERCICE");
+            dataset1.get(10).setBrut(resultat_net);
+
+            Double v1 = accountDataManagerServiceImpl.
+                    FilterAccountDataTable14(dataset1,"Report à nouveau");
+            Double v2 = accountDataManagerServiceImpl.
+                    FilterAccountDataTable14(dataset1,"Résultats nets en instance d'affectation");
+            Double v3 = accountDataManagerServiceImpl.
+                    FilterAccountDataTable14(dataset1,"Résultat net de l'exercice");
+            Double v4 = accountDataManagerServiceImpl.
+                    FilterAccountDataTable14(dataset1,"Réserve légale");
+            Double v5 = accountDataManagerServiceImpl.
+                    FilterAccountDataTable14(dataset1,"Autres réserves");
 
             Map<String, Object> parameters = new HashMap<>();
-            parameters.put("a1", 0.0);
-            parameters.put("a2", 0.0);
-            parameters.put("a3", 0.0);
-            parameters.put("a4", 0.0);
-            parameters.put("a5", 0.0);
-            parameters.put("a6", 0.0);
+            parameters.put("v1", v1);
+            parameters.put("v2", v2);
+            parameters.put("v3", v3);
 
-            parameters.put("b1", 0.0);
-            parameters.put("b2", 0.0);
-            parameters.put("b3", 0.0);
-            parameters.put("b4", 0.0);
-            parameters.put("b5", 0.0);
-            parameters.put("b6", 0.0);
-            parameters.put("b7", 0.0);
+            parameters.put("v4", v4);
+            parameters.put("v5", v5);
+
+            // Editable fields
+            Double v6 = 0.0;
+            Double v7 = 0.0;
+            Double v8 = 0.0;
+            Double v9 = 0.0;
+            Double v10 = 0.0;
+            Double v11 = 0.0;
+
+            parameters.put("v6", v6);
+            parameters.put("v7", v7);
+            parameters.put("v8", v8);
+            parameters.put("v9", v9);
+            parameters.put("v10", v10);
+            parameters.put("v11", v11);
+
+            Double totalA = v1+v2+v3+v4+v5;
+            Double totalB = v6+v7+v8+v9+v10+v11;
+
+            parameters.put("totalA", totalA);
+            parameters.put("totalB", totalB);
 
             parameters.put("DateN",date.substring(0,4));
             parameters.put("DateN1",getLastYear(date).substring(0,4));
@@ -1018,6 +1132,7 @@ public class ReportServiceImpl implements ReportService {
 
             return jasperConfiguration(pathTva,parameters);
         }catch (RuntimeException e){
+            e.printStackTrace();
             String message = "Failed to report Table 14 " + e.getLocalizedMessage() + "!";
             throw new RuntimeException(message);
         }
@@ -1084,19 +1199,80 @@ public class ReportServiceImpl implements ReportService {
     public ByteArrayOutputStream exportTable20(String date, String company_name) throws JRException {
         try {
             // TO CHECK
-            String pathTva = path+"table20.jrxml";
+            String pathTva = path + "table20.jrxml";
 
+            // Récupérer les valeurs V1 à V21
+            List<Double> stockValues = balanceDetailServiceImpl.getDetailStockValues(date, company_name);
+
+            // Initialiser la carte des paramètres
             Map<String, Object> parameters = new HashMap<>();
 
-            parameters.put("DateN",date.substring(0,4));
-            parameters.put("DateN1",getLastYear(date).substring(0,4));
+            // Ajouter les paramètres pour les dates et le nom de la société
+            parameters.put("DateN", date.substring(0, 4));
+            parameters.put("DateN1", getLastYear(date).substring(0, 4));
+            parameters.put("name_company", company_name);
 
-            parameters.put("name_company",company_name);
-            return jasperConfiguration(pathTva,parameters);
+            parameters.put("V1_C1",stockValues.get(0));
+            parameters.put("V2_C1",stockValues.get(0));
+            parameters.put("V3_C1",stockValues.get(0));
+
+            parameters.put("V4_C1",stockValues.get(1));
+            parameters.put("V5_C1",stockValues.get(2));
+            parameters.put("V6_C1",stockValues.get(3));
+            parameters.put("V7_C1",stockValues.get(4));
+            parameters.put("V8_C1",stockValues.get(5));
+            parameters.put("V9_C1",stockValues.get(6));
+            parameters.put("V10_C1",stockValues.get(7));
+            parameters.put("V11_C1",stockValues.get(8));
+            parameters.put("V12_C1",stockValues.get(9));
+            parameters.put("V13_C1",stockValues.get(10));
+            parameters.put("V14_C1",stockValues.get(11));
+            parameters.put("V15_C1",stockValues.get(12));
+            parameters.put("V16_C1",stockValues.get(13));
+            parameters.put("V17_C1",stockValues.get(14));
+            parameters.put("V18_C1",stockValues.get(15));
+            parameters.put("V19_C1",stockValues.get(16));
+            parameters.put("V20_C1",stockValues.get(17));
+            parameters.put("V21_C1",stockValues.get(18));
+
+
+
+            // Calcul des totaux
+            Double total1 = calculateTotal1(stockValues);
+            Double total2 = calculateTotal2(stockValues);
+            Double total3 = calculateTotal3(stockValues);
+            Double total4 = calculateTotal4(stockValues);
+            Double totalGlobal = total1 + total2 + total3 + total4;
+
+
+            parameters.put("total1", total1);
+            parameters.put("total2", total2);
+            parameters.put("total3", total3);
+            parameters.put("total4", total4);
+            parameters.put("totalglobal", totalGlobal);
+
+            // Configurer et générer le rapport Jasper
+            return jasperConfiguration(pathTva, parameters);
         }catch (RuntimeException e){
             String message = "Failed to report Table 20 " + e.getLocalizedMessage() + "!";
             throw new RuntimeException(message);
         }
+    }
+
+    private Double calculateTotal4(List<Double> stockValues) {
+        return stockValues.subList(16, 18).stream().reduce(0.0, Double::sum);
+    }
+
+    private Double calculateTotal3(List<Double> stockValues) {
+        return stockValues.subList(14, 15).stream().reduce(0.0, Double::sum);
+    }
+
+    private Double calculateTotal2(List<Double> stockValues) {
+        return stockValues.subList(10, 13).stream().reduce(0.0, Double::sum);
+    }
+
+    private Double calculateTotal1(List<Double> stockValues) {
+        return stockValues.subList(0, 9).stream().reduce(0.0, Double::sum);
     }
 
     private boolean companyLessThanThreeLosses(List<SubAccountCPC> ClassSix,List<SubAccountCPC> ClassSeven,String date,String company_name) {

@@ -57,22 +57,37 @@
     <parameter name="DateN1" class="java.lang.String"/>
     <parameter name="name_company" class="java.lang.String"/>
     <parameter name="DateN" class="java.lang.String"/>
-    <parameter name="a1" class="java.lang.Double"/>
-    <parameter name="a2" class="java.lang.Double"/>
-    <parameter name="a3" class="java.lang.Double"/>
-    <parameter name="a4" class="java.lang.Double"/>
-    <parameter name="a5" class="java.lang.Double"/>
-    <parameter name="a6" class="java.lang.Double"/>
-    <parameter name="b1" class="java.lang.Double"/>
-    <parameter name="b2" class="java.lang.Double"/>
-    <parameter name="b3" class="java.lang.Double"/>
-    <parameter name="b4" class="java.lang.Double"/>
-    <parameter name="b5" class="java.lang.Double"/>
-    <parameter name="b6" class="java.lang.Double"/>
-    <parameter name="b7" class="java.lang.Double"/>
+    <parameter name="totalA" class="java.lang.Double"/>
+    <parameter name="totalB" class="java.lang.Double"/>
+    <parameter name="v1" class="java.lang.Double"/>
+    <parameter name="v2" class="java.lang.Double"/>
+    <parameter name="v3" class="java.lang.Double"/>
+    <parameter name="v4" class="java.lang.Double"/>
+    <parameter name="v5" class="java.lang.Double"/>
+    <parameter name="v6" class="java.lang.Double"/>
+    <parameter name="v7" class="java.lang.Double"/>
+    <parameter name="v8" class="java.lang.Double"/>
+    <parameter name="v9" class="java.lang.Double"/>
+    <parameter name="v10" class="java.lang.Double"/>
+    <parameter name="v11" class="java.lang.Double"/>
     <queryString>
         <![CDATA[]]>
     </queryString>
+    <field name="a1" class="java.lang.Double"/>
+    <field name="a2" class="java.lang.Double"/>
+    <field name="a3" class="java.lang.Double"/>
+    <field name="a4" class="java.lang.Double"/>
+    <field name="a5" class="java.lang.Double"/>
+    <field name="a6" class="java.lang.Double"/>
+    <field name="a7" class="java.lang.Double"/>
+    <field name="b1" class="java.lang.Double"/>
+    <field name="b2" class="java.lang.Double"/>
+    <field name="b3" class="java.lang.Double"/>
+    <field name="b4" class="java.lang.Double"/>
+    <field name="b5" class="java.lang.Double"/>
+    <field name="b6" class="java.lang.Double"/>
+    <field name="b7" class="java.lang.Double"/>
+    <field name="b8" class="java.lang.Double"/>
     <background>
         <band splitType="Stretch"/>
     </background>
@@ -95,7 +110,7 @@
                 <textFieldExpression><![CDATA[$P{DateN}]]></textFieldExpression>
             </textField>
             <rectangle>
-                <reportElement style="PrimaryAreaStyle" mode="Opaque" x="632" y="20" width="170" height="359" uuid="38282cc6-6a62-4f78-a4fb-b687a1c7275e">
+                <reportElement style="PrimaryAreaStyle" mode="Opaque" x="632" y="20" width="170" height="367" uuid="38282cc6-6a62-4f78-a4fb-b687a1c7275e">
                     <property name="com.jaspersoft.studio.unit.width" value="pixel"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
@@ -104,14 +119,14 @@
                 </graphicElement>
             </rectangle>
             <staticText>
-                <reportElement style="PrimaryAreaStyle" x="632" y="389" width="170" height="20" uuid="d789ae04-303d-4e34-9e73-6c6fbe5f1698">
+                <reportElement style="PrimaryAreaStyle" x="632" y="390" width="170" height="20" uuid="d789ae04-303d-4e34-9e73-6c6fbe5f1698">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
                 <textElement textAlignment="Center" verticalAlignment="Middle"/>
                 <text><![CDATA[TOTAL ACTIVE]]></text>
             </staticText>
             <textField>
-                <reportElement style="PrimaryAreaStyle" x="632" y="413" width="84" height="20" uuid="d9b237a1-2e08-4248-9677-397d9107d628">
+                <reportElement style="PrimaryAreaStyle" x="632" y="414" width="84" height="20" uuid="d9b237a1-2e08-4248-9677-397d9107d628">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -120,7 +135,7 @@
                 <textFieldExpression><![CDATA[$P{DateN}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement style="PrimaryAreaStyle" x="717" y="413" width="84" height="20" uuid="34f0d366-72cd-449c-afbf-d78325cef900">
+                <reportElement style="PrimaryAreaStyle" x="717" y="414" width="84" height="20" uuid="34f0d366-72cd-449c-afbf-d78325cef900">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
@@ -209,7 +224,7 @@
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.x" value="px"/>
                 </reportElement>
-                <text><![CDATA[Prélèvements sur les réserves]]></text>
+                <text><![CDATA[Autres prélèvements]]></text>
             </staticText>
             <staticText>
                 <reportElement style="TTableStyle" x="0" y="387" width="180" height="45" uuid="9cafb7f6-37bc-4f44-b915-0b1edfc98f12">
@@ -224,20 +239,21 @@
                     <property name="com.jaspersoft.studio.unit.x" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
+                <textFieldExpression><![CDATA[$P{totalA} != null ? new java.text.DecimalFormat("#,##0.00").format($P{totalA}).replaceAll(",",".") : ""]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="180" y="117" width="132" height="45" uuid="8cd5d5f2-1519-4ee3-ad9a-289811a5b0a8">
                     <property name="com.jaspersoft.studio.unit.x" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$P{a1}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{v1} != null ? new java.text.DecimalFormat("#,##0.00").format($P{v1}).replaceAll(",",".") : ""]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="180" y="162" width="132" height="45" uuid="6e46c5b9-5e0a-4f2e-b1ab-bed1c1e4a069">
                     <property name="com.jaspersoft.studio.unit.x" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$P{a2}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{v2}  != null ? new java.text.DecimalFormat("#,##0.00").format($P{v2}).replaceAll(",",".") : ""]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="180" y="207" width="132" height="45" uuid="8e747f7c-33df-4c27-9dbb-cf0642fd4724">
@@ -245,7 +261,7 @@
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$P{a3}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{v3}  != null ? new java.text.DecimalFormat("#,##0.00").format($P{v3}).replaceAll(",",".") : ""]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="180" y="297" width="132" height="45" uuid="1ba410f1-e1f6-4610-9b9a-11b842ae4195">
@@ -253,14 +269,14 @@
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.y" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$P{a4}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{v4}  != null ? new java.text.DecimalFormat("#,##0.00").format($P{v4}).replaceAll(",",".") : ""]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="180" y="342" width="132" height="45" uuid="f71dc6d7-20df-42d3-b6b6-6b18d75616fb">
                     <property name="com.jaspersoft.studio.unit.x" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$P{a5}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{v5}  != null ? new java.text.DecimalFormat("#,##0.00").format($P{v5}).replaceAll(",",".") : ""]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="PrimaryLineStyle" x="180" y="387" width="132" height="45" uuid="b9a8b155-eb60-4124-b14f-bd0c90beed8a">
@@ -268,7 +284,7 @@
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.y" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$P{a6}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{totalA} != null ? new java.text.DecimalFormat("#,##0.00").format($P{totalA}).replaceAll(",",".") : ""]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement style="HTableStyle" x="312" y="22" width="180" height="50" uuid="ae3a0a65-f17e-4693-84e7-153333ba0764">
@@ -365,6 +381,7 @@
                 <box>
                     <rightPen lineWidth="1.0"/>
                 </box>
+                <textFieldExpression><![CDATA[$P{totalB} != null ? new java.text.DecimalFormat("#,##0.00").format($P{totalB}).replaceAll(",",".") : ""]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="492" y="117" width="132" height="45" uuid="863d979f-cb6e-460c-8cc1-30f25be05bb0">
@@ -375,7 +392,7 @@
                 <box>
                     <rightPen lineWidth="1.0"/>
                 </box>
-                <textFieldExpression><![CDATA[$P{b1}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{v6}  != null ? new java.text.DecimalFormat("#,##0.00").format($P{v6}).replaceAll(",",".") : ""]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="492" y="162" width="132" height="45" uuid="fcab8404-b2dc-4ffb-a486-f0dd32448bb6">
@@ -386,7 +403,7 @@
                 <box>
                     <rightPen lineWidth="1.0"/>
                 </box>
-                <textFieldExpression><![CDATA[$P{b2}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{v7}  != null ? new java.text.DecimalFormat("#,##0.00").format($P{v7}).replaceAll(",",".") : ""]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="492" y="207" width="132" height="45" uuid="be116b2a-6e19-42e8-9552-7f82d606a6ae">
@@ -396,7 +413,7 @@
                 <box>
                     <rightPen lineWidth="1.0"/>
                 </box>
-                <textFieldExpression><![CDATA[$P{b3}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{v8}  != null ? new java.text.DecimalFormat("#,##0.00").format($P{v8}).replaceAll(",",".") : ""]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="492" y="252" width="132" height="45" uuid="6d79452a-ed7b-4816-bf9c-3b4a620853da">
@@ -407,7 +424,7 @@
                 <box>
                     <rightPen lineWidth="1.0"/>
                 </box>
-                <textFieldExpression><![CDATA[$P{b4}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{v9}  != null ? new java.text.DecimalFormat("#,##0.00").format($P{v9}).replaceAll(",",".") : ""]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="492" y="297" width="132" height="45" uuid="a21f70df-f8b3-466c-8a89-ee3f924b213b">
@@ -417,7 +434,7 @@
                 <box>
                     <rightPen lineWidth="1.0"/>
                 </box>
-                <textFieldExpression><![CDATA[$P{b5}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{v10}  != null ? new java.text.DecimalFormat("#,##0.00").format($P{v10}).replaceAll(",",".") : ""]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="492" y="342" width="132" height="45" uuid="866b86fa-d698-4c58-9fea-42916fe3125b">
@@ -427,7 +444,7 @@
                 <box>
                     <rightPen lineWidth="1.0"/>
                 </box>
-                <textFieldExpression><![CDATA[$P{b6}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{v11}  != null ? new java.text.DecimalFormat("#,##0.00").format($P{v11}).replaceAll(",",".") : ""]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="PrimaryLineStyle" x="492" y="387" width="132" height="45" uuid="d1d7bcad-6b4b-4c87-a9f5-78404ffef588">
@@ -437,7 +454,7 @@
                 <box>
                     <rightPen lineWidth="1.0"/>
                 </box>
-                <textFieldExpression><![CDATA[$P{b7}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$P{totalB} != null ? new java.text.DecimalFormat("#,##0.00").format($P{totalB}).replaceAll(",",".") : ""]]></textFieldExpression>
             </textField>
         </band>
     </detail>

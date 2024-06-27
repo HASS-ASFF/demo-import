@@ -51,13 +51,6 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
         }
     }
 
-
-    // Get all details of a balance
-    @Override
-    public List<BalanceDetail> getBalanceDetails() {
-        return repository.findAll();
-    }
-
     // fetching data for the class 1
     @Override
     public List<SubAccountPassif> getClassOne(String dateBilan,String company_name){
@@ -419,5 +412,38 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
             default:
                 return null;
         }
+    }
+
+    @Override
+    public Optional<Double> getMaterielInfoValue(String date, String compny_name) {
+        return repository.getMaterielInfo(date,compny_name);
+    }
+
+    @Override
+    public List<Double> getDetailStockValues(String date, String company_name) {
+        List<Double> stockValues = new ArrayList<>();
+
+        // Retrieve each value and add to the list
+        stockValues.add(repository.getV1toV3(date, company_name).orElse(0.0));
+        stockValues.add(repository.getV4(date, company_name).orElse(0.0));
+        stockValues.add(repository.getV5(date, company_name).orElse(0.0));
+        stockValues.add(repository.getV6(date, company_name).orElse(0.0));
+        stockValues.add(repository.getV7(date, company_name).orElse(0.0));
+        stockValues.add(repository.getV8(date, company_name).orElse(0.0));
+        stockValues.add(repository.getV9(date, company_name).orElse(0.0));
+        stockValues.add(repository.getV10(date, company_name).orElse(0.0));
+        stockValues.add(repository.getV11(date, company_name).orElse(0.0));
+        stockValues.add(repository.getV12(date, company_name).orElse(0.0));
+        stockValues.add(repository.getV13(date, company_name).orElse(0.0));
+        stockValues.add(repository.getV14(date, company_name).orElse(0.0));
+        stockValues.add(repository.getV15(date, company_name).orElse(0.0));
+        stockValues.add(repository.getV16(date, company_name).orElse(0.0));
+        stockValues.add(repository.getV17(date, company_name).orElse(0.0));
+        stockValues.add(repository.getV18(date, company_name).orElse(0.0));
+        stockValues.add(repository.getV19(date, company_name).orElse(0.0));
+        stockValues.add(repository.getV20(date, company_name).orElse(0.0));
+        stockValues.add(repository.getV21(date, company_name).orElse(0.0));
+
+        return stockValues;
     }
 }

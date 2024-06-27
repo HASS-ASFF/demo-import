@@ -254,6 +254,26 @@ public class AccountDataManagerServiceImpl implements AccountDataManagerService 
     }
 
     @Override
+    public Double FilterAccountDataTable14(List<SubAccountPassif> subAccountPassifs, String libelle) {
+        Double val = 0.0;
+        switch (libelle){
+            case "Report à nouveau":
+                val = subAccountPassifs.get(8).getBrut() != null ? subAccountPassifs.get(8).getBrut():0.0;
+                break;
+            case "Résultats nets en instance d'affectation":
+                val = subAccountPassifs.get(9).getBrut() != null ? subAccountPassifs.get(9).getBrut():0.0;
+                break;
+            case "Résultat net de l'exercice":
+                val = subAccountPassifs.get(10).getBrut() != null ? subAccountPassifs.get(10).getBrut():0.0;
+                break;
+            default:
+                break;
+        }
+
+        return val;
+    }
+
+    @Override
     public void updateTotalBrutCPC(List<SubAccountCPC> datasetCurrent) {
         if(!datasetCurrent.isEmpty()){
                 for(SubAccountCPC current : datasetCurrent){
