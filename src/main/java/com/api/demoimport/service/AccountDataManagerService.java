@@ -32,10 +32,10 @@ public interface AccountDataManagerService {
 
     List<SubAccountCPC> FilterAccountDataCPC(List<SubAccountCPC> subAccountCPCS, String mainAccount);
 
+    Double FilterAccountDataTable14(List<SubAccountPassif> subAccountPassifs,String libelle);
+
+
     void updateTotalBrutCPC(List<SubAccountCPC> datasetCurrent);
-/*
-    void updateTotalBrutCPCP(List<SubAccountCPC> datasetPrevious);
-*/
 
     <T extends Updatable> void updateExerciceP(List<T> datasetPrevious, List<T> datasetCurrent);
 }
