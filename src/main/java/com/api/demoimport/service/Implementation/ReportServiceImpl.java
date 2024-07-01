@@ -2,6 +2,7 @@ package com.api.demoimport.service.Implementation;
 
 import com.api.demoimport.dto.Tvadto;
 import com.api.demoimport.entity.Bilan.*;
+import com.api.demoimport.entity.Passage;
 import com.api.demoimport.enums.*;
 import com.api.demoimport.repository.SocieteRepository;
 import com.api.demoimport.service.ReportService;
@@ -15,6 +16,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.io.ByteArrayOutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -35,6 +38,8 @@ public class ReportServiceImpl implements ReportService {
     SocieteRepository societeRepository;
     @Autowired
     TvaServiceImpl tvaService;
+    @Autowired
+    PassageServiceImpl passageService;
 
     private static final Logger logger = LoggerFactory.getLogger(ReportServiceImpl.class);
 
@@ -594,7 +599,76 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public ByteArrayOutputStream exportPassage(String date, String company_name) throws JRException {
-        return null;
+
+        // TO CHECK
+        String pathPassage = path+"passages.jrxml";
+
+        try{
+            Map<String, Object> parameters = new HashMap<>();
+
+            List<Passage> passages_db = passageService.findByDate(date);
+            List<Passage> passages_list = new ArrayList<>();
+            List<Passage> passages_final ;
+
+
+            // Check if we have passage in db or get values from balance
+            if(passages_db.isEmpty()){
+                // FROM BALANCE
+                List<SubAccountCPC> ClassSix = balanceDetailServiceImpl.getClassSix(date,company_name);
+                List<SubAccountCPC> FullClassSix = accountDataManagerServiceImpl.
+                        processAccountDataCPC(ClassSix,"6");
+                List<SubAccountCPC> ClassSeven = balanceDetailServiceImpl.getClassSeven(date,company_name);
+                List<SubAccountCPC> FullClassSeven = accountDataManagerServiceImpl.
+                        processAccountDataCPC(ClassSeven,"7");
+
+                Double res_net = esgService.GetResultat(FullClassSix,FullClassSeven,"RESULTAT NET DE L'EXERCICE");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+                String name = "";
+                if (res_net < 0){
+                    name = "Perte nette";
+                }else{
+                    name = "Bénéfice net";
+                }
+
+                Passage passage = new Passage(name,res_net,sdf.parse(date));
+
+                // CONDITION IF WE HAVE OTHER VALUES FROM CPC ( PRODUIT ET CHARGE NON COURANT )
+                List<Passage> list_pcNC = checkForPassageData(FullClassSix,FullClassSeven,sdf.parse(date));
+
+
+                passages_list.add(passage);
+                passages_list.addAll(list_pcNC);
+
+                passages_final = passageService.processAccountData(passages_list);
+
+                //parameters.put("total",res_net);
+            }
+            else {
+                passages_final = passageService.processAccountData(passages_db);
+            }
+
+            List<List<Passage>> parts = new ArrayList<>();
+            parts.add(passageService.FilterPassages(passages_final, PassageCategory.RESULTAT_NET_COMPTABLE.getMain_name()));
+            parts.add(passageService.FilterPassages(passages_final, PassageCategory.REINTEGRATIONS_FISCALES.getMain_name()));
+            parts.add(passageService.FilterPassages(passages_final, PassageCategory.DEDUCTIONS_FISCALES.getMain_name()));
+            parts.add(passageService.FilterPassages(passages_final, PassageCategory.RESULTAT_BRUT_FISCAL.getMain_name()));
+            parts.add(passageService.FilterPassages(passages_final, PassageCategory.REPORTS_DEFICITAIRES_IMPUTES.getMain_name()));
+            parts.add(passageService.FilterPassages(passages_final, PassageCategory.RESULTAT_NET_FISCAL.getMain_name()));
+            parts.add(passageService.FilterPassages(passages_final, PassageCategory.CUMUL_DES_AMORTISSEMENTS_FISCALEMENT_DIFFERES.getMain_name()));
+            parts.add(passageService.FilterPassages(passages_final, PassageCategory.CUMUL_DES_DEFICITS_FISCAUX_RESTANT_A_REPORTER.getMain_name()));
+
+            parameters.put("DateN",date.substring(0,4));
+            parameters.put("DateN1",getLastYear(date).substring(0,4));
+
+            parameters.put("name_company",company_name);
+
+            return jasperConfiguration(pathPassage,parameters);
+
+        } catch (ParseException e) {
+            String message = "Failed to report table Passage " + e.getLocalizedMessage() + "!";
+            throw new RuntimeException(message);
+        }
     }
 
     @Override
@@ -1389,6 +1463,28 @@ public class ReportServiceImpl implements ReportService {
         }
 
         return benefice_net_fiscal;
+    }
+
+    private List<Passage> checkForPassageData(List<SubAccountCPC> classSix, List<SubAccountCPC> classSeven, Date date) {
+        List<Passage> passageList = new ArrayList<>();
+
+        List<SubAccountCPC> dataset5 = accountDataManagerServiceImpl.
+                FilterAccountDataCPC(classSeven, AccountCategoryClass7.PRODUITS_NON_COURANTS.getLabel());
+        List<SubAccountCPC> dataset6 = accountDataManagerServiceImpl.
+                FilterAccountDataCPC(classSix, AccountCategoryClass6.CHARGES_NON_COURANTES.getLabel());
+
+        // CHECK CHARGES NC & PRODUITS NC
+        Double chargeNC = dataset6.get(2).getBrut();
+        Double produitNC = dataset5.get(3).getBrut();
+
+        if(chargeNC != null){
+            passageList.add(new Passage("AUTRES CHARGES NON COURANT",chargeNC,date));
+        }
+        if(produitNC != null){
+            passageList.add(new Passage("AUTRES PRODUITS NON COURANTS",produitNC,date));
+        }
+
+        return passageList;
     }
 
 
