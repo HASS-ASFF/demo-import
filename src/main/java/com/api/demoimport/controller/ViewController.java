@@ -17,6 +17,9 @@ public class ViewController {
      */
 
 
+    @GetMapping("")
+    public String index() {return "index";}
+
     @GetMapping("/passages")
     public String passages() {return "passages";}
 

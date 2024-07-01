@@ -289,7 +289,7 @@ public class BilanController {
         return ResponseEntity.ok().body(responseMap);
     }
 
-    public List<Passage> checkForPassageData(List<SubAccountCPC> classSix,List<SubAccountCPC> classSeven,Date date){
+    private List<Passage> checkForPassageData(List<SubAccountCPC> classSix, List<SubAccountCPC> classSeven, Date date) {
         List<Passage> passageList = new ArrayList<>();
 
         List<SubAccountCPC> dataset5 = accountDataManagerService.
@@ -310,6 +310,7 @@ public class BilanController {
 
         return passageList;
     }
+
 
 }
 
