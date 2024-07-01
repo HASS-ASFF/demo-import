@@ -34,7 +34,7 @@ public class Societe {
 
     @Column(unique = true, length = 16)
     @NumberFormat
-    @NotBlank(message = "ce champs ne doit pas être vide")
+    //@NotBlank(message = "ce champs ne doit pas être vide")
     private String ice;
 
     @Column(length = 30)
