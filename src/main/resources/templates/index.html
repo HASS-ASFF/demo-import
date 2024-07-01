@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{_fragments/layouts/default}">
 <head>
     <meta charset="UTF-8">
-    <title>API COMPTA</title>
+    <title>hiveApp - Accounting</title>
 </head>
 <body>
-
+	<div layout:fragment="page-body">
+		<h1>Welcome to hiveApp - Accounting</h1>
+		<p>This is the main content area of the index page.</p>
+	</div>
 </body>
 </html>
