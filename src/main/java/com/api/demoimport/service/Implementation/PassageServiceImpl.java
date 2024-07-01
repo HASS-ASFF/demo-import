@@ -1,7 +1,10 @@
 package com.api.demoimport.service.Implementation;
 
+import com.api.demoimport.entity.Bilan.SubAccountCPC;
 import com.api.demoimport.entity.Passage;
 import com.api.demoimport.entity.Bilan.SubAccountActif;
+import com.api.demoimport.enums.AccountCategoryClass6;
+import com.api.demoimport.enums.AccountCategoryClass7;
 import com.api.demoimport.repository.BalanceDetailRepository;
 import com.api.demoimport.repository.PassageRepository;
 import com.api.demoimport.service.PassageService;
