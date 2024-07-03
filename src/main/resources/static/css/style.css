@@ -1,0 +1,8 @@
+.cell-span {
+	background-color: #f0f0f0;
+	border-bottom: 1px solid #d0d0d0;
+}
+
+.no-border {
+	border: none;
+}

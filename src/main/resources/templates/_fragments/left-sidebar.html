@@ -15,39 +15,71 @@
                     <!-- <li class="menu-title">Navigation</li> -->
                     <li sec:authorize="hasRole('ROLE_ADMIN')">
                         <a th:href="@{/}">
-                            <i class="fe-grid"></i>
+                            <i class="fas fa-chart-pie"></i>
                             <span> Dashboard </span>
                         </a>
                     </li>
                     <li>
                         <a href="#sidebarCommand" data-toggle="collapse" class="" aria-expanded="false">
-                            <i class="fe-shopping-cart"></i>
+							<i class="fas fa-file-invoice"></i>
                             <span>Reports</span>
                             <span class="menu-arrow"></span>
                         </a>
                         <div class="collapse" id="sidebarCommand">
                             <ul class="nav-second-level">
                                 <li>
-                                    <a th:href="@{/orders}">
-                                        <span> Ajouter</span>
+                                    <a th:href="@{/api/detailCPC}">
+                                        <span> Detail CPC</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a th:href="@{/magasin/orders}">
-                                        <span> Commande Interne</span>
+                                    <a th:href="@{/api/esg}">
+                                        <span> E.S.G</span>
                                     </a>
                                 </li>
+                                <li>
+                                    <a th:href="@{/api/immobilisation}">
+                                        <span> E.D.A.R.I</span></a>
+                                </li>
+								<li>
+									<a th:href="@{/api/passages}">
+										<span> Passage Management</span></a>
+								</li>
                                 <li>
                                     <a th:href="@{/order/list}">
-                                        <span> Liste Des Commandes</span></a>
+                                        <span> Immobilisations Management</span></a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/api/table12}">
+                                        <span> Details de TVA</span></a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/api/table14}">
+                                        <span> E.A.R.I.C.E</span></a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/api/table15}">
+                                        <span> E.P.C.I.P.E.B.M.E.I</span></a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/api/table17}">
+                                        <span> E.P.V.C.E.C.F</span></a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/api/table18}">
+                                        <span> E.I.E.C.A.A.T.A.O.B.C</span></a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/api/table20}">
+                                        <span> Etat Detaille Des Stocks</span></a>
                                 </li>
                             </ul>
                         </div>
                     </li>
                     <li>
                         <a th:href="@{/diverse}">
-                            <i class="fe-settings"></i>
-                            <span>Balance</span>
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            <span>Bilan</span>
                         </a>
                     </li>
                     

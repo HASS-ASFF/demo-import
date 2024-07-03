@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <div th:fragment="agGridScripts">
+		<script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+        <script>
+
+			const rawData = [
+				{ POSTE: "611", "Detail CPC": "Achats revendus de marchandises", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "611", "Detail CPC": "Achats de marchandises", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "611", "Detail CPC": "Variation des stocks de marchandises (±)", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "611", "Detail CPC": "Total", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "612", "Detail CPC": "Achats revendus de marchandises", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "612", "Detail CPC": "Achat de matières premières", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "612", "Detail CPC": "Variation des stocks de matières premières (+)", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "612", "Detail CPC": "Achats de matériel et fournitures consommables et d'emballages", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "612", "Detail CPC": "Variation des stocks de matières, fournitures et emballages (±)", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "612", "Detail CPC": "Achats non stockés de matières et de fournitures", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "612", "Detail CPC": "Achats de travaux, études et prestations de services", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "612", "Detail CPC": "Total", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "613 / 614", "Detail CPC": "Autres charges externes", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "613 / 614", "Detail CPC": "Locations et charges locatives", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "613 / 614", "Detail CPC": "Redevances de crédit-bail", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "613 / 614", "Detail CPC": "Entretien et réparations", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "613 / 614", "Detail CPC": "Primes d'assurances", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "613 / 614", "Detail CPC": "Rémunérations du personnel extérieur à l'entreprise", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "613 / 614", "Detail CPC": "Rémunérations d'intermédiaires et honoraires", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "613 / 614", "Detail CPC": "Redevances pour brevets, marques, droits...", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "613 / 614", "Detail CPC": "Transports", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "613 / 614", "Detail CPC": "Reste du poste des autres charges externes", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "613 / 614", "Detail CPC": "Total", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "617", "Detail CPC": "Charges de personnel", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "617", "Detail CPC": "Rémunération du personnel", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "617", "Detail CPC": "Reste du poste des charges de personne", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "617", "Detail CPC": "Variation des stocks de marchandises (±)", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "617", "Detail CPC": "Total", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "618", "Detail CPC": "Achats revendus de marchandises", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "618", "Detail CPC": "Jetons de présence", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "618", "Detail CPC": "Pertes sur créances irrécouvrables", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "618", "Detail CPC": "Reste du poste des autres charges d'exploitation", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "618", "Detail CPC": "Total", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "638", "Detail CPC": "Autres charges financières", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "638", "Detail CPC": "Charges nettes sur cessions de titres et valeurs de placement", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "638", "Detail CPC": "Reste du poste des autres charges financières", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "638", "Detail CPC": "Total", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "658", "Detail CPC": "Autres charges non courantes", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "658", "Detail CPC": "Pénalités sur marchés et dédits", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "658", "Detail CPC": "Rappels d'impôts (autres qu'impôts sur les résultats)", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "658", "Detail CPC": "Pénalités et amendes fiscales", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "658", "Detail CPC": "Créances devenues irrécouvrables", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "658", "Detail CPC": "Reste du poste des autres charges non courantes", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "658", "Detail CPC": "Total", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "711", "Detail CPC": "Ventes de marchandises au Maroc", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "711", "Detail CPC": "Ventes de biens à l'étranger", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "711", "Detail CPC": "Reste du poste des ventes de marchandises", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "711", "Detail CPC": "Total", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "712", "Detail CPC": "Ventes de biens et services produits ", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "712", "Detail CPC": "Ventes de biens produits au Maroc ", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "712", "Detail CPC": "Ventes de biens à l'étranger", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "712", "Detail CPC": "Ventes des services au Maroc", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "712", "Detail CPC": "Ventes des services à l'étranger", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "712", "Detail CPC": "Redevances pour brevets, marques, droits..", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "712", "Detail CPC": "Reste du poste des ventes et services produits ", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "712", "Detail CPC": "Total ", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "713", "Detail CPC": "Variation des stocks de produits", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "713", "Detail CPC": "Variation des stocks des biens produits (+/-) ", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "713", "Detail CPC": "Variation des stocks des services produits (+/-)", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "713", "Detail CPC": "Variation des stocks des produits en cours (+/-)", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "713", "Detail CPC": "Total", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "718", "Detail CPC": "Autres produits d'exploitation", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "718", "Detail CPC": "Jetons de présence reçus", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "718", "Detail CPC": "Reste du poste (produits divers)", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "718", "Detail CPC": "Total", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "719", "Detail CPC": "Reprises d'exploitation transferts de charges", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "719", "Detail CPC": "Reprises", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "719", "Detail CPC": "Transferts de charges ", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "719", "Detail CPC": "Achats revendus de marchandises", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "738", "Detail CPC": "Intérêts et autres produits financiers", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "738", "Detail CPC": "Intérêts et produits assimilés", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "738", "Detail CPC": "Revenus des créances rattachées à des participations", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "738", "Detail CPC": "Produits nets sur cessions de titres et valeurs de placement", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "738", "Detail CPC": "Reste du poste intérêts et autres produits financiers", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "738", "Detail CPC": "Total", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+			]
+
+			const defaultColDef = {
+				sortable: false,
+				filter: false,
+				floatingFilter: true,
+				minWidth: 170
+			}
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const gridOptions = {
+					defaultColDef: defaultColDef,
+                    columnDefs: [
+                        {
+							field: "POSTE",
+							width: 170,
+							filter: 'agTextColumnFilter',
+							rowSpan: function (params) {
+								const data = params.data;
+								const rowIndex = params.node.rowIndex;
+								const displayedRows = params.api.getDisplayedRowCount();
+								let rowSpan = 1;
+
+								for (let i = rowIndex + 1; i < displayedRows; i++) {
+									const nextRowNode = params.api.getDisplayedRowAtIndex(i);
+									if (nextRowNode && nextRowNode.data.POSTE === data.POSTE)
+										rowSpan++;
+								}
+								return rowSpan;
+							},
+							cellClass: 'cell-span', // CSS class to apply to spanned cells
+     						suppressPaste: true // Prevents pasting into spanned cells
+
+						},
+                        {
+							field: "Detail CPC",
+							flex: 1,
+							filter: 'agTextColumnFilter',
+						},
+                        {
+							field: "EXERCICE",
+							flex: 1,
+						},
+                        {
+							field: "EXERCICE PRECEDENT",
+							flex: 1,
+						}
+                    ],
+                    rowData: rawData,
+                };
+
+                const tableContainer = document.getElementById('table-container');
+                new agGrid.Grid(tableContainer, gridOptions);
+            });
+        </script>
+    </div>
+</body>
+</html>
