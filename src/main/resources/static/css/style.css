@@ -6,3 +6,95 @@
 .no-border {
 	border: none;
 }
+
+.group {
+    position: relative;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+    margin: 30px 20px 50px;
+}
+
+input {
+    color: #424242;
+    font-size: 1.2em;
+    padding: 10px 10px 5px 5px;
+    display: block;
+	background-color: transparent;
+    width: 200px;
+    border: none;
+    border-bottom: 1px solid #607D8B;
+}
+input:focus {
+    outline: none;
+}
+
+label.input-label {
+    color: #616161;
+    position: absolute;
+}
+
+input:focus ~ label.input-label {
+    color: #0288D1;
+}
+
+input[readonly] ~ label.input-label {
+    top: -15px;
+    font-size: 0.9em;
+}
+
+.bar {
+    position: relative;
+    display: block;
+    width: 200px;
+}
+
+.bar:before,
+.bar:after {
+    background: #0288D1;
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+.bar:before {
+    left: 50%;
+}
+
+.bar:after {
+    right: 50%;
+}
+
+input:focus ~ .bar:before,
+input:focus ~ .bar:after {
+    width: 50%;
+}
+
+.flatpickr-calendar .flatpickr-months {
+	display: flex;
+	justify-content: center; /* Centers the child elements horizontally */
+	align-items: center; /* Centers the child elements vertically */
+}
+
+/* Additional styling to ensure the year dropdown is centered if it's alone */
+.flatpickr-calendar .flatpickr-monthDropdown-months {
+	visibility: hidden; /* Hide month dropdown as you're only interested in the year */
+}
+
+.flatpickr-calendar .flatpickr-prev-month, .flatpickr-calendar .flatpickr-next-month {
+	display: none; /* Hide navigation arrows */
+}
+
+.calendar-container {
+	height: fit-content;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+}
