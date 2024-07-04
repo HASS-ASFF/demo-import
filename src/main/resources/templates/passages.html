@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
@@ -48,4 +48,38 @@
 
 </body>
 
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{_fragments/layouts/default}">
+<head>
+    <meta charset="UTF-8">
+    <title>hiveApp - Accounting</title>
+</head>
+<body>
+	<div layout:fragment="page-body">
+		<div class="text-center mb-3">
+			<h2>PASSAGE DU RESULTAT NET COMPTABLE AU RESULTAT NET FISCAL</h2>
+			<div class="group">
+				<div class="calendar-container">
+					<input type="text" id="date-picker">
+					<label class="input-label">choisir une année</label>
+					<span class="bar"></span>
+				</div>
+				<button id="getDetailCPCByDate" type="button" class="btn btn-primary">Afficher le tableau</button>
+				<button id="downloadPDF" type="button" class="btn btn-primary">Telecharger</button>
+			</div>
+		</div>
+		
+		<div id="table-container" class="ag-theme-quartz" style="height: 940px;" ></div>
+		<th:block th:insert="_fragments/scripts/passages :: agGridScripts"></th:block>
+	</div>
+
+	<!-- <script th:src="@{/js/detailCPC.js}"></script> -->
+</body>
 </html>
