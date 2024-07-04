@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <div th:fragment="agGridScripts">
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+        <script>
+
+			const rawData1 = [
+				{ POSTE: "1", "RUBRIQUES": "Ventes de Marchandises (en l'état)", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "1", "RUBRIQUES": "Achats revendus de marchandises", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "I", "RUBRIQUES": "MARGE BRUTES VENTES EN L'ETAT", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "II", "RUBRIQUES": "PRODUCTION DE L'EXERCICE (3+4+5)", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "II", "RUBRIQUES": "Ventes de biens et services produits", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "II", "RUBRIQUES": "Variation stocks des produits", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "II", "RUBRIQUES": "Variation stocks des produits", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "III", "RUBRIQUES": "COSOMMATIONS DE L'EXERCICE (6+7)", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "III", "RUBRIQUES": "Achats consommées de matières et fournitures", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "III", "RUBRIQUES": "Autres charges externes", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "IV", "RUBRIQUES": "VALEUR AJOUTEE (I+II+III)", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "IV", "RUBRIQUES": "Subventions d'exploitation", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "IV", "RUBRIQUES": "Impôts et taxes", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "IV", "RUBRIQUES": "charges de personnel", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "V", "RUBRIQUES": "EXCEDENT BRUT D'EXPLOITATION (EBE) OU INSUFFISANCE BRUTE D'EXPLOITATION (IBE)", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "V", "RUBRIQUES": "Autres produits d'exploitation", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "V", "RUBRIQUES": "Primes d'assurances", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "V", "RUBRIQUES": "Rémunérations du personnel extérieur à l'entreprise", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "V", "RUBRIQUES": "Rémunérations d'intermédiaires et honoraires", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "VI", "RUBRIQUES": "Redevances pour brevets, marques, droits...", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "VII", "RUBRIQUES": "Transports", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "VII", "RUBRIQUES": "Reste du poste des autres charges externes", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "VIII", "RUBRIQUES": "Total", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "IX", "RUBRIQUES": "Charges de personnel", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "X", "RUBRIQUES": "Rémunération du personnel", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+			]
+			const rawData2 = [
+				{ POSTE: "1", "RUBRIQUES": "Résultat net de l'exercice Bénéfice+ Perte -", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "1", "RUBRIQUES": "Dotations d'exploitation", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "1", "RUBRIQUES": "Dotations financières", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "1", "RUBRIQUES": "Dotations non courantes", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "1", "RUBRIQUES": "Reprises d'exploitation", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "1", "RUBRIQUES": "Dotations d'exploitation", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "1", "RUBRIQUES": "Dotations financières", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "1", "RUBRIQUES": "Dotations non courantes", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "1", "RUBRIQUES": "Reprises d'exploitation", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "I", "RUBRIQUES": "CAPACITE D'AUTOFINANCEMENT (C.A.F.)", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "I", "RUBRIQUES": "Distributions de bénéfices", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ POSTE: "II", "RUBRIQUES": "Distributions de bénéfices", "EXERCICE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "EXERCICE PRECEDENT": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+			]
+
+			const defaultColDef = {
+				sortable: false,
+				filter: false,
+				floatingFilter: true,
+				minWidth: 170
+			}
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const gridOptions1 = {
+					defaultColDef: defaultColDef,
+                    columnDefs: [
+                        {
+							headerName: "TABLEAU DE FORMATION DES RESULTATS (T.F.R)",
+							children: [
+								{
+									field: "POSTE",
+									headerName: "",
+									width: 170,
+									filter: 'agTextColumnFilter',
+								},
+								{
+									field: "RUBRIQUES",
+									flex: 1,
+									filter: 'agTextColumnFilter',
+								},
+								{
+									field: "EXERCICE",
+									flex: 1,
+								},
+								{
+									field: "EXERCICE PRECEDENT",
+									flex: 1,
+								}
+							]
+						}
+                    ],
+                    rowData: rawData1,
+                };
+                const gridOptions2 = {
+					defaultColDef: defaultColDef,
+                    columnDefs: [
+                        {
+							headerName: "CAPACITE D'AUTOFINANCEMENT (C.A.F) - AUTOFINANCEMENT",
+							children: [
+								{
+									field: "POSTE",
+									headerName: "",
+									width: 170,
+									filter: 'agTextColumnFilter',
+								},
+								{
+									field: "RUBRIQUES",
+									flex: 1,
+									filter: 'agTextColumnFilter',
+								},
+								{
+									field: "EXERCICE",
+									flex: 1,
+								},
+								{
+									field: "EXERCICE PRECEDENT",
+									flex: 1,
+								}
+							]
+						}
+                    ],
+                    rowData: rawData2,
+                };
+
+                const tableContainer1 = document.getElementById('table-container-1');
+                const tableContainer2 = document.getElementById('table-container-2');
+                new agGrid.Grid(tableContainer1, gridOptions1);
+                new agGrid.Grid(tableContainer2, gridOptions2);
+				datePicker();
+            });
+
+
+			const datePicker = () => {
+				flatpickr('#date-picker', {
+					enableTime: false,
+					noCalendar: false,
+					dateFormat: "Y",
+					mode: "single",
+					"maxDate": new Date(),
+					defaultDate: new Date(),
+					onChange: function(selectedDates, dateStr, instance) {
+						// This will close the Flatpickr dialog after a date (year) is selected
+						instance.close();
+					},
+					onReady: function(selectedDates, dateStr, instance) {
+						// Hide the calendar view to make it clear only a year is to be selected
+						// This is a bit of a hack and might need adjustments based on Flatpickr's version or your specific setup
+						const calendarContainer = instance.calendarContainer;
+						if (calendarContainer) {
+							const monthsDropdown = calendarContainer.querySelector('.flatpickr-monthDropdown-months');
+							if (monthsDropdown) {
+								monthsDropdown.style.visibility = 'hidden';
+								monthsDropdown.style.width = 0;
+							}
+							const prevMonthNav = calendarContainer.querySelector('.flatpickr-prev-month');
+							const nextMonthNav = calendarContainer.querySelector('.flatpickr-next-month');
+							if (prevMonthNav && nextMonthNav) {
+								prevMonthNav.style.visibility = 'hidden';
+								nextMonthNav.style.visibility = 'hidden';
+								monthsDropdown.style.width = 0;
+							}
+						}
+					}
+				})
+			}
+
+        </script>
+    </div>
+</body>
+</html>
