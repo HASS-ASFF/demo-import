@@ -60,83 +60,6 @@
     <queryString>
         <![CDATA[]]>
     </queryString>
-    <field name="L1_C1" class="java.lang.String"/>
-    <field name="L1_C2" class="java.lang.String"/>
-    <field name="L1_C3" class="java.lang.String"/>
-    <field name="L1_C4" class="java.lang.Double"/>
-    <field name="L1_C5" class="java.lang.String"/>
-    <field name="L1_C6" class="java.lang.Double"/>
-    <field name="L1_C7" class="java.lang.Double"/>
-    <field name="L1_C8" class="java.lang.Double"/>
-    <field name="L1_C9" class="java.lang.Double"/>
-    <field name="L1_C10" class="java.lang.Double"/>
-    <field name="L1_C11" class="java.lang.Double"/>
-    <field name="L1_C12" class="java.lang.Double"/>
-    <field name="L1_C13" class="java.lang.String"/>
-    <field name="L2_C1" class="java.lang.String"/>
-    <field name="L2_C2" class="java.lang.String"/>
-    <field name="L2_C3" class="java.lang.String"/>
-    <field name="L2_C4" class="java.lang.Double"/>
-    <field name="L2_C5" class="java.lang.String"/>
-    <field name="L2_C6" class="java.lang.Double"/>
-    <field name="L2_C7" class="java.lang.Double"/>
-    <field name="L2_C8" class="java.lang.Double"/>
-    <field name="L2_C9" class="java.lang.Double"/>
-    <field name="L2_C10" class="java.lang.Double"/>
-    <field name="L2_C11" class="java.lang.Double"/>
-    <field name="L2_C12" class="java.lang.Double"/>
-    <field name="L2_C13" class="java.lang.String"/>
-    <field name="L3_C1" class="java.lang.String"/>
-    <field name="L3_C2" class="java.lang.String"/>
-    <field name="L3_C3" class="java.lang.String"/>
-    <field name="L3_C4" class="java.lang.Double"/>
-    <field name="L3_C5" class="java.lang.String"/>
-    <field name="L3_C6" class="java.lang.Double"/>
-    <field name="L3_C7" class="java.lang.Double"/>
-    <field name="L3_C8" class="java.lang.Double"/>
-    <field name="L3_C9" class="java.lang.Double"/>
-    <field name="L3_C10" class="java.lang.Double"/>
-    <field name="L3_C11" class="java.lang.Double"/>
-    <field name="L3_C12" class="java.lang.Double"/>
-    <field name="L3_C13" class="java.lang.String"/>
-    <field name="L4_C1" class="java.lang.String"/>
-    <field name="L4_C2" class="java.lang.String"/>
-    <field name="L4_C3" class="java.lang.String"/>
-    <field name="L4_C4" class="java.lang.Double"/>
-    <field name="L4_C5" class="java.lang.String"/>
-    <field name="L4_C6" class="java.lang.Double"/>
-    <field name="L4_C7" class="java.lang.Double"/>
-    <field name="L4_C8" class="java.lang.Double"/>
-    <field name="L4_C9" class="java.lang.Double"/>
-    <field name="L4_C10" class="java.lang.Double"/>
-    <field name="L4_C11" class="java.lang.Double"/>
-    <field name="L4_C12" class="java.lang.Double"/>
-    <field name="L4_C13" class="java.lang.String"/>
-    <field name="L5_C1" class="java.lang.String"/>
-    <field name="L5_C2" class="java.lang.String"/>
-    <field name="L5_C3" class="java.lang.String"/>
-    <field name="L5_C4" class="java.lang.Double"/>
-    <field name="L5_C5" class="java.lang.String"/>
-    <field name="L5_C6" class="java.lang.Double"/>
-    <field name="L5_C7" class="java.lang.Double"/>
-    <field name="L5_C8" class="java.lang.Double"/>
-    <field name="L5_C9" class="java.lang.Double"/>
-    <field name="L5_C10" class="java.lang.Double"/>
-    <field name="L5_C11" class="java.lang.Double"/>
-    <field name="L5_C12" class="java.lang.Double"/>
-    <field name="L5_C13" class="java.lang.String"/>
-    <field name="TOTAL_C2" class="java.lang.String"/>
-    <field name="TOTAL_C3" class="java.lang.String"/>
-    <field name="TOTAL_C4" class="java.lang.String"/>
-    <field name="TOTAL_C5" class="java.lang.Double"/>
-    <field name="TOTAL_C6" class="java.lang.String"/>
-    <field name="TOTAL_C7" class="java.lang.Double"/>
-    <field name="TOTAL_C8" class="java.lang.Double"/>
-    <field name="TOTAL_C9" class="java.lang.Double"/>
-    <field name="TOTAL_C10" class="java.lang.Double"/>
-    <field name="TOTAL_C11" class="java.lang.Double"/>
-    <field name="TOTAL_C12" class="java.lang.Double"/>
-    <field name="TOTAL_C13" class="java.lang.Double"/>
     <background>
         <band splitType="Stretch"/>
     </background>
@@ -431,506 +354,429 @@ ns]]></text>
             </staticText>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="0" y="115" width="50" height="81" uuid="32bce90b-5cd9-47c2-9819-a10a991a43d6"/>
-                <textFieldExpression><![CDATA[$F{L1_C1}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="50" y="115" width="50" height="81" uuid="09ffdc02-5146-4a31-9da6-ffde46625bad">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L1_C2}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="100" y="115" width="50" height="81" uuid="020a7a60-70ec-402d-8363-246b3237e33d"/>
-                <textFieldExpression><![CDATA[$F{L1_C3}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="150" y="115" width="50" height="81" uuid="8507187e-6257-4de2-bc78-99c1aca5b7c2"/>
-                <textFieldExpression><![CDATA[$F{L1_C4}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="200" y="115" width="50" height="81" uuid="7f47deb1-411d-43f2-aee0-3ac42cea2cda"/>
-                <textFieldExpression><![CDATA[$F{L1_C5}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="250" y="115" width="50" height="81" uuid="91628708-0d30-4d77-93d2-4de934470593"/>
-                <textFieldExpression><![CDATA[$F{L1_C6}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="300" y="115" width="50" height="81" uuid="8cee5286-9c77-4f74-86d4-0786359b826a"/>
-                <textFieldExpression><![CDATA[$F{L1_C7}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="350" y="115" width="50" height="81" uuid="cf11ecf5-6d15-4203-b8a4-750a775db4bf"/>
-                <textFieldExpression><![CDATA[$F{L1_C8}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="400" y="115" width="50" height="81" uuid="3fefaa2d-c8b8-4077-8296-7b11a7ac5778"/>
-                <textFieldExpression><![CDATA[$F{L1_C9}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="450" y="115" width="50" height="81" uuid="6c9e27cd-2d9e-4992-a052-2edafb3ff462"/>
-                <textFieldExpression><![CDATA[$F{L1_C10}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="500" y="115" width="50" height="81" uuid="44a2e0a8-97e3-4bd2-95d1-a2dcc76753b6"/>
-                <textFieldExpression><![CDATA[$F{L1_C11}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="550" y="115" width="50" height="81" uuid="84da0a7c-023c-4f60-861c-24b4ab9833a5"/>
-                <textFieldExpression><![CDATA[$F{L1_C12}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="600" y="115" width="50" height="81" uuid="be8af5b4-0464-41d2-9951-1f47d482bc76"/>
-                <textFieldExpression><![CDATA[$F{L1_C13}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="0" y="196" width="50" height="81" uuid="d1bb6c25-dc00-4119-bb0b-eb62dc312755">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L2_C1}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="50" y="196" width="50" height="81" uuid="cdffcfc8-40f4-4741-93ec-992795b9f8f9">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L2_C2}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="100" y="196" width="50" height="81" uuid="0fd35679-2f52-4a2e-b8b0-ba445879738a">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L2_C3}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="150" y="196" width="50" height="81" uuid="31d48bcc-2fc1-4bf1-bd74-8ef9ee0473a3">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L2_C4}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="200" y="196" width="50" height="81" uuid="b28a6a55-af0e-4451-bf02-f2bde72edb3e">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L2_C5}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="250" y="196" width="50" height="81" uuid="11f7c18f-2bbb-413e-9060-32e0e3eba1b0">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L2_C6}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="300" y="196" width="50" height="81" uuid="ce719ab0-7cb8-4162-9e5d-f1f1c10c6c6c">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L2_C7}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="350" y="196" width="50" height="81" uuid="a22e9746-0197-4bd4-9ad6-87a7458f41e9">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L2_C8}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="400" y="196" width="50" height="81" uuid="cdb33b79-ad88-436d-bbda-d7d596f2343f">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L2_C9}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="450" y="196" width="50" height="81" uuid="ad308f44-5bab-4391-8286-5079ac960fb4">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L2_C10}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="500" y="196" width="50" height="81" uuid="d53a43c0-edb3-4605-a8de-24c27d229c2e">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L2_C11}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="550" y="196" width="50" height="81" uuid="f6c43953-5504-4a92-bb8b-4b03b5f9ff24">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L2_C12}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="600" y="196" width="50" height="81" uuid="675785d2-93c0-4060-8fa8-b086c1235ee9">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L2_C13}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="0" y="277" width="50" height="81" uuid="f7f19e5f-be4a-44e2-aeeb-7265cd7ebe66">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L3_C1}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="50" y="277" width="50" height="81" uuid="44bec995-0ef1-4577-bbbe-b7f09ef498f7">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L3_C2}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="100" y="277" width="50" height="81" uuid="ce3762dd-ca29-45b7-8494-381efddbe8f8">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L3_C3}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="150" y="277" width="50" height="81" uuid="1c6536ca-d6f7-4a36-a9da-0814d3764c86">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L3_C4}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="200" y="277" width="50" height="81" uuid="9f368a05-be2f-402d-aa73-4a554f1a30d8">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L3_C5}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="250" y="277" width="50" height="81" uuid="953482a9-4d95-4868-8376-8c8f790d94a9">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L3_C6}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="300" y="277" width="50" height="81" uuid="f5246198-ed17-465d-8cd2-4aa5c03679e0">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L3_C7}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="350" y="277" width="50" height="81" uuid="0199c12d-2603-4c22-a15f-2d7e0395347d">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L3_C8}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="400" y="277" width="50" height="81" uuid="38558b79-8688-47c2-a98b-662bc80ea66a">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L3_C9}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="450" y="277" width="50" height="81" uuid="c061a47c-7055-4f5c-bf35-49af6fbf36b5">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L3_C10}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="500" y="277" width="50" height="81" uuid="f4b9a9bc-b9df-4718-b3dd-444c2ba784b4">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L3_C11}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="550" y="277" width="50" height="81" uuid="4b8c646e-5f52-438e-8076-8fcf6c3a36f3">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L3_C12}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="600" y="277" width="50" height="81" uuid="8092824b-bac2-4527-8d49-f54f23960a7f">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L3_C13}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="0" y="358" width="50" height="81" uuid="25544fd9-483c-4fc8-aede-25da45884edc">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L4_C1}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="50" y="358" width="50" height="81" uuid="d3724972-6fce-4105-b31a-c54eb0e44222">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L4_C2}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="100" y="358" width="50" height="81" uuid="2557a1f4-9c5d-4ac5-982c-87eb795d67bb">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L4_C3}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="150" y="358" width="50" height="81" uuid="97045983-6588-4bbf-adf4-cda246f1670e">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L4_C4}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="200" y="358" width="50" height="81" uuid="13ab26ff-d4ae-470d-9d79-525abc625229">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L4_C5}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="250" y="358" width="50" height="81" uuid="6a254f15-d114-4fa5-9ec3-2ff47a0c196d">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L4_C6}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="300" y="358" width="50" height="81" uuid="4d4b2830-6e28-44f8-9f5c-bb737ea91a85">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L4_C7}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="350" y="358" width="50" height="81" uuid="d03a72d3-b1dd-417b-9d47-a74c3d304c7d">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L4_C8}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="400" y="358" width="50" height="81" uuid="f252bf74-9507-487a-b677-cb7486df9419">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L4_C9}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="450" y="358" width="50" height="81" uuid="6ce71a1b-ee81-4a39-9f26-6a917bf91674">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L4_C10}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="500" y="358" width="50" height="81" uuid="b7f5dfb5-08f1-479e-9ff7-64d66849110f">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L4_C11}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="550" y="358" width="50" height="81" uuid="a0b9ad29-051a-4561-b040-d3d4a154fdae">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L4_C12}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="600" y="358" width="50" height="81" uuid="db68a18c-a517-4eb4-8bbe-9609027c2686">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L4_C13}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="0" y="439" width="50" height="81" uuid="3312ea28-ae39-4dd3-9214-4ee88c415303">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L5_C1}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="50" y="439" width="50" height="81" uuid="4bc4d73b-ab9c-43d2-9245-4b7be2b9cb71">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L5_C2}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="100" y="439" width="50" height="81" uuid="c1f6f3d0-c7b9-4543-9382-8386feb37d23">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L5_C3}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="150" y="439" width="50" height="81" uuid="bdad2a43-58f3-4580-b5be-e280387d9422">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L5_C4}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="200" y="439" width="50" height="81" uuid="f07e4c12-6cdb-4a55-8d25-3b16321172b4">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L5_C5}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="250" y="439" width="50" height="81" uuid="47aeb68b-149d-452a-ba7c-4fd8e7786438">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L5_C6}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="300" y="439" width="50" height="81" uuid="5b7bbdff-da93-4adc-8c81-a80beda626fe">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L5_C7}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="350" y="439" width="50" height="81" uuid="74a41640-9ada-4b9b-b673-9bbcc2ae20e7">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L5_C8}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="400" y="439" width="50" height="81" uuid="50cfb393-7763-4f29-bba5-f297e597c9bc">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L5_C9}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="450" y="439" width="50" height="81" uuid="d4aac613-cd68-46ae-863c-391d3e065356">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L5_C10}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="500" y="439" width="50" height="81" uuid="051304c7-054c-4370-9274-1d925fa31951">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L5_C11}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="550" y="439" width="50" height="81" uuid="f1a0331e-bf17-4bf4-9616-7566e8dc0d21">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L5_C12}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="SecondaryLineStyle" x="600" y="439" width="50" height="81" uuid="81fcd204-d17c-4b73-b0bf-b51b57bd1f0e">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{L5_C13}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="PrimaryLineStyle" x="50" y="520" width="50" height="35" uuid="182e72d8-b422-4513-ad64-7d7c355cbd46">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{TOTAL_C2}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="PrimaryLineStyle" x="100" y="520" width="50" height="35" uuid="430247cb-b516-451a-8908-2d75c9a1dfcf">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{TOTAL_C3}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="PrimaryLineStyle" x="150" y="520" width="50" height="35" uuid="1060c003-06a5-405f-a207-0e42fa359f66">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{TOTAL_C4}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="PrimaryLineStyle" x="200" y="520" width="50" height="35" uuid="dacebf92-1119-4f99-99c1-53f6337be414">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{TOTAL_C5}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="PrimaryLineStyle" x="250" y="520" width="50" height="35" uuid="036d16c7-e359-44ee-97be-e0b72bbfdfba">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{TOTAL_C6}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="PrimaryLineStyle" x="300" y="520" width="50" height="35" uuid="b7da1086-73c9-4481-ac05-d780713e72c8">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{TOTAL_C7}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="PrimaryLineStyle" x="350" y="520" width="50" height="35" uuid="828893d9-155f-4d6b-afe8-03c46f933024">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{TOTAL_C8}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="PrimaryLineStyle" x="400" y="520" width="50" height="35" uuid="89e0635f-06bc-46ab-8ecf-ebc9caf28c3a">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{TOTAL_C9}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="PrimaryLineStyle" x="450" y="520" width="50" height="35" uuid="354a2d91-2cbd-4a1e-910d-20dcfefe3347">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{TOTAL_C10}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="PrimaryLineStyle" x="500" y="520" width="50" height="35" uuid="a852d143-9d77-4534-aff1-5cc6a8531bcc">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{TOTAL_C11}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="PrimaryLineStyle" x="550" y="520" width="50" height="35" uuid="0c3eb1c1-1fbc-40bc-a84c-08f2f445c69e">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{TOTAL_C12}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement style="PrimaryLineStyle" x="600" y="520" width="50" height="35" uuid="fa6b0ebb-bb0a-4fbe-ab53-ec4ae9b06f5e">
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
-                <textFieldExpression><![CDATA[$F{TOTAL_C13}]]></textFieldExpression>
             </textField>
         </band>
     </detail>

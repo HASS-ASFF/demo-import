@@ -9,6 +9,13 @@ $(document).ready(function() {
     // GET REQUEST BY DATE
     $("#getDetailCPCByDate").click(function() {
         var selectedDate = $("#dateBilan").val(); // Récupérer la date sélectionnée
+
+        // Verify date format ("YYYY-MM-DD")
+        if (!selectedDate.match(/^\d{4}-\d{2}-\d{2}$/)) {
+            swal("Erreur", "Veuillez entrer une date au format YYYY-MM-DD.", "error");
+            return;
+        }
+
         ajaxGetByDate(selectedDate);
     });
 
@@ -23,6 +30,12 @@ $(document).ready(function() {
 
                     var dataSix = result.dataCPCSix;
                     var dataSeven = result.dataCPCSeven;
+
+                    // Verify data six & seven
+                    if (dataSix == null && dataSeven == null) {
+                        swal("Aucune donnée", "Aucune donnée trouvée pour cette date.", "warning");
+                        return;
+                    }
 
                     // Structure des parties class six
                     var partsCPCSix = [
@@ -89,12 +102,12 @@ $(document).ready(function() {
 
 
                 } else {
-                    $("#getResultDiv").html("<strong>No data found for this date</strong>");
+                    swal("Aucune donnée", "Aucune donnée trouvée pour cette date.", "warning");
                     console.log("EMPTY (NO DATA): ", result.status);
                 }
             },
             error: function(e) {
-                $("#getResultDiv").html("<strong>Error</strong>");
+                swal("Erreur", "Une erreur s'est produite lors de la récupération des données.", "error");
                 console.log("ERROR: ", e);
             }
         });

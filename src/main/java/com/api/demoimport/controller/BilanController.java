@@ -216,76 +216,82 @@ public class BilanController {
         List<SubAccountCPC> ClassSeven = balanceDetailService.getClassSeven(dateBilan,"AL MORAFIQ");
         List<DetailCPC> FullClassSeven = detailCPCService.processDataSeven(ClassSeven);
 
-        List<List<DetailCPC>> partsCPCSix = new ArrayList<>();
-        List<List<DetailCPC>> partsCPCSeven = new ArrayList<>();
+        responseMap.put("dataCPCSix", FullClassSix);
+        responseMap.put("dataCPCSeven", FullClassSeven);
+
+        if(FullClassSix != null && FullClassSeven != null){
+            List<List<DetailCPC>> partsCPCSix = new ArrayList<>();
+            List<List<DetailCPC>> partsCPCSeven = new ArrayList<>();
 
 
-        // CLASS SIX FILTER
+            // CLASS SIX FILTER
 
-        partsCPCSix.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
-                DetailCPCCategoryClass6.ACHAT_REVENDUS.getLabel()));
-        partsCPCSix.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
-                DetailCPCCategoryClass6.ACHAT_CONSOMES.getLabel()));
-        partsCPCSix.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
-                DetailCPCCategoryClass6.AUTRES_CHARGES_EXTERNES.getLabel()));
-        partsCPCSix.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
-                DetailCPCCategoryClass6.CHARGES_PERSONEL.getLabel()));
-        partsCPCSix.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
-                DetailCPCCategoryClass6.AUTRES_CHARGES_EXPLOITATION.getLabel()));
-        partsCPCSix.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
-                DetailCPCCategoryClass6.AUTRES_CHARGES_FINANCIERES.getLabel()));
-        partsCPCSix.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
-                DetailCPCCategoryClass6.AUTRES_CHARGES_NON_COURANTES.getLabel()));
+            partsCPCSix.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
+                    DetailCPCCategoryClass6.ACHAT_REVENDUS.getLabel()));
+            partsCPCSix.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
+                    DetailCPCCategoryClass6.ACHAT_CONSOMES.getLabel()));
+            partsCPCSix.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
+                    DetailCPCCategoryClass6.AUTRES_CHARGES_EXTERNES.getLabel()));
+            partsCPCSix.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
+                    DetailCPCCategoryClass6.CHARGES_PERSONEL.getLabel()));
+            partsCPCSix.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
+                    DetailCPCCategoryClass6.AUTRES_CHARGES_EXPLOITATION.getLabel()));
+            partsCPCSix.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
+                    DetailCPCCategoryClass6.AUTRES_CHARGES_FINANCIERES.getLabel()));
+            partsCPCSix.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
+                    DetailCPCCategoryClass6.AUTRES_CHARGES_NON_COURANTES.getLabel()));
 
-        Double total1 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSix.get(0));
-        Double total2 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSix.get(1));
-        Double total3 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSix.get(2));
-        Double total4 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSix.get(3));
-        Double total5 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSix.get(4));
-        Double total6 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSix.get(5));
-        Double total7 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSix.get(6));
+            Double total1 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSix.get(0));
+            Double total2 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSix.get(1));
+            Double total3 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSix.get(2));
+            Double total4 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSix.get(3));
+            Double total5 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSix.get(4));
+            Double total6 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSix.get(5));
+            Double total7 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSix.get(6));
 
-        // CLASS SEVEN FILTER
+            // CLASS SEVEN FILTER
 
-        partsCPCSeven.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSeven,
-                DetailCPCCategoryClass7.VENTES_MARCHANDISES.getLabel()));
-        partsCPCSeven.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSeven,
-                DetailCPCCategoryClass7.VENTES_BIENS_SERVICES.getLabel()));
-        partsCPCSeven.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSeven,
-                DetailCPCCategoryClass7.VAR_STOCK_PRODUITS.getLabel()));
-        partsCPCSeven.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSeven,
-                DetailCPCCategoryClass7.AUTRES_PRODUITS_EXP.getLabel()));
-        partsCPCSeven.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSeven,
-                DetailCPCCategoryClass7.REPRISE_EXPLOITATION.getLabel()));
-        partsCPCSeven.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSeven,
-                DetailCPCCategoryClass7.INTERETS_ASSIMILES.getLabel()));
+            partsCPCSeven.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSeven,
+                    DetailCPCCategoryClass7.VENTES_MARCHANDISES.getLabel()));
+            partsCPCSeven.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSeven,
+                    DetailCPCCategoryClass7.VENTES_BIENS_SERVICES.getLabel()));
+            partsCPCSeven.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSeven,
+                    DetailCPCCategoryClass7.VAR_STOCK_PRODUITS.getLabel()));
+            partsCPCSeven.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSeven,
+                    DetailCPCCategoryClass7.AUTRES_PRODUITS_EXP.getLabel()));
+            partsCPCSeven.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSeven,
+                    DetailCPCCategoryClass7.REPRISE_EXPLOITATION.getLabel()));
+            partsCPCSeven.add(detailCPCService.FilterAccountDataDetailCPC(FullClassSeven,
+                    DetailCPCCategoryClass7.INTERETS_ASSIMILES.getLabel()));
 
-        Double total8 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSeven.get(0));
-        Double total9 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSeven.get(1));
-        Double total10 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSeven.get(2));
-        Double total11 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSeven.get(3));
-        Double total12 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSeven.get(4));
-        Double total13 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSeven.get(5));
+            Double total8 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSeven.get(0));
+            Double total9 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSeven.get(1));
+            Double total10 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSeven.get(2));
+            Double total11 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSeven.get(3));
+            Double total12 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSeven.get(4));
+            Double total13 = detailCPCService.GetTotalDataDetailCPCC(partsCPCSeven.get(5));
 
-        responseMap.put("status", "success");
-        responseMap.put("dataCPCSix", partsCPCSix);
-        responseMap.put("dataCPCSeven", partsCPCSeven);
+            responseMap.put("status", "success");
+            responseMap.put("dataCPCSix", partsCPCSix);
+            responseMap.put("dataCPCSeven", partsCPCSeven);
 
 
-        responseMap.put("total1",total1);
-        responseMap.put("total2",total2);
-        responseMap.put("total3",total3);
-        responseMap.put("total4",total4);
-        responseMap.put("total5",total5);
-        responseMap.put("total6",total6);
-        responseMap.put("total7",total7);
-        responseMap.put("total8",total8);
-        responseMap.put("total9",total9);
-        responseMap.put("total10",total10);
-        responseMap.put("total11",total11);
-        responseMap.put("total12",total12);
-        responseMap.put("total13",total13);
+            responseMap.put("total1",total1);
+            responseMap.put("total2",total2);
+            responseMap.put("total3",total3);
+            responseMap.put("total4",total4);
+            responseMap.put("total5",total5);
+            responseMap.put("total6",total6);
+            responseMap.put("total7",total7);
+            responseMap.put("total8",total8);
+            responseMap.put("total9",total9);
+            responseMap.put("total10",total10);
+            responseMap.put("total11",total11);
+            responseMap.put("total12",total12);
+            responseMap.put("total13",total13);
 
+
+        }
         return ResponseEntity.ok().body(responseMap);
     }
 

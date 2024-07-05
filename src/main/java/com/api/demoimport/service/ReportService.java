@@ -43,7 +43,7 @@ public interface ReportService {
 
     ByteArrayOutputStream exportTable20(String date, String company_name) throws JRException;
 
-
+    ByteArrayOutputStream exportAlltable(String date, String company_name) throws JRException;
 
     ByteArrayOutputStream jasperConfiguration(String path, Map<String,Object> parameters) throws JRException;
 
