@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+</head>
+
+<body>
+
+<div class="row" th:fragment="default">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Page</a></li> -->
+                    <li class="breadcrumb-item active" th:text="${pageTitle}"></li>
+                </ol>
+            </div>
+            <!-- <h4 class="page-title">Caisse</h4> -->
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
