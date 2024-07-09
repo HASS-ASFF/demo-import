@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <div th:fragment="agGridScripts">
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+        <script>
+
+			const rawData = [
+				{ Elements: "Terrains (1)", apport: Math.floor(Math.random() * (3000 - 1000 + 1)), nette_comptable: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, PVCD: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, FPVREA: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, FPREA: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, CPVR: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, SPVI: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Observations: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Elements: "Constructions", apport: Math.floor(Math.random() * (3000 - 1000 + 1)), nette_comptable: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, PVCD: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, FPVREA: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, FPREA: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, CPVR: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, SPVI: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Observations: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Elements: "Matériel et outillage", apport: Math.floor(Math.random() * (3000 - 1000 + 1)), nette_comptable: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, PVCD: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, FPVREA: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, FPREA: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, CPVR: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, SPVI: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Observations: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Elements: "Matériel de transport", apport: Math.floor(Math.random() * (3000 - 1000 + 1)), nette_comptable: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, PVCD: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, FPVREA: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, FPREA: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, CPVR: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, SPVI: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Observations: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Elements: "Agencements-installations", apport: Math.floor(Math.random() * (3000 - 1000 + 1)), nette_comptable: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, PVCD: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, FPVREA: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, FPREA: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, CPVR: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, SPVI: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Observations: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Elements: "Brevets", apport: Math.floor(Math.random() * (3000 - 1000 + 1)), nette_comptable: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, PVCD: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, FPVREA: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, FPREA: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, CPVR: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, SPVI: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Observations: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Elements: "Autres éléments amortissables", apport: Math.floor(Math.random() * (3000 - 1000 + 1)), nette_comptable: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, PVCD: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, FPVREA: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, FPREA: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, CPVR: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, SPVI: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Observations: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Elements: "Titres de participation", apport: Math.floor(Math.random() * (3000 - 1000 + 1)), nette_comptable: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, PVCD: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, FPVREA: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, FPREA: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, CPVR: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, SPVI: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Observations: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Elements: "Fonds de commerce", apport: Math.floor(Math.random() * (3000 - 1000 + 1)), nette_comptable: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, PVCD: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, FPVREA: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, FPREA: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, CPVR: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, SPVI: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Observations: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Elements: "Autres éléments non amortissables", apport: Math.floor(Math.random() * (3000 - 1000 + 1)), nette_comptable: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, PVCD: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, FPVREA: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, FPREA: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, CPVR: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, SPVI: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Observations: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+			]
+
+			const defaultColDef = {
+				sortable: false,
+				filter: false,
+				floatingFilter: true,
+				wrapText: true,
+				autoHeight: true,
+				minWidth: 50
+			}
+
+			const totals = rawData.reduce((acc, curr) => {
+				acc.apport += curr.apport;
+				acc.nette_comptable += curr.nette_comptable;
+				acc.PVCD += curr.PVCD;
+				acc.FPVREA += curr.FPVREA;
+				acc.FPREA += curr.FPREA;
+				acc.CPVR += curr.CPVR;
+				acc.SPVI += curr.SPVI;
+				acc.Observations += curr.Observations;
+				return acc;
+			}, { apport: 0, nette_comptable: 0, PVCD: 0, FPVREA: 0, FPREA: 0, CPVR: 0, SPVI: 0, Observations: 0 });
+
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const gridOptions = {
+					defaultColDef: defaultColDef,
+                    columnDefs: [
+                        {
+							field: "Elements",
+							headerName: "Eléments",
+							width: 250,
+							filter: 'agTextColumnFilter',
+
+						}, {
+							field: "apport",
+							headerName: "aleur d'Vapport",
+							flex: 1,
+						}, {
+							field: "nette_comptable",
+							headerName: "Valeur nette comptable",
+							flex: 1,
+						}, {
+							field: "PVCD",
+							headerName: "Plus-values constatées et différées",
+							flex: 1,
+						}, {
+							field: "FPVREA",
+							headerName: "Fraction de la plus-value rapportée aux exercices antérieurs (cumul) (2)",
+							flex: 1,
+						}, {
+							field: "FPREA",
+							headerName: "Fraction de la plusvalue rapportée à l'exercice actuel",
+							flex: 1,
+						}, {
+							field: "CPVR",
+							headerName: "Cumul des plus-values rapportées",
+							flex: 1,
+						}, {
+							field: "SPVI",
+							headerName: "Solde des plusvalues non imputées",
+							flex: 1,
+						}, {
+							field: "Observations",
+							headerName: "Observations",
+							flex: 1,
+						}
+                    ],
+                    rowData: rawData,
+					pinnedBottomRowData: [
+						{ Elements: 'Total', apport: totals.apport, nette_comptable: totals.nette_comptable, PVCD: totals.PVCD, FPVREA: totals.FPVREA, FPREA: totals.FPREA, CPVR: totals.CPVR, SPVI: totals.SPVI, Observations: totals.Observations }
+					],
+                };
+
+                const tableContainer = document.getElementById('table-container');
+                new agGrid.Grid(tableContainer, gridOptions);
+				datePicker();
+            });
+
+
+			const datePicker = () => {
+				flatpickr('#date-picker', {
+					enableTime: false,
+					noCalendar: false,
+					dateFormat: "Y",
+					mode: "single",
+					"maxDate": new Date(),
+					defaultDate: new Date(),
+					onChange: function(selectedDates, dateStr, instance) {
+						// This will close the Flatpickr dialog after a date (year) is selected
+						instance.close();
+					},
+					onReady: function(selectedDates, dateStr, instance) {
+						// Hide the calendar view to make it clear only a year is to be selected
+						// This is a bit of a hack and might need adjustments based on Flatpickr's version or your specific setup
+						const calendarContainer = instance.calendarContainer;
+						if (calendarContainer) {
+							const monthsDropdown = calendarContainer.querySelector('.flatpickr-monthDropdown-months');
+							if (monthsDropdown) {
+								monthsDropdown.style.visibility = 'hidden';
+								monthsDropdown.style.width = 0;
+							}
+							const prevMonthNav = calendarContainer.querySelector('.flatpickr-prev-month');
+							const nextMonthNav = calendarContainer.querySelector('.flatpickr-next-month');
+							if (prevMonthNav && nextMonthNav) {
+								prevMonthNav.style.visibility = 'hidden';
+								nextMonthNav.style.visibility = 'hidden';
+								monthsDropdown.style.width = 0;
+							}
+						}
+					}
+				})
+			}
+
+        </script>
+    </div>
+</body>
+</html>
