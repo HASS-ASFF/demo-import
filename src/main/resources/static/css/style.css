@@ -103,3 +103,11 @@ input:focus ~ .bar:after {
 	white-space: normal !important;
 	word-wrap: break-word;
 }
+
+.btn-primary {
+	background-color: #2666CF;
+}
+
+.btn-primary:hover {
+	background-color: #1a4da2;
+}
