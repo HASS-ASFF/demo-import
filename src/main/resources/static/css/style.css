@@ -111,3 +111,12 @@ input:focus ~ .bar:after {
 .btn-primary:hover {
 	background-color: #0d3475;
 }
+
+body[data-sidebar-size=condensed] .left-side-menu #sidebar-menu>ul ul {
+	background-color: #f0f0f0;
+	color: #343a40;
+}
+
+.nav-second-level li a {
+	color: #343a40;
+} 
