@@ -105,9 +105,9 @@ input:focus ~ .bar:after {
 }
 
 .btn-primary {
-	background-color: #2666CF;
+	background-color: #0E4D9D;
 }
 
 .btn-primary:hover {
-	background-color: #1a4da2;
+	background-color: #0d3475;
 }
