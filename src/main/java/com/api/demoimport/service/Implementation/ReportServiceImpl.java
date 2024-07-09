@@ -24,6 +24,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+
 import org.slf4j.Logger;
 
 @Service
@@ -65,99 +68,99 @@ public class ReportServiceImpl implements ReportService {
         try {
 
             // ANNEE N-1 (exercice precedent)
+            CompletableFuture<List<SubAccountPassif>> classOneNFut = balanceDetailServiceImpl.getClassOne(getLastYear(date), company_name);
+            CompletableFuture<List<SubAccountCPC>> classSixNFut = balanceDetailServiceImpl.getClassSix(getLastYear(date), company_name);
+            CompletableFuture<List<SubAccountCPC>> classSevenNFut = balanceDetailServiceImpl.getClassSeven(getLastYear(date), company_name);
+            CompletableFuture<List<SubAccountPassif>> classFourNFut = balanceDetailServiceImpl.getClassFour(getLastYear(date), company_name);
+            CompletableFuture<List<SubAccountPassif>> classFivePNFut = balanceDetailServiceImpl.getClassFivePassif(getLastYear(date), company_name);
 
-            // CLASS ONE
-            List<SubAccountPassif> ClassOneN = balanceDetailServiceImpl.getClassOne(getLastYear(date), company_name);
-            List<SubAccountPassif> FullClassOneN = accountDataManagerServiceImpl.
-                    processAccountDataP(ClassOneN, "1");
+            List<SubAccountPassif> classOneN = null;
+            List<SubAccountCPC> classSixN = null;
+            List<SubAccountCPC> classSevenN = null;
+            List<SubAccountPassif> classFourN = null;
+            List<SubAccountPassif> classFivePN = null;
 
-            List<SubAccountPassif> dataset1N = accountDataManagerServiceImpl.
-                    FilterAccountDataP(FullClassOneN, AccountCategoryClass1.CAPITAUX_PROPRES.getLabel());
-            // CLASS SIX
-            List<SubAccountCPC> ClassSixN = balanceDetailServiceImpl.getClassSix(getLastYear(date), company_name);
-            List<SubAccountCPC> FullClassSixN = accountDataManagerServiceImpl.
-                    processAccountDataCPC(ClassSixN, "6");
-            // CLASS SEVEN
-            List<SubAccountCPC> ClassSevenN = balanceDetailServiceImpl.getClassSeven(getLastYear(date), company_name);
-            List<SubAccountCPC> FullClassSevenN = accountDataManagerServiceImpl.
-                    processAccountDataCPC(ClassSevenN, "7");
+            try {
+                // Récupérer les résultats de manière synchrone
+                classOneN = classOneNFut.get();
+                classSixN = classSixNFut.get();
+                classSevenN = classSevenNFut.get();
+                classFourN = classFourNFut.get();
+                classFivePN = classFivePNFut.get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+                String message = "Failed to retrieve data asynchronously: " + e.getLocalizedMessage() + "!";
+                throw new RuntimeException(message);
+            }
+
+            List<SubAccountPassif> FullClassOneN = accountDataManagerServiceImpl.processAccountDataP(classOneN, "1");
+
+            List<SubAccountPassif> dataset1N = accountDataManagerServiceImpl.FilterAccountDataP(FullClassOneN, AccountCategoryClass1.CAPITAUX_PROPRES.getLabel());
+
+            List<SubAccountCPC> FullClassSixN = accountDataManagerServiceImpl.processAccountDataCPC(classSixN, "6");
+            List<SubAccountCPC> FullClassSevenN = accountDataManagerServiceImpl.processAccountDataCPC(classSevenN, "7");
             Double resultat_netN = esgService.GetResultat(FullClassSixN, FullClassSevenN, "RESULTAT NET DE L'EXERCICE");
             dataset1N.get(10).setBrut(resultat_netN);
-            List<SubAccountPassif> dataset2N = accountDataManagerServiceImpl.
-                    FilterAccountDataP(FullClassOneN, AccountCategoryClass1.CAPITAUX_PROPRES_ASSIMILES.getLabel());
-            List<SubAccountPassif> dataset3N = accountDataManagerServiceImpl.
-                    FilterAccountDataP(FullClassOneN, AccountCategoryClass1.DETTES_DE_FINANCEMENT.getLabel());
-            List<SubAccountPassif> dataset4N = accountDataManagerServiceImpl.
-                    FilterAccountDataP(FullClassOneN, AccountCategoryClass1.PROVISIONS_DURABLES_POUR_RISQUES_ET_CHARGES.getLabel());
-            List<SubAccountPassif> dataset5N = accountDataManagerServiceImpl.
-                    FilterAccountDataP(FullClassOneN, AccountCategoryClass1.ECARTS_DE_CONVERSION_PASSIF.getLabel());
 
+            List<SubAccountPassif> dataset2N = accountDataManagerServiceImpl.FilterAccountDataP(FullClassOneN, AccountCategoryClass1.CAPITAUX_PROPRES_ASSIMILES.getLabel());
+            List<SubAccountPassif> dataset3N = accountDataManagerServiceImpl.FilterAccountDataP(FullClassOneN, AccountCategoryClass1.DETTES_DE_FINANCEMENT.getLabel());
+            List<SubAccountPassif> dataset4N = accountDataManagerServiceImpl.FilterAccountDataP(FullClassOneN, AccountCategoryClass1.PROVISIONS_DURABLES_POUR_RISQUES_ET_CHARGES.getLabel());
+            List<SubAccountPassif> dataset5N = accountDataManagerServiceImpl.FilterAccountDataP(FullClassOneN, AccountCategoryClass1.ECARTS_DE_CONVERSION_PASSIF.getLabel());
 
-            // CLASS FOUR
-            List<SubAccountPassif> ClassFourN = balanceDetailServiceImpl.getClassFour(getLastYear(date), company_name);
-            List<SubAccountPassif> FullClassFourN = accountDataManagerServiceImpl.
-                    processAccountDataP(ClassFourN, "4");
-            List<SubAccountPassif> dataset6N = accountDataManagerServiceImpl.
-                    FilterAccountDataP(FullClassFourN, AccountCategoryClass4.DETTES_DU_PASSIF_CIRCULANT.getLabel());
-            List<SubAccountPassif> dataset7N = accountDataManagerServiceImpl.
-                    FilterAccountDataP(FullClassFourN, AccountCategoryClass4.AUTRES_PROVISIONS_POUR_RISQUES_ET_CHARGES.getLabel());
-            List<SubAccountPassif> dataset8N = accountDataManagerServiceImpl.
-                    FilterAccountDataP(FullClassFourN, AccountCategoryClass4.ECARTS_DE_CONVERSION_PASSIF.getLabel());
+            List<SubAccountPassif> FullClassFourN = accountDataManagerServiceImpl.processAccountDataP(classFourN, "4");
+            List<SubAccountPassif> dataset6N = accountDataManagerServiceImpl.FilterAccountDataP(FullClassFourN, AccountCategoryClass4.DETTES_DU_PASSIF_CIRCULANT.getLabel());
+            List<SubAccountPassif> dataset7N = accountDataManagerServiceImpl.FilterAccountDataP(FullClassFourN, AccountCategoryClass4.AUTRES_PROVISIONS_POUR_RISQUES_ET_CHARGES.getLabel());
+            List<SubAccountPassif> dataset8N = accountDataManagerServiceImpl.FilterAccountDataP(FullClassFourN, AccountCategoryClass4.ECARTS_DE_CONVERSION_PASSIF.getLabel());
 
-            //CLASS FIVE PASSIF
-            List<SubAccountPassif> ClassFivePN = balanceDetailServiceImpl.getClassFivePassif(getLastYear(date), company_name);
-            List<SubAccountPassif> FullClassFivePN = accountDataManagerServiceImpl.
-                    processAccountDataP(ClassFivePN, "5");
-            List<SubAccountPassif> dataset9N = accountDataManagerServiceImpl.
-                    FilterAccountDataP(FullClassFivePN, AccountCategoryClass5.TRESORERIE_PASSIF.getLabel());
+            List<SubAccountPassif> FullClassFivePN = accountDataManagerServiceImpl.processAccountDataP(classFivePN, "5");
+            List<SubAccountPassif> dataset9N = accountDataManagerServiceImpl.FilterAccountDataP(FullClassFivePN, AccountCategoryClass5.TRESORERIE_PASSIF.getLabel());
 
             // ANNEE N (exercice brut)
+            CompletableFuture<List<SubAccountPassif>> classOneFut = balanceDetailServiceImpl.getClassOne(date, company_name);
+            CompletableFuture<List<SubAccountCPC>> classSixFut = balanceDetailServiceImpl.getClassSix(date, company_name);
+            CompletableFuture<List<SubAccountCPC>> classSevenFut = balanceDetailServiceImpl.getClassSeven(date, company_name);
+            CompletableFuture<List<SubAccountPassif>> classFourFut = balanceDetailServiceImpl.getClassFour(date, company_name);
+            CompletableFuture<List<SubAccountPassif>> classFivePFut = balanceDetailServiceImpl.getClassFivePassif(date, company_name);
 
-            // CLASS ONE
-            List<SubAccountPassif> ClassOne = balanceDetailServiceImpl.getClassOne(date, company_name);
-            List<SubAccountPassif> FullClassOne = accountDataManagerServiceImpl.
-                    processAccountDataP(ClassOne, "1");
+            List<SubAccountPassif> classOne = null;
+            List<SubAccountCPC> classSix = null;
+            List<SubAccountCPC> classSeven = null;
+            List<SubAccountPassif> classFour = null;
+            List<SubAccountPassif> classFiveP = null;
 
-            List<SubAccountPassif> dataset1 = accountDataManagerServiceImpl.
-                    FilterAccountDataP(FullClassOne, AccountCategoryClass1.CAPITAUX_PROPRES.getLabel());
-            // CLASS SIX
-            List<SubAccountCPC> ClassSix = balanceDetailServiceImpl.getClassSix(date, company_name);
-            List<SubAccountCPC> FullClassSix = accountDataManagerServiceImpl.
-                    processAccountDataCPC(ClassSix, "6");
-            // CLASS SEVEN
-            List<SubAccountCPC> ClassSeven = balanceDetailServiceImpl.getClassSeven(date, company_name);
-            List<SubAccountCPC> FullClassSeven = accountDataManagerServiceImpl.
-                    processAccountDataCPC(ClassSeven, "7");
+            try {
+                // Récupérer les résultats de manière synchrone
+                classOne = classOneFut.get();
+                classSix = classSixFut.get();
+                classSeven = classSevenFut.get();
+                classFour = classFourFut.get();
+                classFiveP = classFivePFut.get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+                String message = "Failed to retrieve data asynchronously: " + e.getLocalizedMessage() + "!";
+                throw new RuntimeException(message);
+            }
+
+            List<SubAccountPassif> FullClassOne = accountDataManagerServiceImpl.processAccountDataP(classOne, "1");
+            List<SubAccountPassif> dataset1 = accountDataManagerServiceImpl.FilterAccountDataP(FullClassOne, AccountCategoryClass1.CAPITAUX_PROPRES.getLabel());
+
+            List<SubAccountCPC> FullClassSix = accountDataManagerServiceImpl.processAccountDataCPC(classSix, "6");
+            List<SubAccountCPC> FullClassSeven = accountDataManagerServiceImpl.processAccountDataCPC(classSeven, "7");
             Double resultat_net = esgService.GetResultat(FullClassSix, FullClassSeven, "RESULTAT NET DE L'EXERCICE");
             dataset1.get(10).setBrut(resultat_net);
-            List<SubAccountPassif> dataset2 = accountDataManagerServiceImpl.
-                    FilterAccountDataP(FullClassOne, AccountCategoryClass1.CAPITAUX_PROPRES_ASSIMILES.getLabel());
-            List<SubAccountPassif> dataset3 = accountDataManagerServiceImpl.
-                    FilterAccountDataP(FullClassOne, AccountCategoryClass1.DETTES_DE_FINANCEMENT.getLabel());
-            List<SubAccountPassif> dataset4 = accountDataManagerServiceImpl.
-                    FilterAccountDataP(FullClassOne, AccountCategoryClass1.PROVISIONS_DURABLES_POUR_RISQUES_ET_CHARGES.getLabel());
-            List<SubAccountPassif> dataset5 = accountDataManagerServiceImpl.
-                    FilterAccountDataP(FullClassOne, AccountCategoryClass1.ECARTS_DE_CONVERSION_PASSIF.getLabel());
 
+            List<SubAccountPassif> dataset2 = accountDataManagerServiceImpl.FilterAccountDataP(FullClassOne, AccountCategoryClass1.CAPITAUX_PROPRES_ASSIMILES.getLabel());
+            List<SubAccountPassif> dataset3 = accountDataManagerServiceImpl.FilterAccountDataP(FullClassOne, AccountCategoryClass1.DETTES_DE_FINANCEMENT.getLabel());
+            List<SubAccountPassif> dataset4 = accountDataManagerServiceImpl.FilterAccountDataP(FullClassOne, AccountCategoryClass1.PROVISIONS_DURABLES_POUR_RISQUES_ET_CHARGES.getLabel());
+            List<SubAccountPassif> dataset5 = accountDataManagerServiceImpl.FilterAccountDataP(FullClassOne, AccountCategoryClass1.ECARTS_DE_CONVERSION_PASSIF.getLabel());
 
-            // CLASS FOUR
-            List<SubAccountPassif> ClassFour = balanceDetailServiceImpl.getClassFour(date, company_name);
-            List<SubAccountPassif> FullClassFour = accountDataManagerServiceImpl.
-                    processAccountDataP(ClassFour, "4");
-            List<SubAccountPassif> dataset6 = accountDataManagerServiceImpl.
-                    FilterAccountDataP(FullClassFour, AccountCategoryClass4.DETTES_DU_PASSIF_CIRCULANT.getLabel());
-            List<SubAccountPassif> dataset7 = accountDataManagerServiceImpl.
-                    FilterAccountDataP(FullClassFour, AccountCategoryClass4.AUTRES_PROVISIONS_POUR_RISQUES_ET_CHARGES.getLabel());
-            List<SubAccountPassif> dataset8 = accountDataManagerServiceImpl.
-                    FilterAccountDataP(FullClassFour, AccountCategoryClass4.ECARTS_DE_CONVERSION_PASSIF.getLabel());
+            List<SubAccountPassif> FullClassFour = accountDataManagerServiceImpl.processAccountDataP(classFour, "4");
+            List<SubAccountPassif> dataset6 = accountDataManagerServiceImpl.FilterAccountDataP(FullClassFour, AccountCategoryClass4.DETTES_DU_PASSIF_CIRCULANT.getLabel());
+            List<SubAccountPassif> dataset7 = accountDataManagerServiceImpl.FilterAccountDataP(FullClassFour, AccountCategoryClass4.AUTRES_PROVISIONS_POUR_RISQUES_ET_CHARGES.getLabel());
+            List<SubAccountPassif> dataset8 = accountDataManagerServiceImpl.FilterAccountDataP(FullClassFour, AccountCategoryClass4.ECARTS_DE_CONVERSION_PASSIF.getLabel());
 
-            //CLASS FIVE PASSIF
-            List<SubAccountPassif> ClassFiveP = balanceDetailServiceImpl.getClassFivePassif(date, company_name);
-            List<SubAccountPassif> FullClassFiveP = accountDataManagerServiceImpl.
-                    processAccountDataP(ClassFiveP, "5");
-            List<SubAccountPassif> dataset9 = accountDataManagerServiceImpl.
-                    FilterAccountDataP(FullClassFiveP, AccountCategoryClass5.TRESORERIE_PASSIF.getLabel());
-
+            List<SubAccountPassif> FullClassFiveP = accountDataManagerServiceImpl.processAccountDataP(classFiveP, "5");
+            List<SubAccountPassif> dataset9 = accountDataManagerServiceImpl.FilterAccountDataP(FullClassFiveP, AccountCategoryClass5.TRESORERIE_PASSIF.getLabel());
 
             // ADD THE DATA OF EXERCICE PRECEDENT IN THE ACTUAL DATASETS (ANNEE N)
             accountDataManagerServiceImpl.updateExerciceP(dataset1N, dataset1);
@@ -169,7 +172,6 @@ public class ReportServiceImpl implements ReportService {
             accountDataManagerServiceImpl.updateExerciceP(dataset7N, dataset7);
             accountDataManagerServiceImpl.updateExerciceP(dataset8N, dataset8);
             accountDataManagerServiceImpl.updateExerciceP(dataset9N, dataset9);
-
 
             // CREATE INSTANCES OF JRBEANCOLLECTIONDATASOURCE FOR OUR JAVA BEAN OBJECTS
             JRBeanCollectionDataSource dataSource1 = new JRBeanCollectionDataSource(dataset1);
@@ -202,7 +204,6 @@ public class ReportServiceImpl implements ReportService {
             totalListII.addAll(dataset7);
             parameters.put("TresoreriePassif", dataSource9);
 
-
             parameters.put("TotalCapitaux", accountDataManagerServiceImpl.GetTotalBrutAccountPassif(dataset1));
             parameters.put("TotalCapitauxN", accountDataManagerServiceImpl.GetTotalNetAccountPassif(dataset1));
             parameters.put("TotalI", accountDataManagerServiceImpl.GetTotalBrutAccountPassif(totalListI));
@@ -224,8 +225,8 @@ public class ReportServiceImpl implements ReportService {
             String message = "Failed to report bilan passif " + e.getLocalizedMessage() + "!";
             throw new RuntimeException(message);
         }
-    }
 
+    }
 
     // EXPORT DATA ACTIF TO PDF
     public ByteArrayOutputStream exportReportActif(String date, String company_name) throws JRException {
@@ -240,7 +241,27 @@ public class ReportServiceImpl implements ReportService {
             // ANNEE N-1 (exercice precedent)
 
             // CLASS TWO
-            List<SubAccountActif> ClassTwoN = balanceDetailServiceImpl.getClassTwo(getLastYear(date), company_name);
+            CompletableFuture<List<SubAccountActif>> ClassTwoNFut = balanceDetailServiceImpl.getClassTwo(getLastYear(date), company_name);
+            // CLASS THREE
+            CompletableFuture<List<SubAccountActif>> ClassThreeNFut = balanceDetailServiceImpl.getClassThree(getLastYear(date), company_name);
+            // CLASS FIVE
+            CompletableFuture<List<SubAccountActif>> ClassFiveANFut = balanceDetailServiceImpl.getClassFiveActif(getLastYear(date), company_name);
+
+            List<SubAccountActif> ClassTwoN = null;
+            List<SubAccountActif> ClassThreeN = null;
+            List<SubAccountActif> ClassFiveAN = null;
+
+            try {
+                // Récupérer les résultats de manière synchrone
+                ClassTwoN = ClassTwoNFut.get();
+                ClassThreeN = ClassThreeNFut.get();
+                ClassFiveAN = ClassFiveANFut.get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+                String message = "Failed to retrieve data asynchronously: " + e.getLocalizedMessage() + "!";
+                throw new RuntimeException(message);
+            }
+
             List<SubAccountActif> FullClassTwoN = accountDataManagerServiceImpl.
                     processAccountDataA(ClassTwoN, "2");
 
@@ -255,8 +276,7 @@ public class ReportServiceImpl implements ReportService {
             List<SubAccountActif> dataset5N = accountDataManagerServiceImpl.
                     FilterAccountDataA(FullClassTwoN, AccountCategoryClass2.ECART_CONVERSION_ACTIF.getLabel());
 
-            // CLASS THREE
-            List<SubAccountActif> ClassThreeN = balanceDetailServiceImpl.getClassThree(getLastYear(date), company_name);
+
             List<SubAccountActif> FullClassThreeN = accountDataManagerServiceImpl.
                     processAccountDataA(ClassThreeN, "3");
 
@@ -266,8 +286,7 @@ public class ReportServiceImpl implements ReportService {
                     FilterAccountDataA(FullClassThreeN, AccountCategoryClass3.CREANCES_ACTIF_CIRCULANT.getLabel());
 
 
-            // CLASS FIVE
-            List<SubAccountActif> ClassFiveAN = balanceDetailServiceImpl.getClassFiveActif(getLastYear(date), company_name);
+
             List<SubAccountActif> FullClassFiveAN = accountDataManagerServiceImpl.processAccountDataA
                     (ClassFiveAN, "5");
             List<SubAccountActif> dataset8N = accountDataManagerServiceImpl.
@@ -277,7 +296,28 @@ public class ReportServiceImpl implements ReportService {
             // ANNEE N (exercice brut)
 
             // CLASS TWO
-            List<SubAccountActif> ClassTwo = balanceDetailServiceImpl.getClassTwo(date, company_name);
+            CompletableFuture<List<SubAccountActif>> ClassTwoFut = balanceDetailServiceImpl.getClassTwo(date, company_name);
+            // CLASS THREE
+            CompletableFuture<List<SubAccountActif>> ClassThreeFut = balanceDetailServiceImpl.getClassThree(date, company_name);
+            // CLASS FIVE
+            CompletableFuture<List<SubAccountActif>> ClassFiveAFut = balanceDetailServiceImpl.getClassFiveActif(date, company_name);
+
+            List<SubAccountActif> ClassTwo = null;
+            List<SubAccountActif> ClassThree = null;
+            List<SubAccountActif> ClassFiveA = null;
+
+            try {
+                // Récupérer les résultats de manière synchrone
+                ClassTwo = ClassTwoFut.get();
+                ClassThree = ClassThreeFut.get();
+                ClassFiveA = ClassFiveAFut.get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+                String message = "Failed to retrieve data asynchronously: " + e.getLocalizedMessage() + "!";
+                throw new RuntimeException(message);
+            }
+
+
             List<SubAccountActif> FullClassTwo = accountDataManagerServiceImpl.
                     processAccountDataA(ClassTwo, "2");
 
@@ -292,8 +332,7 @@ public class ReportServiceImpl implements ReportService {
             List<SubAccountActif> dataset5 = accountDataManagerServiceImpl.
                     FilterAccountDataA(FullClassTwo, AccountCategoryClass2.ECART_CONVERSION_ACTIF.getLabel());
 
-            // CLASS THREE
-            List<SubAccountActif> ClassThree = balanceDetailServiceImpl.getClassThree(date, company_name);
+
             List<SubAccountActif> FullClassThree = accountDataManagerServiceImpl.
                     processAccountDataA(ClassThree, "3");
 
@@ -303,8 +342,7 @@ public class ReportServiceImpl implements ReportService {
                     FilterAccountDataA(FullClassThree, AccountCategoryClass3.CREANCES_ACTIF_CIRCULANT.getLabel());
 
 
-            // CLASS FIVE
-            List<SubAccountActif> ClassFiveA = balanceDetailServiceImpl.getClassFiveActif(date, company_name);
+
             List<SubAccountActif> FullClassFiveA = accountDataManagerServiceImpl.processAccountDataA
                     (ClassFiveA, "5");
             List<SubAccountActif> dataset8 = accountDataManagerServiceImpl.
@@ -399,13 +437,27 @@ public class ReportServiceImpl implements ReportService {
             // ANNEE N-1 (exercice precedent)
 
             // CLASS SIX
-            List<SubAccountCPC> ClassSixN = balanceDetailServiceImpl.getClassSix(getLastYear(date), company_name);
+            CompletableFuture<List<SubAccountCPC>> ClassSixNFut = balanceDetailServiceImpl.getClassSix(getLastYear(date), company_name);
+            // CLASS SEVEN
+            CompletableFuture<List<SubAccountCPC>> ClassSevenNFut = balanceDetailServiceImpl.getClassSeven(getLastYear(date), company_name);
+
+            List<SubAccountCPC> ClassSixN = null;
+            List<SubAccountCPC> ClassSevenN = null;
+
+            try {
+                // Récupérer les résultats de manière synchrone
+                ClassSixN = ClassSixNFut.get();
+                ClassSevenN = ClassSevenNFut.get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+                String message = "Failed to retrieve data asynchronously: " + e.getLocalizedMessage() + "!";
+                throw new RuntimeException(message);
+            }
 
             List<SubAccountCPC> FullClassSixN = accountDataManagerServiceImpl.
                     processAccountDataCPC(ClassSixN, "6");
 
-            // CLASS SEVEN
-            List<SubAccountCPC> ClassSevenN = balanceDetailServiceImpl.getClassSeven(getLastYear(date), company_name);
+
             List<SubAccountCPC> FullClassSevenN = accountDataManagerServiceImpl.
                     processAccountDataCPC(ClassSevenN, "7");
 
@@ -462,13 +514,29 @@ public class ReportServiceImpl implements ReportService {
 
             // ANNEE N (exercice brut)
             // CLASS SIX
-            List<SubAccountCPC> ClassSix = balanceDetailServiceImpl.getClassSix(date, company_name);
+            CompletableFuture<List<SubAccountCPC>> ClassSixFut = balanceDetailServiceImpl.getClassSix(date, company_name);
+            // CLASS SEVEN
+            CompletableFuture<List<SubAccountCPC>> ClassSevenFut = balanceDetailServiceImpl.getClassSeven(date, company_name);
+
+
+            List<SubAccountCPC> ClassSix = null;
+            List<SubAccountCPC> ClassSeven = null;
+
+            try {
+                // Récupérer les résultats de manière synchrone
+                ClassSix = ClassSixFut.get();
+                ClassSeven = ClassSevenFut.get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+                String message = "Failed to retrieve data asynchronously: " + e.getLocalizedMessage() + "!";
+                throw new RuntimeException(message);
+            }
+
 
             List<SubAccountCPC> FullClassSix = accountDataManagerServiceImpl.
                     processAccountDataCPC(ClassSix, "6");
 
-            // CLASS SEVEN
-            List<SubAccountCPC> ClassSeven = balanceDetailServiceImpl.getClassSeven(date, company_name);
+
             List<SubAccountCPC> FullClassSeven = accountDataManagerServiceImpl.
                     processAccountDataCPC(ClassSeven, "7");
 
@@ -612,10 +680,25 @@ public class ReportServiceImpl implements ReportService {
             // Check if we have passage in db or get values from balance
             if (passages_db.isEmpty()) {
                 // FROM BALANCE
-                List<SubAccountCPC> ClassSix = balanceDetailServiceImpl.getClassSix(date, company_name);
+                CompletableFuture<List<SubAccountCPC>> ClassSixFut = balanceDetailServiceImpl.getClassSix(date, company_name);
+                CompletableFuture<List<SubAccountCPC>> ClassSevenFut = balanceDetailServiceImpl.getClassSeven(date, company_name);
+
+                List<SubAccountCPC> ClassSix = null;
+                List<SubAccountCPC> ClassSeven = null;
+
+                try {
+                    // Récupérer les résultats de manière synchrone
+                    ClassSix = ClassSixFut.get();
+                    ClassSeven = ClassSevenFut.get();
+                } catch (InterruptedException | ExecutionException e) {
+                    e.printStackTrace();
+                    String message = "Failed to retrieve data asynchronously: " + e.getLocalizedMessage() + "!";
+                    throw new RuntimeException(message);
+                }
+
                 List<SubAccountCPC> FullClassSix = accountDataManagerServiceImpl.
                         processAccountDataCPC(ClassSix, "6");
-                List<SubAccountCPC> ClassSeven = balanceDetailServiceImpl.getClassSeven(date, company_name);
+
                 List<SubAccountCPC> FullClassSeven = accountDataManagerServiceImpl.
                         processAccountDataCPC(ClassSeven, "7");
 
@@ -677,7 +760,19 @@ public class ReportServiceImpl implements ReportService {
             Double matInfo = null;
 
             // CLASS TWO
-            List<SubAccountActif> ClassTwo = balanceDetailServiceImpl.getClassTwo(date, company_name);
+            CompletableFuture<List<SubAccountActif>> ClassTwoFut = balanceDetailServiceImpl.getClassTwo(date, company_name);
+
+            List<SubAccountActif> ClassTwo = null;
+
+            try {
+                // Récupérer les résultats de manière synchrone
+                ClassTwo = ClassTwoFut.get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+                String message = "Failed to retrieve data asynchronously: " + e.getLocalizedMessage() + "!";
+                throw new RuntimeException(message);
+            }
+
             List<SubAccountActif> FullClassTwo = accountDataManagerServiceImpl.
                     processAccountDataA(ClassTwo, "2");
 
@@ -732,11 +827,26 @@ public class ReportServiceImpl implements ReportService {
             // ANNEE N-1 (exercice precedent)
 
             // CLASS SIX
-            List<SubAccountCPC> ClassSixN = balanceDetailServiceImpl.getClassSix(getLastYear(date), company_name);
+            CompletableFuture<List<SubAccountCPC>> ClassSixNFut = balanceDetailServiceImpl.getClassSix(getLastYear(date), company_name);
+            // CLASS SEVEN
+            CompletableFuture<List<SubAccountCPC>> ClassSevenNFut = balanceDetailServiceImpl.getClassSeven(getLastYear(date), company_name);
+
+            List<SubAccountCPC> ClassSixN = null;
+            List<SubAccountCPC> ClassSevenN = null;
+
+            try {
+                // Récupérer les résultats de manière synchrone
+                ClassSixN = ClassSixNFut.get();
+                ClassSevenN = ClassSevenNFut.get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+                String message = "Failed to retrieve data asynchronously: " + e.getLocalizedMessage() + "!";
+                throw new RuntimeException(message);
+            }
+
             List<SubAccountCPC> FullClassSixN = accountDataManagerServiceImpl.
                     processAccountDataCPC(ClassSixN, "6");
-            // CLASS SEVEN
-            List<SubAccountCPC> ClassSevenN = balanceDetailServiceImpl.getClassSeven(getLastYear(date), company_name);
+
             List<SubAccountCPC> FullClassSevenN = accountDataManagerServiceImpl.
                     processAccountDataCPC(ClassSevenN, "7");
 
@@ -785,11 +895,26 @@ public class ReportServiceImpl implements ReportService {
             // ANNEE N (exercice brut)
 
             // CLASS SIX
-            List<SubAccountCPC> ClassSix = balanceDetailServiceImpl.getClassSix(date, company_name);
+            CompletableFuture<List<SubAccountCPC>> ClassSixFut = balanceDetailServiceImpl.getClassSix(date, company_name);
+            // CLASS SEVEN
+            CompletableFuture<List<SubAccountCPC>> ClassSevenFut = balanceDetailServiceImpl.getClassSeven(date, company_name);
+
+            List<SubAccountCPC> ClassSix = null;
+            List<SubAccountCPC> ClassSeven = null;
+
+            try {
+                // Récupérer les résultats de manière synchrone
+                ClassSix = ClassSixFut.get();
+                ClassSeven = ClassSevenFut.get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+                String message = "Failed to retrieve data asynchronously: " + e.getLocalizedMessage() + "!";
+                throw new RuntimeException(message);
+            }
+
             List<SubAccountCPC> FullClassSix = accountDataManagerServiceImpl.
                     processAccountDataCPC(ClassSix, "6");
-            // CLASS SEVEN
-            List<SubAccountCPC> ClassSeven = balanceDetailServiceImpl.getClassSeven(date, company_name);
+
             List<SubAccountCPC> FullClassSeven = accountDataManagerServiceImpl.
                     processAccountDataCPC(ClassSeven, "7");
 
@@ -882,7 +1007,23 @@ public class ReportServiceImpl implements ReportService {
             // ANNEE N-1 (exercice precedent)
 
             // CLASS SIX
-            List<SubAccountCPC> ClassSixN = balanceDetailServiceImpl.getClassSix(getLastYear(date), company_name);
+            CompletableFuture<List<SubAccountCPC>> ClassSixNFut = balanceDetailServiceImpl.getClassSix(getLastYear(date), company_name);
+            // CLASS SEVEN
+            CompletableFuture<List<SubAccountCPC>> ClassSevenNFut = balanceDetailServiceImpl.getClassSeven(getLastYear(date), company_name);
+
+            List<SubAccountCPC> ClassSixN = null;
+            List<SubAccountCPC> ClassSevenN = null;
+
+            try {
+                // Récupérer les résultats de manière synchrone
+                ClassSixN = ClassSixNFut.get();
+                ClassSevenN = ClassSevenNFut.get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+                String message = "Failed to retrieve data asynchronously: " + e.getLocalizedMessage() + "!";
+                throw new RuntimeException(message);
+            }
+
             List<DetailCPC> FullClassSixN = detailCPCService.processDataSix(ClassSixN);
 
             List<DetailCPC> dataset1N = detailCPCService.FilterAccountDataDetailCPC(FullClassSixN,
@@ -900,8 +1041,7 @@ public class ReportServiceImpl implements ReportService {
             List<DetailCPC> dataset7N = detailCPCService.FilterAccountDataDetailCPC(FullClassSixN,
                     DetailCPCCategoryClass6.AUTRES_CHARGES_NON_COURANTES.getLabel());
 
-            // CLASS SEVEN
-            List<SubAccountCPC> ClassSevenN = balanceDetailServiceImpl.getClassSeven(getLastYear(date), company_name);
+
             List<DetailCPC> FullClassSevenN = detailCPCService.processDataSeven(ClassSevenN);
 
             List<DetailCPC> dataset8N = detailCPCService.FilterAccountDataDetailCPC(FullClassSevenN,
@@ -921,7 +1061,23 @@ public class ReportServiceImpl implements ReportService {
             // ANNEE N (exercice brut)
 
             // CLASS SIX
-            List<SubAccountCPC> ClassSix = balanceDetailServiceImpl.getClassSix(date, company_name);
+            CompletableFuture<List<SubAccountCPC>> ClassSixFut = balanceDetailServiceImpl.getClassSix(date, company_name);
+            // CLASS SEVEN
+            CompletableFuture<List<SubAccountCPC>> ClassSevenFut = balanceDetailServiceImpl.getClassSeven(date, company_name);
+
+            List<SubAccountCPC> ClassSix = null;
+            List<SubAccountCPC> ClassSeven = null;
+
+            try {
+                // Récupérer les résultats de manière synchrone
+                ClassSix = ClassSixFut.get();
+                ClassSeven = ClassSevenFut.get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+                String message = "Failed to retrieve data asynchronously: " + e.getLocalizedMessage() + "!";
+                throw new RuntimeException(message);
+            }
+
             List<DetailCPC> FullClassSix = detailCPCService.processDataSix(ClassSix);
 
             List<DetailCPC> dataset1 = detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
@@ -939,8 +1095,7 @@ public class ReportServiceImpl implements ReportService {
             List<DetailCPC> dataset7 = detailCPCService.FilterAccountDataDetailCPC(FullClassSix,
                     DetailCPCCategoryClass6.AUTRES_CHARGES_NON_COURANTES.getLabel());
 
-            // CLASS SEVEN
-            List<SubAccountCPC> ClassSeven = balanceDetailServiceImpl.getClassSeven(date, company_name);
+
             List<DetailCPC> FullClassSeven = detailCPCService.processDataSeven(ClassSeven);
 
             List<DetailCPC> dataset8 = detailCPCService.FilterAccountDataDetailCPC(FullClassSeven,
@@ -1163,16 +1318,34 @@ public class ReportServiceImpl implements ReportService {
             // ANNEE N-1 (exercice precedent)
             String pathTable14 = path+"table14.jrxml";
             // CLASS SIX
-            List<SubAccountCPC> ClassSix = balanceDetailServiceImpl.getClassSix(getLastYear(date),company_name);
+            CompletableFuture<List<SubAccountCPC>> ClassSixFut = balanceDetailServiceImpl.getClassSix(getLastYear(date),company_name);
+            // CLASS SEVEN
+            CompletableFuture<List<SubAccountCPC>> ClassSevenFut = balanceDetailServiceImpl.getClassSeven(getLastYear(date),company_name);
+            // CLASS ONE
+            CompletableFuture<List<SubAccountPassif>> ClassOneFut = balanceDetailServiceImpl.getClassOne(getLastYear(date),company_name);
+
+            List<SubAccountCPC> ClassSix = null;
+            List<SubAccountCPC> ClassSeven = null;
+            List<SubAccountPassif> ClassOne = null;
+
+            try {
+                // Récupérer les résultats de manière synchrone
+                ClassSix = ClassSixFut.get();
+                ClassSeven = ClassSevenFut.get();
+                ClassOne = ClassOneFut.get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+                String message = "Failed to retrieve data asynchronously: " + e.getLocalizedMessage() + "!";
+                throw new RuntimeException(message);
+            }
+
             List<SubAccountCPC> FullClassSix = accountDataManagerServiceImpl.
                     processAccountDataCPC(ClassSix,"6");
 
-            // CLASS SEVEN
-            List<SubAccountCPC> ClassSeven = balanceDetailServiceImpl.getClassSeven(getLastYear(date),company_name);
+
             List<SubAccountCPC> FullClassSeven = accountDataManagerServiceImpl.
                     processAccountDataCPC(ClassSeven,"7");
-            // CLASS ONE
-            List<SubAccountPassif> ClassOne = balanceDetailServiceImpl.getClassOne(getLastYear(date),company_name);
+
             List<SubAccountPassif> FullClassOne = accountDataManagerServiceImpl.
                     processAccountDataP(ClassOne,"1");
 
@@ -1445,17 +1618,35 @@ public class ReportServiceImpl implements ReportService {
 
         if(!start_date.isEmpty() && isSocieteActiveForThreeYears(dateSociete,datetemp)){
             // CLASS SIX N-1 & N-2
-            List<SubAccountCPC> ClassSixN1 = balanceDetailServiceImpl.getClassSix(previousYear1.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+            CompletableFuture<List<SubAccountCPC>> ClassSixN1Fut = balanceDetailServiceImpl.getClassSix(previousYear1.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                     company_name);
 
-            List<SubAccountCPC> ClassSevenN1 = balanceDetailServiceImpl.getClassSeven(previousYear1.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+            CompletableFuture<List<SubAccountCPC>> ClassSevenN1Fut = balanceDetailServiceImpl.getClassSeven(previousYear1.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                     company_name);
 
             // CLASS SEVEN N-1 & N-2
-            List<SubAccountCPC> ClassSixN2 = balanceDetailServiceImpl.getClassSix(previousYear2.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+            CompletableFuture<List<SubAccountCPC>> ClassSixN2Fut = balanceDetailServiceImpl.getClassSix(previousYear2.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                     company_name);
-            List<SubAccountCPC> ClassSevenN2 = balanceDetailServiceImpl.getClassSeven(previousYear1.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+            CompletableFuture<List<SubAccountCPC>> ClassSevenN2Fut = balanceDetailServiceImpl.getClassSeven(previousYear1.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                     company_name);
+
+            List<SubAccountCPC> ClassSixN1 = null;
+            List<SubAccountCPC> ClassSevenN1 = null;
+            List<SubAccountCPC> ClassSixN2 = null;
+            List<SubAccountCPC> ClassSevenN2 = null;
+
+            try {
+                // Récupérer les résultats de manière synchrone
+                ClassSixN1 = ClassSixN1Fut.get();
+                ClassSevenN1 = ClassSevenN1Fut.get();
+                ClassSixN2 = ClassSixN2Fut.get();
+                ClassSevenN2 = ClassSevenN2Fut.get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+                String message = "Failed to retrieve data asynchronously: " + e.getLocalizedMessage() + "!";
+                throw new RuntimeException(message);
+            }
+
 
             // CHECK IF THERE IS DATA AVAILABLE FIRST
             if(ClassSixN1.isEmpty() || ClassSevenN1.isEmpty() || ClassSixN2.isEmpty() || ClassSevenN2.isEmpty()){

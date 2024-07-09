@@ -84,12 +84,15 @@ public class BilanController {
         // Check if we have passage in db or get values from balance
         if(passages_db.isEmpty()){
             // FROM BALANCE
-            List<SubAccountCPC> ClassSix = balanceDetailService.getClassSix(dateString,"AL MORAFIQ");
+            /*List<SubAccountCPC> ClassSix = balanceDetailService.getClassSix(dateString,"AL MORAFIQ");
             List<SubAccountCPC> FullClassSix = accountDataManagerService.
                     processAccountDataCPC(ClassSix,"6");
             List<SubAccountCPC> ClassSeven = balanceDetailService.getClassSeven(dateString,"AL MORAFIQ");
             List<SubAccountCPC> FullClassSeven = accountDataManagerService.
-                    processAccountDataCPC(ClassSeven,"7");
+                    processAccountDataCPC(ClassSeven,"7");*/
+
+            List<SubAccountCPC> FullClassSix = null;
+            List<SubAccountCPC> FullClassSeven = null;
 
             Double res_net = esgService.GetResultat(FullClassSix,FullClassSeven,"RESULTAT NET DE L'EXERCICE");
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -154,7 +157,7 @@ public class BilanController {
     public ResponseEntity<Map<String,Object>> passagesESGFilter(@RequestParam("date") String dateBilan){
         Map<String, Object> responseMap = new HashMap<>();
 
-        // CLASS SIX
+        /*// CLASS SIX
         List<SubAccountCPC> ClassSix = balanceDetailService.getClassSix(dateBilan,"AL MORAFIQ");
         List<SubAccountCPC> FullClassSix = accountDataManagerService.
                 processAccountDataCPC(ClassSix,"6");
@@ -162,7 +165,10 @@ public class BilanController {
         // CLASS SEVEN
         List<SubAccountCPC> ClassSeven = balanceDetailService.getClassSeven(dateBilan,"AL MORAFIQ");
         List<SubAccountCPC> FullClassSeven = accountDataManagerService.
-                processAccountDataCPC(ClassSeven,"7");
+                processAccountDataCPC(ClassSeven,"7");*/
+
+        List<SubAccountCPC> FullClassSix = null;
+        List<SubAccountCPC> FullClassSeven = null;
 
         List<List<Esg>> partsTFR = new ArrayList<>();
 
@@ -208,13 +214,16 @@ public class BilanController {
     @RequestMapping(value="/passagesCPCFilter", method = RequestMethod.GET)
     public ResponseEntity<Map<String,Object>> passagesCPCFilter(@RequestParam("date") String dateBilan){
         Map<String, Object> responseMap = new HashMap<>();
-        // CLASS SIX
+        /*// CLASS SIX
         List<SubAccountCPC> ClassSix = balanceDetailService.getClassSix(dateBilan,"AL MORAFIQ");
         List<DetailCPC> FullClassSix = detailCPCService.processDataSix(ClassSix);
 
         // CLASS SEVEN
         List<SubAccountCPC> ClassSeven = balanceDetailService.getClassSeven(dateBilan,"AL MORAFIQ");
-        List<DetailCPC> FullClassSeven = detailCPCService.processDataSeven(ClassSeven);
+        List<DetailCPC> FullClassSeven = detailCPCService.processDataSeven(ClassSeven);*/
+
+        List<DetailCPC> FullClassSix = null;
+        List<DetailCPC> FullClassSeven = null;
 
         responseMap.put("dataCPCSix", FullClassSix);
         responseMap.put("dataCPCSeven", FullClassSeven);
