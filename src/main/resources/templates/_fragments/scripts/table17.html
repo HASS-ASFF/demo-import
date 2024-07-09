@@ -27,6 +27,7 @@
 				floatingFilter: true,
 				wrapText: true,
 				autoHeight: true,
+				headerClass: 'ag-header-cell-label',
 				minWidth: 50
 			}
 
@@ -46,6 +47,8 @@
             document.addEventListener('DOMContentLoaded', function() {
                 const gridOptions = {
 					defaultColDef: defaultColDef,
+					headerHeight: 100,
+					groupHeaderHeight: 150,
                     columnDefs: [
                         {
 							field: "Elements",

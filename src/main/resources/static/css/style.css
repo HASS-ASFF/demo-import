@@ -98,3 +98,8 @@ input:focus ~ .bar:after {
 	flex-direction: column;
 	align-items: start;
 }
+
+.ag-header-cell-label {
+	white-space: normal !important;
+	word-wrap: break-word;
+}
