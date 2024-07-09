@@ -86,6 +86,19 @@
         </div>
         <!-- Sidebar -left -->
     </div>
+	<script>
+		$(document).ready(function() {
+			$("#sidebarCommand").on('click', function() {
+				const sidebar = document.getElementById('sidebarCommand');
+				if (sidebar.classList.includes('show')) {
+					const subnavs = sidebar.getElementsByClassName('nav-second-level');
+					subnavs.forEach(subnav => {
+						subnav.style.color = 'white';
+					})
+				}
+			});
+		})
+	</script>
 </body>
 
 </html>

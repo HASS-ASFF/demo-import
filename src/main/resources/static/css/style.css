@@ -113,10 +113,10 @@ input:focus ~ .bar:after {
 }
 
 body[data-sidebar-size=condensed] .left-side-menu #sidebar-menu>ul ul {
-	background-color: #f0f0f0;
+	background-color: #2b7de7;
 	color: #343a40;
 }
 
 .nav-second-level li a {
-	color: #343a40;
+	/* color: #343a40; */
 } 
