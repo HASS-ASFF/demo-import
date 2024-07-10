@@ -8,121 +8,89 @@
 <body>
 
     <div class="navbar-custom" th:fragment="default" style="background-color: #0E4D9D;">
-        <!-- <div class="container-fluid"> -->
-            <ul class="list-unstyled topnav-menu float-right mb-0">
-                <!-- <li class="dropdown d-inline-block d-lg-none">
-                    <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-toggle="dropdown"
-                        href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <i class="fe-search noti-icon"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-lg dropdown-menu-right p-0">
-                        <form class="p-3">
-                            <input type="text" class="form-control" placeholder="Search ..."
-                                aria-label="Recipient's username">
-                        </form>
-                    </div>
-                </li>
-                <li class="dropdown d-none d-lg-inline-block">
-                    <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-toggle="fullscreen"
-                        href="#">
-                        <i class="fe-maximize noti-icon"></i>
-                    </a>
-                </li>
-                <li class="dropdown d-none d-lg-inline-block topbar-dropdown">
-                    <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-toggle="dropdown"
-                        href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <img th:src="@{/images/flags/us.jpg}" alt="user-image" height="16">
-                    </a>
-                </li>
-                <li class="dropdown notification-list topbar-dropdown">
-                    <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"
-                        role="button" aria-haspopup="false" aria-expanded="false">
-                        <i class="fe-bell noti-icon"></i>
-                    </a>
-                </li> -->
-                <li class="dropdown notification-list topbar-dropdown">
-                    <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown"
-                        role="button" aria-haspopup="false" aria-expanded="false">
-                        <img th:src="@{/images/icons/default.png}" alt="user-image" class="rounded-circle">
-                        <span class="pro-user-name ml-1">
-                            <span></span> <i class="mdi mdi-chevron-down"></i>
-                        </span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                        <!-- item-->
-                        <div class="dropdown-header noti-title">
-                            <h6 class="text-overflow m-0">Welcome !</h6>
-                        </div>
-                        <!-- item-->
-                        <a th:href="@{/admin/user}" sec:authorize="hasRole('ROLE_ADMIN')"
-                            class="dropdown-item notify-item">
-                            <i class="fe-users"></i>
-                            <span>Utilisateurs</span>
-                        </a>
-                        <!-- item-->
-                        <a th:href="@{/logout}" class="dropdown-item notify-item">
-                            <i class="fe-log-out"></i>
-                            <span>Déconnexion</span>
-                        </a>
-                    </div>
-                </li>
-            </ul>
-            <div class="logo-box logo-m">
-                <a th:href="@{/}" class="logo logo-light text-center">
-                    <span class="logo-sm">
-                        <img th:src="@{/images/logos/HiveAccounting-Logo.png}" alt="HiveAccounting" style="height:2.6rem">
-                    </span>
-                    <span class="logo-lg">
-                        <img th:src="@{/images/logos/HiveAccounting-Logo.png}" alt="HiveAccounting"
-                            style="height:2.6rem">
-                    </span>
-                </a>
-            </div>
-			<ul class="navbar-nav " id="side-menu">
-				<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_SA','ROLE_COM')">
-					<a class="nav-link" th:href="@{/}" id="topnav-dash" role="button">
-						<i class="fe-grid"></i> Dashboard <div class=""></div>
-					</a>
-				</li>
-
-				<li class="nav-item dropdown"
-					sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_SA','ROLE_COM')">
-					<a class="nav-link dropdown-toggle arrow-none white" href="#" id="topnav-dashboard"
-						role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="fe-airplay mr-1"></i> Reports <div class=""></div>
-					</a>
-					<div class="dropdown-menu " aria-labelledby="topnav-dashboard">
-						<a th:href="@{/api/detailCPC}" class="dropdown-item">Detail CPC</a>
-						<a th:href="@{/api/esg}" class="dropdown-item">E.S.G</a>
-						<a th:href="@{/api/immobilisation}" class="dropdown-item">E.D.A.R.I</a>
-						<a th:href="@{/api/passages}" class="dropdown-item">Passage Management</a>
-						<a th:href="@{/api/table12}" class="dropdown-item">Details de TVA</a>
-						<a th:href="@{/api/table14}" class="dropdown-item">E.A.R.I.C.E</a>
-						<a th:href="@{/api/table15}" class="dropdown-item">E.P.V.C.E.C.F</a>
-						<a th:href="@{/api/table18}" class="dropdown-item">E.I.E.C.A.A.T.A.O.B.C</a>
-						<a th:href="@{/api/table20}" class="dropdown-item">Etat Detaille Des Stocks</a>
-
+		<ul class="list-unstyled topnav-menu float-right mb-0">
+			<li class="dropdown notification-list topbar-dropdown">
+				<a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown"
+					role="button" aria-haspopup="false" aria-expanded="false">
+					<img th:src="@{/images/icons/default.png}" alt="user-image" class="rounded-circle">
+					<span class="pro-user-name ml-1">
+						<span></span> <i class="mdi mdi-chevron-down"></i>
+					</span>
+				</a>
+				<div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+					<!-- item-->
+					<div class="dropdown-header noti-title">
+						<h6 class="text-overflow m-0">Welcome !</h6>
 					</div>
-				</li>
-				<li class="nav-item ">
-					<a class="nav-link" th:href=@{/clients} id="topnav-customer" role="button"
-						sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_SA','ROLE_COM')">
-						<i class="fe-user"></i> Bilan <div class=""></div>
+					<!-- item-->
+					<a th:href="@{/admin/user}" sec:authorize="hasRole('ROLE_ADMIN')"
+						class="dropdown-item notify-item">
+						<i class="fe-users"></i>
+						<span>Utilisateurs</span>
 					</a>
-				</li>
-				<li class="nav-item dropdown"
-					sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_SA','ROLE_COM')">
-					<a class="nav-link dropdown-toggle arrow-none white" href="#" id="topnav-dashboard"
-						role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="icon-calender mr-1"></i> Les Journaux <div class=""></div>
+					<!-- item-->
+					<a th:href="@{/logout}" class="dropdown-item notify-item">
+						<i class="fe-log-out"></i>
+						<span>Déconnexion</span>
 					</a>
-					<div class="dropdown-menu " aria-labelledby="topnav-dashboard">
-						<a th:href="@{/api/journer-achat}" class="dropdown-item"> Le Journal d'Achat</a>
+				</div>
+			</li>
+		</ul>
+		<div class="logo-box logo-m">
+			<a th:href="@{/}" class="logo logo-light text-center">
+				<span class="logo-sm">
+					<img th:src="@{/images/logos/HiveAccounting-Logo.png}" alt="HiveAccounting" style="height:2.6rem">
+				</span>
+				<span class="logo-lg">
+					<img th:src="@{/images/logos/HiveAccounting-Logo.png}" alt="HiveAccounting"
+						style="height:2.6rem">
+				</span>
+			</a>
+		</div>
+		<ul class="navbar-nav " id="side-menu">
+			<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_SA','ROLE_COM')">
+				<a class="nav-link" th:href="@{/}" id="topnav-dash" role="button">
+					<i class="fe-grid"></i> Dashboard <div class=""></div>
+				</a>
+			</li>
 
-					</div>
-				</li>
-			</ul>
-        <!-- </div> -->
+			<li class="nav-item dropdown"
+				sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_SA','ROLE_COM')">
+				<a class="nav-link dropdown-toggle arrow-none white" href="#" id="topnav-dashboard"
+					role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fe-airplay mr-1"></i> Reports <div class=""></div>
+				</a>
+				<div class="dropdown-menu " aria-labelledby="topnav-dashboard">
+					<a th:href="@{/api/detailCPC}" class="dropdown-item">Detail CPC</a>
+					<a th:href="@{/api/esg}" class="dropdown-item">E.S.G</a>
+					<a th:href="@{/api/immobilisation}" class="dropdown-item">E.D.A.R.I</a>
+					<a th:href="@{/api/passages}" class="dropdown-item">Passage Management</a>
+					<a th:href="@{/api/table12}" class="dropdown-item">Details de TVA</a>
+					<a th:href="@{/api/table14}" class="dropdown-item">E.A.R.I.C.E</a>
+					<a th:href="@{/api/table15}" class="dropdown-item">E.P.V.C.E.C.F</a>
+					<a th:href="@{/api/table18}" class="dropdown-item">E.I.E.C.A.A.T.A.O.B.C</a>
+					<a th:href="@{/api/table20}" class="dropdown-item">Etat Detaille Des Stocks</a>
+
+				</div>
+			</li>
+			<li class="nav-item ">
+				<a class="nav-link" th:href=@{/clients} id="topnav-customer" role="button"
+					sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_SA','ROLE_COM')">
+					<i class="fe-user"></i> Bilan <div class=""></div>
+				</a>
+			</li>
+			<li class="nav-item dropdown"
+				sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_SA','ROLE_COM')">
+				<a class="nav-link dropdown-toggle arrow-none white" href="#" id="topnav-dashboard"
+					role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="icon-calender mr-1"></i> Les Journaux <div class=""></div>
+				</a>
+				<div class="dropdown-menu " aria-labelledby="topnav-dashboard">
+					<a th:href="@{/api/journer-achat}" class="dropdown-item"> Le Journal d'Achat</a>
+
+				</div>
+			</li>
+		</ul>
     </div>
 
 </body>
