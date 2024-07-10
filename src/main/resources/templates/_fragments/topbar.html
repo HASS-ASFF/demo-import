@@ -104,13 +104,22 @@
 
 					</div>
 				</li>
-
-
 				<li class="nav-item ">
 					<a class="nav-link" th:href=@{/clients} id="topnav-customer" role="button"
 						sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_SA','ROLE_COM')">
 						<i class="fe-user"></i> Bilan <div class=""></div>
 					</a>
+				</li>
+				<li class="nav-item dropdown"
+					sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_SA','ROLE_COM')">
+					<a class="nav-link dropdown-toggle arrow-none white" href="#" id="topnav-dashboard"
+						role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="icon-calender mr-1"></i> Les Journaux <div class=""></div>
+					</a>
+					<div class="dropdown-menu " aria-labelledby="topnav-dashboard">
+						<a th:href="@{/api/detailCPC}" class="dropdown-item"> Le Journal d'Achat</a>
+
+					</div>
 				</li>
 			</ul>
         <!-- </div> -->
