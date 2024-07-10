@@ -8,9 +8,9 @@
 <body>
 
     <div class="navbar-custom" th:fragment="default" style="background-color: #0E4D9D;">
-        <div class="container-fluid">
+        <!-- <div class="container-fluid"> -->
             <ul class="list-unstyled topnav-menu float-right mb-0">
-                <li class="dropdown d-inline-block d-lg-none">
+                <!-- <li class="dropdown d-inline-block d-lg-none">
                     <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-toggle="dropdown"
                         href="#" role="button" aria-haspopup="false" aria-expanded="false">
                         <i class="fe-search noti-icon"></i>
@@ -39,7 +39,7 @@
                         role="button" aria-haspopup="false" aria-expanded="false">
                         <i class="fe-bell noti-icon"></i>
                     </a>
-                </li>
+                </li> -->
                 <li class="dropdown notification-list topbar-dropdown">
                     <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown"
                         role="button" aria-haspopup="false" aria-expanded="false">
@@ -67,36 +67,7 @@
                     </div>
                 </li>
             </ul>
-
-            <!-- LOGO -->
-            <!-- <div class="logo-box">
-                <a th:href="@{/}" class="logo logo-dark text-center">
-                    <span class="logo-sm">
-                        <img th:src="@{/images/logos/caisse.png}" alt="" height="22">
-                    </span>
-                    <span class="logo-lg">
-                        <img th:src="@{/images/logos/caisse.png}" alt="" height="20">
-                    </span>
-                </a>
-                <a th:href="@{/}" class="logo logo-light text-center">
-                    <span class="logo-sm">
-                        <img th:src="@{/images/logos/caisse.png}" alt="" height="22">
-                    </span>
-                    <span class="logo-lg">
-                        <img th:src="@{/images/logos/caisse.png}" alt="" height="20">
-                    </span>
-                </a>
-            </div> -->
-            <div class="logo-box">
-                <a th:href="@{/}" class="logo logo-dark text-center">
-                    <span class="logo-sm">
-                        <img th:src="@{/images/logos/HiveAccounting-Logo.png}" alt="HiveAccounting" style="height:2.6rem">
-                    </span>
-                    <span class="logo-lg">
-                        <img th:src="@{/images/logos/HiveAccounting-Logo.png}" alt="HiveAccounting"
-                            style="height:2.6rem">
-                    </span>
-                </a>
+            <div class="logo-box logo-m">
                 <a th:href="@{/}" class="logo logo-light text-center">
                     <span class="logo-sm">
                         <img th:src="@{/images/logos/HiveAccounting-Logo.png}" alt="HiveAccounting" style="height:2.6rem">
@@ -107,28 +78,42 @@
                     </span>
                 </a>
             </div>
+			<ul class="navbar-nav " id="side-menu">
+				<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_SA','ROLE_COM')">
+					<a class="nav-link" th:href="@{/}" id="topnav-dash" role="button">
+						<i class="fe-grid"></i> Dashboard <div class=""></div>
+					</a>
+				</li>
+
+				<li class="nav-item dropdown"
+					sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_SA','ROLE_COM')">
+					<a class="nav-link dropdown-toggle arrow-none white" href="#" id="topnav-dashboard"
+						role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fe-airplay mr-1"></i> Reports <div class=""></div>
+					</a>
+					<div class="dropdown-menu " aria-labelledby="topnav-dashboard">
+						<a th:href="@{/api/detailCPC}" class="dropdown-item">Detail CPC</a>
+						<a th:href="@{/api/esg}" class="dropdown-item">E.S.G</a>
+						<a th:href="@{/api/immobilisation}" class="dropdown-item">E.D.A.R.I</a>
+						<a th:href="@{/api/passages}" class="dropdown-item">Passage Management</a>
+						<a th:href="@{/api/table12}" class="dropdown-item">Details de TVA</a>
+						<a th:href="@{/api/table14}" class="dropdown-item">E.A.R.I.C.E</a>
+						<a th:href="@{/api/table15}" class="dropdown-item">E.P.V.C.E.C.F</a>
+						<a th:href="@{/api/table18}" class="dropdown-item">E.I.E.C.A.A.T.A.O.B.C</a>
+						<a th:href="@{/api/table20}" class="dropdown-item">Etat Detaille Des Stocks</a>
+
+					</div>
+				</li>
 
 
-            <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
-                <li>
-                    <button id="leftnav-btn" class="button-menu-mobile waves-effect waves-light">
-                        <i class="fe-menu"></i>
-                    </button>
-                </li>
-                <li>
-                    <!-- Mobile menu toggle (Horizontal Layout)-->
-                    <a class="navbar-toggle nav-link" data-toggle="collapse" data-target="#topnav-menu-content">
-                        <div class="lines">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </a>
-                    <!-- End mobile menu toggle-->
-                </li>
-            </ul>
-            <div class="clearfix"></div>
-        </div>
+				<li class="nav-item ">
+					<a class="nav-link" th:href=@{/clients} id="topnav-customer" role="button"
+						sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_SA','ROLE_COM')">
+						<i class="fe-user"></i> Bilan <div class=""></div>
+					</a>
+				</li>
+			</ul>
+        <!-- </div> -->
     </div>
 
 </body>
