@@ -17,7 +17,7 @@ public class ViewController {
      */
 
 
-    @GetMapping("")
+    @GetMapping("/")
     public String index() {return "index";}
 
     @GetMapping("/passages")
@@ -54,6 +54,9 @@ public class ViewController {
 
     @GetMapping("/table20")
     public String tableau20(){ return "table20"; }
+
+    @GetMapping("/journer-achat")
+    public String journerAchat(){ return "journaux/journer-achat"; }
 
 
 }

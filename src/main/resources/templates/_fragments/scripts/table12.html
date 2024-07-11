@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <div th:fragment="agGridScripts">
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+        <script>
+
+			const rawData = [
+				{ Nature: "A. T.V.A. Facturée", SDE1: Math.floor(Math.random() * (3000 - 1000 + 1)), SDE2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, SDE3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, SFE: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Nature: "B. T.V.A. Récupérable", SDE1: Math.floor(Math.random() * (3000 - 1000 + 1)), SDE2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, SDE3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, SFE: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Nature: "Sur charges", SDE1: Math.floor(Math.random() * (3000 - 1000 + 1)), SDE2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, SDE3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, SFE: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Nature: "Sur immobilisations", SDE1: Math.floor(Math.random() * (3000 - 1000 + 1)), SDE2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, SDE3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, SFE: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Nature: "C. T.V.A. dûe ou crédit T.V.A=(A-B)", SDE1: Math.floor(Math.random() * (3000 - 1000 + 1)), SDE2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, SDE3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, SFE: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+			]
+
+			const defaultColDef = {
+				sortable: false,
+				filter: false,
+				floatingFilter: true,
+				minWidth: 50
+			}
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const gridOptions = {
+					defaultColDef: defaultColDef,
+                    columnDefs: [
+                        {
+							field: "Nature",
+							flex: 1,
+							filter: 'agTextColumnFilter',
+
+						}, {
+							field: "SDE1",
+							headerName: "Opérations comptables de l'exercice (1)",
+							flex: 1,
+						}, {
+							field: "SDE2",
+							headerName: "Opérations comptables de l'exercice (2)",
+							flex: 1,
+						}, {
+							field: "SDE3",
+							headerName: "Opérations comptables de l'exercice (3)",
+							flex: 1,
+						}, {
+							field: "SFE",
+							headerName: "Solde fin d'exercice (1+2-3=4)",
+							flex: 1,
+						}
+                    ],
+                    rowData: rawData,
+                };
+
+                const tableContainer = document.getElementById('table-container');
+                new agGrid.Grid(tableContainer, gridOptions);
+				datePicker();
+            });
+
+
+			const datePicker = () => {
+				flatpickr('#date-picker', {
+					enableTime: false,
+					noCalendar: false,
+					dateFormat: "Y",
+					mode: "single",
+					"maxDate": new Date(),
+					defaultDate: new Date(),
+					onChange: function(selectedDates, dateStr, instance) {
+						// This will close the Flatpickr dialog after a date (year) is selected
+						instance.close();
+					},
+					onReady: function(selectedDates, dateStr, instance) {
+						// Hide the calendar view to make it clear only a year is to be selected
+						// This is a bit of a hack and might need adjustments based on Flatpickr's version or your specific setup
+						const calendarContainer = instance.calendarContainer;
+						if (calendarContainer) {
+							const monthsDropdown = calendarContainer.querySelector('.flatpickr-monthDropdown-months');
+							if (monthsDropdown) {
+								monthsDropdown.style.visibility = 'hidden';
+								monthsDropdown.style.width = 0;
+							}
+							const prevMonthNav = calendarContainer.querySelector('.flatpickr-prev-month');
+							const nextMonthNav = calendarContainer.querySelector('.flatpickr-next-month');
+							if (prevMonthNav && nextMonthNav) {
+								prevMonthNav.style.visibility = 'hidden';
+								nextMonthNav.style.visibility = 'hidden';
+								monthsDropdown.style.width = 0;
+							}
+						}
+					}
+				})
+			}
+
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <div th:fragment="agGridScripts">
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+        <script>
+
+			const rawData = [
+				{ NATURE: "IMMOBILISATION EN NON-VALEURS", MBDE: Math.floor(Math.random() * (3000 - 1000 + 1)), "AugmenAcquisition": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "MBFE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ NATURE: "*Frais préliminaires ", MBDE: Math.floor(Math.random() * (3000 - 1000 + 1)), "AugmenAcquisition": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "MBFE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ NATURE: "*Charges à répartir sur plusieurs exercices", MBDE: Math.floor(Math.random() * (3000 - 1000 + 1)), "AugmenAcquisition": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "MBFE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ NATURE: "*Primes de remboursement obligations", MBDE: Math.floor(Math.random() * (3000 - 1000 + 1)), "AugmenAcquisition": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "MBFE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ NATURE: "IMMOBILISATIONS INCORPORELLES", MBDE: Math.floor(Math.random() * (3000 - 1000 + 1)), "AugmenAcquisition": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "MBFE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ NATURE: "* Immobilisation en recherche et développement", MBDE: Math.floor(Math.random() * (3000 - 1000 + 1)), "AugmenAcquisition": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "MBFE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ NATURE: "* Brevets, marques, droits et valeurs similaires", MBDE: Math.floor(Math.random() * (3000 - 1000 + 1)), "AugmenAcquisition": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "MBFE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ NATURE: "* Fonds commercial", MBDE: Math.floor(Math.random() * (3000 - 1000 + 1)), "AugmenAcquisition": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "MBFE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ NATURE: "* Autres immobilisations incorporelles", MBDE: Math.floor(Math.random() * (3000 - 1000 + 1)), "AugmenAcquisition": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "MBFE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ NATURE: "IMMOBILISATIONS INCORPORELLES", MBDE: Math.floor(Math.random() * (3000 - 1000 + 1)), "AugmenAcquisition": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "MBFE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ NATURE: "* Terrains", MBDE: Math.floor(Math.random() * (3000 - 1000 + 1)), "AugmenAcquisition": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "MBFE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ NATURE: "* Constructions", MBDE: Math.floor(Math.random() * (3000 - 1000 + 1)), "AugmenAcquisition": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "MBFE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ NATURE: "* Installat. techniques,matériel et outillage", MBDE: Math.floor(Math.random() * (3000 - 1000 + 1)), "AugmenAcquisition": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "MBFE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ NATURE: "* Matériel de transport", MBDE: Math.floor(Math.random() * (3000 - 1000 + 1)), "AugmenAcquisition": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "MBFE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ NATURE: "Mobilier, matériel bureau et aménagements", MBDE: Math.floor(Math.random() * (3000 - 1000 + 1)), "AugmenAcquisition": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "MBFE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ NATURE: "* Immobilisations corporelles diverses", MBDE: Math.floor(Math.random() * (3000 - 1000 + 1)), "AugmenAcquisition": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "MBFE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ NATURE: "* Immobilisations corporelles en cours", MBDE: Math.floor(Math.random() * (3000 - 1000 + 1)), "AugmenAcquisition": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "MBFE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ NATURE: "* Matériel informatique", MBDE: Math.floor(Math.random() * (3000 - 1000 + 1)), "AugmenAcquisition": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "AugmenVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminVirement": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminCession": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "DiminPPEPEM": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, "MBFE": Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+			]
+
+			const defaultColDef = {
+				sortable: false,
+				filter: false,
+				floatingFilter: true,
+				minWidth: 50
+			}
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const gridOptions = {
+					defaultColDef: defaultColDef,
+                    columnDefs: [
+                        {
+							field: "NATURE",
+							flex: 1,
+							filter: 'agTextColumnFilter',
+
+						}, {
+							field: "MBDE",
+							headerName: "MONTANT BRUT DEBUT EXERCICE",
+							flex: 1,
+						}, {
+							headerName: "Augmentations",
+							children: [
+								{
+									field: "AugmenAcquisition",
+									headerName: "Acquisition",
+									width: 150,
+								},
+								{
+									field: "AugmenPPEPEM",
+									headerName: "PPE PEM(*)",
+									width: 150,
+								},
+								{
+									field: "AugmenVirement",
+									headerName: "Virement",
+									width: 150,
+								},
+							]
+						},
+                        {
+							headerName: "Diminutions",
+							children: [
+								{
+									field: "DiminCession",
+									headerName: "Cession",
+									width: 150,
+								},
+								{
+									field: "DiminPPEPEM",
+									headerName: "PPE PEM(*)",
+									width: 150,
+								},
+								{
+									field: "DiminVirement",
+									headerName: "Virement",
+									width: 150,
+								},
+							]
+						},
+                        {
+							field: "MBFE",
+							headerName: "MONTANT BRUT FIN EXERCICE",
+							flex: 1,
+						}
+                    ],
+                    rowData: rawData,
+                };
+
+                const tableContainer = document.getElementById('table-container');
+                new agGrid.Grid(tableContainer, gridOptions);
+				datePicker();
+            });
+
+
+			const datePicker = () => {
+				flatpickr('#date-picker', {
+					enableTime: false,
+					noCalendar: false,
+					dateFormat: "Y",
+					mode: "single",
+					"maxDate": new Date(),
+					defaultDate: new Date(),
+					onChange: function(selectedDates, dateStr, instance) {
+						// This will close the Flatpickr dialog after a date (year) is selected
+						instance.close();
+					},
+					onReady: function(selectedDates, dateStr, instance) {
+						// Hide the calendar view to make it clear only a year is to be selected
+						// This is a bit of a hack and might need adjustments based on Flatpickr's version or your specific setup
+						const calendarContainer = instance.calendarContainer;
+						if (calendarContainer) {
+							const monthsDropdown = calendarContainer.querySelector('.flatpickr-monthDropdown-months');
+							if (monthsDropdown) {
+								monthsDropdown.style.visibility = 'hidden';
+								monthsDropdown.style.width = 0;
+							}
+							const prevMonthNav = calendarContainer.querySelector('.flatpickr-prev-month');
+							const nextMonthNav = calendarContainer.querySelector('.flatpickr-next-month');
+							if (prevMonthNav && nextMonthNav) {
+								prevMonthNav.style.visibility = 'hidden';
+								nextMonthNav.style.visibility = 'hidden';
+								monthsDropdown.style.width = 0;
+							}
+						}
+					}
+				})
+			}
+
+        </script>
+    </div>
+</body>
+</html>

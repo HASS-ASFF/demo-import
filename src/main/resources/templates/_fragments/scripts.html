@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Delivery</title>
+</head>
+
+<body>
+
+    <div th:fragment="default">
+        <!-- Vendor js -->
+        <script th:src="@{/js/vendor.min.js}"></script>
+
+        <!-- Plugins drop picture js -->
+        <script th:src="@{/libs/dropzone/min/dropzone.min.js}"></script>
+        <script th:src="@{/libs/dropify/js/dropify.min.js}"></script>
+        <!-- Plugins js-->
+        <script th:src="@{/libs/flatpickr/flatpickr.min.js}"></script>
+        <script th:src="@{/libs/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js}"></script>
+        <script th:src="@{/libs/clockpicker/bootstrap-clockpicker.min.js}"></script>
+        <script th:src="@{/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js}"></script>
+
+        <!-- Summernote js -->
+        <script th:src="@{/libs/summernote/summernote-bs4.min.js}"></script>
+
+        <!-- Select 2-->
+        <script th:src="@{/libs/select2/js/select2.min.js}"></script>
+
+        <!-- Pages js -->
+        <script th:src="@{/js/pages/special-offers/edit.js}"></script>
+
+        <!-- Init drop picture js-->
+        <script th:src="@{/js/pages/form-fileuploads.init.js}"></script>
+        <!-- Init summernote js -->
+        <script th:src="@{/js/pages/form-summernote.init.js}"></script>
+        <!-- Init js-->
+        <!-- <script th:src="@{/js/pages/form-advanced.init.js}"></script> -->
+        <!-- Init js-->
+        <script th:src="@{/js/pages/form-pickers.init.js}"></script>
+        <!-- App js -->
+        <script th:src="@{/js/app.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/script.js}"></script>
+    </div>
+
+</body>
+
+</html>
