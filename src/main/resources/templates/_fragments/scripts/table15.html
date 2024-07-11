@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <div th:fragment="agGridScripts">
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+        <script>
+
+			const rawData = [
+				{ name1: "A.ORIGINE DES RESULTATS A AFFECTER", montant1: Math.floor(Math.random() * (3000 - 1000 + 1)), name2: "B.AFFECTATION DES RESULTATS", montant2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ name1: "Report à nouveau", montant1: Math.floor(Math.random() * (3000 - 1000 + 1)), name2: "Réserve légale", montant2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ name1: "Résultats nets en instance d'affectation", montant1: Math.floor(Math.random() * (3000 - 1000 + 1)), name2: "Autres réserves", montant2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ name1: "Résultat net de l'exercice", montant1: Math.floor(Math.random() * (3000 - 1000 + 1)), name2: "Tantièmes", montant2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ name1: "", montant1: Math.floor(Math.random() * (3000 - 1000 + 1)), name2: "Dividendes", montant2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ name1: "Prélèvements sur les réserves", montant1: Math.floor(Math.random() * (3000 - 1000 + 1)), name2: "Autres affectations", montant2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ name1: "Autres prélèvements", montant1: Math.floor(Math.random() * (3000 - 1000 + 1)), name2: "Report à nouveau", montant2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+			]
+
+			const defaultColDef = {
+				sortable: false,
+				filter: false,
+				floatingFilter: true,
+				minWidth: 50
+			}
+
+			const totals = rawData.reduce((acc, curr) => {
+				acc.montant1Total += curr.montant1;
+				acc.montant2Total += curr.montant2;
+				return acc;
+			}, { montant1Total: 0, montant2Total: 0 });
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const gridOptions = {
+					defaultColDef: defaultColDef,
+                    columnDefs: [
+                        {
+							field: "name1",
+							headerName: "",
+							flex: 1,
+							filter: 'agTextColumnFilter',
+
+						}, {
+							field: "montant1",
+							headerName: "MONTANT",
+							flex: 1,
+						}, {
+							field: "name2",
+							headerName: "",
+							flex: 1,
+							filter: 'agTextColumnFilter',
+						}, {
+							field: "montant2",
+							headerName: "MONTANT",
+							flex: 1,
+						}
+                    ],
+                    rowData: rawData,
+					pinnedBottomRowData: [
+						{ name1: 'Total', montant1: totals.montant1Total, name2: 'Total', montant2: totals.montant2Total }
+					],
+                };
+
+                const tableContainer = document.getElementById('table-container');
+                new agGrid.Grid(tableContainer, gridOptions);
+				datePicker();
+            });
+
+
+			const datePicker = () => {
+				flatpickr('#date-picker', {
+					enableTime: false,
+					noCalendar: false,
+					dateFormat: "Y",
+					mode: "single",
+					"maxDate": new Date(),
+					defaultDate: new Date(),
+					onChange: function(selectedDates, dateStr, instance) {
+						// This will close the Flatpickr dialog after a date (year) is selected
+						instance.close();
+					},
+					onReady: function(selectedDates, dateStr, instance) {
+						// Hide the calendar view to make it clear only a year is to be selected
+						// This is a bit of a hack and might need adjustments based on Flatpickr's version or your specific setup
+						const calendarContainer = instance.calendarContainer;
+						if (calendarContainer) {
+							const monthsDropdown = calendarContainer.querySelector('.flatpickr-monthDropdown-months');
+							if (monthsDropdown) {
+								monthsDropdown.style.visibility = 'hidden';
+								monthsDropdown.style.width = 0;
+							}
+							const prevMonthNav = calendarContainer.querySelector('.flatpickr-prev-month');
+							const nextMonthNav = calendarContainer.querySelector('.flatpickr-next-month');
+							if (prevMonthNav && nextMonthNav) {
+								prevMonthNav.style.visibility = 'hidden';
+								nextMonthNav.style.visibility = 'hidden';
+								monthsDropdown.style.width = 0;
+							}
+						}
+					}
+				})
+			}
+
+        </script>
+    </div>
+</body>
+</html>

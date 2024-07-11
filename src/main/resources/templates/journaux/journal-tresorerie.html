@@ -1,0 +1,220 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TABLE 12</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/css/fieldInput.css">
+    <script src="/js/dateInput.js"></script>
+    <script src="/js/table12.js"></script>
+
+</head>
+<body>
+<div>
+    <div class="text-center mb-3">
+        <h2>DETAIL DE LA TAXE SUR LA VALEUR AJOUTEE</h2>
+        <button id="getTable12ByDate" type="button" class="btn btn-primary">Afficher le tableau</button>
+        <input type="text" id="dateBilan" list="datesList" placeholder="Sélectionner une date">
+        <datalist id="datesList"></datalist>
+    </div>
+    <table class="styled-table">
+        <thead>
+        <tr>
+            <th scope="col">Nature</th>
+            <th scope="col">solde au début de l'exercice (1)</th>
+            <th scope="col">Opérations comptables de l'exercice (2)</th>
+            <th scope="col">Déclarations T.V.A de l'exercice (3)</th>
+            <th scope="col">Solde fin d'exercice (1+2-3=4)</th>
+        </tr>
+        </thead>
+        <tbody id="getResultDiv">
+
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+
+
+ -->
+
+ <!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Passages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <script src="/js/passage.js"></script>
+    <script src="/js/fieldInput.js"></script>
+    <script src="/js/dateInput.js"></script>
+
+    <link rel="stylesheet" href="/css/fieldInput.css">
+
+</head>
+<body>
+<div>
+
+    <div class="text-center mb-3">
+        <h2>Passage Management</h2>
+
+        <button id="getPassagesByDate" type="button" class="btn btn-primary">Afficher les passages</button>
+        <input type="text" id="dateBilan" list="datesList" placeholder="Sélectionner une date">
+
+        <datalist id="datesList"></datalist>
+    </div>
+
+    <table class="styled-table">
+        <thead>
+        <tr>
+            <th scope="col">INTITULES</th>
+            <th scope="col">MONTANT (+)</th>
+            <th scope="col">MONTANT (-)</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody id="getResultDiv">
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{_fragments/layouts/default}">
+<head>
+    <meta charset="UTF-8">
+    <title>hiveApp - Accounting</title>
+</head>
+<body>
+	<div layout:fragment="page-body">
+		<div class="container-fluid journaux-achat">
+			<!-- Sticky sidebar -->
+			<div class="sticky-sidebar">
+				<ul class="primary-group">
+					<li class="primary-group-item">
+						<h3>Clients</h3>
+						<ul class="secondary-group">
+							<li class="secondary-group-item">
+								Pellentesque habitant morbi
+							</li>
+							<li class="secondary-group-item">
+								vestibulum mattis ullamcorper
+							</li>
+							<li class="secondary-group-item">
+								tristique senectus et netus
+							</li>
+							<li class="secondary-group-item">
+								et malesuada fames ac turpis
+							</li>
+							<li class="secondary-group-item">
+								egestas integer eget aliquet
+							</li>
+							<li class="secondary-group-item">
+								nibh praesent tristique magna
+							</li>
+						</ul>
+					</li>
+					<li class="primary-group-item">
+						<h3>Clients</h3>
+						<ul class="secondary-group">
+							<li class="secondary-group-item">
+								Sit amet cursus sit amet
+							</li>
+							<li class="secondary-group-item">
+								nisl vel pretium
+							</li>
+							<li class="secondary-group-item">
+								dictum sit amet justo donec
+							</li>
+							<li class="secondary-group-item">
+								enim diam vulputate ut pharetra
+							</li>
+							<li class="secondary-group-item">
+								sit amet aliquam id diam
+							</li>
+							<li class="secondary-group-item">
+								Maecenas ultricies mi eget mauris
+							</li>
+						</ul>
+					</li>
+					<li class="primary-group-item">
+						<h3>Clients</h3>
+						<ul class="secondary-group">
+							<li class="secondary-group-item">
+								Phasellus faucibus scelerisque eleifend
+							</li>
+						</ul>
+					</li>
+					<li class="primary-group-item">
+						<h3>Clients</h3>
+						<ul class="secondary-group">
+							<li class="secondary-group-item">
+								Phasellus faucibus scelerisque eleifend
+							</li>
+							<li class="secondary-group-item">
+								donec pretium vulputate sapien nec
+							</li>
+							<li class="secondary-group-item">
+								sagittis aliquam malesuada bibendum
+							</li>
+						</ul>
+					</li>
+					<li class="primary-group-item">
+						<h3>Clients</h3>
+						<ul class="secondary-group">
+							<li class="secondary-group-item">
+								Phasellus
+							</li>
+							<li class="secondary-group-item">
+								donec nec
+							</li>
+							<li class="secondary-group-item">
+								sagittis
+							</li>
+							<li class="secondary-group-item">
+								arcu
+							</li>
+							<li class="secondary-group-item">
+								vitae nunc
+							</li>
+							<li class="secondary-group-item">
+								velit dignissim
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="achat-main-content">
+				<div class="content-header">
+
+				</div>
+			</div>
+			<!-- Sticky sidebar -->
+		</div>
+		<th:block th:insert="_fragments/scripts/journaux/journer-achat :: agGridScripts"></th:block>
+	</div>
+</body>
+</html>

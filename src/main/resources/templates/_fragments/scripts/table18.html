@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <div th:fragment="agGridScripts">
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+        <script>
+
+			const rawData = [
+				{ Nom: "Terrains (1)", Adresse: Math.floor(Math.random() * (3000 - 1000 + 1)), CIN_ou_Article_IS: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Date_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, duree_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, taux: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Charge_financiere_globale: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REAPrincipal: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REAInteret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REA2Principal: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REA2Interet: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, observations: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Nom: "Constructions", Adresse: Math.floor(Math.random() * (3000 - 1000 + 1)), CIN_ou_Article_IS: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Date_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, duree_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, taux: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Charge_financiere_globale: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REAPrincipal: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REAInteret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REA2Principal: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REA2Interet: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, observations: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Nom: "Matériel et outillage", Adresse: Math.floor(Math.random() * (3000 - 1000 + 1)), CIN_ou_Article_IS: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Date_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, duree_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, taux: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Charge_financiere_globale: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REAPrincipal: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REAInteret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REA2Principal: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REA2Interet: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, observations: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Nom: "Matériel de transport", Adresse: Math.floor(Math.random() * (3000 - 1000 + 1)), CIN_ou_Article_IS: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Date_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, duree_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, taux: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Charge_financiere_globale: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REAPrincipal: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REAInteret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REA2Principal: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REA2Interet: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, observations: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Nom: "Agencements-installations", Adresse: Math.floor(Math.random() * (3000 - 1000 + 1)), CIN_ou_Article_IS: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Date_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, duree_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, taux: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Charge_financiere_globale: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REAPrincipal: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REAInteret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REA2Principal: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REA2Interet: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, observations: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Nom: "Brevets", Adresse: Math.floor(Math.random() * (3000 - 1000 + 1)), CIN_ou_Article_IS: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Date_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, duree_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, taux: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Charge_financiere_globale: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REAPrincipal: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REAInteret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REA2Principal: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REA2Interet: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, observations: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Nom: "Autres éléments amortissables", Adresse: Math.floor(Math.random() * (3000 - 1000 + 1)), CIN_ou_Article_IS: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Date_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, duree_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, taux: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Charge_financiere_globale: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REAPrincipal: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REAInteret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REA2Principal: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REA2Interet: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, observations: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Nom: "Titres de participation", Adresse: Math.floor(Math.random() * (3000 - 1000 + 1)), CIN_ou_Article_IS: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Date_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, duree_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, taux: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Charge_financiere_globale: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REAPrincipal: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REAInteret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REA2Principal: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REA2Interet: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, observations: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Nom: "Fonds de commerce", Adresse: Math.floor(Math.random() * (3000 - 1000 + 1)), CIN_ou_Article_IS: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Date_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, duree_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, taux: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Charge_financiere_globale: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REAPrincipal: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REAInteret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REA2Principal: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REA2Interet: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, observations: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ Nom: "Autres éléments non amortissables", Adresse: Math.floor(Math.random() * (3000 - 1000 + 1)), CIN_ou_Article_IS: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Date_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, duree_pret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, taux: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Charge_financiere_globale: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REAPrincipal: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REAInteret: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REA2Principal: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, REA2Interet: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, observations: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+			]
+
+			const defaultColDef = {
+				sortable: false,
+				filter: false,
+				floatingFilter: true,
+				wrapText: true,
+				autoHeight: true,
+				headerClass: 'ag-header-cell-label',
+				minWidth: 50
+			}
+
+			const totals = rawData.reduce((acc, curr) => {
+				acc.Adresse += curr.Adresse;
+				acc.CIN_ou_Article_IS += curr.CIN_ou_Article_IS;
+				acc.Montant_pret += curr.Montant_pret;
+				acc.Date_pret += curr.Date_pret;
+				acc.duree_pret += curr.duree_pret;
+				acc.taux += curr.taux;
+				acc.Charge_financiere_globale += curr.Charge_financiere_globale;
+				acc.REAPrincipal += curr.REAPrincipal;
+				acc.REAInteret += curr.REAInteret;
+				acc.REA2Principal += curr.REA2Principal;
+				acc.REA2Interet += curr.REA2Interet;
+				acc.observations += curr.observations;
+				return acc;
+			}, { Adresse: 0, CIN_ou_Article_IS: 0, Montant_pret: 0, Date_pret: 0, duree_pret: 0, taux: 0, Charge_financiere_globale: 0, REAPrincipal: 0, REAInteret: 0, REA2Principal: 0, REA2Interet: 0, observations: 0 });
+
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const gridOptions = {
+					defaultColDef: defaultColDef,
+					headerHeight: 70,
+					groupHeaderHeight: 70,
+                    columnDefs: [
+                        {
+							field: "Nom",
+							headerName: "Nom, Prénom ou raison sociale",
+							width: 250,
+							filter: 'agTextColumnFilter',
+
+						}, {
+							field: "Adresse",
+							headerName: "Adresse",
+							flex: 1,
+						}, {
+							field: "CIN_ou_Article_IS",
+							headerName: "N° C.I.N. ou Article I.S.",
+							flex: 1,
+						}, {
+							field: "Montant_pret",
+							headerName: "Montant du prêt",
+							flex: 1,
+						}, {
+							field: "Date_pret",
+							headerName: "Date du prêt",
+							flex: 1,
+						}, {
+							field: "duree_pret",
+							headerName: "Durée du prêt (en mois)",
+							flex: 1,
+						}, {
+							field: "taux",
+							headerName: "Taux d'intérêt",
+							flex: 1,
+						}, {
+							field: "Charge_financiere_globale",
+							headerName: "Charge financière globale",
+							flex: 1,
+						}, {
+							headerName: "Remboursement Exercices antérieurs",
+							children: [
+								{
+									field: "REAPrincipal",
+									headerName: "(Principal)",
+									flex: 1,
+								}, {
+									field: "REAInteret",
+									headerName: "(Intérêt)",
+									flex: 1,
+								}
+							]
+						}, {
+							headerName: "Remboursement Exercices actuel",
+							children: [
+								{
+									field: "REA2Principal",
+									headerName: "(Principal)",
+									flex: 1,
+								}, {
+									field: "REA2Interet",
+									headerName: "(Intérêt)",
+									flex: 1,
+								}
+							]
+						}, {
+							field: "observations",
+							headerName: "Observations",
+							flex: 1,
+						}
+                    ],
+                    rowData: rawData,
+					pinnedBottomRowData: [
+						{ Nom: 'Total', Adresse: totals.Adresse, CIN_ou_Article_IS: totals.CIN_ou_Article_IS, Montant_pret: totals.Montant_pret, Date_pret: totals.Date_pret, duree_pret: totals.duree_pret, taux: totals.taux, Charge_financiere_globale: totals.Charge_financiere_globale, REAPrincipal: totals.REAPrincipal, REAInteret: totals.REAInteret, REA2Principal: totals.REA2Principal, REA2Interet: totals.REA2Interet, observations: totals.observations }
+					],
+                };
+
+                const tableContainer = document.getElementById('table-container');
+                new agGrid.Grid(tableContainer, gridOptions);
+				datePicker();
+            });
+
+
+			const datePicker = () => {
+				flatpickr('#date-picker', {
+					enableTime: false,
+					noCalendar: false,
+					dateFormat: "Y",
+					mode: "single",
+					"maxDate": new Date(),
+					defaultDate: new Date(),
+					onChange: function(selectedDates, dateStr, instance) {
+						// This will close the Flatpickr dialog after a date (year) is selected
+						instance.close();
+					},
+					onReady: function(selectedDates, dateStr, instance) {
+						// Hide the calendar view to make it clear only a year is to be selected
+						// This is a bit of a hack and might need adjustments based on Flatpickr's version or your specific setup
+						const calendarContainer = instance.calendarContainer;
+						if (calendarContainer) {
+							const monthsDropdown = calendarContainer.querySelector('.flatpickr-monthDropdown-months');
+							if (monthsDropdown) {
+								monthsDropdown.style.visibility = 'hidden';
+								monthsDropdown.style.width = 0;
+							}
+							const prevMonthNav = calendarContainer.querySelector('.flatpickr-prev-month');
+							const nextMonthNav = calendarContainer.querySelector('.flatpickr-next-month');
+							if (prevMonthNav && nextMonthNav) {
+								prevMonthNav.style.visibility = 'hidden';
+								nextMonthNav.style.visibility = 'hidden';
+								monthsDropdown.style.width = 0;
+							}
+						}
+					}
+				})
+			}
+
+        </script>
+    </div>
+</body>
+</html>

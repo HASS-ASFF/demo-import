@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <div th:fragment="agGridScripts">
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+        <script>
+
+			const rawData = [
+				{ STOCKS: "I. Stocks Approvisionnement", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "- Biens et produits destinés à la revente en l'état", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "* Biens immeubles", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "* Biens meubles", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "2- Biens et Matières Premières destinés aux activités de production et de transformation", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "3- Matières premières", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "4- Matières consommables", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "5- Pièces détachées", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "6- Carburants, lubrifiants pour véhicules de transport", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: " #NOM?", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "7 * récupérables", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "8 * vendus", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "9 * perdus", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "10- Total Stocks des encours", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "II. Stock en cours Production de biens et service", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "11- Produits en cours", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "12- Etudes en cours", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "13- Travaux en cours", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "14- Services encours", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "15- Total Stocks des encours", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "III. Stock Produits finis ", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "16- produits finis", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "17- Biens finis", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "18- Total Stocks Produits et Biens finis", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "IV . Stock Produits résiduels ", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "19- Déchets", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "20- Rebuts", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "21- Matières de récupération", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+				{ STOCKS: "22- Total Stocks Produits résiduels", Montant_brut_1: Math.floor(Math.random() * (3000 - 1000 + 1)), Provision_pour_depreciation_2: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_3: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_brut_4: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Provision_pour_depreciation_5: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Montant_net_6: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000, Variation_stock: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000 },
+			]
+
+			const defaultColDef = {
+				sortable: false,
+				filter: false,
+				floatingFilter: true,
+				wrapText: true,
+				autoHeight: true,
+				headerClass: 'ag-header-cell-label',
+				minWidth: 50
+			}
+
+			const totals = rawData.reduce((acc, curr) => {
+				acc.STOCKS += curr.STOCKS;
+				acc.Montant_brut_1 += curr.Montant_brut_1;
+				acc.Provision_pour_depreciation_2 += curr.Provision_pour_depreciation_2;
+				acc.Montant_net_3 += curr.Montant_net_3;
+				acc.Montant_brut_4 += curr.Montant_brut_4;
+				acc.Provision_pour_depreciation_5 += curr.Provision_pour_depreciation_5;
+				acc.Montant_net_6 += curr.Montant_net_6;
+				acc.Variation_stock += curr.Variation_stock;
+				return acc;
+			}, { STOCKS: 0, Montant_brut_1: 0, Provision_pour_depreciation_2: 0, Montant_net_3: 0, Montant_brut_4: 0, Provision_pour_depreciation_5: 0, Montant_net_6: 0, Variation_stock: 0 });
+
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const gridOptions = {
+					defaultColDef: defaultColDef,
+					headerHeight: 70,
+					groupHeaderHeight: 70,
+                    columnDefs: [
+                        {
+							field: "STOCKS",
+							headerName: "STOCKS",
+							width: 330,
+							filter: 'agTextColumnFilter',
+
+						}, {
+							field: "Montant_brut_1",
+							headerName: "STOCK FINAL : Montant brut (1)",
+							flex: 1,
+						}, {
+							field: "Provision_pour_depreciation_2",
+							headerName: "STOCK FINAL : Provision pour dépréciation (2)",
+							flex: 1,
+						}, {
+							field: "Montant_net_3",
+							headerName: "STOCK FINAL : Montant net (3)",
+							flex: 1,
+						}, {
+							field: "Montant_brut_4",
+							headerName: "STOCK INITIAL : Montant brut (4)",
+							flex: 1,
+						}, {
+							field: "Provision_pour_depreciation_5",
+							headerName: "STOCK INITIAL: Provision pour dépréciation (5)",
+							flex: 1,
+						}, {
+							field: "Montant_net_6",
+							headerName: "STOCK INITIAL: Montant net (6)",
+							flex: 1,
+						}, {
+							field: "Variation_stock",
+							headerName: "Variation de stock en valeur (+ ou -) (7=6-3)",
+							flex: 1,
+						}
+                    ],
+                    rowData: rawData,
+					pinnedBottomRowData: [
+						{ STOCKS: 'Total', Montant_brut_1: totals.Montant_brut_1, Provision_pour_depreciation_2: totals.Provision_pour_depreciation_2, Montant_net_3: totals.Montant_net_3, Montant_brut_4: totals.Montant_brut_4, Provision_pour_depreciation_5: totals.Provision_pour_depreciation_5, Montant_net_6: totals.Montant_net_6, Variation_stock: totals.Variation_stock }
+					],
+                };
+
+                const tableContainer = document.getElementById('table-container');
+                new agGrid.Grid(tableContainer, gridOptions);
+				datePicker();
+            });
+
+
+			const datePicker = () => {
+				flatpickr('#date-picker', {
+					enableTime: false,
+					noCalendar: false,
+					dateFormat: "Y",
+					mode: "single",
+					"maxDate": new Date(),
+					defaultDate: new Date(),
+					onChange: function(selectedDates, dateStr, instance) {
+						// This will close the Flatpickr dialog after a date (year) is selected
+						instance.close();
+					},
+					onReady: function(selectedDates, dateStr, instance) {
+						// Hide the calendar view to make it clear only a year is to be selected
+						// This is a bit of a hack and might need adjustments based on Flatpickr's version or your specific setup
+						const calendarContainer = instance.calendarContainer;
+						if (calendarContainer) {
+							const monthsDropdown = calendarContainer.querySelector('.flatpickr-monthDropdown-months');
+							if (monthsDropdown) {
+								monthsDropdown.style.visibility = 'hidden';
+								monthsDropdown.style.width = 0;
+							}
+							const prevMonthNav = calendarContainer.querySelector('.flatpickr-prev-month');
+							const nextMonthNav = calendarContainer.querySelector('.flatpickr-next-month');
+							if (prevMonthNav && nextMonthNav) {
+								prevMonthNav.style.visibility = 'hidden';
+								nextMonthNav.style.visibility = 'hidden';
+								monthsDropdown.style.width = 0;
+							}
+						}
+					}
+				})
+			}
+
+        </script>
+    </div>
+</body>
+</html>

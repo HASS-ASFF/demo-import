@@ -9,12 +9,14 @@ import com.api.demoimport.entity.Bilan.SubAccountPassif;
 import com.api.demoimport.repository.BalanceDetailRepository;
 import com.api.demoimport.service.BalanceDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class BalanceDetailServiceImpl implements BalanceDetailService {
@@ -53,133 +55,107 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
 
     // fetching data for the class 1
     @Override
-    public List<SubAccountPassif> getClassOne(String dateBilan,String company_name){
-
-        List<Object[]> resultsrequest =  repository.getBilanC1(dateBilan,company_name);
-
-        return ConvertToBilanPassif(resultsrequest);
-
+    @Async
+    public CompletableFuture<List<SubAccountPassif>> getClassOne(String dateBilan, String company_name) {
+        List<Object[]> resultsrequest = repository.getBilanC1(dateBilan, company_name);
+        return CompletableFuture.completedFuture(ConvertToBilanPassif(resultsrequest));
     }
 
     // fetching data for the class 2
     @Override
-    public List<SubAccountActif> getClassTwo(String dateBilan,String company_name){
-
-        List<Object[]> resultsrequest =  repository.getBilanC2(dateBilan,company_name);
-
+    @Async
+    public CompletableFuture<List<SubAccountActif>> getClassTwo(String dateBilan, String company_name) {
+        List<Object[]> resultsrequest = repository.getBilanC2(dateBilan, company_name);
         List<SubAccountActif> bilanActifs = ConvertToBilanActif(resultsrequest);
-
         regroupClassesA(bilanActifs);
-
-
-        return bilanActifs;
-
+        return CompletableFuture.completedFuture(bilanActifs);
     }
 
     // fetching data for the class 3
     @Override
-    public List<SubAccountActif> getClassThree(String dateBilan,String company_name){
-
-        List<Object[]> resultsrequest =  repository.getBilanC3(dateBilan,company_name);
-
+    @Async
+    public CompletableFuture<List<SubAccountActif>> getClassThree(String dateBilan, String company_name) {
+        List<Object[]> resultsrequest = repository.getBilanC3(dateBilan, company_name);
         List<SubAccountActif> bilanActifs = ConvertToBilanActif(resultsrequest);
-
         regroupClassesA(bilanActifs);
-
-        return bilanActifs;
+        return CompletableFuture.completedFuture(bilanActifs);
     }
 
     // fetching data for the class 4
     @Override
-    public List<SubAccountPassif> getClassFour(String dateBilan,String company_name) {
-        List<Object[]> resultsrequest =  repository.getBilanC4(dateBilan,company_name);
-
+    @Async
+    public CompletableFuture<List<SubAccountPassif>> getClassFour(String dateBilan, String company_name) {
+        List<Object[]> resultsrequest = repository.getBilanC4(dateBilan, company_name);
         List<SubAccountPassif> bilanPassifs = ConvertToBilanPassif(resultsrequest);
-
         regroupClassesP(bilanPassifs);
-
-        return bilanPassifs;
+        return CompletableFuture.completedFuture(bilanPassifs);
     }
 
     // fetching data for the class 5 Actif
     @Override
-    public List<SubAccountActif> getClassFiveActif(String dateBilan,String company_name){
-
-        List<Object[]> resultsrequest =  repository.getBilanC5A(dateBilan,company_name);
-
+    @Async
+    public CompletableFuture<List<SubAccountActif>> getClassFiveActif(String dateBilan, String company_name) {
+        List<Object[]> resultsrequest = repository.getBilanC5A(dateBilan, company_name);
         List<SubAccountActif> bilanActifs = ConvertToBilanActif(resultsrequest);
-
         regroupClassesA(bilanActifs);
-
-        return bilanActifs;
+        return CompletableFuture.completedFuture(bilanActifs);
     }
 
     // fetching data for the class 5 Passif
     @Override
-    public List<SubAccountPassif> getClassFivePassif(String dateBilan,String company_name) {
-        List<Object[]> resultsrequest =  repository.getBilanC5P(dateBilan,company_name);
-
+    @Async
+    public CompletableFuture<List<SubAccountPassif>> getClassFivePassif(String dateBilan, String company_name) {
+        List<Object[]> resultsrequest = repository.getBilanC5P(dateBilan, company_name);
         List<SubAccountPassif> bilanPassifs = ConvertToBilanPassif(resultsrequest);
-
         regroupClassesP(bilanPassifs);
-
-        return bilanPassifs;
+        return CompletableFuture.completedFuture(bilanPassifs);
     }
 
     // fetching data for the class 6
     @Override
-    public List<SubAccountCPC> getClassSix(String date, String company_name) {
-        List<Object []> resultsrequest = repository.getCPCC6(date,company_name);
-
+    @Async
+    public CompletableFuture<List<SubAccountCPC>> getClassSix(String date, String company_name) {
+        List<Object[]> resultsrequest = repository.getCPCC6(date, company_name);
         List<SubAccountCPC> subAccountCPCS = ConvertToCPC(resultsrequest);
-
-
-        //regroupClassesCPC(subAccountCPCS);
-
-        return subAccountCPCS;
+        return CompletableFuture.completedFuture(subAccountCPCS);
     }
 
     // fetching data for the class 7
     @Override
-    public List<SubAccountCPC> getClassSeven(String date, String company_name) {
-        List<Object []> resultsrequest = repository.getCPCC7(date,company_name);
-
+    @Async
+    public CompletableFuture<List<SubAccountCPC>> getClassSeven(String date, String company_name) {
+        List<Object[]> resultsrequest = repository.getCPCC7(date, company_name);
         List<SubAccountCPC> subAccountCPCS = ConvertToCPC(resultsrequest);
-
-
-
-        //regroupClassesCPC(subAccountCPCS);
-
-        return subAccountCPCS;
+        return CompletableFuture.completedFuture(subAccountCPCS);
     }
 
     @Override
-    public List<Tvadto> getTvaData(String date, String company_name) {
-        List<Object []> resultrequest;
-        return null;
+    @Async
+    public CompletableFuture<List<Tvadto>> getTvaData(String date, String company_name) {
+        // Ajouter la logique pour récupérer les données TVA
+        return CompletableFuture.completedFuture(null);
     }
 
     // Convert object to SubAccountActif
     @Override
-    public List<SubAccountActif> ConvertToBilanActif(List<Object[]> resultsrequest){
-
+    public List<SubAccountActif> ConvertToBilanActif(List<Object[]> resultsrequest) {
         List<SubAccountActif> bilansActifs = new ArrayList<>();
 
-    try{
-        // Parcourir les résultats et convertir chaque élément en Bilan
-        for (Object[] resultat : resultsrequest) {
+        try{
+            // Parcourir les résultats et convertir chaque élément en Bilan
+            for (Object[] resultat : resultsrequest) {
 
-            String mainA = getMainAccount(resultat[0].toString());
-            String n_compte =  resultat[0].toString();
-            SubAccountActif subAccountActif = getSubAccountActif(resultat, n_compte, mainA);
-            bilansActifs.add(subAccountActif);
+                String mainA = getMainAccount(resultat[0].toString());
+                String n_compte =  resultat[0].toString();
+                SubAccountActif subAccountActif = getSubAccountActif(resultat, n_compte, mainA);
+                bilansActifs.add(subAccountActif);
+            }
+
+            return bilansActifs;
+
+        }catch (RuntimeException e){
+            throw new RuntimeException("Failed to convert object to SubAccountActif (convert method) "+e.getMessage());
         }
-
-        return bilansActifs;
-
-    }catch (RuntimeException e){
-        throw new RuntimeException("Failed to convert object to SubAccountActif (convert method) "+e.getMessage());
-    }
 
     }
 
@@ -195,9 +171,9 @@ public class BalanceDetailServiceImpl implements BalanceDetailService {
                 Double netn = (Double) resultat[4];
                 if (totalAmort == 0) {totalAmort =null;}
                 else {FormatUtils.formatDecimal(totalAmort);
-                net=FormatUtils.formatDecimal(brut-totalAmort);}
+                    net=FormatUtils.formatDecimal(brut-totalAmort);}
                 return new SubAccountActif(mainA, n_compte, libelle,
-                       brut, totalAmort, net, netn);
+                        brut, totalAmort, net, netn);
             }
             else{
                 Double netn = (Double) resultat[3];

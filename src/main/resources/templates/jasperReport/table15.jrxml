@@ -232,7 +232,7 @@
 CORRESPONDANT A LA BASE IMPOSABLE]]></text>
             </staticText>
             <staticText>
-                <reportElement style="HTableStyle" x="485" y="36" width="140" height="65" uuid="d910b313-6907-411f-a9f0-20d2219bb1ee">
+                <reportElement style="HTableStyle" x="485" y="36" width="141" height="65" uuid="d910b313-6907-411f-a9f0-20d2219bb1ee">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -595,6 +595,9 @@ TAXABLE]]></text>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
+                <box>
+                    <rightPen lineWidth="0.0"/>
+                </box>
                 <textFieldExpression><![CDATA[$F{L00_C1}]]></textFieldExpression>
             </textField>
             <textField>
@@ -602,6 +605,10 @@ TAXABLE]]></text>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
+                <box>
+                    <pen lineWidth="0.0"/>
+                    <topPen lineWidth="1.0"/>
+                </box>
                 <textFieldExpression><![CDATA[$F{L00_C2}]]></textFieldExpression>
             </textField>
             <textField>
@@ -609,6 +616,9 @@ TAXABLE]]></text>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
+                <box>
+                    <rightPen lineWidth="0.0"/>
+                </box>
                 <textFieldExpression><![CDATA[$F{L00_C3}]]></textFieldExpression>
             </textField>
             <textField>
@@ -616,6 +626,9 @@ TAXABLE]]></text>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
+                <box>
+                    <rightPen lineWidth="0.0"/>
+                </box>
                 <textFieldExpression><![CDATA[$F{L00a_C1}]]></textFieldExpression>
             </textField>
             <textField>
@@ -623,6 +636,9 @@ TAXABLE]]></text>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
+                <box>
+                    <rightPen lineWidth="0.0"/>
+                </box>
                 <textFieldExpression><![CDATA[$F{L00a_C2}]]></textFieldExpression>
             </textField>
             <textField>
@@ -630,6 +646,9 @@ TAXABLE]]></text>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
+                <box>
+                    <rightPen lineWidth="0.0"/>
+                </box>
                 <textFieldExpression><![CDATA[$F{L00a_C3}]]></textFieldExpression>
             </textField>
             <textField>
@@ -638,6 +657,9 @@ TAXABLE]]></text>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
+                <box>
+                    <rightPen lineWidth="0.0"/>
+                </box>
                 <textFieldExpression><![CDATA[$F{L00b_C1}]]></textFieldExpression>
             </textField>
             <textField>
@@ -646,6 +668,9 @@ TAXABLE]]></text>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
+                <box>
+                    <rightPen lineWidth="0.0"/>
+                </box>
                 <textFieldExpression><![CDATA[$F{L00b_C2}]]></textFieldExpression>
             </textField>
             <textField>
@@ -654,6 +679,9 @@ TAXABLE]]></text>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
+                <box>
+                    <rightPen lineWidth="0.0"/>
+                </box>
                 <textFieldExpression><![CDATA[$F{L00b_C3}]]></textFieldExpression>
             </textField>
             <textField>
@@ -662,6 +690,10 @@ TAXABLE]]></text>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
+                <box>
+                    <topPen lineWidth="1.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
                 <textElement>
                     <font isBold="true"/>
                 </textElement>
@@ -673,6 +705,10 @@ TAXABLE]]></text>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
+                <box>
+                    <topPen lineWidth="1.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
                 <textElement>
                     <font isBold="true"/>
                 </textElement>
@@ -684,6 +720,10 @@ TAXABLE]]></text>
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
+                <box>
+                    <topPen lineWidth="1.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
                 <textElement>
                     <font isBold="true"/>
                 </textElement>
@@ -726,6 +766,9 @@ TAXABLE]]></text>
                 </textElement>
                 <text><![CDATA[Elements de calcul de l'impôt]]></text>
             </staticText>
+            <line>
+                <reportElement x="625" y="101" width="1" height="360" uuid="e748f5fc-3f83-4679-b077-97d0c9a36e47"/>
+            </line>
         </band>
     </detail>
 </jasperReport>
