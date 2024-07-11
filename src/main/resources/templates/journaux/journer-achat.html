@@ -110,14 +110,111 @@
 </head>
 <body>
 	<div layout:fragment="page-body">
-		<div class="text-center mb-3">
-			
-		</div>
-		
-		<div id="table-container" class="ag-theme-quartz" style="height: 940px;" ></div>
-		<th:block th:insert="_fragments/scripts/table12 :: agGridScripts"></th:block>
-	</div>
+		<div class="container-fluid journaux-achat">
+			<!-- Sticky sidebar -->
+			<div class="sticky-sidebar">
+				<ul class="primary-group">
+					<li class="primary-group-item">
+						<h3>Clients</h3>
+						<ul class="secondary-group">
+							<li class="secondary-group-item">
+								Pellentesque habitant morbi
+							</li>
+							<li class="secondary-group-item">
+								vestibulum mattis ullamcorper
+							</li>
+							<li class="secondary-group-item">
+								tristique senectus et netus
+							</li>
+							<li class="secondary-group-item">
+								et malesuada fames ac turpis
+							</li>
+							<li class="secondary-group-item">
+								egestas integer eget aliquet
+							</li>
+							<li class="secondary-group-item">
+								nibh praesent tristique magna
+							</li>
+						</ul>
+					</li>
+					<li class="primary-group-item">
+						<h3>Clients</h3>
+						<ul class="secondary-group">
+							<li class="secondary-group-item">
+								Sit amet cursus sit amet
+							</li>
+							<li class="secondary-group-item">
+								nisl vel pretium
+							</li>
+							<li class="secondary-group-item">
+								dictum sit amet justo donec
+							</li>
+							<li class="secondary-group-item">
+								enim diam vulputate ut pharetra
+							</li>
+							<li class="secondary-group-item">
+								sit amet aliquam id diam
+							</li>
+							<li class="secondary-group-item">
+								Maecenas ultricies mi eget mauris
+							</li>
+						</ul>
+					</li>
+					<li class="primary-group-item">
+						<h3>Clients</h3>
+						<ul class="secondary-group">
+							<li class="secondary-group-item">
+								Phasellus faucibus scelerisque eleifend
+							</li>
+						</ul>
+					</li>
+					<li class="primary-group-item">
+						<h3>Clients</h3>
+						<ul class="secondary-group">
+							<li class="secondary-group-item">
+								Phasellus faucibus scelerisque eleifend
+							</li>
+							<li class="secondary-group-item">
+								donec pretium vulputate sapien nec
+							</li>
+							<li class="secondary-group-item">
+								sagittis aliquam malesuada bibendum
+							</li>
+						</ul>
+					</li>
+					<li class="primary-group-item">
+						<h3>Clients</h3>
+						<ul class="secondary-group">
+							<li class="secondary-group-item">
+								Phasellus
+							</li>
+							<li class="secondary-group-item">
+								donec nec
+							</li>
+							<li class="secondary-group-item">
+								sagittis
+							</li>
+							<li class="secondary-group-item">
+								arcu
+							</li>
+							<li class="secondary-group-item">
+								vitae nunc
+							</li>
+							<li class="secondary-group-item">
+								velit dignissim
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="achat-main-content">
+				<div class="content-header">
 
-	<!-- <script th:src="@{/js/detailCPC.js}"></script> -->
+				</div>
+			</div>
+			<!-- Sticky sidebar -->
+		</div>
+		<th:block th:insert="_fragments/scripts/journaux/journer-achat :: agGridScripts"></th:block>
+	</div>
 </body>
 </html>
