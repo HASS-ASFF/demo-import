@@ -1,3 +1,11 @@
+# Missing TABLES (UPDATED) :
+
+- Table 8 (Amortissement)
+- Table 9 (Provision)
+- Table 15
+- Table 17
+- Table 18
+
 # Balance Sheet Import/export API
 
 The Balance Sheet Import API is a Spring Boot application that facilitates the uploading and processing of Excel files containing balance sheet data. It allows users to upload Excel files containing balance detail information, which are then parsed and saved into a database for further processing.
