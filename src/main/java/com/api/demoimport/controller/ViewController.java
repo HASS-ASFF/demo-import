@@ -55,8 +55,13 @@ public class ViewController {
     @GetMapping("/table20")
     public String tableau20(){ return "table20"; }
 
-    @GetMapping("/journer-achat")
-    public String journerAchat(){ return "journaux/journer-achat"; }
+    @GetMapping("/journal-achat")
+    public String journalAchat(){ return "journal-achat"; }
 
+    @GetMapping("/journal-vente")
+    public String journalVente(){ return "journaux/journal-vente"; }
+
+    @GetMapping("/journal-tresorerie")
+    public String journalTres(){ return "journaux/journal-tresorerie"; }
 
 }
