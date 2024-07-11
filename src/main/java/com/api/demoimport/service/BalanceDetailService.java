@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 public interface BalanceDetailService {
 
@@ -19,18 +20,18 @@ public interface BalanceDetailService {
      */
 
     void save(MultipartFile file, String date,String company_name);
-    List<SubAccountPassif> getClassOne(String date,String company_name);
-    List<SubAccountActif> getClassTwo(String date,String company_name);
-    List<SubAccountActif> getClassThree(String date,String company_name);
-    List<SubAccountPassif> getClassFour(String date,String company_name);
-    List<SubAccountActif> getClassFiveActif(String date,String company_name);
+    CompletableFuture<List<SubAccountPassif>> getClassOne(String date, String company_name);
+    CompletableFuture<List<SubAccountActif>> getClassTwo(String date,String company_name);
+    CompletableFuture<List<SubAccountActif>> getClassThree(String date,String company_name);
+    CompletableFuture<List<SubAccountPassif>> getClassFour(String date,String company_name);
+    CompletableFuture<List<SubAccountActif>> getClassFiveActif(String date,String company_name);
 
-    List<SubAccountPassif> getClassFivePassif(String date,String company_name);
+    CompletableFuture<List<SubAccountPassif>> getClassFivePassif(String date,String company_name);
 
-    List<SubAccountCPC> getClassSix(String date,String company_name);
-    List<SubAccountCPC> getClassSeven(String date,String company_name);
+    CompletableFuture<List<SubAccountCPC>> getClassSix(String date,String company_name);
+    CompletableFuture<List<SubAccountCPC>> getClassSeven(String date,String company_name);
 
-    List<Tvadto> getTvaData(String date,String company_name);
+    CompletableFuture<List<Tvadto>> getTvaData(String date,String company_name);
 
     List<SubAccountActif> ConvertToBilanActif(List<Object[]> resultsrequest);
     List<SubAccountPassif> ConvertToBilanPassif(List<Object[]> resultsrequest);

@@ -32,39 +32,45 @@ public class DetailCPCServiceImpl implements DetailCPCService {
 
         // CONVERSION
         List<DetailCPC> detailCPCList = convertCPCtoDetailCPC(subAccountCPCS);
+        if(detailCPCList.isEmpty()){
+            return null;
+        }
+        else {
+            try{
+                //initialize data with empty values
+                mainAccountList = DetailCPC.initializeData("6");
 
-        try{
-            //initialize data with empty values
-            mainAccountList = DetailCPC.initializeData("6");
-
-            // loop after raw data values of balance
-            for (DetailCPC result : detailCPCList) {
-                // Get the number account
-                String accountNumber = result.getN_compte();
-                String prefix = accountNumber.substring(0,4);
-                // Initialize total for each sub-account
-                Double total = 0.0;
-                //System.out.println(result.getBrut());
-                for (DetailCPC subAccount : mainAccountList) {
-                    // check for the same subAccount
-                    if (subAccount.getName().startsWith(prefix) || subAccount.getName().contains(prefix)) {
-                        // Adding the values
-                        if(subAccount.getExercice() != null){
-                            total = subAccount.getExercice() + (result.getExercice() == null ? 0.0:result.getExercice());
-                        }else{
-                            total = (result.getExercice() == null ? 0.0:result.getExercice());
+                // loop after raw data values of balance
+                for (DetailCPC result : detailCPCList) {
+                    // Get the number account
+                    String accountNumber = result.getN_compte();
+                    String prefix = accountNumber.substring(0,4);
+                    // Initialize total for each sub-account
+                    Double total = 0.0;
+                    //System.out.println(result.getBrut());
+                    for (DetailCPC subAccount : mainAccountList) {
+                        subAccount.setExerciceP(0.0);
+                        // check for the same subAccount
+                        if (subAccount.getName().startsWith(prefix) || subAccount.getName().contains(prefix)) {
+                            // Adding the values
+                            if(subAccount.getExercice() != null){
+                                total = subAccount.getExercice() + (result.getExercice() == null ? 0.0:result.getExercice());
+                            }else{
+                                total = (result.getExercice() == null ? 0.0:result.getExercice());
+                            }
+                            subAccount.setN_compte(result.getN_compte());
+                            subAccount.setExercice(total);
+                            break;
                         }
-                        subAccount.setN_compte(result.getN_compte());
-                        subAccount.setExercice(total);
-                        break;
                     }
                 }
+            }catch (Exception e){
+                e.printStackTrace();
+                throw new RuntimeException("Failed to process data account cpc , error message : "+ e.getMessage());
             }
-        }catch (Exception e){
-            e.printStackTrace();
-            throw new RuntimeException("Failed to process data account cpc , error message : "+ e.getMessage());
+            return mainAccountList;
         }
-        return mainAccountList;
+
     }
 
     @Override
@@ -73,40 +79,45 @@ public class DetailCPCServiceImpl implements DetailCPCService {
 
         // CONVERSION
         List<DetailCPC> detailCPCList = convertCPCtoDetailCPC(subAccountCPCS);
+        if(detailCPCList.isEmpty()){
+            return null;
+        }else {
+            try{
+                //initialize data with empty values
+                mainAccountList = DetailCPC.initializeData("7");
 
-        try{
-            //initialize data with empty values
-            mainAccountList = DetailCPC.initializeData("7");
-
-            // loop after raw data values of balance
-            for (DetailCPC result : detailCPCList) {
-                // Get the number account
-                String accountNumber = result.getN_compte();
-                String prefix = accountNumber.substring(0,3);
-                // Initialize total for each sub-account
-                Double total = 0.0;
-                //System.out.println(result.getBrut());
-                for (DetailCPC subAccount : mainAccountList) {
-                    // check for the same subAccount
-                    if (subAccount.getName().startsWith(prefix) || subAccount.getName().contains(prefix)) {
-                        // Adding the values
-                        if(subAccount.getExercice() != null){
-                            total = subAccount.getExercice() + (result.getExercice() == null ? 0.0:result.getExercice());
-                        }else{
-                            total = (result.getExercice() == null ? 0.0:result.getExercice());
+                // loop after raw data values of balance
+                for (DetailCPC result : detailCPCList) {
+                    // Get the number account
+                    String accountNumber = result.getN_compte();
+                    String prefix = accountNumber.substring(0,3);
+                    // Initialize total for each sub-account
+                    Double total = 0.0;
+                    //System.out.println(result.getBrut());
+                    for (DetailCPC subAccount : mainAccountList) {
+                        // check for the same subAccount
+                        subAccount.setExerciceP(0.0);
+                        if (subAccount.getName().startsWith(prefix) || subAccount.getName().contains(prefix)) {
+                            // Adding the values
+                            if(subAccount.getExercice() != null){
+                                total = subAccount.getExercice() + (result.getExercice() == null ? 0.0:result.getExercice());
+                            }else{
+                                total = (result.getExercice() == null ? 0.0:result.getExercice());
+                            }
+                            subAccount.setN_compte(result.getN_compte());
+                            subAccount.setExercice(total);
+                            break;
                         }
-                        subAccount.setN_compte(result.getN_compte());
-                        subAccount.setExercice(total);
-                        break;
-                    }
 
+                    }
                 }
+            }catch (Exception e){
+                e.printStackTrace();
+                throw new RuntimeException("Failed to process data account cpc , error message : "+ e.getMessage());
             }
-        }catch (Exception e){
-            e.printStackTrace();
-            throw new RuntimeException("Failed to process data account cpc , error message : "+ e.getMessage());
+            return mainAccountList;
         }
-        return mainAccountList;
+
     }
 
     @Override
