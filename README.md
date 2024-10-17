@@ -23,3 +23,5 @@ The Balance Sheet Import API is a Spring Boot application that facilitates the u
 - Spring Boot 2.5.3
 - Apache POI for Excel parsing
 - MySQL for database storage
+- Javascript (JQuery)
+- AJAX METHOD
